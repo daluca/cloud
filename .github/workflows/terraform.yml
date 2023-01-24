@@ -27,7 +27,7 @@ env:
 
 jobs:
   staging:
-    name: "Staging: plan"
+    name: Staging
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -131,7 +131,7 @@ jobs:
         run: terraform apply -auto-approve
 
   production:
-    name: "Production: plan"
+    name: Production
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
