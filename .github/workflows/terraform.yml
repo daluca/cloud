@@ -2,13 +2,21 @@
 name: Terraform
 
 on:
+  workflow_dispatch:
+
   push:
     branches: [main]
-    paths: [deploy]
+    paths:
+      - deploy/**.tf
+      - deploy/**.tfvars
+      - .github/workflows/terraform.yml
 
   pull_request:
     branches: [main]
-    paths: [deploy]
+    paths:
+      - deploy/**.tf
+      - deploy/**.tfvars
+      - .github/workflows/terraform.yml
 
 permissions:
   pull-requests: write
