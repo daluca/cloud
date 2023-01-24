@@ -157,7 +157,7 @@ jobs:
 
       - name: terraform init
         id: init
-        run: >
+        run: >-
           terraform init
             -backend-config="bucket=${{ secrets.TERRAFORM_STATE_BUCKET }}"
             -backend-config="access_key=${{ secrets.SPACES_ACCESS_KEY_ID }}"
