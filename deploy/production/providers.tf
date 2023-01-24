@@ -1,0 +1,3 @@
+provider "random" {}
+
+provider "digitalocean" {}
