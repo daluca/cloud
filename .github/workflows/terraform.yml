@@ -2,8 +2,6 @@
 name: Terraform
 
 on:
-  workflow_dispatch:
-
   push:
     branches: [main]
     paths:
@@ -20,6 +18,7 @@ on:
 
 permissions:
   pull-requests: write
+  contents: read
 
 env:
   DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
@@ -28,7 +27,7 @@ env:
 
 jobs:
   staging:
-    name: "Staging: plan"
+    name: Staging
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -54,11 +53,11 @@ jobs:
 
       - name: terraform init
         id: init
-        run: >
+        run: >-
           terraform init
-            -backend-config="bucket=${{ secrets.TERRAFORM_STATE_BUCKET }}"
-            -backend-config="access_key=${{ secrets.SPACES_ACCESS_KEY_ID }}"
-            -backend-config="secret_key=${{ secrets.SPACES_SECRET_ACCESS_KEY }}"
+          -backend-config="bucket=${{ secrets.TERRAFORM_STATE_BUCKET }}"
+          -backend-config="access_key=${{ secrets.SPACES_ACCESS_KEY_ID }}"
+          -backend-config="secret_key=${{ secrets.SPACES_SECRET_ACCESS_KEY }}"
 
       - name: terraform validate
         id: validate
@@ -128,11 +127,11 @@ jobs:
             }
 
       - name: terraform apply
-        if: github.event_name == "push" && github.ref == "refs/heads/main"
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve
 
   production:
-    name: "Production: plan"
+    name: Production
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -158,11 +157,11 @@ jobs:
 
       - name: terraform init
         id: init
-        run: >
+        run: >-
           terraform init
-            -backend-config="bucket=${{ secrets.TERRAFORM_STATE_BUCKET }}"
-            -backend-config="access_key=${{ secrets.SPACES_ACCESS_KEY_ID }}"
-            -backend-config="secret_key=${{ secrets.SPACES_SECRET_ACCESS_KEY }}"
+          -backend-config="bucket=${{ secrets.TERRAFORM_STATE_BUCKET }}"
+          -backend-config="access_key=${{ secrets.SPACES_ACCESS_KEY_ID }}"
+          -backend-config="secret_key=${{ secrets.SPACES_SECRET_ACCESS_KEY }}"
 
       - name: terraform validate
         id: validate
@@ -232,5 +231,5 @@ jobs:
             }
 
       - name: terraform apply
-        if: github.event_name == "push" && github.ref == "refs/heads/main"
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve
