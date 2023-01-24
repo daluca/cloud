@@ -2,8 +2,6 @@
 name: Terraform
 
 on:
-  workflow_dispatch:
-
   push:
     branches: [main]
     paths:
@@ -128,7 +126,7 @@ jobs:
             }
 
       - name: terraform apply
-        if: github.event_name == "push" && github.ref == "refs/heads/main"
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve
 
   production:
@@ -232,5 +230,5 @@ jobs:
             }
 
       - name: terraform apply
-        if: github.event_name == "push" && github.ref == "refs/heads/main"
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve
