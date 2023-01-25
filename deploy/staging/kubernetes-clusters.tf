@@ -25,6 +25,8 @@ data "digitalocean_sizes" "node_pool" {
 }
 
 resource "digitalocean_kubernetes_cluster" "cluster" {
+  count = local.enabled
+
   name     = "${var.environment}-cluster"
   region   = data.digitalocean_region.sydney.slug
   version  = data.digitalocean_kubernetes_versions.stable.latest_version
@@ -41,9 +43,10 @@ resource "digitalocean_kubernetes_cluster" "cluster" {
 }
 
 resource "digitalocean_project_resources" "kubernetes_cluster" {
+  count   = local.enabled
   project = digitalocean_project.environment.id
 
   resources = [
-    digitalocean_kubernetes_cluster.cluster.urn
+    digitalocean_kubernetes_cluster.cluster.0.urn
   ]
 }

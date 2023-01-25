@@ -13,6 +13,12 @@ variable "domain" {
   type        = string
 }
 
+variable "disable_cost" {
+  description = "Remove resources that cost."
+  type        = bool
+  default     = false
+}
+
 variable "kubernetes_version" {
   description = "Kubernetes cluster major and minor version."
   type        = string

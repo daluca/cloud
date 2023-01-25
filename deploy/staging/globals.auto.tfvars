@@ -1,6 +1,8 @@
 environment = "staging"
 region      = "syd1"
 
+disable_cost = true
+
 kubernetes_version = "1.25"
 kubernetes_nodes = {
   name   = "default"
