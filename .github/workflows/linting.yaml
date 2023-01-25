@@ -1,0 +1,45 @@
+---
+name: Linting
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  yamllint:
+    name: YAMLlint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: setup python
+        uses: actions/setup-python@v3
+
+      - name: run YAMLlint on all files
+        uses: pre-commit/action@v3.0.0
+        with:
+          extra: yamllint --all-files
+
+  markdownlint:
+    name: markdownlint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: setup python
+        uses: actions/setup-python@v3
+
+      - name: run markdownlint on all files
+        uses: pre-commit/action@v3.0.0
+        with:
+          extra: markdownlint --all-files
