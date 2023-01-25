@@ -1,0 +1,94 @@
+---
+yaml-files:
+  - "*.yaml"
+  - "*.yml"
+  - .yamllint
+
+ignore:
+  - .github/workflows/
+
+rules:
+  braces:
+    forbid: true
+    level: error
+  brackets:
+    forbid: false
+    min-spaces-inside: 0
+    max-spaces-inside: 0
+    min-spaces-inside-empty: 0
+    max-spaces-inside-empty: 0
+    level: warning
+  colons:
+    max-spaces-before: 0
+    max-spaces-after: 1
+    level: warning
+  commas:
+    max-spaces-before: 0
+    min-spaces-after: 1
+    max-spaces-after: 1
+    level: warning
+  comments:
+    ignore-shebangs: true
+    require-starting-space: true
+    min-spaces-from-content: 2
+    level: warning
+  comments-indentation:
+    level: warning
+  document-end:
+    present: false
+    level: warning
+  document-start:
+    present: true
+    level: warning
+  empty-lines:
+    max: 1
+    max-start: 0
+    max-end: 0
+    level: warning
+  empty-values:
+    forbid-in-block-mappings: true
+    forbid-in-flow-mappings: true
+    level: error
+  float-values:
+    require-numeral-before-decimal: true
+    forbid-scientific-notation: true
+    forbid-nan: true
+    forbid-inf: true
+    level: error
+  hyphens:
+    max-spaces-after: 1
+    level: warning
+  indentation:
+    spaces: 2
+    indent-sequences: true
+    check-multi-line-strings: false
+    level: warning
+  key-duplicates:
+    level: error
+  line-length:
+    max: 80
+    allow-non-breakable-words: true
+    allow-non-breakable-inline-mappings: true
+    level: warning
+  new-line-at-end-of-file:
+    level: error
+  new-lines:
+    type: unix
+    level: error
+  octal-values:
+    forbid-implicit-octal: true
+    forbid-explicit-octal: true
+    level: error
+  quoted-strings:
+    quote-type: double
+    required: only-when-needed
+    extra-allowed: []
+    extra-required: []
+    allow-quoted-quotes: true
+    level: warning
+  trailing-spaces:
+    level: warning
+  truthy:
+    allowed-values: ["true", "false"]
+    check-keys: false
+    level: error
