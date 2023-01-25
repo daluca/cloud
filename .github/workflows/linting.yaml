@@ -23,7 +23,7 @@ jobs:
       - name: run YAMLlint on all files
         uses: pre-commit/action@v3.0.0
         with:
-          extra: yamllint --all-files
+          extra_args: yamllint --all-files
 
   markdownlint:
     name: markdownlint
@@ -42,4 +42,4 @@ jobs:
       - name: run markdownlint on all files
         uses: pre-commit/action@v3.0.0
         with:
-          extra: markdownlint --all-files
+          extra_args: markdownlint --all-files
