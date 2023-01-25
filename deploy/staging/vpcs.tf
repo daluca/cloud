@@ -8,11 +8,3 @@ resource "time_sleep" "wait_2_minutes" {
   depends_on       = [digitalocean_vpc.environment]
   destroy_duration = "2m"
 }
-
-resource "digitalocean_project_resources" "vpcs" {
-  project = digitalocean_project.environment.id
-
-  resources = [
-    digitalocean_vpc.environment.urn
-  ]
-}
