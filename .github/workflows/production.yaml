@@ -7,14 +7,14 @@ on:
     paths:
       - deploy/production/**.tf
       - deploy/production/**.tfvars
-      - .github/workflows/production.yml
+      - .github/workflows/production.yaml
 
   pull_request:
     branches: [main]
     paths:
       - deploy/production/**.tf
       - deploy/production/**.tfvars
-      - .github/workflows/production.yml
+      - .github/workflows/production.yaml
 
 permissions:
   pull-requests: write
