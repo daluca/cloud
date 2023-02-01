@@ -60,12 +60,3 @@ provider "kubectl" {
   token                  = digitalocean_kubernetes_cluster.staging.kube_config[0].token
   load_config_file       = false
 }
-
-provider "postgresql" {
-  host            = "localhost"
-  port            = 5432
-  username        = var.postgresql_username
-  password        = var.postgresql_password
-  sslmode         = "disable"
-  connect_timeout = 15
-}
