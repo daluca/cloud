@@ -1,10 +1,10 @@
-variable "environment" {
-  description = "Logical stage of deployment."
+variable "region" {
+  description = "Location of resources."
   type        = string
 }
 
-variable "region" {
-  description = "Location of resources."
+variable "environment" {
+  description = "Logical stage of deployment."
   type        = string
 }
 
@@ -13,23 +13,43 @@ variable "domain" {
   type        = string
 }
 
-variable "disable_cost" {
-  description = "Remove resources that cost."
-  type        = bool
-  default     = false
-}
-
 variable "kubernetes_version" {
   description = "Kubernetes cluster major and minor version."
   type        = string
 }
 
-variable "kubernetes_nodes" {
-  description = "Kubernetes node pool specification. Note: Memory in MiB"
-  type = object({
-    name   = string
-    count  = number
-    cpus   = list(number)
-    memory = list(number)
-  })
+variable "kubernetes_node_count" {
+  description = "Number of kubernetes worker nodes."
+  type        = number
+}
+
+variable "github_repository" {
+  description = "GitHub repository for Flux to sync with."
+  type        = string
+}
+
+variable "flux_version" {
+  description = "Flux manifest version."
+  type        = string
+}
+
+variable "postgresql_username" {
+  description = "Admin username for PostgreSQL HA cluster."
+  type        = string
+  default     = "postgres"
+}
+
+variable "postgresql_password" {
+  description = "Admin password for PostgreSQL HA cluster."
+  type        = string
+}
+
+variable "postgresql_miniflux_password" {
+  description = "Miniflux password for PostgreSQL HA cluster."
+  type        = string
+}
+
+variable "postgresql_focalboard_password" {
+  description = "Focalboard password for PostgreSQL HA cluster."
+  type        = string
 }

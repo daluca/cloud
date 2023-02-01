@@ -1,7 +1,6 @@
-resource "digitalocean_project" "environment" {
+resource "digitalocean_project" "staging" {
   name        = title(var.environment)
-  description = "${title(var.environment)} environment for applications"
+  description = "Hobby projects and open source software"
   purpose     = "Web Application"
   environment = title(var.environment)
-  is_default  = false
 }
