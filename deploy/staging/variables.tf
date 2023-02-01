@@ -32,24 +32,3 @@ variable "flux_version" {
   description = "Flux manifest version."
   type        = string
 }
-
-variable "postgresql_username" {
-  description = "Admin username for PostgreSQL HA cluster."
-  type        = string
-  default     = "postgres"
-}
-
-variable "postgresql_password" {
-  description = "Admin password for PostgreSQL HA cluster."
-  type        = string
-}
-
-variable "postgresql_miniflux_password" {
-  description = "Miniflux password for PostgreSQL HA cluster."
-  type        = string
-}
-
-variable "postgresql_focalboard_password" {
-  description = "Focalboard password for PostgreSQL HA cluster."
-  type        = string
-}
