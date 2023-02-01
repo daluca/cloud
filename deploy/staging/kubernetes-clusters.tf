@@ -2,51 +2,28 @@ data "digitalocean_kubernetes_versions" "stable" {
   version_prefix = "${var.kubernetes_version}."
 }
 
-data "digitalocean_sizes" "node_pool" {
-  filter {
-    key    = "vcpus"
-    values = var.kubernetes_nodes.cpus
-  }
+resource "digitalocean_kubernetes_cluster" "staging" {
+  depends_on = [time_sleep.wait_2_minutes]
 
-  filter {
-    key    = "memory"
-    values = var.kubernetes_nodes.memory
-  }
-
-  filter {
-    key    = "regions"
-    values = [data.digitalocean_region.sydney.slug]
-  }
-
-  sort {
-    key       = "price_monthly"
-    direction = "asc" # Ascending / Cheapest
-  }
-}
-
-resource "digitalocean_kubernetes_cluster" "cluster" {
-  count = local.enabled
-
-  name     = "${var.environment}-cluster"
+  name     = "${lower(digitalocean_project.staging.name)}-cluster"
   region   = data.digitalocean_region.sydney.slug
   version  = data.digitalocean_kubernetes_versions.stable.latest_version
-  vpc_uuid = digitalocean_vpc.environment.id
+  vpc_uuid = digitalocean_vpc.staging.id
 
   auto_upgrade  = false
-  surge_upgrade = true
+  surge_upgrade = false
 
   node_pool {
-    name       = "${var.kubernetes_nodes.name}-pool"
-    size       = element(data.digitalocean_sizes.node_pool.sizes, 0).slug
-    node_count = var.kubernetes_nodes.count
+    name       = "worker-pool"
+    size       = "s-2vcpu-4gb"
+    node_count = var.kubernetes_node_count
   }
 }
 
-resource "digitalocean_project_resources" "kubernetes_cluster" {
-  count   = local.enabled
-  project = digitalocean_project.environment.id
+resource "digitalocean_project_resources" "kubernetes_clusters" {
+  project = digitalocean_project.staging.id
 
   resources = [
-    digitalocean_kubernetes_cluster.cluster.0.urn
+    digitalocean_kubernetes_cluster.staging.urn
   ]
 }
