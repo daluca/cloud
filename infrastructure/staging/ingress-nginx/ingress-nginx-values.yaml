@@ -1,0 +1,21 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ingress-nginx
+  namespace: ingress-nginx
+spec:
+  chart:
+    spec:
+      chart: ">=4.0.0 <5.0.0"
+  test:
+    enable: false
+  values:
+    controller:
+      replicaCount: 2
+      service:
+        annotations:
+          service.beta.kubernetes.io/do-loadbalancer-name: staging
+          # Required as a work around to make the proxy-protocol work
+          # https://github.com/digitalocean/digitalocean-cloud-controller-manager/blob/master/docs/controllers/services/annotations.md#servicebetakubernetesiodo-loadbalancer-hostname
+          service.beta.kubernetes.io/do-loadbalancer-hostname: external.stg.${PRIMARY_DOMAIN}

@@ -1,0 +1,37 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ingress-nginx
+  namespace: ingress-nginx
+spec:
+  releaseName: ingress-nginx
+  chart:
+    spec:
+      chart: ingress-nginx
+      sourceRef:
+        kind: HelmRepository
+        name: ingress-nginx
+  interval: 1h
+  install:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  upgrade:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  test:
+    enable: true
+    ignoreFailures: false
+  values:
+    controller:
+      service:
+        # https://docs.digitalocean.com/products/kubernetes/how-to/configure-load-balancers/#external-traffic-policies-and-health-checks
+        externalTrafficPolicy: Local
+        annotations:
+          # https://github.com/digitalocean/digitalocean-cloud-controller-manager/blob/master/docs/controllers/services/annotations.md
+          service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
+          # Required as a work around to make the proxy-protocol work
+          # https://github.com/digitalocean/digitalocean-cloud-controller-manager/blob/master/docs/controllers/services/annotations.md#servicebetakubernetesiodo-loadbalancer-hostname
+          service.beta.kubernetes.io/do-loadbalancer-hostname: external.${PRIMARY_DOMAIN}
