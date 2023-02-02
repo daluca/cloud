@@ -37,3 +37,4 @@ spec:
           service.beta.kubernetes.io/do-loadbalancer-hostname: ${PRIMARY_DOMAIN}
       config:
         use-proxy-protocol: "true"
+        use-forwarded-headers: "true"
