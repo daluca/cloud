@@ -21,12 +21,13 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "files.associations": {
-        ".yamllint": "yaml",
+        ".yamllint": "yaml"
     },
     "cSpell.words": [
         "fluxcd",
         "Kustomization",
         "kustomize",
+        "letsencrypt",
         "tfvars"
     ]
 }
