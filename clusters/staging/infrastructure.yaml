@@ -40,6 +40,10 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: staging-cluster-substitutions
   patches:
     - patch: |
         - op: replace
