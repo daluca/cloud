@@ -12,12 +12,11 @@ spec:
     enable: false
   values:
     ingress:
-      enabled: true
       hosts:
         - host: podinfo.stg.${PRIMARY_DOMAIN}
           paths:
             - path: /
-              pathType: ImplementationSpecific
+              pathType: Prefix
       tls:
         - secretName: podinfo-stg-tls
           hosts:
