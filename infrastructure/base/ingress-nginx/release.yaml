@@ -35,5 +35,6 @@ spec:
           # Required as a work around to make the proxy-protocol work
           # https://github.com/digitalocean/digitalocean-cloud-controller-manager/blob/master/docs/controllers/services/annotations.md#servicebetakubernetesiodo-loadbalancer-hostname
           service.beta.kubernetes.io/do-loadbalancer-hostname: ${PRIMARY_DOMAIN}
-    config:
-      use-proxy-protocol: "true"
+      config:
+        use-proxy-protocol: "true"
+        use-forwarded-headers: "true"
