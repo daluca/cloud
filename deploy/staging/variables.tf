@@ -11,6 +11,7 @@ variable "environment" {
 variable "domain" {
   description = "Domain to host applications."
   type        = string
+  sensitive   = true
 }
 
 variable "kubernetes_version" {

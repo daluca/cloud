@@ -10,7 +10,7 @@ locals {
 
 resource "digitalocean_domain" "staging" {
   name       = "${local.environment}.${var.domain}"
-  ip_address = data.digitalocean_loadbalancer.staging.ip
+  ip_address = local.loadbalancer_ip_address
 }
 
 resource "digitalocean_project_resources" "domains" {
