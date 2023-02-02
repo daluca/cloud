@@ -1,0 +1,24 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: podinfo
+  namespace: podinfo
+spec:
+  chart:
+    spec:
+      version: ">=6.0.0 <7.0.0"
+  test:
+    enable: false
+  values:
+    ingress:
+      enabled: true
+      hosts:
+        - host: podinfo.stg.${PRIMARY_DOMAIN}
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
+      tls:
+        - secretName: podinfo-stg-tls
+          hosts:
+            - podinfo.stg.${PRIMARY_DOMAIN}
