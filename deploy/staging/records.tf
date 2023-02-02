@@ -1,20 +1,6 @@
-resource "digitalocean_record" "adminer" {
+resource "digitalocean_record" "podinfo" {
   domain = digitalocean_domain.staging.id
   type   = "CNAME"
-  name   = "adminer"
-  value  = "${digitalocean_domain.staging.name}."
-}
-
-resource "digitalocean_record" "miniflux" {
-  domain = digitalocean_domain.staging.id
-  type   = "CNAME"
-  name   = "miniflux"
-  value  = "${digitalocean_domain.staging.name}."
-}
-
-resource "digitalocean_record" "hangry" {
-  domain = digitalocean_domain.staging.id
-  type   = "CNAME"
-  name   = "hangry"
+  name   = "podinfo"
   value  = "${digitalocean_domain.staging.name}."
 }
