@@ -1,0 +1,33 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kube-state-metrics
+  namespace: monitoring
+spec:
+  releaseName: kube-state-metrics
+  chart:
+    spec:
+      chart: kube-state-metrics
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+  interval: 1h
+  install:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  upgrade:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  test:
+    enable: true
+    ignoreFailures: false
+  values:
+    namespaceOverride: kube-system
+    prometheus:
+      monitor:
+        enabled: false
+    selfMonitor:
+      enabled: true
