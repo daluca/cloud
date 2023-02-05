@@ -18,7 +18,8 @@ spec:
       containers:
         - name: do-node-agent
           resources:
-            limits: {}
+            limits:
+              $patch: delete
             requests:
               cpu: 100m
               memory: 90Mi
