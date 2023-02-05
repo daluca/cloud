@@ -19,3 +19,6 @@ spec:
         - name: do-node-agent
           resources:
             limits: {}
+            requests:
+              cpu: 103m
+              memory: 90Mi
