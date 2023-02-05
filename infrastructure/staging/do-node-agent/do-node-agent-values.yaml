@@ -1,0 +1,15 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: do-node-agent
+  namespace: kube-system
+spec:
+  template:
+    spec:
+      containers:
+        - name: do-node-agent
+          resources:
+            requests:
+              cpu: 102m
+              memory: 80Mi
