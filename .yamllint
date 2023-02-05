@@ -10,8 +10,12 @@ ignore:
 
 rules:
   braces:
-    forbid: true
-    level: error
+    forbid: false
+    min-spaces-inside: 0
+    max-spaces-inside: 0
+    min-spaces-inside-empty: 0
+    max-spaces-inside-empty: 0
+    level: warning
   brackets:
     forbid: false
     min-spaces-inside: 0
