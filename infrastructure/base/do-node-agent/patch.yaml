@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: do-node-agent
+  namespace: kube-system
+  labels:
+    app: do-node-agent
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+    kustomize.toolkit.fluxcd.io/ssa: merge
+spec:
+  selector:
+    matchLabels:
+      app: do-node-agent
+  template:
+    spec:
+      containers:
+        - name: do-node-agent
+          resources:
+            limits: {}
