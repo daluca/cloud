@@ -15,4 +15,8 @@ spec:
       app: do-node-agent
   template:
     spec:
-      containers: []
+      containers:
+        - name: do-node-agent
+          resources:
+            limits: {}
+            requests: {}
