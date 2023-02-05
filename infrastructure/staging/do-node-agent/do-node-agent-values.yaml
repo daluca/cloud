@@ -10,6 +10,4 @@ spec:
       containers:
         - name: do-node-agent
           resources:
-            requests:
-              cpu: 100m
-              memory: 80Mi
+            limits: {}
