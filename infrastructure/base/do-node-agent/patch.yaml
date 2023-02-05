@@ -15,11 +15,4 @@ spec:
       app: do-node-agent
   template:
     spec:
-      containers:
-        - name: do-node-agent
-          resources:
-            limits:
-              $patch: delete
-            requests:
-              cpu: 100m
-              memory: 90Mi
+      containers: []
