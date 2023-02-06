@@ -9,7 +9,7 @@ spec:
     - name: configuration
   interval: 1h
   retryInterval: 1m
-  timeout: 5m
+  timeout: 15m
   path: ./infrastructure/staging
   prune: true
   wait: true
