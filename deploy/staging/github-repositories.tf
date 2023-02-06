@@ -2,7 +2,7 @@ data "github_repository" "flux" {
   name = var.github_repository
 }
 
-resource "github_repository_deploy_key" "flux" {
+resource "github_repository_deploy_key" "staging" {
   title      = "${lower(var.environment)}-cluster"
   repository = data.github_repository.flux.id
   key        = tls_private_key.flux.public_key_openssh
