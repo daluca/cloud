@@ -5,6 +5,8 @@ metadata:
   name: infrastructure
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: configuration
   interval: 1h
   retryInterval: 1m
   timeout: 5m
@@ -22,33 +24,3 @@ spec:
     substituteFrom:
       - kind: Secret
         name: staging-cluster-substitutions
-
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: issuers
-  namespace: flux-system
-spec:
-  dependsOn:
-    - name: infrastructure
-  interval: 1h
-  retryInterval: 1m
-  timeout: 5m
-  path: ./infrastructure/issuers
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  postBuild:
-    substituteFrom:
-      - kind: Secret
-        name: staging-cluster-substitutions
-  patches:
-    - patch: |
-        - op: replace
-          path: /spec/acme/server
-          value: https://acme-staging-v02.api.letsencrypt.org/directory
-      target:
-        kind: ClusterIssuer
-        name: letsencrypt
