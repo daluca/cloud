@@ -6,4 +6,4 @@ kubernetes_node_count = 2
 
 github_repository = "cloud"
 
-flux_version = "0.38.3"
+flux_version = "0.39.0"

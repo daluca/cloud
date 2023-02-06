@@ -9,7 +9,7 @@ terraform {
 
     flux = {
       source  = "fluxcd/flux"
-      version = "~> 0.22.0"
+      version = "~> 0.23.0"
     }
 
     github = {
@@ -30,11 +30,6 @@ terraform {
     tls = {
       source  = "hashicorp/tls"
       version = "~> 4.0"
-    }
-
-    time = {
-      source  = "hashicorp/time"
-      version = "~> 0.9"
     }
   }
 

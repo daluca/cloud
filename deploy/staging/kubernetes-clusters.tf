@@ -3,8 +3,6 @@ data "digitalocean_kubernetes_versions" "stable" {
 }
 
 resource "digitalocean_kubernetes_cluster" "staging" {
-  # depends_on = [time_sleep.wait_2_minutes]
-
   name     = "${lower(digitalocean_project.staging.name)}-cluster"
   region   = data.digitalocean_region.sydney.slug
   version  = data.digitalocean_kubernetes_versions.stable.latest_version
@@ -17,6 +15,20 @@ resource "digitalocean_kubernetes_cluster" "staging" {
     name       = "worker-pool"
     size       = "s-2vcpu-4gb"
     node_count = var.kubernetes_node_count
+  }
+}
+
+resource "digitalocean_kubernetes_node_pool" "monitoring" {
+  cluster_id = digitalocean_kubernetes_cluster.staging.id
+
+  name       = "monitoring-pool"
+  size       = "s-2vcpu-4gb"
+  node_count = 1
+
+  taint {
+    key    = "workloadKind"
+    value  = "monitoring"
+    effect = "NoSchedule"
   }
 }
 
