@@ -3,8 +3,6 @@ data "digitalocean_kubernetes_versions" "stable" {
 }
 
 resource "digitalocean_kubernetes_cluster" "staging" {
-  # depends_on = [time_sleep.wait_2_minutes]
-
   name     = "${lower(digitalocean_project.staging.name)}-cluster"
   region   = data.digitalocean_region.sydney.slug
   version  = data.digitalocean_kubernetes_versions.stable.latest_version
