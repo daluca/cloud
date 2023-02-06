@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: ingress-nginx
   interval: 1h
-  timeout: 15m
+  timeout: 10m
   install:
     remediation:
       retries: 1
