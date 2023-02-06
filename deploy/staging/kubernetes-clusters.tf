@@ -20,6 +20,20 @@ resource "digitalocean_kubernetes_cluster" "staging" {
   }
 }
 
+resource "digitalocean_kubernetes_node_pool" "monitoring" {
+  cluster_id = digitalocean_kubernetes_cluster.staging.id
+
+  name       = "monitoring-pool"
+  size       = "s-2vcpu-4gb"
+  node_count = 1
+
+  taint {
+    key    = "workloadKind"
+    value  = "monitoring"
+    effect = "NoSchedule"
+  }
+}
+
 resource "digitalocean_project_resources" "kubernetes_clusters" {
   project = digitalocean_project.staging.id
 
