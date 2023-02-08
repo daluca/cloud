@@ -25,10 +25,15 @@ spec:
     enable: true
     ignoreFailures: false
   values:
-    namespaceOverride: kube-system
     replicas: 2
-    prometheus:
-      monitor:
-        enabled: true
-    selfMonitor:
+    metrics:
       enabled: true
+    serviceMonitor:
+      enabled: true
+    nodeSelector:
+      doks.digitalocean.com/node-pool: monitoring-pool
+    tolerations:
+      - key: workloadKind
+        operator: Equal
+        value: monitoring
+        effect: NoSchedule

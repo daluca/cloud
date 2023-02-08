@@ -31,3 +31,10 @@ spec:
         enabled: false
     selfMonitor:
       enabled: true
+    nodeSelector:
+      doks.digitalocean.com/node-pool: monitoring-pool
+    tolerations:
+      - key: workloadKind
+        operator: Equal
+        value: monitoring
+        effect: NoSchedule
