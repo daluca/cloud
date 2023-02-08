@@ -28,7 +28,7 @@ spec:
     namespaceOverride: kube-system
     prometheus:
       monitor:
-        enabled: false
+        enabled: true
     selfMonitor:
       enabled: true
     nodeSelector:
