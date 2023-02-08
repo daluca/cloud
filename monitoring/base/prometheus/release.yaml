@@ -5,7 +5,7 @@ metadata:
   name: prometheus
   namespace: monitoring
 spec:
-  releaseName: prometheus
+  releaseName: hyperion
   chart:
     spec:
       chart: kube-prometheus-stack
@@ -13,6 +13,7 @@ spec:
         kind: HelmRepository
         name: prometheus-community
   interval: 1h
+  maxHistory: 3
   install:
     crds: CreateReplace
     remediation:
@@ -20,30 +21,42 @@ spec:
       remediateLastFailure: true
   upgrade:
     crds: CreateReplace
+    cleanupOnFail: true
     remediation:
       retries: 1
       remediateLastFailure: true
+  uninstall:
+    keepHistory: false
   test:
     enable: true
     ignoreFailures: false
   values:
+    fullnameOverride: hyperion
+    cleanPrometheusOperatorObjectNames: true
     alertmanager:
-      # fullnameOverride: alertmanager
       enabled: true
       ingress:
-        enabled: true
+        enabled: false
         ingressClassName: nginx
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt
         pathType: Prefix
         paths: [/]
+      alertmanagerSpec:
+        nodeSelector:
+          doks.digitalocean.com/node-pool: monitoring-pool
+        tolerations:
+          - key: workloadKind
+            operator: Equal
+            value: monitoring
+            effect: NoSchedule
     grafana:
-      # fullnameOverride: grafana
+      fullnameOverride: grafana
       enabled: true
       defaultDashboardsEnabled: true
       defaultDashboardsTimezone: utc
       ingress:
-        enabled: true
+        enabled: false
         ingressClassName: nginx
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt
@@ -53,6 +66,13 @@ spec:
         existingSecret: grafana-admin-credentials
         userKey: admin-user
         passwordKey: admin-password
+      nodeSelector:
+        doks.digitalocean.com/node-pool: monitoring-pool
+      tolerations:
+        - key: workloadKind
+          operator: Equal
+          value: monitoring
+          effect: NoSchedule
     kubeApiServer:
       enabled: true
     kubelet:
@@ -73,27 +93,46 @@ spec:
     kubeProxy:
       enabled: true
     kubeStateMetrics:
-      enabled: true
+      # Using standalone chart
+      enabled: false
     nodeExporter:
-      # fullnameOverride: node-exporter
+      fullnameOverride: node-exporter
       enabled: true
     prometheusOperator:
       enabled: true
+      nodeSelector:
+        doks.digitalocean.com/node-pool: monitoring-pool
+      tolerations:
+        - key: workloadKind
+          operator: Equal
+          value: monitoring
+          effect: NoSchedule
     prometheus:
-      # fullnameOverride: prometheus
       enabled: true
       ingress:
-        enabled: true
+        enabled: false
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt
         pathType: Prefix
         paths: [/]
       prometheusSpec:
+        nodeSelector:
+          doks.digitalocean.com/node-pool: monitoring-pool
+        tolerations:
+          - key: workloadKind
+            operator: Equal
+            value: monitoring
+            effect: NoSchedule
         storageSpec:
           volumeClaimTemplate:
             spec:
               storageClassName: do-block-storage
               accessModes: [ReadWriteOnce]
+              resources:
+                requests:
+                  storage: 8Gi
+        retention: 15d
+        retentionSize: 8GiB
         # Turing this to false means all serviceMonitors will match
         serviceMonitorSelectorNilUsesHelmValues: false
     thanosRuler:
