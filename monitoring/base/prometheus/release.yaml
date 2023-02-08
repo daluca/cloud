@@ -1,0 +1,100 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prometheus
+  namespace: monitoring
+spec:
+  releaseName: prometheus
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+  interval: 1h
+  install:
+    crds: CreateReplace
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  test:
+    enable: true
+    ignoreFailures: false
+  values:
+    alertmanager:
+      # fullnameOverride: alertmanager
+      enabled: true
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+        pathType: Prefix
+        paths: [/]
+    grafana:
+      # fullnameOverride: grafana
+      enabled: true
+      defaultDashboardsEnabled: true
+      defaultDashboardsTimezone: utc
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+        pathType: Prefix
+        path: [/]
+      admin:
+        existingSecret: grafana-admin-credentials
+        userKey: admin-user
+        passwordKey: admin-password
+    kubeApiServer:
+      enabled: true
+    kubelet:
+      enabled: true
+    kubeControllerManager:
+      # Not on the DigitalOcean Kubernetes cluster
+      enabled: false
+    coreDns:
+      enabled: true
+    kubeDns:
+      # Using coreDns
+      enabled: false
+    kubeEtcd:
+      enabled: true
+    kubeScheduler:
+      # Not on the DigitalOcean Kubernetes cluster
+      enabled: false
+    kubeProxy:
+      enabled: true
+    kubeStateMetrics:
+      enabled: true
+    nodeExporter:
+      # fullnameOverride: node-exporter
+      enabled: true
+    prometheusOperator:
+      enabled: true
+    prometheus:
+      # fullnameOverride: prometheus
+      enabled: true
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+        pathType: Prefix
+        paths: [/]
+      prometheusSpec:
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: do-block-storage
+              accessModes: [ReadWriteOnce]
+        # Turing this to false means all serviceMonitors will match
+        serviceMonitorSelectorNilUsesHelmValues: false
+    thanosRuler:
+      enabled: false
