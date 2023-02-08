@@ -1,0 +1,50 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prometheus
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      version: ">=44.0.0 <45.0.0"
+  test:
+    enable: false
+  values:
+    alertmanager:
+      ingress:
+        hosts:
+          - alertmanager.stg.${PRIMARY_DOMAIN}
+        tls:
+          - secretName: alertmanager-stg-tls
+            hosts:
+              - alertmanager.stg.${PRIMARY_DOMAIN}
+      alertmanagerSpec:
+        replicas: 2
+    grafana:
+      replicas: 2
+      ingress:
+        hosts:
+          - grafana.stg.${PRIMARY_DOMAIN}
+        tls:
+          secretName: grafana-stg-tls
+          hosts:
+            - grafana.stg.${PRIMARY_DOMAIN}
+    prometheus:
+      ingress:
+        hosts:
+          - prometheus.stg.${PRIMARY_DOMAIN}
+        tls:
+          secretName: prometheus-stg-tls
+          hosts:
+            - prometheus.stg.${PRIMARY_DOMAIN}
+      prometheusSpec:
+        replicas: 2
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              resources:
+                requests:
+                  storage: 2Gi
+        retention: 8d
+        retentionSize: 2GiB
