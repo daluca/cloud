@@ -30,3 +30,5 @@ spec:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt
+    serviceMonitor:
+      enabled: true
