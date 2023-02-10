@@ -31,8 +31,11 @@ spec:
     ignoreFailures: false
   values:
     provider: digitalocean
+    policy: sync
     serviceMonitor:
-      enabled: false
+      enabled: true
+    interval: 5m
+    triggerLoopOnEvent: true
     env:
       - name: DO_TOKEN
         valueFrom:

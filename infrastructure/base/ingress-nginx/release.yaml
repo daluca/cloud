@@ -32,11 +32,12 @@ spec:
         # https://docs.digitalocean.com/products/kubernetes/how-to/configure-load-balancers/#external-traffic-policies-and-health-checks
         externalTrafficPolicy: Local
         annotations:
+          external-dns.alpha.kubernetes.io/hostname: stg.${PRIMARY_DOMAIN}
           # https://github.com/digitalocean/digitalocean-cloud-controller-manager/blob/master/docs/controllers/services/annotations.md
           service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
           # Required as a work around to make the proxy-protocol work
           # https://github.com/digitalocean/digitalocean-cloud-controller-manager/blob/master/docs/controllers/services/annotations.md#servicebetakubernetesiodo-loadbalancer-hostname
-          service.beta.kubernetes.io/do-loadbalancer-hostname: ${PRIMARY_DOMAIN}
+          # service.beta.kubernetes.io/do-loadbalancer-hostname:=${PRIMARY_DOMAIN}
       config:
         use-proxy-protocol: "true"
         use-forwarded-headers: "true"

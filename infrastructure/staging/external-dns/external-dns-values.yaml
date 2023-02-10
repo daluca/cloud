@@ -10,3 +10,7 @@ spec:
       version: ">=1.0.0 <2.0.0"
   test:
     enable: false
+  values:
+    domainFilters:
+      - stg.${PRIMARY_DOMAIN}
+      - stg.${SECONDARY_DOMAIN}
