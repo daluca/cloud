@@ -5,12 +5,14 @@ metadata:
   name: cert-manager
   namespace: cert-manager
 spec:
+  releaseName: cert-manager
   chart:
     spec:
       chart: cert-manager
       sourceRef:
         kind: HelmRepository
         name: cert-manager
+        namespace: flux-system
   interval: 1h
   install:
     crds: CreateReplace
