@@ -18,4 +18,4 @@ spec:
           service.beta.kubernetes.io/do-loadbalancer-name: staging
           # Required as a work around to make the proxy-protocol work
           # https://github.com/digitalocean/digitalocean-cloud-controller-manager/blob/master/docs/controllers/services/annotations.md#servicebetakubernetesiodo-loadbalancer-hostname
-          service.beta.kubernetes.io/do-loadbalancer-hostname: stg.${PRIMARY_DOMAIN}
+          # service.beta.kubernetes.io/do-loadbalancer-hostname:=stg.${PRIMARY_DOMAIN}
