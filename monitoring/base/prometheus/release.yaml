@@ -16,12 +16,12 @@ spec:
   interval: 1h
   maxHistory: 3
   install:
-    crds: CreateReplace
+    crds: Skip
     remediation:
       retries: 1
       remediateLastFailure: true
   upgrade:
-    crds: CreateReplace
+    crds: Skip
     cleanupOnFail: true
     remediation:
       retries: 1

@@ -9,6 +9,7 @@ spec:
     - name: namespaces
     - name: sources
     - name: configuration
+    - name: crds
     - name: infrastructure
     - name: issuers
   interval: 1h

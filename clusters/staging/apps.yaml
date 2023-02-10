@@ -9,9 +9,9 @@ spec:
     - name: namespaces
     - name: sources
     - name: configuration
+    - name: crds
     - name: infrastructure
     - name: issuers
-    - name: monitoring
   interval: 1h
   retryInterval: 1m
   timeout: 5m
