@@ -11,6 +11,7 @@ spec:
   test:
     enable: false
   values:
+    logLevel: debug
     domainFilters:
       - stg.${PRIMARY_DOMAIN}
       - stg.${SECONDARY_DOMAIN}

@@ -34,8 +34,10 @@ spec:
     policy: sync
     serviceMonitor:
       enabled: true
-    interval: 5m
+    interval: 1h
     triggerLoopOnEvent: true
+    logLevel: debug
+    logFormat: json
     env:
       - name: DO_TOKEN
         valueFrom:
