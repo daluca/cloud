@@ -27,17 +27,17 @@ spec:
         hosts:
           - grafana.stg.${PRIMARY_DOMAIN}
         tls:
-          secretName: grafana-stg-tls
-          hosts:
-            - grafana.stg.${PRIMARY_DOMAIN}
+          - secretName: grafana-stg-tls
+            hosts:
+              - grafana.stg.${PRIMARY_DOMAIN}
     prometheus:
       ingress:
         hosts:
           - prometheus.stg.${PRIMARY_DOMAIN}
         tls:
-          secretName: prometheus-stg-tls
-          hosts:
-            - prometheus.stg.${PRIMARY_DOMAIN}
+          - secretName: prometheus-stg-tls
+            hosts:
+              - prometheus.stg.${PRIMARY_DOMAIN}
       prometheusSpec:
         replicas: 2
         storageSpec:
