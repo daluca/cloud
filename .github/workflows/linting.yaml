@@ -18,7 +18,9 @@ jobs:
           fetch-depth: 1
 
       - name: setup python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
 
       - name: run YAMLlint on all files
         uses: pre-commit/action@v3.0.0
@@ -37,7 +39,9 @@ jobs:
           fetch-depth: 1
 
       - name: setup python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
 
       - name: run markdownlint on all files
         uses: pre-commit/action@v3.0.0
