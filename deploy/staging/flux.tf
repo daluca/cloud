@@ -3,12 +3,12 @@ locals {
 }
 
 data "flux_install" "staging" {
-  target_path = "clusters/${lower(digitalocean_project.staging.name)}"
+  target_path = "clusters/${lower(var.environment)}"
   version     = "v${var.flux_version}"
 }
 
 data "flux_sync" "staging" {
-  target_path = "clusters/${lower(digitalocean_project.staging.name)}"
+  target_path = "clusters/${lower(var.environment)}"
   url         = "ssh://${local.ssh_clone_url}"
   branch      = "main"
 }
