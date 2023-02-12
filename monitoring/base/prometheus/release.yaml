@@ -62,7 +62,7 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt
         pathType: Prefix
-        path: [/]
+        path: /
       admin:
         existingSecret: grafana-admin-credentials
         userKey: admin-user
