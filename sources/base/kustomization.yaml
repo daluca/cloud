@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - cert-manager.yaml
   - external-dns.yaml
+  - gatekeeper-policy-manager.yaml
   - gatekeeper.yaml
   - ingress-nginx.yaml
   - metrics-server.yaml

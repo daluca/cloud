@@ -1,0 +1,23 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: gatekeeper-policy-manager
+  namespace: gatekeeper-system
+spec:
+  chart:
+    spec:
+      version: ">=0.4.0 <0.5.0"
+  test:
+    enable: false
+  values:
+    replicaCount: 2
+    ingress:
+      hosts:
+        - host: gatekeeper.stg.${PRIMARY_DOMAIN}
+          pathType: Prefix
+          paths: [/]
+      tls:
+        - secretName: gatekeeper-stg-tls
+          hosts:
+            - gatekeeper.stg.${PRIMARY_DOMAIN}

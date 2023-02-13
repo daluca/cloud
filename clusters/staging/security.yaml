@@ -9,6 +9,7 @@ spec:
     - name: namespaces
     - name: sources
     - name: crds
+    - name: infrastructure
   interval: 1h
   retryInterval: 1m
   timeout: 5m
@@ -18,3 +19,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: staging-cluster-substitutions
