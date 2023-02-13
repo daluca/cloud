@@ -5,4 +5,4 @@ metadata:
   name: coredns
   namespace: kube-system
 spec:
-  replicas: 3
+  replicas: 2
