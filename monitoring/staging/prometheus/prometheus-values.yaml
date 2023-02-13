@@ -22,7 +22,7 @@ spec:
       alertmanagerSpec:
         replicas: 2
     grafana:
-      replicas: 2
+      replicas: 1
       ingress:
         hosts:
           - grafana.stg.${PRIMARY_DOMAIN}
@@ -39,7 +39,7 @@ spec:
             hosts:
               - prometheus.stg.${PRIMARY_DOMAIN}
       prometheusSpec:
-        replicas: 2
+        replicas: 1
         storageSpec:
           volumeClaimTemplate:
             spec:
