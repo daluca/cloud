@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - grafana-admin-credentials.sops.yaml
   - ../../base/prometheus
-patchesStrategicMerge:
-  - prometheus-values.yaml
+patches:
+  - path: prometheus-values.yaml
