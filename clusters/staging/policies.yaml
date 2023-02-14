@@ -1,0 +1,18 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: security
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: security
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+  path: ./security/policies
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
