@@ -14,9 +14,8 @@ spec:
     matchLabels:
       app: do-node-agent
   template:
+    metadata:
+      labels:
+        app: do-node-agent
     spec:
-      containers:
-        - name: do-node-agent
-          resources:
-            limits: {}
-            requests: {}
+      containers: []
