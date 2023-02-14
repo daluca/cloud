@@ -31,5 +31,6 @@ spec:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt
+        kubernetes.io/ingress.allow-http: "false"
     serviceMonitor:
       enabled: true
