@@ -5,7 +5,7 @@ metadata:
   name: gatekeeper-policy-manager
   namespace: gatekeeper-system
 spec:
-  releaseName: gatekeeper
+  releaseName: gatekeeper-policy-manager
   chart:
     spec:
       chart: gatekeeper-policy-manager
