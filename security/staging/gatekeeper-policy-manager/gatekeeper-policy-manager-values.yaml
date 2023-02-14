@@ -12,6 +12,8 @@ spec:
     enable: false
   values:
     replicaCount: 2
+    config:
+      secretKey: ${GATEKEEPER_SECRET_KEY}
     ingress:
       hosts:
         - host: gatekeeper.stg.${PRIMARY_DOMAIN}
