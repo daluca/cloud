@@ -19,5 +19,6 @@ terraform {
     region   = "ap-southeast-2" # Must be an AWS region
 
     skip_credentials_validation = true
+    skip_metadata_api_check     = true
   }
 }
