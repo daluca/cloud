@@ -4,11 +4,11 @@ kind: Deployment
 metadata:
   name: coredns
   namespace: kube-system
+  labels:
+    k8s-app: kube-dns
   annotations:
     kustomize.toolkit.fluxcd.io/prune: disabled
     kustomize.toolkit.fluxcd.io/ssa: merge
-  labels:
-    k8s-app: kube-dns
 spec:
   selector:
     matchLabels:
