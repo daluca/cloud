@@ -14,3 +14,7 @@ spec:
       - http01:
           ingress:
             class: nginx
+            ingressTemplate:
+              metadata:
+                annotations:
+                  kubernetes.io/ingress.allow-http: "false"
