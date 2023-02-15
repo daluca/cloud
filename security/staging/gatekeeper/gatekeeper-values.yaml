@@ -11,4 +11,4 @@ spec:
   test:
     enable: false
   values:
-    replicas: 2
+    replicas: 1

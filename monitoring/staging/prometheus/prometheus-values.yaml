@@ -20,7 +20,7 @@ spec:
             hosts:
               - alertmanager.stg.${PRIMARY_DOMAIN}
       alertmanagerSpec:
-        replicas: 2
+        replicas: 1
     grafana:
       replicas: 1
       ingress:

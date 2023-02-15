@@ -12,7 +12,7 @@ spec:
     enable: false
   values:
     controller:
-      replicaCount: 2
+      replicaCount: 1
       service:
         annotations:
           service.beta.kubernetes.io/do-loadbalancer-name: staging
