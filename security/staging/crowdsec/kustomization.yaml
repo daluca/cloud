@@ -8,4 +8,9 @@ patches:
   - target:
       kind: HelmRelease
       name: crowdsec
-    path: disable-online-api.yaml
+    patch: |-
+      - op: add
+        path: /spec/values/lapi/env/-
+        value:
+          name: DISABLE_ONLINE_API
+          value: "true"
