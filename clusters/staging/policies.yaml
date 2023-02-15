@@ -2,7 +2,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: policies
+  name: policy-templates
   namespace: flux-system
 spec:
   dependsOn:
@@ -10,7 +10,26 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./policies/staging
+  path: ./policies/templates/staging
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: policy-constraints
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: security
+    - name: policy-templates
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+  path: ./policies/constraints/staging
   prune: true
   wait: true
   sourceRef:
