@@ -32,6 +32,9 @@ spec:
   values:
     container_runtime: containerd
     lapi:
+      env:
+        - name: DISABLE_AGENT
+          value: "true"
       dashboard:
         enabled: true
         ingress:
