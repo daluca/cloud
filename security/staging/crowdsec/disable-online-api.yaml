@@ -1,0 +1,6 @@
+---
+- op: add
+  path: /spec/values/lapi/env/-
+  value:
+    name: DISABLE_ONLINE_API
+    value: "true"

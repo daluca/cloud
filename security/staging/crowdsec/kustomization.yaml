@@ -5,3 +5,7 @@ resources:
   - ../../base/crowdsec
 patches:
   - path: crowdsec-values.yaml
+  - target:
+      kind: HelmRelease
+      name: crowdsec
+    path: disable-online-api.yaml
