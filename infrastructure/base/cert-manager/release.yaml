@@ -29,3 +29,7 @@ spec:
     ignoreFailures: false
   values:
     installCRDs: true
+    prometheus:
+      enabled: true
+      servicemonitor:
+        enabled: true
