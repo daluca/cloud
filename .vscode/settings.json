@@ -24,6 +24,8 @@
         ".yamllint": "yaml"
     },
     "cSpell.words": [
+        "containerd",
+        "crowdsec",
         "fluxcd",
         "Kustomization",
         "kustomize",

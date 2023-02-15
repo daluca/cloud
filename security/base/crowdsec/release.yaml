@@ -1,0 +1,65 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: crowdsec
+  namespace: crowdsec
+spec:
+  releaseName: crowdsec
+  chart:
+    spec:
+      chart: crowdsec
+      sourceRef:
+        kind: HelmRepository
+        name: crowdsec
+        namespace: flux-system
+  interval: 1h
+  maxHistory: 3
+  install:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  uninstall:
+    keepHistory: false
+  test:
+    enable: true
+    ignoreFailures: false
+  values:
+    container_runtime: containerd
+    lapi:
+      dashboard:
+        enabled: true
+        ingress:
+          enabled: true
+          ingressClassName: nginx
+          annotations:
+            cert-manager.io/cluster-issuer: letsencrypt
+            kubernetes.io/ingress.allow-http: "false"
+            nginx.ingress.kubernetes.io/backend-protocol: HTTP
+      persistentVolume:
+        data:
+          enabled: true
+          accessModes: [ReadWriteOnce]
+          storageClassName: do-block-storage
+        config:
+          enabled: true
+          accessModes: [ReadWriteOnce]
+          storageClassName: do-block-storage
+      metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: true
+    agent:
+      acquisition:
+        - namespace: ingress-nginx
+          podName: ingress-nginx-controller-*
+          program: nginx
+      metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: true
