@@ -12,6 +12,9 @@ spec:
     enable: false
   values:
     lapi:
+      env:
+        - name: DISABLE_ONLINE_API
+          value: "true"
       dashboard:
         ingress:
           host: crowdsec.stg.${PRIMARY_DOMAIN}
