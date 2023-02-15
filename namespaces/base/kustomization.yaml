@@ -3,6 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - cert-manager.yaml
+  - crowdsec.yaml
   - ingress-nginx.yaml
   - monitoring.yaml
   - gatekeeper-system.yaml

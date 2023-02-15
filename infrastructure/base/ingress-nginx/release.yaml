@@ -37,3 +37,7 @@ spec:
       config:
         use-proxy-protocol: "true"
         use-forwarded-headers: "true"
+  valuesFrom:
+    - kind: ConfigMap
+      name: crowdsec-lua-plugin
+      optional: true
