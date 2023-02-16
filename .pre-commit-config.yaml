@@ -3,7 +3,13 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: forbid-submodules
       - id: no-commit-to-branch
+      - id: trailing-whitespace
 
   - repo: https://github.com/adrienverge/yamllint
     rev: v1.29.0
