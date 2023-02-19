@@ -21,6 +21,6 @@ spec:
             path: /
             backend:
               service:
-                name: stackgres-adminui
+                name: stackgres-rest-api
                 port:
                   name: http
