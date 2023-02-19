@@ -1,0 +1,44 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: stackgres-operator
+  namespace: database
+spec:
+  releaseName: stackgres-operator
+  chart:
+    spec:
+      chart: stackgres-operator
+      sourceRef:
+        kind: HelmRepository
+        name: stackgres
+        namespace: flux-system
+  interval: 1h
+  maxHistory: 3
+  install:
+    crds: CreateReplace
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  upgrade:
+    crds: CreateReplace
+    cleanupOnFail: true
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  uninstall:
+    keepHistory: false
+  test:
+    enable: true
+    ignoreFailures: false
+  values:
+    grafana:
+      autoEmbed: true
+      webHost: grafana.monitoring
+      secretNamespace: monitoring
+      secretName: grafana-admin-credentials
+      secretUserKey: admin-user
+      secretPasswordKey: admin-password
+    admin-ui:
+      service:
+        type: ClusterIP

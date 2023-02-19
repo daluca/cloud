@@ -30,6 +30,7 @@
         "Kustomization",
         "kustomize",
         "letsencrypt",
+        "stackgres",
         "tfvars"
     ]
 }

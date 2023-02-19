@@ -10,3 +10,4 @@ resources:
   - ingress-nginx.yaml
   - metrics-server.yaml
   - prometheus-community.yaml
+  - stackgres.yaml
