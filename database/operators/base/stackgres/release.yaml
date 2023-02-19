@@ -32,6 +32,10 @@ spec:
     enable: true
     ignoreFailures: false
   values:
+    admin-ui:
+      name: stackgres-admin-ui
+      service:
+        exposeHTTP: true
     grafana:
       autoEmbed: true
       webHost: grafana.monitoring
