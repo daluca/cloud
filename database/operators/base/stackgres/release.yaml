@@ -32,6 +32,10 @@ spec:
     enable: true
     ignoreFailures: false
   values:
+    admin-ui:
+      name: stackgres-admin-ui
+      service:
+        exposeHTTP: true
     grafana:
       autoEmbed: true
       webHost: grafana.monitoring
@@ -39,6 +43,5 @@ spec:
       secretName: grafana-admin-credentials
       secretUserKey: admin-user
       secretPasswordKey: admin-password
-    admin-ui:
-      service:
-        type: ClusterIP
+    prometheus:
+      allowAutobind: true
