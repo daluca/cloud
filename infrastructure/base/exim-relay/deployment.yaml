@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exim-relay
+  namespace: mail
+spec:
+  selector:
+    matchLabels:
+      app: exim-relay
+  template:
+    metadata:
+      labels:
+        app: exim-relay
+    spec:
+      containers:
+        - name: exim-relay
+          image: devture/exim-relay:4.96-r1-0
+          resources:
+            limits:
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          ports:
+            - name: smtp
+              containerPort: 8025
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: exim-relay-config-envs
