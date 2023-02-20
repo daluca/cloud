@@ -6,3 +6,9 @@ resources:
   - ../../base/prometheus
 patches:
   - path: prometheus-values.yaml
+  - target:
+      kind: HelmRelease
+      name: prometheus
+    patch: |-
+      - op: remove
+        path: /spec/values/prometheus/prometheusSpec/storageSpec
