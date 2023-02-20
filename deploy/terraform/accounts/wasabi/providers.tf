@@ -15,7 +15,7 @@ terraform {
 
   backend "s3" {
     endpoint = "syd1.digitaloceanspaces.com"
-    key      = "iam/wasabi/terraform.tfstate"
+    key      = "accounts/wasabi/terraform.tfstate"
     region   = "ap-southeast-2" # Must be a AWS region
 
     skip_credentials_validation = true
