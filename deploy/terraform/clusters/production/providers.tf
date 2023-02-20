@@ -15,7 +15,7 @@ terraform {
 
   backend "s3" {
     endpoint = "syd1.digitaloceanspaces.com"
-    key      = "production/terraform.tfstate"
+    key      = "clusters/production/terraform.tfstate"
     region   = "ap-southeast-2" # Must be an AWS region
 
     skip_credentials_validation = true
