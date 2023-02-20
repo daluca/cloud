@@ -40,11 +40,5 @@ spec:
               - prometheus.stg.${PRIMARY_DOMAIN}
       prometheusSpec:
         replicas: 1
-        storageSpec:
-          volumeClaimTemplate:
-            spec:
-              resources:
-                requests:
-                  storage: 2Gi
         retention: 8d
         retentionSize: 2GiB
