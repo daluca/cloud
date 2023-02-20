@@ -7,4 +7,5 @@ resources:
   - database.yaml
   - gatekeeper-system.yaml
   - ingress-nginx.yaml
+  - mail.yaml
   - monitoring.yaml
