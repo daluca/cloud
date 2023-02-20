@@ -13,6 +13,16 @@ spec:
       labels:
         app: exim-relay
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - exim-relay
       containers:
         - name: exim-relay
           image: devture/exim-relay:4.96-r1-0
