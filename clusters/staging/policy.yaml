@@ -10,7 +10,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./policies/templates/staging
+  path: ./policy/templates/staging
   prune: true
   wait: true
   sourceRef:
@@ -29,7 +29,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./policies/constraints/staging
+  path: ./policy/constraints/staging
   prune: true
   wait: true
   sourceRef:
