@@ -14,9 +14,3 @@ patches:
         value:
           name: DISABLE_ONLINE_API
           value: "true"
-  - target:
-      kind: HelmRelease
-      name: crowdsec
-    patch: |-
-      - op: remove
-        path: /spec/values/lapi/persistentVolume
