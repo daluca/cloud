@@ -9,9 +9,3 @@ output "terraform_secret_key" {
   value       = aws_iam_access_key.terraform.secret
   sensitive   = true
 }
-
-output "wasabi_account_alias" {
-  description = "Wasabi account alias."
-  value       = wasabi_account_alias.main.account_alias
-  sensitive   = true
-}
