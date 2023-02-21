@@ -8,7 +8,7 @@ resource "aws_iam_access_key" "terraform" {
 
 resource "aws_iam_user_policy_attachment" "wasabi_full_access" {
   user       = aws_iam_user.terraform.id
-  policy_arn = data.aws_iam_policy.wasabi_full_access.arn
+  policy_arn = data.aws_iam_policy.administrator_access.arn
 }
 
 resource "aws_iam_user" "read_only" {
