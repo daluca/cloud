@@ -1,0 +1,15 @@
+---
+apiVersion: stackgres.io/v1
+kind: SGCluster
+metadata:
+  name: postgresql-cluster
+  namespace: database
+spec:
+  postgres:
+    version: "15"
+  sgInstanceProfile: extra-small
+  configurations:
+    sgPostgresConfig: postgres-conf-extra-small
+  instances: 1
+  nonProductionOptions:
+    disableClusterPodAntiAffinity: true

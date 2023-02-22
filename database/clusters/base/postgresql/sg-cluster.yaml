@@ -1,0 +1,24 @@
+---
+apiVersion: stackgres.io/v1
+kind: SGCluster
+metadata:
+  name: postgresql-cluster
+  namespace: database
+spec:
+  instances: 2
+  postgres:
+    version: "15"
+  pods:
+    persistentVolume:
+      size: 10Gi
+      storageClass: do-block-storage
+  sgInstanceProfile: small
+  configurations:
+    sgPostgresConfig: postgres-conf-small
+    sgPoolingConfig: pgbouncer-config-transaction
+    backups:
+      - sgObjectStorage: wasabi-backup-netherlands
+        cronSchedule: 23 17 * * *
+        retention: 100
+  prometheusAutobind: true
+  nonProductionOptions: {}
