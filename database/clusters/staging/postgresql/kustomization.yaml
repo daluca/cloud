@@ -5,7 +5,7 @@ resources:
   - wasabi-bucket-credentials.sops.yaml
   - ../../base/postgresql
 patches:
-  - path: sq-cluster-values.yaml
+  - path: sg-cluster-values.yaml
   - target:
       kind: SGCluster
       name: postgresql-cluster
