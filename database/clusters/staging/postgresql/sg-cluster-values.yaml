@@ -7,6 +7,9 @@ metadata:
 spec:
   postgres:
     version: "15"
+  pods:
+    persistentVolume:
+      size: 1Gi
   sgInstanceProfile: extra-small
   configurations:
     sgPostgresConfig: postgres-conf-extra-small
