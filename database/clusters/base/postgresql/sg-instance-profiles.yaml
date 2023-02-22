@@ -1,0 +1,36 @@
+---
+apiVersion: stackgres.io/v1
+kind: SGInstanceProfile
+metadata:
+  name: extra-small
+  namespace: database
+spec:
+  cpu: 500m
+  memory: 1Gi
+---
+apiVersion: stackgres.io/v1
+kind: SGInstanceProfile
+metadata:
+  name: small
+  namespace: database
+spec:
+  cpu: "1"
+  memory: 2Gi
+---
+apiVersion: stackgres.io/v1
+kind: SGInstanceProfile
+metadata:
+  name: medium
+  namespace: database
+spec:
+  cpu: "2"
+  memory: 4Gi
+---
+apiVersion: stackgres.io/v1
+kind: SGInstanceProfile
+metadata:
+  name: large
+  namespace: database
+spec:
+  cpu: "4"
+  memory: 8Gi

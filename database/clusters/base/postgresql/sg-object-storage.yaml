@@ -1,0 +1,21 @@
+---
+apiVersion: stackgres.io/v1beta1
+kind: SGObjectStorage
+metadata:
+  name: wasabi-backup-netherlands
+  namespace: database
+spec:
+  type: s3Compatible
+  s3Compatible:
+    bucket: ${STACKGRES_BACKUP_BUCKET}
+    region: eu-central-1
+    enablePathStyleAddressing: true
+    endpoint: https://s3.eu-central-1.wasabisys.com
+    awsCredentials:
+      secretKeySelectors:
+        accessKeyId:
+          key: access-key
+          name: wasabi-bucket-credentials
+        secretAccessKey:
+          key: secret-key
+          name: wasabi-bucket-credentials

@@ -10,6 +10,7 @@ spec:
     - name: sources
     - name: infrastructure
     - name: issuers
+    - name: monitoring
   interval: 1h
   retryInterval: 1m
   timeout: 5m
@@ -23,3 +24,26 @@ spec:
     substituteFrom:
       - kind: Secret
         name: staging-cluster-substitutions
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: database-operators
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: namespaces
+    - name: database-operators
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+  path: ./database/operators/staging
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age

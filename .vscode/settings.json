@@ -33,6 +33,7 @@
         "kustomize",
         "lapi",
         "letsencrypt",
+        "pgbouncer",
         "stackgres",
         "tfvars"
     ]
