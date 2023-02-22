@@ -6,9 +6,3 @@ resources:
   - ../../base/postgresql
 patches:
   - path: sg-cluster-values.yaml
-  - target:
-      kind: SGCluster
-      name: postgresql-cluster
-    patch: |-
-      - op: remove
-        path: /spec/pods/persistentVolume
