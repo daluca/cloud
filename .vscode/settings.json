@@ -35,6 +35,7 @@
         "exim",
         "fluxcd",
         "gitleaks",
+        "kubeconform",
         "Kustomization",
         "kustomizations",
         "kustomize",
@@ -44,6 +45,7 @@
         "pgbouncer",
         "shellcheck",
         "stackgres",
+        "supplypike",
         "tfvars"
     ]
 }
