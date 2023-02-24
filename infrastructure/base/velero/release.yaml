@@ -72,6 +72,7 @@ spec:
         enabled: true
     upgradeCRDs: false
     configuration:
+      name: wasabi-netherlands
       provider: aws
       backupStorageLocation:
         bucket: ${VELERO_BACKUP_BUCKET}
@@ -92,3 +93,17 @@ spec:
           memory: 128Mi
         limits:
           memory: 512Mi
+    schedules:
+      daily-cluster-backup:
+        schedule: 16 17 * * *  # 17:16 UTC
+        useOwnerReferencesInBackup: false
+        template:
+          includeClusterResources: true
+          storageLocation: wasabi-netherlands
+          includedNamespaces: ["*"]
+          excludedNamespaces:
+            - default
+            - velero
+          snapshotVolumes: false
+          defaultVolumesToFsBackup: true
+          ttl: 2400h  # 100 days
