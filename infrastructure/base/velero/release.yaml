@@ -83,7 +83,7 @@ spec:
         provider: digitalocean.com/velero
     credentials:
       useSecret: false
-      extraSecretRef: wasabi-bucket-credentials
+      extraSecretRef: velero-cloud-credentials
     deployNodeAgent: true
     nodeAgent:
       resources:

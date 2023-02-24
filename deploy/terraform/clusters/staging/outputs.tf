@@ -15,3 +15,21 @@ output "stackgres_backup_bucket" {
   value       = module.stackgres_backup.bucket
   sensitive   = true
 }
+
+output "velero_access_key" {
+  description = "Wasabi access key for velero user."
+  value       = sensitive(aws_iam_access_key.velero.id)
+  sensitive   = true
+}
+
+output "velero_secret_key" {
+  description = "Wasabi secret key for stackgres user."
+  value       = aws_iam_access_key.velero.secret
+  sensitive   = true
+}
+
+output "velero_backup_bucket" {
+  description = "Wasabi bucket for backing up with Velero."
+  value       = module.velero_backup.bucket
+  sensitive   = true
+}
