@@ -20,6 +20,11 @@
         "editor.tabSize": 4,
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "[shellscript]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "files.eol": "\n"
+    },
     "files.associations": {
         ".yamllint": "yaml"
     },
@@ -29,12 +34,18 @@
         "devture",
         "exim",
         "fluxcd",
+        "gitleaks",
+        "kubeconform",
         "Kustomization",
+        "kustomizations",
         "kustomize",
         "lapi",
         "letsencrypt",
+        "markdownlint",
         "pgbouncer",
+        "shellcheck",
         "stackgres",
+        "supplypike",
         "tfvars"
     ]
 }

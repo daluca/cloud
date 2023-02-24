@@ -1,0 +1,49 @@
+---
+name: Flux
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: setup yq
+        uses: supplypike/setup-bin@v3
+        with:
+          uri: https://github.com/mikefarah/yq/releases/download/v4.31.1/yq_linux_386
+          name: yq
+          version: 4.31.1
+
+      - name: setup kustomize
+        uses: supplypike/setup-bin@v3
+        with:
+          uri: https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv4.5.7/kustomize_v4.5.7_linux_amd64.tar.gz
+          name: kustomize
+          version: 4.5.7
+
+      - name: setup kubeconform
+        uses: supplypike/setup-bin@v3
+        with:
+          uri: https://github.com/yannh/kubeconform/releases/download/v0.5.0/kubeconform-linux-amd64.tar.gz
+          name: kubeconform
+          version: 0.5.0
+
+      - name: run flux-validate.sh on all files
+        uses: pre-commit/action@v3.0.0
+        with:
+          extra_args: flux-validate --all-files
