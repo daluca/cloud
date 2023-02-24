@@ -28,7 +28,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: database-clusters
+  name: database-configuration
   namespace: flux-system
 spec:
   dependsOn:
@@ -37,7 +37,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./database/clusters/staging
+  path: ./database/configuration/staging
   prune: true
   wait: true
   sourceRef:
@@ -47,3 +47,27 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: staging-cluster-substitutions
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: database-clusters
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: namespaces
+    - name: database-operators
+    - name: database-configuration
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+  path: ./database/clusters/staging
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system

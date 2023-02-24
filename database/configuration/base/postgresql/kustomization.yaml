@@ -1,0 +1,8 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - sg-object-storage.yaml
+  - sg-instance-profiles.yaml
+  - sg-postgres-config.yaml
+  - sg-pooling-config.yaml
