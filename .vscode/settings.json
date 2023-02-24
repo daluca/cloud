@@ -29,7 +29,10 @@
         ".yamllint": "yaml"
     },
     "cSpell.words": [
+        "Autoscaler",
+        "cleanup",
         "containerd",
+        "CRDs",
         "crowdsec",
         "devture",
         "exim",
@@ -47,6 +50,8 @@
         "stackgres",
         "Statefulsets",
         "supplypike",
-        "tfvars"
+        "tfvars",
+        "velero",
+        "vmware-tanzu"
     ]
 }

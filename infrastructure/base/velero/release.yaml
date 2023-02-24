@@ -1,0 +1,94 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: velero
+  namespace: backups
+spec:
+  releaseName: velero
+  chart:
+    spec:
+      chart: velero
+      sourceRef:
+        kind: HelmRepository
+        name: vmware-tanzu
+        namespace: flux-system
+  interval: 1h
+  maxHistory: 3
+  install:
+    crds: CreateReplace
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  upgrade:
+    crds: CreateReplace
+    cleanupOnFail: true
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  uninstall:
+    keepHistory: false
+  test:
+    enable: true
+    ignoreFailures: false
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: Deployment
+              name: velero
+            patch: |-
+              - op: remove
+                path: /spec/template/spec/containers/0/resources/limits/cpu
+          - target:
+              kind: DaemonSet
+              name: node-agent
+            patch: |-
+              - op: remove
+                path: /spec/template/spec/containers/0/resources/limits/cpu
+  values:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        memory: 512Mi
+    initContainers:
+      - name: velero-plugin-for-digitalocean
+        image: digitalocean/velero-plugin:v1.1.0
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - mountPath: /target
+            name: plugins
+      - name: velero-plugin-for-aws
+        image: velero/velero-plugin-for-aws:v1.6.1
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - mountPath: /target
+            name: plugins
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    upgradeCRDs: false
+    configuration:
+      provider: aws
+      backupStorageLocation:
+        bucket: ${VELERO_BACKUP_BUCKET}
+        config:
+          region: eu-central-1
+          s3ForcePathStyle: true
+          s3Url: https://s3.eu-central-1.wasabisys.com
+      volumeSnapshotLocation:
+        provider: digitalocean.com/velero
+    credentials:
+      useSecret: false
+      extraSecretRef: wasabi-bucket-credentials
+    deployNodeAgent: true
+    nodeAgent:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          memory: 512Mi
