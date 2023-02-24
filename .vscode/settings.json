@@ -45,6 +45,7 @@
         "pgbouncer",
         "shellcheck",
         "stackgres",
+        "Statefulsets",
         "supplypike",
         "tfvars"
     ]
