@@ -67,8 +67,3 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  healthChecks:
-    - apiVersion: v1
-      kind: Pod
-      name: postgresql-cluster-0
-      namespace: database
