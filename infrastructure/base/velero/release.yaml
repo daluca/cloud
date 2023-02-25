@@ -76,6 +76,7 @@ spec:
         name: wasabi-netherlands
         provider: aws
         bucket: ${VELERO_BACKUP_BUCKET}
+        default: true
         config:
           region: eu-central-1
           s3ForcePathStyle: true
