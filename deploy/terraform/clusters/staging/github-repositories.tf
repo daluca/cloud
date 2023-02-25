@@ -19,6 +19,7 @@ resource "github_repository_file" "flux_install" {
 }
 
 resource "github_repository_file" "flux_sync" {
+  depends_on          = [github_repository_file.flux_install]
   repository          = data.github_repository.flux.name
   file                = data.flux_sync.staging.path
   content             = data.flux_sync.staging.content
