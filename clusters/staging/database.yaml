@@ -68,7 +68,7 @@ spec:
     kind: GitRepository
     name: flux-system
   healthChecks:
-    - apiVersion: apps/v1
-      kind: Statefulsets
-      name: postgresql-cluster
+    - apiVersion: v1
+      kind: Pod
+      name: postgresql-cluster-0
       namespace: database
