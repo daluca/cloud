@@ -72,9 +72,9 @@ spec:
         enabled: true
     upgradeCRDs: false
     configuration:
+      provider: aws
       backupStorageLocation:
         name: wasabi-netherlands
-        provider: aws
         bucket: ${VELERO_BACKUP_BUCKET}
         default: true
         config:
