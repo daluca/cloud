@@ -2,6 +2,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - backups.yaml
   - cert-manager.yaml
   - crowdsec.yaml
   - database.yaml
@@ -9,4 +10,3 @@ resources:
   - ingress-nginx.yaml
   - mail.yaml
   - monitoring.yaml
-  - velero.yaml
