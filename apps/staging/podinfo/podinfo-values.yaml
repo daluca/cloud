@@ -12,6 +12,8 @@ spec:
     enable: false
   values:
     replicaCount: 1
+    podAnnotations:
+      backup.velero.io/backup-volumes-excludes: data
     ingress:
       hosts:
         - host: podinfo.stg.${PRIMARY_DOMAIN}

@@ -13,5 +13,5 @@ spec:
               name: crowdsec-lapi
             patch: |-
               - op: add
-                path: "/metadata/annotations/backup.velero.io~1backup-volumes-excludes"
+                path: "/spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes"
                 value: crowdsec-db,shared-data

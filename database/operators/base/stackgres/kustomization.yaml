@@ -4,3 +4,11 @@ kind: Kustomization
 resources:
   - release.yaml
   - ingress.yaml
+patches:
+  - target:
+      kind: Deployment
+      name: stackgres-rest-api
+    patch: |-
+      - op: add
+        path: "/spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes"
+        value: operator-nginx-etc
