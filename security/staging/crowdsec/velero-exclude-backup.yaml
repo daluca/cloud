@@ -12,6 +12,13 @@ spec:
               kind: Deployment
               name: crowdsec-lapi
             patch: |-
+              - op: replace
+                path: /spec/template/metadata/annotations
+                value: {}
+          - target:
+              kind: Deployment
+              name: crowdsec-lapi
+            patch: |-
               - op: add
                 path: "/spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes"
                 value: crowdsec-db,shared-data
