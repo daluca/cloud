@@ -108,3 +108,19 @@ spec:
           snapshotVolumes: false
           defaultVolumesToFsBackup: true
           ttl: 2400h  # 100 days
+          excludedResources:
+            - batch/v1/Job
+            - cilium.io/v2/CiliumEndpoint
+            - cilium.io/v2/CiliumIdentity
+            - cilium.io/v2/CiliumNode
+            - scheduling.k8s.io/v1/PriorityClass
+            - snapshot.storage.k8s.io/v1/VolumeSnapshotClass
+            - storage.k8s.io/v1/CSIDriver
+            - storage.k8s.io/v1/CSINode
+            - storage.k8s.io/v1/StorageClass
+            - v1/Node
+            - velero.io/v1/Backup
+            - velero.io/v1/BackupStorageLocation
+            - velero.io/v1/PodVolumeBackup
+            - velero.io/v1/Schedule
+            - velero.io/v1/VolumeSnapshotLocation
