@@ -12,7 +12,7 @@ output "terraform_secret_key" {
 
 output "minio_client_access_key" {
   description = "Wasabi access key for minio-client user."
-  value       = sensitive(aws_iam_user.minio_client.id)
+  value       = sensitive(aws_iam_access_key.minio_client.id)
   sensitive   = true
 }
 
