@@ -12,6 +12,10 @@ spec:
     persistentVolume:
       size: 10Gi
       storageClass: do-block-storage
+  metadata:
+    annotations:
+      clusterPods:
+        backup.velero.io/backup-volumes-excludes: empty-base,socket,dshm,log,local-bin,patroni-config,user,pgbouncer-config
   sgInstanceProfile: small
   configurations:
     sgPostgresConfig: postgres-conf-small
