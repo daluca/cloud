@@ -109,18 +109,18 @@ spec:
           defaultVolumesToFsBackup: true
           ttl: 2400h  # 100 days
           excludedResources:
-            - jobs
+            - backups.velero.io
+            - backupstoragelocations.velero.io
             - ciliumendpoints.cilium.io
             - ciliumidentities.cilium.io
             - ciliumnodes.cilium.io
-            - priorityclasses.scheduling.k8s.io
-            - volumesnapshotclasses.snapshot.storage.k8s.io
             - csidrivers.storage.k8s.io
             - csinodes.storage.k8s.io
-            - storageclasses.storage.k8s.io
+            - jobs
             - nodes
-            - backups.velero.io
-            - backupstoragelocations.velero.io
             - podvolumebackups.velero.io
+            - priorityclasses.scheduling.k8s.io
             - schedules.velero.io
+            - storageclasses.storage.k8s.io
+            - volumesnapshotclasses.snapshot.storage.k8s.io
             - volumesnapshotlocations.velero.io
