@@ -12,6 +12,10 @@ KUSTOMIZE_CONFIG=("--load-restrictor" "LoadRestrictionsNone")
 # Functions #
 #############
 
+function print_help () {
+  echo "help!"
+}
+
 function fatal () {
   echo "FATAL    - $*"
   exit 123
@@ -87,8 +91,8 @@ function validate_yaml () {
   local result
   local results
 
-  original_result="$( yq 'tag == "!!map" or tag== "!!seq"' "$1" )"
-  IFS=$'\n' read -d '' -r -a results <<< "${result}"
+  original_result="$( yq 'tag == "!!map" or tag == "!!seq"' "$1" )"
+  IFS=$'\n' read -d '' -r -a results <<< "${original_result}"
   debug "Number of results to check '${#results[@]}'"
   for result in "${results[@]}"; do
     debug "Checking individual result - '${result}"
@@ -217,7 +221,7 @@ debug "Log level           : ${LOG_LEVEL}"
 ### Validate YAML ###
 
 if [[ "${#POSITIONAL_ARGS[@]}" -eq 0 ]]; then
-  info "No positional arguments have been given, exiting"
+  warning "No positional arguments have been given, exiting"
   exit 1
 else
   info "Validating yaml files"

@@ -48,6 +48,7 @@
         "letsencrypt",
         "markdownlint",
         "pgbouncer",
+        "podinfo",
         "shellcheck",
         "stackgres",
         "Statefulsets",

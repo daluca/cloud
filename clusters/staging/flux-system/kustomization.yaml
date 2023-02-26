@@ -32,4 +32,4 @@ patches:
     patch: |-
       - op: add
         path: "/spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes"
-        value: temp,data
+        value: tmp,data
