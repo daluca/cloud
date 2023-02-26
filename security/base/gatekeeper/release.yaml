@@ -38,6 +38,13 @@ spec:
               kind: Deployment
               name: gatekeeper-audit
             patch: |-
+              - op: replace
+                path: /spec/template/metadata/annotations
+                value: {}
+          - target:
+              kind: Deployment
+              name: gatekeeper-audit
+            patch: |-
               - op: add
                 path: "/spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes"
                 value: tmp-volume
