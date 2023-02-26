@@ -7,10 +7,29 @@ resources:
 patches:
   - target:
       kind: Deployment
+      name: helm-controller
+    patch: |-
+      - op: add
+        path: "/metadata/annotations/backup.velero.io~1backup-volumes-excludes"
+        value: temp
+  - target:
+      kind: Deployment
+      name: kustomize-controller
+    patch: |-
+      - op: add
+        path: "/metadata/annotations/backup.velero.io~1backup-volumes-excludes"
+        value: temp
+  - target:
+      kind: Deployment
       name: notification-controller
     patch: |-
-      $patch: delete
-      apiVersion: apps/v1
+      - op: add
+        path: "/metadata/annotations/backup.velero.io~1backup-volumes-excludes"
+        value: temp
+  - target:
       kind: Deployment
-      metadata:
-        name: notification-controller
+      name: source-controller
+    patch: |-
+      - op: add
+        path: "/metadata/annotations/backup.velero.io~1backup-volumes-excludes"
+        value: temp,data

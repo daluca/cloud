@@ -28,6 +28,8 @@ spec:
     ignoreFailures: false
   values:
     controller:
+      annotations:
+        backup.velero.io/backup-volumes-excludes: crowdsec-bouncer-plugin
       service:
         # https://docs.digitalocean.com/products/kubernetes/how-to/configure-load-balancers/#external-traffic-policies-and-health-checks
         externalTrafficPolicy: Local

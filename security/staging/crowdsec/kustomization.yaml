@@ -5,6 +5,7 @@ resources:
   - ../../base/crowdsec
 patches:
   - path: crowdsec-values.yaml
+  - path: velero-exclude-backup.yaml
   - target:
       kind: HelmRelease
       name: crowdsec

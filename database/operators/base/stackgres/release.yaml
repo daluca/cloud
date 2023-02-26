@@ -34,6 +34,8 @@ spec:
   values:
     restapi:
       name: stackgres-rest-api
+    annotations:
+      backup.velero.io/backup-volumes-excludes: operator-nginx-etc
     adminui:
       name: stackgres-admin-ui
       service:

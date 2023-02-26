@@ -104,7 +104,7 @@ spec:
           includedNamespaces: ["*"]
           excludedNamespaces:
             - default
-            - velero
+            - backups
           snapshotVolumes: false
           defaultVolumesToFsBackup: true
           ttl: 2400h  # 100 days

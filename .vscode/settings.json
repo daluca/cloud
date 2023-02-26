@@ -29,12 +29,14 @@
         ".yamllint": "yaml"
     },
     "cSpell.words": [
+        "Autobind",
         "Autoscaler",
         "cleanup",
         "containerd",
         "CRDs",
         "crowdsec",
         "devture",
+        "dshm",
         "exim",
         "fluxcd",
         "gitleaks",
