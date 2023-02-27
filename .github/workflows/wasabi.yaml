@@ -7,7 +7,7 @@ on:
     paths:
       - deploy/terraform/accounts/wasabi/**.tf
       - deploy/terraform/accounts/wasabi/**.tfvars
-      - .github/workflows/accounts.yaml
+      - .github/workflows/wasabi.yaml
 
   pull_request:
     paths:
@@ -24,7 +24,6 @@ env:
   SPACES_SECRET_ACCESS_KEY: ${{ secrets.SPACES_SECRET_ACCESS_KEY }}
   AWS_ACCESS_KEY_ID: ${{ secrets.WASABI_ROOT_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.WASABI_ROOT_SECRET_ACCESS_KEY }}
-  TF_VAR_account_alias: ${{ secrets.WASABI_ACCOUNT_ALIAS }}
 
 jobs:
   terraform:
@@ -48,7 +47,7 @@ jobs:
       - name: setup terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: ">=1.3.0 <2.0.0"
+          terraform_version: ">=1.0.0 <2.0.0"
 
       - name: terraform fmt
         id: fmt
