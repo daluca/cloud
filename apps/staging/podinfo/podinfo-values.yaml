@@ -16,11 +16,11 @@ spec:
       backup.velero.io/backup-volumes-excludes: data
     ingress:
       hosts:
-        - host: podinfo.stg.${PRIMARY_DOMAIN}
+        - host: podinfo.${TERTIARY_DOMAIN}
           paths:
             - path: /
               pathType: Prefix
       tls:
         - secretName: podinfo-stg-tls
           hosts:
-            - podinfo.stg.${PRIMARY_DOMAIN}
+            - podinfo.${TERTIARY_DOMAIN}
