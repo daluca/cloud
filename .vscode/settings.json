@@ -46,6 +46,7 @@
         "kustomizations",
         "kustomize",
         "lapi",
+        "lastmodified",
         "letsencrypt",
         "markdownlint",
         "pgbouncer",
