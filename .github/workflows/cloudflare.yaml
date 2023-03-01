@@ -24,6 +24,7 @@ env:
   SPACES_SECRET_ACCESS_KEY: ${{ secrets.SPACES_SECRET_ACCESS_KEY }}
   CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
   CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
+  TF_VAR_cloudflare_user_id: ${{ secrets.CLOUDFLARE_USER_ID }}
 
 jobs:
   terraform:

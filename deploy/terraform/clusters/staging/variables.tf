@@ -33,3 +33,15 @@ variable "flux_version" {
   description = "Flux manifest version."
   type        = string
 }
+
+variable "cloudflare_domain" {
+  description = "Cloudflare hosted domain."
+  type        = string
+  sensitive   = true
+}
+
+variable "cloudflare_account_id" {
+  description = "Cloudflare account id."
+  type        = string
+  sensitive   = true
+}
