@@ -30,16 +30,19 @@ spec:
     enable: true
     ignoreFailures: false
   values:
-    provider: digitalocean
+    provider: cloudflare
+    sources: [ingress]
     policy: sync
+    triggerLoopOnEvent: true
+    interval: 1h
+    logFormat: json
+    extraArgs:
+      - --cloudflare-proxied
     serviceMonitor:
       enabled: true
-    interval: 1h
-    triggerLoopOnEvent: true
-    logFormat: json
     env:
-      - name: DO_TOKEN
+      - name: CF_API_TOKEN
         valueFrom:
           secretKeyRef:
-            key: DO_TOKEN
-            name: digitalocean-credentials
+            key: token
+            name: cloudflare-credentials

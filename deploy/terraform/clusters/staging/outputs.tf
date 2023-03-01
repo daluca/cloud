@@ -33,3 +33,14 @@ output "velero_backup_bucket" {
   value       = module.velero_backup.bucket
   sensitive   = true
 }
+
+output "cloudflare_nameservers" {
+  description = "Cloudflare name servers for the tertiary domain."
+  value       = cloudflare_zone.tertiary_domain.name_servers
+}
+
+output "external_dns_api_token" {
+  description = "Cloudflare token for external-dns."
+  value       = cloudflare_api_token.external_dns.value
+  sensitive   = true
+}

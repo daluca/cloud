@@ -25,9 +25,12 @@ env:
   SPACES_ACCESS_KEY_ID: ${{ secrets.SPACES_ACCESS_KEY_ID }}
   SPACES_SECRET_ACCESS_KEY: ${{ secrets.SPACES_SECRET_ACCESS_KEY }}
   GITHUB_TOKEN: ${{ secrets.REPOSITORY_WRITE_TOKEN }}
-  TF_VAR_domain: ${{ secrets.HOSTING_DOMAIN }}
   AWS_ACCESS_KEY_ID: ${{ secrets.WASABI_TERRAFORM_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.WASABI_TERRAFORM_SECRET_ACCESS_KEY }}
+  CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+  TF_VAR_domain: ${{ secrets.PRIMARY_DOMAIN }}
+  TF_VAR_cloudflare_account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+  TF_VAR_cloudflare_domain: ${{ secrets.TERTIARY_DOMAIN }}
 
 jobs:
   terraform:
