@@ -44,3 +44,9 @@ output "external_dns_api_token" {
   value       = cloudflare_api_token.external_dns.value
   sensitive   = true
 }
+
+output "cert_manager_api_token" {
+  description = "Cloudflare token for cert-manager."
+  value       = cloudflare_api_token.cert_manager.value
+  sensitive   = true
+}
