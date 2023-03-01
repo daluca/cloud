@@ -39,6 +39,7 @@ spec:
       config:
         use-proxy-protocol: "true"
         use-forwarded-headers: "true"
+        whitelist-source-range: ${CLOUDFLARE_IPV4_RANGE}
   valuesFrom:
     - kind: ConfigMap
       name: crowdsec-lua-plugin
