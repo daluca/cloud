@@ -28,7 +28,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  mdbook:
+  build:
     name: build
     runs-on: ubuntu-latest
     timeout-minutes: 15
