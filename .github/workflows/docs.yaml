@@ -55,6 +55,7 @@ jobs:
         run: mdbook build
 
       - name: upload artifacts
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
         uses: actions/upload-pages-artifact@v1
         with:
           path: ./docs/book
