@@ -33,6 +33,9 @@ spec:
     redisCluster:
       clusterVersion: v7
       persistenceEnabled: true
+      redisSecret:
+        secretName: redis-cluster-credentials
+        secretKey: password
     serviceMonitor:
       enabled: true
       namespace: database
