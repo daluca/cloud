@@ -36,6 +36,10 @@ jobs:
     env:
       MDBOOK_VERSION: 0.4.27
 
+    defaults:
+      run:
+        working-directory: docs/
+
     steps:
       - name: checkout
         uses: actions/checkout@v3
