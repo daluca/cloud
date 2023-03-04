@@ -28,8 +28,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  mdbook:
-    name: build
+  build:
+    name: Build
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -55,12 +55,13 @@ jobs:
         run: mdbook build
 
       - name: upload artifacts
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./book
+          path: ./docs/book
 
   deploy:
-    name: deploy
+    name: Deploy
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
