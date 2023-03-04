@@ -1,10 +1,16 @@
 [book]
+title = "daluca/cloud"
+description = "Documentation site for Kubernetes cluster hosting hobby projects."
 authors = ["Lucas Slebos"]
 language = "en-GB"
 multilingual = false
 src = "src"
-title = "daluca/cloud"
+
+[rust]
+edition = "2021"
 
 [output.html]
 preferred-dark-theme = "nya"
 no-section-label = true
+git-repository-url = "https://github.com/daluca/cloud"
+git-repository-icon = "fa-github"
