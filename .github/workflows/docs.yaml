@@ -57,7 +57,7 @@ jobs:
       - name: upload artifacts
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./book
+          path: ./docs/book
 
   deploy:
     name: Deploy
