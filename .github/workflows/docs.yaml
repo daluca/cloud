@@ -1,0 +1,77 @@
+---
+name: Documentation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - docs/**.md
+      - docs/book.toml
+      - .github/workflows/docs.yaml
+
+  pull_request:
+    branches: [main]
+    paths:
+      - docs/**.md
+      - docs/book.toml
+      - .github/workflows/docs.yaml
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  mdbook:
+    name: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    env:
+      MDBOOK_VERSION: 0.4.27
+
+    defaults:
+      run:
+        working-directory: docs/
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: setup mdBook
+        uses: peaceiris/actions-mdbook@v1
+        with:
+          mdbook-version: ${{ env.MDBOOK_VERSION }}
+
+      - name: build mdBook
+        run: mdbook build
+
+      - name: upload artifacts
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./book
+
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    needs: build
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
