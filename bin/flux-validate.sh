@@ -256,7 +256,7 @@ fi
 
 CLUSTER_YAML=()
 for file in "${POSITIONAL_ARGS[@]}"; do
-  if [[ "${file}" =~ clusters\/.*\/[[:alnum:]]*\.yaml ]]; then
+  if [[ "${file}" =~ ^clusters\/.*\/[[:alnum:]]*\.yaml$ ]]; then
     debug "Found '${file}' to be a Flux cluster yaml file"
     CLUSTER_YAML+=( "${file}" )
   else
