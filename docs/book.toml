@@ -1,0 +1,10 @@
+[book]
+authors = ["Lucas Slebos"]
+language = "en-GB"
+multilingual = false
+src = "src"
+title = "daluca/cloud"
+
+[output.html]
+preferred-dark-theme = "nya"
+no-section-label = true

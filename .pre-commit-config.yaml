@@ -17,13 +17,13 @@ repos:
       - id: yamllint
         entry: yamllint --strict
 
-  - repo: https://github.com/markdownlint/markdownlint
-    rev: v0.12.0
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.6.0
     hooks:
-      - id: markdownlint
+      - id: markdownlint-cli2
 
   - repo: https://github.com/zricethezav/gitleaks
-    rev: v8.15.3
+    rev: v8.16.0
     hooks:
       - id: gitleaks
 
