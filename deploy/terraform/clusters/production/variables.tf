@@ -7,3 +7,13 @@ variable "region" {
   description = "Location of resources."
   type        = string
 }
+
+variable "catalyst_cloud_region" {
+  description = "Catalyst cloud region."
+  type        = string
+
+  validation {
+    condition     = contains(["nz-hlz-1", "nz-por-1", "nz_wlg_2"], var.catalyst_cloud_region)
+    error_message = "Region must be one of ['nz-hlz-1', 'nz-por-1', 'nz_wlg_2']"
+  }
+}
