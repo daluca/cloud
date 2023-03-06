@@ -9,7 +9,7 @@ variable "region" {
 }
 
 variable "catalyst_cloud_region" {
-  description = "Catalyst cloud region."
+  description = "Catalyst Cloud region."
   type        = string
 
   validation {

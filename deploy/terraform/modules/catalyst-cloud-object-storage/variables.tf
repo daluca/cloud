@@ -1,5 +1,5 @@
 variable "container" {
-  description = "Globally unique name for Catalyst cloud container."
+  description = "Globally unique name for Catalyst Cloud container."
   type        = string
 
   validation {
@@ -27,7 +27,7 @@ variable "multi_region_replicas" {
 }
 
 variable "region" {
-  description = "Catalyst cloud region"
+  description = "Catalyst Cloud region"
   type        = string
 
   validation {

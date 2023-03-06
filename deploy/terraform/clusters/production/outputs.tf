@@ -5,7 +5,7 @@ output "old_terraform_state_bucket" {
 }
 
 output "terraform_state_bucket" {
-  description = "Catalyst cloud container for terraform state."
+  description = "Catalyst Cloud container for terraform state."
   value       = module.terraform_state.name
   sensitive   = true
 }
