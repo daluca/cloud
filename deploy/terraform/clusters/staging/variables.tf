@@ -45,3 +45,14 @@ variable "cloudflare_account_id" {
   type        = string
   sensitive   = true
 }
+
+variable "cloudflare_ip_allow_list" {
+  description = "IP allow list for Cloudflare WAF"
+  type        = string
+  sensitive   = false
+
+  validation {
+    condition     = can(cidrnetmask(var.cloudflare_ip_allow_list))
+    error_message = "Must be a valid IPv4 CIDR range."
+  }
+}
