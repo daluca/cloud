@@ -25,10 +25,29 @@
         "editor.tabSize": 2,
         "files.eol": "\n"
     },
+    "[markdown]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.rulers": [100],
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.unicodeHighlight.ambiguousCharacters": false,
+        "editor.unicodeHighlight.invisibleCharacters": false,
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "off",
+            "other": "off"
+        },
+        "cSpell.fixSpellingWithRenameProvider": true,
+        "cSpell.advanced.feature.useReferenceProviderWithRename": true,
+        "cSpell.advanced.feature.useReferenceProviderRemove": "/^#+\\s/"
+    },
     "files.associations": {
         ".yamllint": "yaml"
     },
     "cSpell.words": [
+        "alertmanager",
         "Autobind",
         "Autoscaler",
         "cleanup",
@@ -37,11 +56,14 @@
         "CRDs",
         "crowdsec",
         "devture",
+        "doks",
         "dshm",
         "exim",
         "fluxcd",
+        "fullname",
         "gitleaks",
         "kubeconform",
+        "kubelet",
         "Kustomization",
         "kustomizations",
         "kustomize",
@@ -50,15 +72,18 @@
         "letsencrypt",
         "markdownlint",
         "mdbook",
+        "Nextcloud",
         "peaceiris",
         "pgbouncer",
         "podinfo",
         "refs",
         "shellcheck",
+        "Slebos",
         "stackgres",
         "Statefulsets",
         "supplypike",
         "tfvars",
+        "thanos",
         "velero",
         "vmware-tanzu"
     ]
