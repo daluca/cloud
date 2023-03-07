@@ -59,12 +59,13 @@ terraform {
   }
 
   backend "s3" {
-    endpoint = "syd1.digitaloceanspaces.com"
+    endpoint = "object-storage.nz-wlg-2.catalystcloud.io"
     key      = "clusters/staging/terraform.tfstate"
-    region   = "ap-southeast-2" # Must be a AWS region
+    region   = "us-east-1" # Must be an AWS region
 
     skip_credentials_validation = true
     skip_metadata_api_check     = true
+    force_path_style            = true
   }
 }
 

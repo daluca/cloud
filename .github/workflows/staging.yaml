@@ -23,8 +23,6 @@ permissions:
 env:
   GITHUB_TOKEN: ${{ secrets.REPOSITORY_WRITE_TOKEN }}
   DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-  SPACES_ACCESS_KEY_ID: ${{ secrets.SPACES_ACCESS_KEY_ID }}
-  SPACES_SECRET_ACCESS_KEY: ${{ secrets.SPACES_SECRET_ACCESS_KEY }}
   OS_USERNAME: ${{ secrets.CATALYST_CLOUD_USERNAME }}
   OS_PASSWORD: ${{ secrets.CATALYST_CLOUD_PASSWORD }}
   OS_USER_DOMAIN_NAME: ${{ secrets.CATALYST_CLOUD_USER_DOMAIN }}
@@ -73,8 +71,8 @@ jobs:
         run: >-
           terraform init
           -backend-config="bucket=${{ secrets.TERRAFORM_STATE_BUCKET }}"
-          -backend-config="access_key=${{ secrets.SPACES_ACCESS_KEY_ID }}"
-          -backend-config="secret_key=${{ secrets.SPACES_SECRET_ACCESS_KEY }}"
+          -backend-config="access_key=${{ secrets.CATALYST_CLOUD_ACCESS_KEY_ID }}"
+          -backend-config="secret_key=${{ secrets.CATALYST_CLOUD_SECRET_ACCESS_KEY }}"
 
       - name: terraform validate
         id: validate
