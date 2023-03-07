@@ -3,10 +3,10 @@ data "digitalocean_kubernetes_versions" "stable" {
 }
 
 resource "digitalocean_kubernetes_cluster" "staging" {
-  name     = "${lower(digitalocean_project.staging.name)}-cluster"
+  name     = "${lower(data.digitalocean_project.staging.name)}-cluster"
   region   = data.digitalocean_region.sydney.slug
   version  = data.digitalocean_kubernetes_versions.stable.latest_version
-  vpc_uuid = digitalocean_vpc.staging.id
+  vpc_uuid = data.digitalocean_vpc.staging.id
 
   auto_upgrade  = false
   surge_upgrade = false
@@ -33,7 +33,7 @@ resource "digitalocean_kubernetes_node_pool" "monitoring" {
 }
 
 resource "digitalocean_project_resources" "kubernetes_clusters" {
-  project = digitalocean_project.staging.id
+  project = data.digitalocean_project.staging.id
 
   resources = [
     digitalocean_kubernetes_cluster.staging.urn
