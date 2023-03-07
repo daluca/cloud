@@ -32,6 +32,8 @@ env:
   TF_VAR_cloudflare_account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
   TF_VAR_cloudflare_domain: ${{ secrets.TERTIARY_DOMAIN }}
   TF_VAR_cloudflare_ip_allow_list: ${{ secrets.STAGING_IP_ALLOW_LIST }}
+  TF_VAR_catalyst_cloud_project_name: ${{ secrets.CATALYST_CLOUD_PROJECT_NAME }}
+  TF_VAR_catalyst_cloud_nextcloud_user_id: ${{ secrets.CATALYST_CLOUD_NEXTCLOUD_USER_ID }}
 
 jobs:
   terraform:

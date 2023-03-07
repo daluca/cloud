@@ -1,5 +1,5 @@
 locals {
-  storage_policy = var.multi_region_replicas ? "nz--o1--mr-r3" : "${var.region}--o1--sr-r3"
+  storage_policy = var.multi_region_replicas ? "nz--o1--mr-r3" : "${replace(var.region, "_", "-")}--o1--sr-r3"
   read_access    = length(var.read_users) > 0 ? join(",", [for user in var.read_users : format("%s:%s", var.project_id, user)]) : var.public_access ? ".r:*,.rlistings" : ""
   write_access   = length(var.write_users) > 0 ? join(",", [for user in var.write_users : format("%s:%s", var.project_id, user)]) : ""
 }
