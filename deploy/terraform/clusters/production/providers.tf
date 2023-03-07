@@ -19,7 +19,7 @@ terraform {
   }
 
   backend "s3" {
-    endpoint = "object-storage.nz-hlz-1.catalystcloud.io"
+    endpoint = "object-storage.nz-wlg-2.catalystcloud.io"
     key      = "clusters/production/terraform.tfstate"
     region   = "us-east-1" # Must be an AWS region
 
