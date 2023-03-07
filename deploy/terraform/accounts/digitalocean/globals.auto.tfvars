@@ -1,0 +1,5 @@
+environments = [
+  "development",
+  "staging",
+  "production",
+]
