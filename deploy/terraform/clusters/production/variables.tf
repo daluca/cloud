@@ -3,11 +3,6 @@ variable "environment" {
   type        = string
 }
 
-variable "region" {
-  description = "Location of resources."
-  type        = string
-}
-
 variable "catalyst_cloud_region" {
   description = "Catalyst Cloud region."
   type        = string

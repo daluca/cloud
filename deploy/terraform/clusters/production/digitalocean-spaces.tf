@@ -4,7 +4,7 @@ resource "digitalocean_spaces_bucket" "terraform_state" {
 }
 
 resource "digitalocean_project_resources" "spaces" {
-  project = digitalocean_project.environment.id
+  project = data.digitalocean_project.production.id
 
   resources = [
     digitalocean_spaces_bucket.terraform_state.urn

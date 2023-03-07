@@ -4,7 +4,7 @@ resource "digitalocean_domain" "environment" {
   name = each.key == "production" ? var.domain : "${lookup(local.environments, each.key, "expect valid environment")}.${var.domain}"
 }
 
-resource "digitalocean_project_resources" "environment" {
+resource "digitalocean_project_resources" "domains" {
   for_each = toset(var.environments)
 
   project = digitalocean_project.environment[each.key].id
