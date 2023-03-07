@@ -51,6 +51,11 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 4.0"
     }
+
+    openstack = {
+      source  = "terraform-provider-openstack/openstack"
+      version = "~> 1.0"
+    }
   }
 
   backend "s3" {
@@ -94,4 +99,9 @@ provider "aws" {
     iam = "https://iam.eu-central-1.wasabisys.com"
     s3  = "https://s3.eu-central-1.wasabisys.com"
   }
+}
+
+provider "openstack" {
+  region   = var.catalyst_cloud_region
+  auth_url = local.auth_url
 }
