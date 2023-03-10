@@ -32,6 +32,12 @@ repos:
     hooks:
       - id: shellcheck
 
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.77.1
+    hooks:
+      - id: terraform_fmt
+      - id: terraform_validate
+
   - repo: local
     hooks:
       - id: flux-validate
