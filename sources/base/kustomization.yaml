@@ -11,5 +11,6 @@ resources:
   - metrics-server.yaml
   - ot-helm.yaml
   - prometheus-community.yaml
+  - rook-release.yaml
   - stackgres.yaml
   - vmware-tanzu.yaml

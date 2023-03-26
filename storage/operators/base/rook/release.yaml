@@ -1,0 +1,38 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: rook-operator
+  namespace: rook-ceph
+spec:
+  releaseName: rook-operator
+  chart:
+    spec:
+      chart: rook-ceph
+      sourceRef:
+        kind: HelmRepository
+        name: rook-release
+        namespace: flux-system
+  interval: 1h
+  maxHistory: 3
+  install:
+    crds: CreateReplace
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  upgrade:
+    crds: CreateReplace
+    cleanupOnFail: true
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  uninstall:
+    keepHistory: false
+  test:
+    enable: true
+    ignoreFailures: false
+  values:
+    crds:
+      enabled: true
+    monitoring:
+      enabled: true

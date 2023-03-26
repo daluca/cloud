@@ -50,6 +50,7 @@
         "alertmanager",
         "Autobind",
         "Autoscaler",
+        "ceph",
         "cleanup",
         "color",
         "containerd",
