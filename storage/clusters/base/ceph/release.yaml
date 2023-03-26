@@ -1,0 +1,88 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: rook-ceph-cluster
+  namespace: rook-ceph
+spec:
+  releaseName: rook-ceph-cluster
+  chart:
+    spec:
+      chart: rook-ceph-cluster
+      sourceRef:
+        kind: HelmRepository
+        name: rook-release
+        namespace: flux-system
+  interval: 1h
+  maxHistory: 3
+  install:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  uninstall:
+    keepHistory: false
+  test:
+    enable: true
+    ignoreFailures: false
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: CephCluster
+              name: rook-ceph
+            patch: |-
+              - op: remove
+                path: /spec/resources
+  values:
+    cephClusterSpec:
+      dashboard:
+        enabled: true
+        ssl: false
+      mon:
+        count: 3
+        allowMultiplePerNode: false
+      mgr:
+        count: 2
+        allowMultiplePerNode: false
+        modules:
+          - name: pg_autoscaler
+            enabled: true
+      crashCollector:
+        disable: true
+      logCollector:
+        enabled: true
+        periodicity: daily
+        maxLogSize: 500M
+      storage:
+        storageClassDeviceSets:
+          - name: set1
+            count: 3
+            portable: true
+            tuneDeviceClass: true
+            tuneFastDeviceClass: true
+            encrypted: false
+            resources:
+              limits:
+                memory: 500Mi
+              requests:
+                cpu: 200m
+                memory: 200Mi
+            volumeClaimTemplates:
+              - metadata:
+                  name: data
+                spec:
+                  resources:
+                    requests:
+                      storage: 100Gi
+                  storageClassName: do-block-storage
+                  volumeMode: Block
+                  accessModes:
+                    - ReadWriteOnce
+        onlyApplyOSDPlacement: false
+    monitoring:
+      enabled: true
