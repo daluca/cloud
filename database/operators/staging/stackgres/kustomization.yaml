@@ -7,7 +7,7 @@ patches:
   - path: stackgres-values.yaml
   - target:
       kind: Ingress
-      name: rook-ceph-mgr-dashboard
+      name: stackgres
     patch: |-
       - op: replace
         path: /spec/rules/0/host
