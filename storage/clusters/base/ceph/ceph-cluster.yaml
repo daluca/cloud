@@ -33,6 +33,7 @@ spec:
     maxLogSize: 500M
   dashboard:
     enabled: true
+    ssl: false
   monitoring:
     enabled: true
   storage:
