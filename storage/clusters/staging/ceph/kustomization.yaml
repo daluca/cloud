@@ -4,11 +4,26 @@ kind: Kustomization
 resources:
   - ../../base/ceph
 patches:
-  - path: ceph-values.yaml
   - target:
-      kind: HelmRelease
-      name: rook-ceph-cluster
+      kind: CephCluster
+      name: rook-ceph
     patch: |-
       - op: replace
-        path: /spec/values/cephClusterSpec/storage/storageClassDeviceSets/0/volumeClaimTemplates/0/spec/resources/requests/storage
-        value: 20Gi
+        path: /spec/cephVersion/image
+        value: quay.io/ceph/ceph:v17.2.3
+      - op: replace
+        path: /spec/storage/storageClassDeviceSets/0/volumeClaimTemplates/0/spec/resources/requests/storage
+        value: 10Gi
+  - target:
+      kind: Ingress
+      name: rook-ceph-mgr-dashboard
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: rook.${TERTIARY_DOMAIN}
+      - op: replace
+        path: /spec/tls/0/hosts/0
+        value: rook.${TERTIARY_DOMAIN}
+      - op: replace
+        path: /spec/tls/0/secretName
+        value: rook-stg-tls
