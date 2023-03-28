@@ -34,7 +34,7 @@ spec:
     - name: storage-operators
   interval: 1h
   retryInterval: 1m
-  timeout: 5m
+  timeout: 10m
   path: ./storage/clusters/staging
   prune: true
   sourceRef:
