@@ -60,10 +60,9 @@ spec:
     - name: database-configuration
   interval: 1h
   retryInterval: 1m
-  timeout: 5m
+  timeout: 10m
   path: ./database/clusters/staging
   prune: true
-  wait: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -71,3 +70,13 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
+  healthChecks:
+    - kind: Statefulsets
+      name: postgresql-cluster
+      namespace: databases
+    - kind: Statefulsets
+      name: redis-cluster-leader
+      namespace: databases
+    - kind: Statefulsets
+      name: redis-cluster-follower
+      namespace: databases

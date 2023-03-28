@@ -8,7 +8,6 @@ spec:
   dependsOn:
     - name: namespaces
     - name: sources
-    - name: configuration
     - name: crds
   interval: 1h
   retryInterval: 1m
@@ -31,6 +30,8 @@ spec:
     - name: sources
     - name: configuration
     - name: crds
+    - name: infrastructure
+    - name: issuers
     - name: storage-operators
   interval: 1h
   retryInterval: 1m
@@ -53,4 +54,10 @@ spec:
       namespace: rook-ceph
     - kind: Deployment
       name: rook-ceph-osd-2
+      namespace: rook-ceph
+    - kind: Deployment
+      name: rook-ceph-mds-tank-a
+      namespace: rook-ceph
+    - kind: Deployment
+      name: rook-ceph-mds-tank-b
       namespace: rook-ceph
