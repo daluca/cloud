@@ -71,12 +71,12 @@ spec:
     secretRef:
       name: sops-age
   healthChecks:
-    - kind: Statefulsets
+    - kind: StatefulSet
       name: postgresql-cluster
       namespace: database
-    - kind: Statefulsets
+    - kind: StatefulSet
       name: redis-cluster-leader
       namespace: database
-    - kind: Statefulsets
+    - kind: StatefulSet
       name: redis-cluster-follower
       namespace: database
