@@ -11,7 +11,7 @@ spec:
   pods:
     persistentVolume:
       size: 10Gi
-      storageClass: do-block-storage
+      storageClass: rook-ceph-block
   metadata:
     annotations:
       clusterPods:
