@@ -45,6 +45,10 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: staging-cluster-substitutions
   healthChecks:
     - kind: Deployment
       name: rook-ceph-osd-0
