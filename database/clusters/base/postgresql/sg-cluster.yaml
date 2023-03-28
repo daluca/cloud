@@ -19,7 +19,7 @@ spec:
   sgInstanceProfile: small
   configurations:
     sgPostgresConfig: postgres-conf-small
-    sgPoolingConfig: pgbouncer-config-transaction
+    sgPoolingConfig: pgbouncer-config-session
     backups:
       - sgObjectStorage: wasabi-backup-netherlands
         cronSchedule: 23 17 * * *

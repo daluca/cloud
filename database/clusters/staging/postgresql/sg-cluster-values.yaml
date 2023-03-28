@@ -13,6 +13,5 @@ spec:
   sgInstanceProfile: extra-small
   configurations:
     sgPostgresConfig: postgres-conf-extra-small
-  instances: 1
   nonProductionOptions:
     disableClusterPodAntiAffinity: true
