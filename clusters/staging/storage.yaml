@@ -41,10 +41,10 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  postBuild:
-    substituteFrom:
-      - kind: Secret
-        name: staging-cluster-substitutions
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
   healthChecks:
     - kind: Deployment
       name: rook-ceph-osd-0
