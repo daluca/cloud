@@ -73,10 +73,10 @@ spec:
   healthChecks:
     - kind: Statefulsets
       name: postgresql-cluster
-      namespace: databases
+      namespace: database
     - kind: Statefulsets
       name: redis-cluster-leader
-      namespace: databases
+      namespace: database
     - kind: Statefulsets
       name: redis-cluster-follower
-      namespace: databases
+      namespace: database
