@@ -7,7 +7,7 @@ metadata:
 spec:
   instances: 2
   postgres:
-    version: "15"
+    version: "15.1"
   pods:
     persistentVolume:
       size: 10Gi
@@ -24,5 +24,10 @@ spec:
       - sgObjectStorage: wasabi-backup-netherlands
         cronSchedule: 23 17 * * *
         retention: 100
+        compression: lz4
+        performance:
+          maxDiskBandwidth: 26214400  # 25MiB per second
+          maxNetworkBandwidth: 52428800  # 50MiB per second
+          uploadDiskConcurrency: 2
   prometheusAutobind: true
   nonProductionOptions: {}
