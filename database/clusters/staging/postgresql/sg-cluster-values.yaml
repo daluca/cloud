@@ -5,13 +5,17 @@ metadata:
   name: postgresql-cluster
   namespace: database
 spec:
+  instances: 2
   postgres:
     version: "15"
   pods:
     persistentVolume:
-      size: 2Gi
+      size: 5Gi
   sgInstanceProfile: extra-small
   configurations:
     sgPostgresConfig: postgres-conf-extra-small
+  managedSql:
+    scripts:
+      - sgScript: create-db-script
   nonProductionOptions:
     disableClusterPodAntiAffinity: true
