@@ -5,7 +5,7 @@ metadata:
   name: postgres-conf-extra-small
   namespace: database
 spec:
-  postgresVersion: "15"
+  postgresVersion: "14"
   postgresql.conf:
     password_encryption: scram-sha-256
     shared_buffers: 256MB
@@ -16,7 +16,7 @@ metadata:
   name: postgres-conf-small
   namespace: database
 spec:
-  postgresVersion: "15"
+  postgresVersion: "14"
   postgresql.conf:
     password_encryption: scram-sha-256
     shared_buffers: 512MB
@@ -27,7 +27,7 @@ metadata:
   name: postgres-conf-medium
   namespace: database
 spec:
-  postgresVersion: "15"
+  postgresVersion: "14"
   postgresql.conf:
     password_encryption: scram-sha-256
     shared_buffers: 1GB
@@ -38,7 +38,7 @@ metadata:
   name: postgres-conf-large
   namespace: database
 spec:
-  postgresVersion: "15"
+  postgresVersion: "14"
   postgresql.conf:
     password_encryption: scram-sha-256
     shared_buffers: 2GB

@@ -9,5 +9,10 @@ spec:
   continueOnError: false
   scripts:
     - name: create-demo-database
-      script: |
+      script: |-
         CREATE DATABASE demo WITH OWNER postgres;
+    - name: create-nextcloud-database
+      scriptFrom:
+        secretKeyRef:
+          name: database-creation-scripts
+          key: create-nextcloud-database.sql

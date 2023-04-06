@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ../../base/postgresql
   - sg-script.yaml
+  - database-creation-scripts.sops.yaml
