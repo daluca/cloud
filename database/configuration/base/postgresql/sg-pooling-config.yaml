@@ -18,6 +18,10 @@ spec:
         client_idle_timeout: 30
         query_wait_timeout: 300
       databases:
+        nextcloud:
+          pool_size: 400
+          dbname: nextcloud
+          reserve_pool: 5
         postgres:
           pool_size: 10
           dbname: postgres
