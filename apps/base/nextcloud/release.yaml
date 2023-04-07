@@ -32,7 +32,7 @@ spec:
   values:
     image:
       flavor: fpm-alpine
-    replicaCount: 2
+    replicaCount: 1
     ingress:
       enabled: true
       className: nginx
