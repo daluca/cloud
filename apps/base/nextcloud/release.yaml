@@ -83,6 +83,18 @@ spec:
             'logfile'  => '/var/log/nextcloud/nextcloud.log',
             'loglevel' => 2,
           );
+        proxy.config.php: |-
+          <?php
+          $CONFIG = array (
+            'trusted_proxies' => array (
+              0 => '127.0.0.1',
+              1 => '10.0.0.0/8',
+            ),
+            'forwarded-for-headers' => array(
+              0 => 'X-Forwarded-For',
+              1 => 'HTTP_X_FORWARDED_FOR',
+            ),
+          );
         custom.config.php: |-
           <?php
           $CONFIG = array (
