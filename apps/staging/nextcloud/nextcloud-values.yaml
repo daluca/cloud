@@ -21,5 +21,11 @@ spec:
             - nextcloud.${TERTIARY_DOMAIN}
     nextcloud:
       host: nextcloud.${TERTIARY_DOMAIN}
+      configs:
+        staging.config.php: |-
+          <?php
+          $CONFIG = array (
+            'auth.bruteforce.protection.enabled' => false,
+          );
     persistence:
       size: 2Gi

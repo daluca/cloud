@@ -39,6 +39,36 @@ spec:
       annotations:
         kubernetes.io/ingress.allow-http: "false"
         nginx.ingress.kubernetes.io/proxy-body-size: 4G
+        # yamllint disable rule:line-length
+        nginx.ingress.kubernetes.io/server-snippet: |-
+          server_tokens off;
+          proxy_hide_header X-Powered-By;
+          rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
+          rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json;
+          location = /.well-known/carddav {
+            return 301 $scheme://$host/remote.php/dav;
+          }
+          location = /.well-known/caldav {
+            return 301 $scheme://$host/remote.php/dav;
+          }
+          location = /.well-known/webfinger {
+            return 301 $scheme://$host/index.php$uri;
+          }
+          location = /.well-known/nodeinfo {
+            return 301 $scheme://$host/index.php$uri;
+          }
+          location = /robots.txt {
+            allow all;
+            log_not_found off;
+            access_log off;
+          }
+          location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)/ {
+            deny all;
+          }
+          location ~ ^/(?:autotest|occ|issue|indie|db_|console) {
+            deny all;
+          }
+        # yamllint enable rule:line-length
       path: /
     nextcloud:
       host: nextcloud.${PRIMARY_DOMAIN}
@@ -57,6 +87,7 @@ spec:
           port: 25
           authtype: NONE
       configs:
+        # yamllint disable rule:line-length
         s3.config.php: |-
           <?php
           $CONFIG = array (
@@ -86,20 +117,38 @@ spec:
         proxy.config.php: |-
           <?php
           $CONFIG = array (
+            'overwriteprotocol' => 'https',
+            'overwrite.cli.url' => 'https://' . getenv('NEXTCLOUD_TRUSTED_DOMAINS'),
             'trusted_proxies' => array (
               0 => '127.0.0.1',
               1 => '10.0.0.0/8',
             ),
             'forwarded-for-headers' => array(
-              0 => 'X-Forwarded-For',
-              1 => 'HTTP_X_FORWARDED_FOR',
+              0 => 'HTTP_X_FORWARDED_FOR',
+              1 => 'HTTP_CF_CONNECTING-IP',
             ),
+          );
+        user-experience.config.php: |-
+          <?php
+          $CONFIG = array (
+            'default_locale'                     => 'en_NZ',
+            'default_phone_region'               => 'NZ',
+            'hide_login_form'                    => false,
+            'skeletondirectory'                  => '',
           );
         custom.config.php: |-
           <?php
           $CONFIG = array (
-            'skeletondirectory' => '',
+            'trusted_domains' => array (
+              0 => 'localhost',
+              1 => 'nextcloud',
+              2 => 'nextcloud.nextcloud',
+              3 => 'nextcloud.nextcloud.svc',
+              4 => 'nextcloud.nextcloud.svc.cluster.local',
+              5 => getenv('NEXTCLOUD_TRUSTED_DOMAINS')
+            ),
           );
+        # yamllint enable rule:line-length
       strategy:
         type: RollingUpdate
         rollingUpdate:
