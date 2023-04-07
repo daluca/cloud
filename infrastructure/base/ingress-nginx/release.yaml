@@ -40,6 +40,10 @@ spec:
         use-proxy-protocol: "true"
         use-forwarded-headers: "true"
         whitelist-source-range: ${CLOUDFLARE_IPV4_RANGE}
+        hsts: "true"
+        hsts-include-subdomains: "true"
+        hsts-max-age: "63072000"  # 2 years
+        hsts-preload: "true"
         server-snippet: real_ip_header CF-Connecting-IP;
   valuesFrom:
     - kind: ConfigMap
