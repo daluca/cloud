@@ -23,7 +23,7 @@ output "velero_access_key" {
 }
 
 output "velero_secret_key" {
-  description = "Wasabi secret key for stackgres user."
+  description = "Wasabi secret key for velero user."
   value       = aws_iam_access_key.velero.secret
   sensitive   = true
 }
@@ -31,6 +31,18 @@ output "velero_secret_key" {
 output "velero_backup_bucket" {
   description = "Wasabi bucket for backing up with Velero."
   value       = module.velero_backup.bucket
+  sensitive   = true
+}
+
+output "nextcloud_access_key" {
+  description = "Wasabi access key for nextcloud user."
+  value       = sensitive(aws_iam_access_key.nextcloud.id)
+  sensitive   = true
+}
+
+output "nextcloud_secret_key" {
+  description = "Wasabi secret key for nextcloud user."
+  value       = aws_iam_access_key.nextcloud.secret
   sensitive   = true
 }
 
