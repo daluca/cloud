@@ -5,7 +5,7 @@ metadata:
   name: redis-cluster-config
   namespace: nextcloud
 data:
-  redis-session.ini: |-
+  redis-session.ini: |
     [Session]
     session.save_handler=rediscluster
     session.save_path="seed[]=redis-cluster-leader.database:6379&timeout=2&read_timeout=2&failover=error&persistent=1&auth[pass]=${REDIS_CLUSTER_PASSWORD}"
