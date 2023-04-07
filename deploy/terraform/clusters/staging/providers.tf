@@ -86,6 +86,11 @@ provider "wasabi" {
   region = "eu-central-1"
 }
 
+provider "wasabi" {
+  alias  = "sydney"
+  region = "ap-southeast-2"
+}
+
 provider "aws" {
   region = "eu-central-1"
 
@@ -99,6 +104,23 @@ provider "aws" {
     sts = "https://sts.eu-central-1.wasabisys.com"
     iam = "https://iam.eu-central-1.wasabisys.com"
     s3  = "https://s3.eu-central-1.wasabisys.com"
+  }
+}
+
+provider "aws" {
+  alias  = "sydney"
+  region = "ap-southeast-2"
+
+  s3_use_path_style           = true
+  skip_region_validation      = true
+  skip_credentials_validation = true
+  skip_requesting_account_id  = true
+  skip_metadata_api_check     = true
+
+  endpoints {
+    sts = "https://sts.ap-southeast-2.wasabisys.com"
+    iam = "https://iam.ap-southeast-2.wasabisys.com"
+    s3  = "https://s3.ap-southeast-2.wasabisys.com"
   }
 }
 

@@ -44,8 +44,10 @@
         "cSpell.advanced.feature.useReferenceProviderRemove": "/^#+\\s/"
     },
     "files.associations": {
-        ".yamllint": "yaml"
+        ".yamllint": "yaml",
+        ".*.env": "properties"
     },
+    "cSpell.ignorePaths": [".vscode", "*.sops.yaml", "flux-system"],
     "cSpell.words": [
         "alertmanager",
         "Autobind",
@@ -77,6 +79,7 @@
         "peaceiris",
         "pgbouncer",
         "podinfo",
+        "rediscluster",
         "refs",
         "shellcheck",
         "Slebos",

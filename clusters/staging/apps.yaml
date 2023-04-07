@@ -12,9 +12,11 @@ spec:
     - name: crds
     - name: infrastructure
     - name: issuers
+    - name: storage-clusters
+    - name: database-clusters
   interval: 1h
   retryInterval: 1m
-  timeout: 5m
+  timeout: 10m
   path: ./apps/staging
   prune: true
   wait: true
