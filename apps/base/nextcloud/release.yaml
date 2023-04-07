@@ -131,10 +131,10 @@ spec:
         user-experience.config.php: |-
           <?php
           $CONFIG = array (
-            'default_locale'                     => 'en_NZ',
-            'default_phone_region'               => 'NZ',
-            'hide_login_form'                    => false,
-            'skeletondirectory'                  => '',
+            'default_locale'       => 'en_NZ',
+            'default_phone_region' => 'NZ',
+            'hide_login_form'      => false,
+            'skeletondirectory'    => '',
           );
         custom.config.php: |-
           <?php
