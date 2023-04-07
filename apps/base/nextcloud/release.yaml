@@ -117,9 +117,15 @@ spec:
       extraVolumes:
         - name: logs
           emptyDir: {}
+        - name: redis-cluster-config
+          configMap:
+            name: redis-cluster-config
       extraVolumeMounts:
         - name: logs
           mountPath: /var/log/nextcloud
+        - name: redis-cluster-config
+          mountPath: /usr/local/etc/php/conf.d/redis-session.ini
+          subPath: redis-session.ini
     nginx:
       enabled: true
     internalDatabase:
