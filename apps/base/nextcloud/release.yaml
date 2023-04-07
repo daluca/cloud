@@ -1,0 +1,154 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nextcloud
+  namespace: nextcloud
+spec:
+  releaseName: nextcloud
+  chart:
+    spec:
+      chart: nextcloud
+      sourceRef:
+        kind: HelmRepository
+        name: nextcloud
+        namespace: flux-system
+  interval: 1h
+  timeout: 10m
+  maxHistory: 3
+  install:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  upgrade:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  uninstall:
+    keepHistory: false
+  test:
+    enable: true
+    ignoreFailures: false
+  values:
+    image:
+      flavor: fpm-alpine
+    replicaCount: 2
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        kubernetes.io/ingress.allow-http: "false"
+        nginx.ingress.kubernetes.io/proxy-body-size: 4G
+      path: /
+    nextcloud:
+      host: nextcloud.${PRIMARY_DOMAIN}
+      existingSecret:
+        enabled: true
+        secretName: nextcloud-credentials
+        usernameKey: admin-username
+        passwordKey: admin-password
+      mail:
+        enabled: true
+        fromAddress: no-reply
+        domain: nextcloud.${PRIMARY_DOMAIN}
+        smtp:
+          host: exim-relay.mail
+          secure: ""
+          port: 25
+          authtype: NONE
+      configs:
+        s3.config.php: |-
+          <?php
+          $CONFIG = array (
+            'objectstore' => array(
+              'class' => '\\OC\\Files\\ObjectStore\\S3',
+              'arguments' => array(
+                'hostname'             => 's3.ap-southeast-2.wasabisys.com',
+                'bucket'               => getenv('WASABI_BUCKET'),
+                'key'                  => getenv('WASABI_ACCESS_KEY_ID'),
+                'secret'               => getenv('WASABI_SECRET_ACCESS_KEY'),
+                'region'               => 'ap-southeast-2',
+                'use_ssl'              => true,
+                'use_path_style'       => true,
+                'autocreate'           => false,
+                'verify_bucket_exists' => true,
+                'sse_c_key'            => getenv('AWS_SSE_CUSTOMER_KEY')
+              )
+            )
+          );
+        logging.config.php: |-
+          <?php
+          $CONFIG = array (
+            'log_type' => 'file',
+            'logfile'  => '/var/log/nextcloud/nextcloud.log',
+            'loglevel' => 2,
+          );
+        custom.config.php: |-
+          <?php
+          $CONFIG = array (
+            'skeletondirectory' => '',
+          );
+      extraEnv:
+        - name: WASABI_BUCKET
+          valueFrom:
+            secretKeyRef:
+              name: wasabi-credentials
+              key: bucket
+        - name: WASABI_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: wasabi-credentials
+              key: access-key
+        - name: WASABI_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: wasabi-credentials
+              key: secret-key
+        - name: AWS_SSE_CUSTOMER_KEY
+          valueFrom:
+            secretKeyRef:
+              name: wasabi-credentials
+              key: sse-customer-key
+      extraVolumes:
+        - name: logs
+          emptyDir: {}
+      extraVolumeMounts:
+        - name: logs
+          mountPath: /var/log/nextcloud
+    nginx:
+      enabled: true
+    internalDatabase:
+      enabled: false
+    externalDatabase:
+      enabled: true
+      name: nextcloud
+      type: postgresql
+      host: postgresql-cluster.database
+      database: nextcloud
+      existingSecret:
+        secretName: postgresql-credentials
+        usernameKey: nextcloud-username
+        passwordKey: nextcloud-password
+    cronjob:
+      enabled: true
+    persistence:
+      enabled: true
+      storageClass: rook-cephfs
+      accessMode: ReadWriteMany
+      size: 5Gi
+    resources:
+      limits:
+        memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    livenessProbe:
+      enabled: true
+    readinessProbe:
+      enabled: true
+    hpa:
+      enabled: false
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true

@@ -1,0 +1,10 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base/nextcloud
+  - nextcloud-credentials.sops.yaml
+  - postgresql-credentials.sops.yaml
+  - wasabi-credentials.sops.yaml
+patches:
+  - path: nextcloud-values.yaml

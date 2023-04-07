@@ -9,6 +9,7 @@ resources:
   - gatekeeper.yaml
   - ingress-nginx.yaml
   - metrics-server.yaml
+  - nextcloud.yaml
   - ot-helm.yaml
   - prometheus-community.yaml
   - rook-release.yaml

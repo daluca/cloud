@@ -10,4 +10,5 @@ resources:
   - ingress-nginx.yaml
   - mail.yaml
   - monitoring.yaml
+  - nextcloud.yaml
   - rook-ceph.yaml
