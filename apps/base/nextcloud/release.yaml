@@ -109,6 +109,11 @@ spec:
             secretKeyRef:
               name: wasabi-credentials
               key: sse-customer-key
+        - name: REDIS_CLUSTER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: redis-cluster-credentials
+              key: password
       extraVolumes:
         - name: logs
           emptyDir: {}
