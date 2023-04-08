@@ -54,6 +54,21 @@ spec:
       env:
         - name: DISABLE_AGENT
           value: "true"
+        - name: POSTGRESQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              key: database
+              name: postgresql-credentials
+        - name: POSTGRESQL_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: username
+              name: postgresql-credentials
+        - name: POSTGRESQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: postgresql-credentials
       dashboard:
         enabled: true
         ingress:
