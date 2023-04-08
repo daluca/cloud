@@ -32,6 +32,21 @@ spec:
                 secretKeyRef:
                   key: api-key
                   name: crowdsec-lapi-credentials
+            - name: POSTGRESQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  key: database
+                  name: postgresql-credentials
+            - name: POSTGRESQL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: postgresql-credentials
+            - name: POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: postgresql-credentials
           volumeMounts:
             - mountPath: /etc/crowdsec
               name: crowdsec-config
