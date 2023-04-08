@@ -29,6 +29,25 @@ spec:
   test:
     enable: true
     ignoreFailures: false
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: Deployment
+              name: crowdsec-lapi
+            patch: |-
+              - op: add
+                path: /spec/template/spec/volumes/-
+                value:
+                  name: crowdsec-custom-config
+                  configMap:
+                    name: crowdsec-config
+              - op: add
+                path: /spec/template/spec/containers/0/volumeMounts/-
+                value:
+                  mountPath: /etc/crowdsec_data/config.yaml.local
+                  subPath: config.yaml
+                  name: crowdsec-custom-config
   values:
     container_runtime: containerd
     lapi:
@@ -41,18 +60,20 @@ spec:
           enabled: true
           ingressClassName: nginx
           annotations:
-            cert-manager.io/cluster-issuer: letsencrypt
+            cert-manager.io/cluster-issuer: letsencrypt-cloudflare
             kubernetes.io/ingress.allow-http: "false"
             nginx.ingress.kubernetes.io/backend-protocol: HTTP
       persistentVolume:
         data:
           enabled: true
-          accessModes: [ReadWriteOnce]
-          storageClassName: do-block-storage
+          accessModes: [ReadWriteMany]
+          storageClassName: rook-cephfs
+          size: 1Gi
         config:
           enabled: true
-          accessModes: [ReadWriteOnce]
-          storageClassName: do-block-storage
+          accessModes: [ReadWriteMany]
+          storageClassName: rook-cephfs
+          size: 100Mi
       metrics:
         enabled: true
         serviceMonitor:

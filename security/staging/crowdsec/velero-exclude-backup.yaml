@@ -21,4 +21,4 @@ spec:
             patch: |-
               - op: add
                 path: "/spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes"
-                value: crowdsec-db,shared-data
+                value: shared-data
