@@ -4,8 +4,10 @@ kind: ConfigMap
 metadata:
   name: crowdsec-config
   namespace: crowdsec
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
 data:
-  crowdsec.yaml: |-
+  config.yaml: |-
     db_config:
       type: postgresql
       user: ${POSTGRESQL_USERNAME}

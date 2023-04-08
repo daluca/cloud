@@ -42,6 +42,10 @@ spec:
                   name: crowdsec-custom-config
                   configMap:
                     name: crowdsec-config
+          - target:
+              kind: Deployment
+              name: crowdsec-lapi
+            patch: |-
               - op: add
                 path: /spec/template/spec/containers/0/volumeMounts/-
                 value:

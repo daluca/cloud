@@ -7,7 +7,6 @@ resources:
   - crowdsec-lapi-credentials.sops.yaml
 patches:
   - path: crowdsec-values.yaml
-  - path: velero-exclude-backup.yaml
   - target:
       kind: HelmRelease
       name: crowdsec
@@ -17,3 +16,23 @@ patches:
         value:
           name: DISABLE_ONLINE_API
           value: "true"
+      - op: add
+        path: /spec/postRenderers/0/kustomize/patches/-
+        value:
+          target:
+            kind: Deployment
+            name: crowdsec-lapi
+          patch: |-
+            - op: replace
+              path: /spec/template/metadata/annotations
+              value: {}
+      - op: add
+        path: /spec/postRenderers/0/kustomize/patches/-
+        value:
+          target:
+            kind: Deployment
+            name: crowdsec-lapi
+          patch: |-
+            - op: add
+              path: "/spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes"
+              value: shared-data
