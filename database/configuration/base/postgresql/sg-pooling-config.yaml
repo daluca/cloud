@@ -22,6 +22,10 @@ spec:
           pool_size: 400
           dbname: nextcloud
           reserve_pool: 5
+        crowdsec:
+          pool_size: 400
+          dbname: crowdsec
+          reserve_pool: 5
         postgres:
           pool_size: 10
           dbname: postgres

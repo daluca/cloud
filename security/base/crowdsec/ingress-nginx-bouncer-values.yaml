@@ -17,9 +17,12 @@ data:
           imagePullPolicy: IfNotPresent
           env:
             - name: API_URL
-              value: http://crowdsec-service.crowdsec.svc.cluster.local:8080
+              value: http://crowdsec-service.crowdsec:8080
             - name: API_KEY
-              value: ${CROWDSEC_BOUNCER_KEY}
+              valueFrom:
+                secretKeyRef:
+                  name: crowdsec-lapi-credentials
+                  key: api-key
             - name: BOUNCER_CONFIG
               value: /crowdsec/crowdsec-bouncer.conf
             - name: BAN_TEMPLATE_PATH

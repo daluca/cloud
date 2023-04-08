@@ -27,7 +27,7 @@
 - [Namespaces]()
 - [Policy]()
 - [Security]()
-  - [Crowdsec]()
+  - [Crowdsec](./security/crowdsec.md)
 - [Sources]()
 
 # Deploy

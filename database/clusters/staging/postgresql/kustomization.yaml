@@ -5,6 +5,14 @@ resources:
   - ../../base/postgresql
 patches:
   - path: sg-cluster-values.yaml
+  - target:
+      kind: SGCluster
+      name: postgresql-cluster
+    patch: |-
+      - op: add
+        path: /spec/managedSql/scripts/-
+        value:
+          sgScript: create-staging-db-scripts
 #
 # Sorting option available in kustomize v5
 # Kustomize Controller hasn't updated to kustomize to v5 yet

@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: crowdsec-config
+  namespace: crowdsec
+data:
+  crowdsec.yaml: |-
+    db_config:
+      type: postgresql
+      user: ${POSTGRESQL_USERNAME}
+      password: ${POSTGRESQL_PASSWORD}
+      db_name: ${POSTGRESQL_DATABASE}
+      host: postgresql-cluster.database
+      port: 5432
+      sslmode: disable
+      max_open_conns: 395

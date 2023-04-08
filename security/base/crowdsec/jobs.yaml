@@ -1,0 +1,52 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ingress-bouncer-key
+  namespace: crowdsec
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: create-bouncer-key
+          image: crowdsecurity/crowdsec:v1.4.5
+          command:
+            [cscli, bouncers, add, ingress-nginx-test, -k, $(BOUNCER_KEY)]
+          env:
+            - name: LOCAL_API_URL
+              value: http://crowdsec-service:8080
+            - name: AGENT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: agent-credentials
+            - name: AGENT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: agent-credentials
+            - name: BOUNCER_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: api-key
+                  name: crowdsec-lapi-credentials
+          volumeMounts:
+            - mountPath: /etc/crowdsec
+              name: crowdsec-config
+            - mountPath: /var/lib/crowdsec/data
+              name: crowdsec-db
+            - mountPath: /etc/crowdsec_data/config.yaml.local
+              subPath: config.yaml
+              name: crowdsec-custom-config
+      volumes:
+        - name: crowdsec-config
+          persistentVolumeClaim:
+            claimName: crowdsec-config-pvc
+        - name: crowdsec-db
+          persistentVolumeClaim:
+            claimName: crowdsec-db-pvc
+        - name: crowdsec-custom-config
+          configMap:
+            name: crowdsec-config

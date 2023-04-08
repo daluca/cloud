@@ -1,0 +1,20 @@
+---
+apiVersion: stackgres.io/v1
+kind: SGScript
+metadata:
+  name: create-db-scripts
+  namespace: database
+spec:
+  managedVersions: true
+  continueOnError: false
+  scripts:
+    - name: create-nextcloud-database
+      scriptFrom:
+        secretKeyRef:
+          name: database-creation-scripts
+          key: create-nextcloud-database.sql
+    - name: create-crowdsec-database
+      scriptFrom:
+        secretKeyRef:
+          name: database-creation-scripts
+          key: create-crowdsec-database.sql

@@ -29,5 +29,8 @@ spec:
           maxDiskBandwidth: 26214400  # 25MiB per second
           maxNetworkBandwidth: 52428800  # 50MiB per second
           uploadDiskConcurrency: 2
+  managedSql:
+    scripts:
+      - sgScript: create-db-scripts
   prometheusAutobind: true
   nonProductionOptions: {}
