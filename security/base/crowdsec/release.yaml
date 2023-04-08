@@ -69,6 +69,11 @@ spec:
             secretKeyRef:
               key: password
               name: postgresql-credentials
+        - name: BOUNCER_KEY_ingress-nginx
+          valueFrom:
+            secretKeyRef:
+              key: api-key
+              name: crowdsec-lapi-credentials
       dashboard:
         enabled: true
         ingress:
