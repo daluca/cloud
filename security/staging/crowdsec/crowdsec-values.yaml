@@ -19,8 +19,3 @@ spec:
             - secretName: crowdsec-stg-tls
               hosts:
                 - crowdsec.${TERTIARY_DOMAIN}
-      persistentVolume:
-        data:
-          enabled: false
-        config:
-          enabled: false
