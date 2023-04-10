@@ -107,6 +107,13 @@ spec:
         - namespace: ingress-nginx
           podName: ingress-nginx-controller-*
           program: nginx
+      env:
+        - name: PARSERS
+          value: >
+            crowdsecurity/cri-logs
+        - name: COLLECTIONS
+          value: >
+            crowdsecurity/nginx
       metrics:
         enabled: true
         serviceMonitor:
