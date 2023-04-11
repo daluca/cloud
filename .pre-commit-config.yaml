@@ -12,7 +12,7 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.29.0
+    rev: v1.30.0
     hooks:
       - id: yamllint
         entry: yamllint --strict
@@ -23,7 +23,7 @@ repos:
       - id: markdownlint-cli2
 
   - repo: https://github.com/zricethezav/gitleaks
-    rev: v8.16.0
+    rev: v8.16.2
     hooks:
       - id: gitleaks
 
@@ -33,7 +33,7 @@ repos:
       - id: shellcheck
 
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.77.1
+    rev: v1.77.2
     hooks:
       - id: terraform_fmt
       - id: terraform_validate
@@ -47,6 +47,5 @@ repos:
         args: []
         language: script
         stages: [commit]
-        # yamllint disable rule:quoted-strings
+        # yamllint disable-line rule:quoted-strings
         files: ".*\\.ya?ml"
-        # yamllint enable rule:quoted-strings
