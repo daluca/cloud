@@ -5,6 +5,7 @@ resources:
   - ../../base/crowdsec
   - postgresql-credentials.sops.yaml
   - crowdsec-lapi-credentials.sops.yaml
+  - crowdsec-whitelist.sops.yaml
 patches:
   - path: crowdsec-values.yaml
   - target:
