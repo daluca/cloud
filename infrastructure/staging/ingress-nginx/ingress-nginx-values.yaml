@@ -16,8 +16,6 @@ spec:
       service:
         annotations:
           service.beta.kubernetes.io/do-loadbalancer-name: staging
-          # Required as a work around to make the proxy-protocol work
-          # https://github.com/digitalocean/digitalocean-cloud-controller-manager/blob/master/docs/controllers/services/annotations.md#servicebetakubernetesiodo-loadbalancer-hostname
           service.beta.kubernetes.io/do-loadbalancer-hostname: ${TERTIARY_DOMAIN}
       config:
         proxy-real-ip-cidr: ${STAGING_VPC_CIDR},${CLOUDFLARE_IPV4_RANGE}
