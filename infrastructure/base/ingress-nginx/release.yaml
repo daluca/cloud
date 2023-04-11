@@ -31,10 +31,8 @@ spec:
       podAnnotations:
         backup.velero.io/backup-volumes-excludes: crowdsec-bouncer-plugin
       service:
-        # https://docs.digitalocean.com/products/kubernetes/how-to/configure-load-balancers/#external-traffic-policies-and-health-checks
         externalTrafficPolicy: Local
         annotations:
-          # https://github.com/digitalocean/digitalocean-cloud-controller-manager/blob/master/docs/controllers/services/annotations.md
           service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
       config:
         use-proxy-protocol: "true"
