@@ -111,9 +111,16 @@ spec:
         - name: PARSERS
           value: >
             crowdsecurity/cri-logs
+        - name: DISABLE_PARSERS
+          value: >
+            crowdsecurity/docker-logs
         - name: COLLECTIONS
           value: >
             crowdsecurity/nginx
+            crowdsecurity/whitelist-good-actors
+        - name: DISABLE_COLLECTIONS
+          value: >
+            crowdsecurity/sshd
       metrics:
         enabled: true
         serviceMonitor:
