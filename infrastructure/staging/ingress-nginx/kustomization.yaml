@@ -10,6 +10,6 @@ patches:
       kind: HelmRelease
       name: ingress-nginx
     patch: |
-      - op: replace
+      - op: add
         path: /spec/values/controller/config/whitelist-source-range
-        value: ${STAGING_IP_ALLOW_LIST},${CLOUDFLARE_IPV4_RANGE}
+        value: ${STAGING_IP_ALLOW_LIST}

@@ -92,6 +92,7 @@
         "pgbouncer",
         "podinfo",
         "rediscluster",
+        "referer",
         "refs",
         "shellcheck",
         "skeletondirectory",

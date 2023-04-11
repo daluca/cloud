@@ -19,7 +19,7 @@
   - [Operators]()
     - [Stackgres]()
 - [Infrastructure]()
-  - [Ingress-NGINX]()
+  - [Ingress NGINX](./infrastructure/ingress-nginx.md)
   - [Cert-manager]()
 - [Issuers]()
 - [Monitoring]()
