@@ -136,11 +136,9 @@ spec:
             crowdsecurity/docker-logs
         - name: COLLECTIONS
           value: >
+            crowdsecurity/linux
             crowdsecurity/nginx
             crowdsecurity/whitelist-good-actors
-        - name: DISABLE_COLLECTIONS
-          value: >
-            crowdsecurity/sshd
       metrics:
         enabled: true
         serviceMonitor:
