@@ -1,0 +1,29 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: crowdsec-whitelist
+  namespace: crowdsec
+type: Opaque
+stringData:
+  custom-whitelist.yaml: ENC[AES256_GCM,data:Agbz1sptr/UCa7XppfV1mlQ4FOUR3co5Vr+A2Y4sIxz9Udwb6QAIE599EOY9/K5WhyGC8YfxQ71E/vV5bb5plmXY4vbtRNpyTz7iOvTu8E0HCu1Bo9FiCI1GtDdeDk9sfW8IT+DtzioBUAvGEggqlN9H+VFDRfxcuZsCK4zj+9+Xh/F6atFHFbUyEbSVMu4mMFm3UYkK0rmK0r5EzrBa,iv:K2tATnCe+87jpLcLNGUcUfZIR/Zi/WiTxIrwxlvFGGA=,tag:5FnoAyK6t4qA8WzZ7jVVEw==,type:str]
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1z9tp2h60k24daxwdkq29nf4ch7a87wem4sx2jkcqe9x62k07k3vqf5rx6k
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBqdkFjb0Y1WDR4Z1RxaVVQ
+        aGFjSk5pdTRpaVJFaysrODZqNElBNVlWNVNRCkhMM09OTnNmNSs2ejB4S0Jic2xK
+        RVJudFB3ZGM4Sk9DNEoxOVhUd005QkkKLS0tIEZuZVljbmtjYzFhL09BWEp1RlEw
+        SVFKb01MZWJnRmFoN01xU0d6K3dzU0EK40l6xZDKtPiT7RvIImnB9lHn68iHzhMn
+        N+Csy/wQlY9jTt+ll0IqOQ1Evq7F+WjQJ913P7QOzEFi/OUahIGi8Q==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2023-04-11T07:50:14Z"
+  mac: ENC[AES256_GCM,data:Ahnl/yKxipRObU39t6+wNKcMgQr/HWLaauuuh3JmnL9J3gB+zxSpUyDyvXqZfLfGUfrEqXPl923U2Qd4LtjEMZ5nlVCenaikHl5bsHR3y7wpnv0Rf5AIhD/TnzJLPWUDG7tGOpOgNwl0qMOmt56WkjoQRn6D1bPLOP/zenssQMA=,iv:JOfDaC5NLxn/uD2+frvwn0suCuAI77gWuYUr2bPI/lg=,tag:bXifAsbLR/vZFcva8NcdJA==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.7.3

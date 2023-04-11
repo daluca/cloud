@@ -52,6 +52,26 @@ spec:
                   mountPath: /etc/crowdsec_data/config.yaml.local
                   subPath: config.yaml
                   name: crowdsec-custom-config
+          - target:
+              kind: DaemonSet
+              name: crowdsec-agent
+            patch: |-
+              - op: add
+                path: /spec/template/spec/volumes/-
+                value:
+                  name: crowdsec-whitelist
+                  secret:
+                    secretName: crowdsec-whitelist
+          - target:
+              kind: DaemonSet
+              name: crowdsec-agent
+            patch: |-
+              - op: add
+                path: /spec/template/spec/containers/0/volumeMounts/-
+                value:
+                  mountPath: /etc/crowdsec_data/parsers/s02-enrich/custom-whitelist.yaml
+                  subPath: custom-whitelist.yaml
+                  name: crowdsec-whitelist
   values:
     container_runtime: containerd
     lapi:
