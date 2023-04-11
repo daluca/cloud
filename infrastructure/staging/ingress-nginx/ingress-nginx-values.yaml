@@ -19,3 +19,5 @@ spec:
           # Required as a work around to make the proxy-protocol work
           # https://github.com/digitalocean/digitalocean-cloud-controller-manager/blob/master/docs/controllers/services/annotations.md#servicebetakubernetesiodo-loadbalancer-hostname
           service.beta.kubernetes.io/do-loadbalancer-hostname: ${TERTIARY_DOMAIN}
+      config:
+        whitelist-source-range: ${STAGING_IP_ALLOW_LIST}
