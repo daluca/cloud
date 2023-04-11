@@ -69,7 +69,7 @@ spec:
               - op: add
                 path: /spec/template/spec/containers/0/volumeMounts/-
                 value:
-                  mountPath: /etc/crowdsec_data/parsers/s02-enrich/custom-whitelist.yaml
+                  mountPath: /etc/crowdsec/parsers/s02-enrich/custom-whitelist.yaml
                   subPath: custom-whitelist.yaml
                   name: crowdsec-whitelist
   values:
