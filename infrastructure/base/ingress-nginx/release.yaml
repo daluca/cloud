@@ -49,6 +49,9 @@ spec:
           [$proxy_upstream_name] [$proxy_alternative_upstream_name]
           $upstream_addr $upstream_response_length $upstream_response_time
           $upstream_status $req_id'
+        server-snippet: |-
+          real_ip_header CF-Connecting-IP;
+          resolver local=on ipv6=off;
   valuesFrom:
     - kind: ConfigMap
       name: crowdsec-lua-plugin
