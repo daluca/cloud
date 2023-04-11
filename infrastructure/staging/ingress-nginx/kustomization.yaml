@@ -6,10 +6,3 @@ resources:
   - crowdsec-lapi-credentials.sops.yaml
 patches:
   - path: ingress-nginx-values.yaml
-  - target:
-      kind: HelmRelease
-      name: ingress-nginx
-    patch: |
-      - op: add
-        path: /spec/values/controller/config/whitelist-source-range
-        value: ${STAGING_IP_ALLOW_LIST}
