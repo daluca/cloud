@@ -47,6 +47,5 @@ repos:
         args: []
         language: script
         stages: [commit]
-        # yamllint disable rule:quoted-strings
+        # yamllint disable-line rule:quoted-strings
         files: ".*\\.ya?ml"
-        # yamllint enable rule:quoted-strings
