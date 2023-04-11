@@ -38,5 +38,3 @@ data:
       config:
         plugins: crowdsec
         lua-shared-dicts: "crowdsec_cache: 50m"
-        server-snippet: |
-          resolver local=on ipv6=off;
