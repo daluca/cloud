@@ -10,11 +10,14 @@ patches:
       name: stackgres
     patch: |-
       - op: replace
+        path: /metadata/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-cloudflare
+      - op: replace
         path: /spec/rules/0/host
-        value: stackgres.stg.${PRIMARY_DOMAIN}
+        value: stackgres.${TERTIARY_DOMAIN}
       - op: replace
         path: /spec/tls/0/hosts/0
-        value: stackgres.stg.${PRIMARY_DOMAIN}
+        value: stackgres.${TERTIARY_DOMAIN}
       - op: replace
         path: /spec/tls/0/secretName
         value: stackgres-stg-tls

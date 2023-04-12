@@ -46,5 +46,5 @@ spec:
               name: gatekeeper-audit
             patch: |-
               - op: add
-                path: "/spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes"
+                path: /spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes
                 value: tmp-volume
