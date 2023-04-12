@@ -29,6 +29,16 @@ spec:
   test:
     enable: true
     ignoreFailures: false
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: Deployment
+              name: nextcloud-metrics
+            patch: |-
+              - op: replace
+                path: /spec/template/spec/containers/0/env/2/value
+                value: http://nextcloud
   values:
     image:
       flavor: fpm-alpine
@@ -208,6 +218,8 @@ spec:
         passwordKey: nextcloud-password
     cronjob:
       enabled: true
+    service:
+      port: 80
     persistence:
       enabled: true
       storageClass: rook-cephfs
