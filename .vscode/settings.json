@@ -64,6 +64,7 @@
         "containerd",
         "CRDs",
         "crowdsec",
+        "curlimages",
         "devture",
         "doks",
         "dshm",
