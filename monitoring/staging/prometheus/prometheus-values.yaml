@@ -14,30 +14,30 @@ spec:
     alertmanager:
       ingress:
         hosts:
-          - alertmanager.stg.${PRIMARY_DOMAIN}
+          - alertmanager.${TERTIARY_DOMAIN}
         tls:
           - secretName: alertmanager-stg-tls
             hosts:
-              - alertmanager.stg.${PRIMARY_DOMAIN}
+              - alertmanager.${TERTIARY_DOMAIN}
       alertmanagerSpec:
         replicas: 1
     grafana:
       replicas: 1
       ingress:
         hosts:
-          - grafana.stg.${PRIMARY_DOMAIN}
+          - grafana.${TERTIARY_DOMAIN}
         tls:
           - secretName: grafana-stg-tls
             hosts:
-              - grafana.stg.${PRIMARY_DOMAIN}
+              - grafana.${TERTIARY_DOMAIN}
     prometheus:
       ingress:
         hosts:
-          - prometheus.stg.${PRIMARY_DOMAIN}
+          - prometheus.${TERTIARY_DOMAIN}
         tls:
           - secretName: prometheus-stg-tls
             hosts:
-              - prometheus.stg.${PRIMARY_DOMAIN}
+              - prometheus.${TERTIARY_DOMAIN}
       prometheusSpec:
         replicas: 1
         retention: 8d

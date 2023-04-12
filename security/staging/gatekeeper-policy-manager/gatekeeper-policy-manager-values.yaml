@@ -16,10 +16,10 @@ spec:
       secretKey: ${GATEKEEPER_SECRET_KEY}
     ingress:
       hosts:
-        - host: gatekeeper.stg.${PRIMARY_DOMAIN}
+        - host: gatekeeper.${TERTIARY_DOMAIN}
           pathType: Prefix
           paths: [/]
       tls:
         - secretName: gatekeeper-stg-tls
           hosts:
-            - gatekeeper.stg.${PRIMARY_DOMAIN}
+            - gatekeeper.${TERTIARY_DOMAIN}
