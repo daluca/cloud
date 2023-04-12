@@ -217,7 +217,7 @@ spec:
         usernameKey: nextcloud-username
         passwordKey: nextcloud-password
     cronjob:
-      enabled: true
+      enabled: false
     service:
       port: 80
     persistence:
