@@ -10,26 +10,26 @@ patches:
       name: helm-controller
     patch: |-
       - op: add
-        path: "/spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes"
+        path: /spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes
         value: temp
   - target:
       kind: Deployment
       name: kustomize-controller
     patch: |-
       - op: add
-        path: "/spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes"
+        path: /spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes
         value: temp
   - target:
       kind: Deployment
       name: notification-controller
     patch: |-
       - op: add
-        path: "/spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes"
+        path: /spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes
         value: temp
   - target:
       kind: Deployment
       name: source-controller
     patch: |-
       - op: add
-        path: "/spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes"
+        path: /spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes
         value: tmp,data

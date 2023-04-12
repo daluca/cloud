@@ -10,5 +10,5 @@ patches:
       name: stackgres-rest-api
     patch: |-
       - op: add
-        path: "/spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes"
+        path: /spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes
         value: operator-nginx-etc
