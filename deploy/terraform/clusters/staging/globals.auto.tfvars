@@ -6,6 +6,6 @@ kubernetes_node_count = 4
 
 github_repository = "cloud"
 
-flux_version = "0.40.0"
+flux_version = "0.41.2"
 
 catalyst_cloud_region = "nz_wlg_2" # Wellington
