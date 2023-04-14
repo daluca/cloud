@@ -51,32 +51,9 @@ spec:
         nginx.ingress.kubernetes.io/proxy-body-size: 4G
         # yamllint disable rule:line-length
         nginx.ingress.kubernetes.io/server-snippet: |-
-          server_tokens off;
-          proxy_hide_header X-Powered-By;
-          rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
-          rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json;
-          location = /.well-known/carddav {
-            return 301 $scheme://$host/remote.php/dav;
-          }
-          location = /.well-known/caldav {
-            return 301 $scheme://$host/remote.php/dav;
-          }
-          location = /.well-known/webfinger {
-            return 301 $scheme://$host/index.php$uri;
-          }
-          location = /.well-known/nodeinfo {
-            return 301 $scheme://$host/index.php$uri;
-          }
-          location = /robots.txt {
-            allow all;
-            log_not_found off;
-            access_log off;
-          }
-          location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)/ {
-            deny all;
-          }
-          location ~ ^/(?:autotest|occ|issue|indie|db_|console) {
-            deny all;
+          location ^~ /.well-known {
+            location ~ /.well-known/(card|cal)dav { return 301 /remote.php/dav; }
+            return 301 /index.php$request_uri;
           }
         # yamllint enable rule:line-length
       path: /
