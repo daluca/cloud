@@ -36,11 +36,14 @@ spec:
         patches:
           - target:
               kind: Deployment
-              name: rook-ceph
+              name: rook-ceph-operator
             patch: |-
               - op: remove
                 path: /spec/template/spec/containers/0/resources/limits/cpu
   values:
+    resources:
+      limits:
+        memory: 256Mi
     crds:
       enabled: true
     monitoring:
