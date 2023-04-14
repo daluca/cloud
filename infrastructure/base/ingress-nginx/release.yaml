@@ -35,6 +35,7 @@ spec:
         annotations:
           service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
       config:
+        force-ssl-redirect: "true"
         use-proxy-protocol: "true"
         use-forwarded-headers: "true"
         enable-real-ip: "true"
