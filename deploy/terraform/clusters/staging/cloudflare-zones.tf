@@ -4,7 +4,7 @@ resource "cloudflare_zone" "tertiary_domain" {
 }
 
 resource "cloudflare_zone_settings_override" "tertiary_domain" {
-  zone_id = cloudflare_zone.tertiary_domain.id
+  zone_id = sensitive(cloudflare_zone.tertiary_domain.id)
 
   settings {
     always_use_https = "on"
