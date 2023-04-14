@@ -10,12 +10,12 @@ resources:
 patches:
   - path: nextcloud-values.yaml
   - target:
-      kind: Ingress
+      kind: HelmRelease
       name: nextcloud
     # yamllint disable rule:line-length
     patch: |-
       - op: replace
-        path: /metadata/annotations/nginx.ingress.kubernetes.io~1server-snippet
+        path: /spec/values/ingress/annotations/nginx.ingress.kubernetes.io~1server-snippet
         value: |-
           location ^~ /.well-known {
             location ~ /.well-known/(card|cal)dav { return 301 https://$host/remote.php/dav; }
