@@ -32,6 +32,11 @@ repos:
     hooks:
       - id: shellcheck
 
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.4
+    hooks:
+      - id: codespell
+
   - repo: https://github.com/antonbabenko/pre-commit-terraform
     rev: v1.77.2
     hooks:
