@@ -18,7 +18,7 @@ spec:
             name: daluca/staging-whitelist
             description: "Whitelist staging environment"
             whitelist:
-              reason: "staging enironment trusted CIDR range"
+              reason: "staging environment trusted CIDR range"
               cidr:
                 - ${STAGING_IP_ALLOW_LIST}
     lapi:
