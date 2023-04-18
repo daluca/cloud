@@ -47,3 +47,24 @@ jobs:
         uses: pre-commit/action@v3.0.0
         with:
           extra_args: markdownlint-cli2 --all-files
+
+  codespell:
+    name: codespell
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: run codespell on all files
+        uses: pre-commit/action@v3.0.0
+        with:
+          extra_args: codespell --all-files
