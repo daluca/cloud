@@ -7,6 +7,7 @@ resources:
   - crowdsec.yaml
   - database.yaml
   - gatekeeper-system.yaml
+  - identity.yaml
   - ingress-nginx.yaml
   - mail.yaml
   - monitoring.yaml
