@@ -4,3 +4,5 @@ kind: Kustomization
 resources:
   - ../../base/openldap
   - openldap-credentials.sops.yaml
+patches:
+  - path: openldap-values.yaml

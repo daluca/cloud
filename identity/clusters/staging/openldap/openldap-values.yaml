@@ -13,6 +13,7 @@ spec:
   values:
     global:
       ldapDomain: ${TERTIARY_DOMAIN}
+    replicaCount: 2
     customLdifFiles:
       00-root.ldif: |-
         # Root creation
