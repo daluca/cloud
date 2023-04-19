@@ -18,6 +18,8 @@
     - [PostgreSQL]()
   - [Operators]()
     - [Stackgres]()
+- [Identity]()
+  - [OpenLDAP](./identity/openldap.md)
 - [Infrastructure]()
   - [Ingress NGINX](./infrastructure/ingress-nginx.md)
   - [Cert-manager]()

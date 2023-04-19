@@ -1,0 +1,43 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: openldap
+  namespace: identity
+spec:
+  chart:
+    spec:
+      version: ">=4.0.0 <5.0.0"
+  test:
+    enable: false
+  values:
+    global:
+      ldapDomain: ${TERTIARY_DOMAIN}
+    customLdifFiles:
+      00-root.ldif: |-
+        # Root creation
+        dn: ${TERTIARY_DOMAIN_COMPONENTS}
+        objectClass: dcObject
+        objectClass: organization
+        o: ${TERTIARY_ORGANISATION} Staging Environment
+      10-groups.ldif: |-
+        # Group creation
+        dn: ou=People,${TERTIARY_DOMAIN_COMPONENTS}
+        objectClass: organizationalUnit
+        ou: People
+
+        dn: ou=Groups,${TERTIARY_DOMAIN_COMPONENTS}
+        objectClass: organizationalUnit
+        ou: Groups
+    persistence:
+      size: 1Gi
+    phpldapadmin:
+      ingress:
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-cloudflare
+        hosts:
+          - phpldapadmin.${TERTIARY_DOMAIN}
+        tls:
+          - secretName: ldapadmin-stg-tls
+            hosts:
+              - phpldapadmin.${TERTIARY_DOMAIN}

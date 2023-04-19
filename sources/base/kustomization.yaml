@@ -10,6 +10,7 @@ resources:
   - ingress-nginx.yaml
   - metrics-server.yaml
   - nextcloud.yaml
+  - openldap.yaml
   - ot-helm.yaml
   - prometheus-community.yaml
   - rook-release.yaml

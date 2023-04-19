@@ -1,0 +1,51 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: openldap
+  namespace: identity
+spec:
+  releaseName: openldap
+  chart:
+    spec:
+      chart: openldap-stack-ha
+      sourceRef:
+        kind: HelmRepository
+        name: openldap
+        namespace: flux-system
+  interval: 1h
+  maxHistory: 3
+  install:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  upgrade:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  uninstall:
+    keepHistory: false
+  test:
+    enable: true
+    ignoreFailures: false
+  values:
+    global:
+      existingSecret: openldap-credentials
+    replicaCount: 3
+    env:
+      LDAP_SKIP_DEFAULT_TREE: "yes"
+    persistence:
+      enabled: true
+      size: 4Gi
+      storageClass: rook-ceph-block
+      accessModes: [ReadWriteOnce]
+    ltb-passwd:
+      enabled: false
+    phpldapadmin:
+      enabled: true
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          kubernetes.io/ingress.allow-http: "false"
+          cert-manager.io/cluster-issuer: letsencrypt
