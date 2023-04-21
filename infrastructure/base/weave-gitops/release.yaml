@@ -8,7 +8,9 @@ spec:
   releaseName: weave-gitops
   dependsOn:
     - name: ingress-nginx
+      namespace: ingress-nginx
     - name: cert-manager
+      namespace: cert-manager
   chart:
     spec:
       chart: weave-gitops
