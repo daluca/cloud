@@ -6,6 +6,9 @@ metadata:
   namespace: flux-system
 spec:
   releaseName: weave-gitops
+  dependsOn:
+    - name: ingress-nginx
+    - name: cert-manager
   chart:
     spec:
       chart: weave-gitops
@@ -31,6 +34,13 @@ spec:
     ignoreFailures: false
   values:
     replicaCount: 1
+    envVars:
+      - name: WEAVE_GITOPS_FEATURE_TENANCY
+        value: "false"
+      - name: WEAVE_GITOPS_FEATURE_CLUSTER
+        value: "false"
+      - name: WEAVE_GITOPS_FEATURE_OCI_REPOSITORIES
+        value: "false"
     ingress:
       enabled: true
       className: nginx

@@ -19,11 +19,11 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-cloudflare
       hosts:
-        - host: flux.${TERTIARY_DOMAIN}
+        - host: gitops.${TERTIARY_DOMAIN}
           paths:
             - pathType: Prefix
               path: /
       tls:
         - secretName: gitops-stg-tls
           hosts:
-            - flux.${TERTIARY_DOMAIN}
+            - gitops.${TERTIARY_DOMAIN}
