@@ -6,6 +6,9 @@ metadata:
   namespace: flux-system
 spec:
   releaseName: weave-gitops
+  dependsOn:
+    - name: ingress-nginx
+    - name: cert-manager
   chart:
     spec:
       chart: weave-gitops
