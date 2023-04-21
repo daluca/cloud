@@ -31,6 +31,11 @@ spec:
     ignoreFailures: false
   values:
     replicaCount: 1
+    envVars:
+      - name: WEAVE_GITOPS_FEATURE_TENANCY
+        value: "false"
+      - name: WEAVE_GITOPS_FEATURE_CLUSTER
+        value: "false"
     ingress:
       enabled: true
       className: nginx
