@@ -74,6 +74,7 @@
         "fullname",
         "getenv",
         "gitleaks",
+        "gitops",
         "hsts",
         "kubeconform",
         "kubelet",
@@ -108,6 +109,7 @@
         "velero",
         "vmware-tanzu",
         "wasabisys",
+        "weaveworks",
         "webfinger"
     ]
 }

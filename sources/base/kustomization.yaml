@@ -16,3 +16,4 @@ resources:
   - rook-release.yaml
   - stackgres.yaml
   - vmware-tanzu.yaml
+  - weaveworks.yaml
