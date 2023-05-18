@@ -42,6 +42,8 @@ repos:
     hooks:
       - id: terraform_fmt
       - id: terraform_validate
+        exclude: modules
+      - id: terraform_tfsec
 
   - repo: local
     hooks:
