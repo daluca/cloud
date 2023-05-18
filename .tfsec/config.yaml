@@ -1,0 +1,6 @@
+---
+exclude:
+  - digitalocean-compute-kubernetes-auto-upgrades-not-enabled:2023-09-01
+  - digitalocean-compute-surge-upgrades-not-enabled:2023-09-01
+  - digitalocean-spaces-acl-no-public-read:2023-09-01
+  - digitalocean-spaces-versioning-enabled:2023-09-01
