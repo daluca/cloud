@@ -36,6 +36,11 @@ terraform {
       version = ">= 1.0.0-rc.1, < 2.0"
     }
 
+    github = {
+      source  = "integrations/github"
+      version = ">= 5.0, < 6.0"
+    }
+
     random = {
       source  = "hashicorp/random"
       version = ">= 3.0, < 4.0"
