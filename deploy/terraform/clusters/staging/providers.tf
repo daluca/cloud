@@ -7,14 +7,19 @@ terraform {
       version = "~> 2.0"
     }
 
-    flux = {
-      source  = "fluxcd/flux"
-      version = "~> 0.23.0"
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.0"
     }
 
-    github = {
-      source  = "integrations/github"
-      version = "~> 5.0"
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "~> 4.0"
+    }
+
+    wasabi = {
+      source  = "terrabitz/wasabi"
+      version = "~> 4.0"
     }
 
     kubernetes = {
@@ -22,9 +27,14 @@ terraform {
       version = "~> 2.0"
     }
 
-    kubectl = {
-      source  = "gavinbunney/kubectl"
-      version = "~> 1.0"
+    flux = {
+      source  = "fluxcd/flux"
+      version = "= 1.0.0-rc.3"
+    }
+
+    github = {
+      source  = "integrations/github"
+      version = "~> 5.0"
     }
 
     tls = {
@@ -37,26 +47,12 @@ terraform {
       version = "~> 3.0"
     }
 
-    wasabi = {
-      source  = "terrabitz/wasabi"
-      version = ">= 4.0"
-    }
-
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.0"
-    }
-
-    cloudflare = {
-      source  = "cloudflare/cloudflare"
-      version = "~> 4.0"
-    }
-
-    openstack = {
-      source  = "terraform-provider-openstack/openstack"
-      version = "~> 1.0"
+    time = {
+      source  = "hashicorp/time"
+      version = "~> 0.9.0"
     }
   }
+}
 
   backend "s3" {
     endpoint = "s3.ap-southeast-2.wasabisys.com"
@@ -72,19 +68,13 @@ terraform {
 }
 
 provider "kubernetes" {
-  host                   = digitalocean_kubernetes_cluster.staging.endpoint
-  cluster_ca_certificate = base64decode(digitalocean_kubernetes_cluster.staging.kube_config[0].cluster_ca_certificate)
-  token                  = digitalocean_kubernetes_cluster.staging.kube_config[0].token
-}
-
-provider "kubectl" {
-  host                   = digitalocean_kubernetes_cluster.staging.endpoint
-  cluster_ca_certificate = base64decode(digitalocean_kubernetes_cluster.staging.kube_config[0].cluster_ca_certificate)
-  token                  = digitalocean_kubernetes_cluster.staging.kube_config[0].token
-  load_config_file       = false
+  host                   = module.staging.kube_config.host
+  cluster_ca_certificate = base64decode(module.staging.kube_config.cluster_ca_certificate)
+  token                  = module.staging.kube_config.token
 }
 
 provider "wasabi" {
+  alias  = "netherlands"
   region = "eu-central-1"
 }
 
@@ -124,9 +114,4 @@ provider "aws" {
     iam = "https://iam.ap-southeast-2.wasabisys.com"
     s3  = "https://s3.ap-southeast-2.wasabisys.com"
   }
-}
-
-provider "openstack" {
-  region   = var.catalyst_cloud_region
-  auth_url = local.auth_url
 }
