@@ -7,8 +7,9 @@ on:
     paths:
       - deploy/terraform/clusters/staging/**.tf
       - deploy/terraform/clusters/staging/**.tfvars
+      - deploy/terraform/modules/environment/**.tf
+      - deploy/terraform/modules/flux-bootstrap/**.tf
       - deploy/terraform/modules/wasabi-bucket/**.tf
-      - deploy/terraform/modules/catalyst-cloud-object-storage/**.tf
       - .github/workflows/staging.yaml
 
   pull_request:
@@ -16,8 +17,9 @@ on:
     paths:
       - deploy/terraform/clusters/staging/**.tf
       - deploy/terraform/clusters/staging/**.tfvars
+      - deploy/terraform/modules/environment/**.tf
+      - deploy/terraform/modules/flux-bootstrap/**.tf
       - deploy/terraform/modules/wasabi-bucket/**.tf
-      - deploy/terraform/modules/catalyst-cloud-object-storage/**.tf
       - .github/workflows/staging.yaml
 
 permissions:
@@ -27,19 +29,14 @@ permissions:
 env:
   GITHUB_TOKEN: ${{ secrets.REPOSITORY_WRITE_TOKEN }}
   DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-  OS_USERNAME: ${{ secrets.CATALYST_CLOUD_USERNAME }}
-  OS_PASSWORD: ${{ secrets.CATALYST_CLOUD_PASSWORD }}
-  OS_USER_DOMAIN_NAME: ${{ secrets.CATALYST_CLOUD_USER_DOMAIN }}
-  OS_PROJECT_NAME: ${{ secrets.CATALYST_CLOUD_PROJECT_NAME }}
   AWS_ACCESS_KEY_ID: ${{ secrets.WASABI_TERRAFORM_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.WASABI_TERRAFORM_SECRET_ACCESS_KEY }}
   CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
   AWS_SSE_CUSTOMER_KEY: ${{ secrets.TERRAFORM_STATE_SSE_CUSTOMER_KEY }}
-  TF_VAR_cloudflare_account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+  TF_VAR_flux_age_key: ${{ secrets.STAGING_CLUSTER_AGE_KEY }}
+  TF_VAR_cloudflare_account_name: ${{ secrets.CLOUDFLARE_ACCOUNT_NAME }}
   TF_VAR_cloudflare_domain: ${{ secrets.TERTIARY_DOMAIN }}
   TF_VAR_cloudflare_ip_allow_list: ${{ secrets.STAGING_IP_ALLOW_LIST }}
-  TF_VAR_catalyst_cloud_project_name: ${{ secrets.CATALYST_CLOUD_PROJECT_NAME }}
-  TF_VAR_catalyst_cloud_nextcloud_user_id: ${{ secrets.CATALYST_CLOUD_NEXTCLOUD_USER_ID }}
 
 jobs:
   terraform:
