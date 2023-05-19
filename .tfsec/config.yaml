@@ -1,5 +1,5 @@
 ---
+min_required_version: v1.28.0
 exclude:
-  - digitalocean-compute-surge-upgrades-not-enabled:2023-09-01
-  - digitalocean-spaces-acl-no-public-read:2023-09-01
-  - digitalocean-spaces-versioning-enabled:2023-09-01
+  - digitalocean-spaces-acl-no-public-read:2023-08-01
+  - digitalocean-spaces-versioning-enabled:2023-08-01

@@ -7,6 +7,8 @@ on:
     paths:
       - deploy/terraform/clusters/staging/**.tf
       - deploy/terraform/clusters/staging/**.tfvars
+      - deploy/terraform/modules/wasabi-bucket/**.tf
+      - deploy/terraform/modules/catalyst-cloud-object-storage/**.tf
       - .github/workflows/staging.yaml
 
   pull_request:
@@ -14,6 +16,8 @@ on:
     paths:
       - deploy/terraform/clusters/staging/**.tf
       - deploy/terraform/clusters/staging/**.tfvars
+      - deploy/terraform/modules/wasabi-bucket/**.tf
+      - deploy/terraform/modules/catalyst-cloud-object-storage/**.tf
       - .github/workflows/staging.yaml
 
 permissions:
@@ -30,7 +34,7 @@ env:
   AWS_ACCESS_KEY_ID: ${{ secrets.WASABI_TERRAFORM_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.WASABI_TERRAFORM_SECRET_ACCESS_KEY }}
   CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-  TF_VAR_domain: ${{ secrets.PRIMARY_DOMAIN }}
+  AWS_SSE_CUSTOMER_KEY: ${{ secrets.TERRAFORM_STATE_SSE_CUSTOMER_KEY }}
   TF_VAR_cloudflare_account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
   TF_VAR_cloudflare_domain: ${{ secrets.TERTIARY_DOMAIN }}
   TF_VAR_cloudflare_ip_allow_list: ${{ secrets.STAGING_IP_ALLOW_LIST }}
@@ -71,8 +75,8 @@ jobs:
         run: >-
           terraform init
           -backend-config="bucket=${{ secrets.TERRAFORM_STATE_BUCKET }}"
-          -backend-config="access_key=${{ secrets.CATALYST_CLOUD_ACCESS_KEY_ID }}"
-          -backend-config="secret_key=${{ secrets.CATALYST_CLOUD_SECRET_ACCESS_KEY }}"
+          -backend-config="access_key=${{ secrets.WASABI_TERRAFORM_ACCESS_KEY_ID }}"
+          -backend-config="secret_key=${{ secrets.WASABI_TERRAFORM_SECRET_ACCESS_KEY }}"
 
       - name: terraform validate
         id: validate

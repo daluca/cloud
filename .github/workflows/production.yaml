@@ -7,6 +7,7 @@ on:
     paths:
       - deploy/terraform/clusters/production/**.tf
       - deploy/terraform/clusters/production/**.tfvars
+      - deploy/terraform/modules/catalyst-cloud-object-storage/**.tf
       - .github/workflows/production.yaml
 
   pull_request:
@@ -14,6 +15,7 @@ on:
     paths:
       - deploy/terraform/clusters/production/**.tf
       - deploy/terraform/clusters/production/**.tfvars
+      - deploy/terraform/modules/catalyst-cloud-object-storage/**.tf
       - .github/workflows/production.yaml
 
 permissions:
@@ -28,6 +30,7 @@ env:
   OS_PASSWORD: ${{ secrets.CATALYST_CLOUD_PASSWORD }}
   OS_USER_DOMAIN_NAME: ${{ secrets.CATALYST_CLOUD_USER_DOMAIN }}
   OS_PROJECT_NAME: ${{ secrets.CATALYST_CLOUD_PROJECT_NAME }}
+  AWS_SSE_CUSTOMER_KEY: ${{ secrets.TERRAFORM_STATE_SSE_CUSTOMER_KEY }}
   TF_VAR_domain: ${{ secrets.PRIMARY_DOMAIN }}
 
 jobs:
@@ -64,8 +67,8 @@ jobs:
         run: >-
           terraform init
           -backend-config="bucket=${{ secrets.TERRAFORM_STATE_BUCKET }}"
-          -backend-config="access_key=${{ secrets.CATALYST_CLOUD_ACCESS_KEY_ID }}"
-          -backend-config="secret_key=${{ secrets.CATALYST_CLOUD_SECRET_ACCESS_KEY }}"
+          -backend-config="access_key=${{ secrets.WASABI_TERRAFORM_ACCESS_KEY_ID }}"
+          -backend-config="secret_key=${{ secrets.WASABI_TERRAFORM_SECRET_ACCESS_KEY }}"
 
       - name: terraform validate
         id: validate
