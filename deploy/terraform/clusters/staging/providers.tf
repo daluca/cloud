@@ -52,7 +52,6 @@ terraform {
       version = "~> 0.9.0"
     }
   }
-}
 
   backend "s3" {
     endpoint = "s3.ap-southeast-2.wasabisys.com"
@@ -90,7 +89,6 @@ provider "aws" {
   skip_region_validation      = true
   skip_credentials_validation = true
   skip_requesting_account_id  = true
-  skip_metadata_api_check     = true
 
   endpoints {
     sts = "https://sts.eu-central-1.wasabisys.com"
@@ -107,7 +105,6 @@ provider "aws" {
   skip_region_validation      = true
   skip_credentials_validation = true
   skip_requesting_account_id  = true
-  skip_metadata_api_check     = true
 
   endpoints {
     sts = "https://sts.ap-southeast-2.wasabisys.com"

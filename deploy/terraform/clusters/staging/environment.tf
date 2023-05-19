@@ -6,19 +6,37 @@ module "staging" {
     wasabi.backup  = wasabi.netherlands
   }
 
-  environment         = var.environment
-  digitalocean_region = var.digitalocean_region
+  digitalocean = {
+    environment = "staging"
+    region      = "syd1"
+  }
 
-  kubernetes_version           = "1.26"
-  kubernetes_worker_cpu        = 4
-  kubernetes_worker_memory     = 8
-  kubernetes_monitoring_pool   = true
-  kubernetes_monitoring_cpu    = 2
-  kubernetes_monitoring_memory = 4
+  kubernetes = {
+    version = "1.26"
+    worker_pool = {
+      cpu        = 4
+      memory     = 8
+      auto_scale = true
+      min        = 3
+      max        = 5
+    }
+    monitoring_pool = {
+      cpu        = 2
+      memory     = 4
+      auto_scale = true
+      min        = 1
+      max        = 2
+    }
+  }
 
-  domain                   = var.domain
-  cloudflare_account_name  = var.cloudflare_account_name
-  cloudflare_ip_allow_list = var.cloudflare_ip_allow_list
+  cloudflare = {
+    account_name           = var.cloudflare_account_name
+    domain                 = var.cloudflare_domain
+    allow_list             = var.cloudflare_ip_allow_list
+    block_external_traffic = true
+  }
 
-  github_repository = "cloud"
+  github = {
+    repository = "cloud"
+  }
 }

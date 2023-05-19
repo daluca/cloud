@@ -1,26 +1,11 @@
-variable "environment" {
-  description = "Logical stage of deployment."
+variable "cloudflare_domain" {
+  description = "Domain to be host on Cloudflare and used for applications."
   type        = string
 
   validation {
-    condition     = contains(["development", "staging", "production"], var.environment)
-    error_message = "Environment must be one of ['development', 'staging', 'production']."
+    condition     = can(regex("^[0-9a-z_-]{2,}\\.[a-z]{2,}(\\.[a-z]{2,})?$", var.cloudflare_domain))
+    error_message = "String must conform to Second level domain."
   }
-}
-
-variable "kubernetes_version" {
-  description = "Kubernetes cluster major and minor version."
-  type        = string
-
-  validation {
-    condition     = contains(["nyc1", "nyc3", "ams3", "sfo3", "sgp1", "lon1", "fra1", "tor1", "blr1", "syd1"], var.digitalocean_region)
-    error_message = "Region must be one of ['nyc1', 'nyc3', 'ams3', 'sfo3', 'sgp1', 'lon1', 'fra1', 'tor1', 'blr1', 'syd1']."
-  }
-}
-
-variable "github_repository" {
-  description = "GitHub repository to sync with Flux."
-  type        = string
 }
 
 variable "cloudflare_account_name" {
@@ -31,4 +16,9 @@ variable "cloudflare_account_name" {
 variable "cloudflare_ip_allow_list" {
   description = "IP allow list for Kubernetes hosted apps"
   type        = string
+
+  validation {
+    condition     = can(cidrnetmask(var.cloudflare_ip_allow_list))
+    error_message = "Allow list be a valid IPv4 CIDR range."
+  }
 }
