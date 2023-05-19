@@ -1,6 +1,5 @@
 data "digitalocean_kubernetes_versions" "main" {
-  version_prefix = var.kubernetes.version != null ? "${var.kubernetes.version}." : null
-  # version_prefix = var.kubernetes.version != "latest" ? "${var.kubernetes.version}." : null
+  version_prefix = var.kubernetes.version != "latest" ? "${var.kubernetes.version}." : null
 }
 
 resource "digitalocean_kubernetes_cluster" "main" {
@@ -23,7 +22,6 @@ resource "digitalocean_kubernetes_cluster" "main" {
 }
 
 resource "digitalocean_kubernetes_node_pool" "monitoring" {
-  # count      = var.kubernetes.monitoring_pool.enabled ? 1 : 0
   count      = var.kubernetes.monitoring_pool != null ? 1 : 0
   cluster_id = digitalocean_kubernetes_cluster.main.id
 

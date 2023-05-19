@@ -3,5 +3,5 @@ module "fluxcd" {
 
   github_repository = var.github.repository
   environment       = local.environment
-  flux_version      = "v2.0.0-rc.3"
+  flux_version      = var.flux.version != null ? var.flux.version : "latest"
 }

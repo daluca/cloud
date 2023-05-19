@@ -22,3 +22,8 @@ variable "cloudflare_ip_allow_list" {
     error_message = "Allow list be a valid IPv4 CIDR range."
   }
 }
+
+variable "flux_age_key" {
+  description = "Base64 encoded age key used to decrypt secrets in Kubernetes cluster."
+  type        = string
+}

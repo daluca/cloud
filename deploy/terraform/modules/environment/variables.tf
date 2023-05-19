@@ -5,6 +5,19 @@ variable "github" {
   })
 }
 
+variable "flux" {
+  description = "Flux bootstrap settings."
+  type = object({
+    version = optional(string)
+    age_key = string
+  })
+
+  validation {
+    condition     = can(regex("^v[0-9]{1,}\\.[0-9]{1,}\\.[0-9]{1,}(-rc\\.[0-9]{1,})?$", var.flux.version)) || var.flux.version == null
+    error_message = "Version must follow semantic version e.g. v2.0.1"
+  }
+}
+
 variable "digitalocean" {
   description = "DigitalOcean cloud settings."
   type = object({
@@ -38,7 +51,7 @@ variable "cloudflare" {
   }
 
   validation {
-    condition     = can(cidrnetmask(var.cloudflare.allow_list))
+    condition     = can(cidrnetmask(var.cloudflare.allow_list)) || var.cloudflare.allow_list == null
     error_message = "Allow list be a valid IPv4 CIDR range."
   }
 }
@@ -46,7 +59,7 @@ variable "cloudflare" {
 variable "kubernetes" {
   description = "Kubernetes cluster settings."
   type = object({
-    version = optional(string)
+    version = optional(string, "latest")
     worker_pool = object({
       cpu        = number
       memory     = number
@@ -56,8 +69,8 @@ variable "kubernetes" {
       count      = optional(number)
     })
     monitoring_pool = optional(object({
-      cpu        = optional(number)
-      memory     = optional(number)
+      cpu        = number
+      memory     = number
       min        = optional(number)
       max        = optional(number)
       auto_scale = optional(bool, false)
@@ -66,8 +79,8 @@ variable "kubernetes" {
   })
 
   validation {
-    condition     = contains(["1.24", "1.25", "1.26"], var.kubernetes.version)
-    error_message = "Kubernetes version must be one of ['1.24', '1.25', '1.26]."
+    condition     = contains(["1.24", "1.25", "1.26", "latest"], var.kubernetes.version)
+    error_message = "Kubernetes version must be one of ['1.24', '1.25', '1.26', 'latest']."
   }
 
   validation {
@@ -81,12 +94,12 @@ variable "kubernetes" {
   }
 
   validation {
-    condition     = var.kubernetes.monitoring_pool.cpu >= 1
+    condition     = var.kubernetes.monitoring_pool != null ? var.kubernetes.monitoring_pool.cpu >= 1 : true
     error_message = "CPU count must be greater than or equal to 1."
   }
 
   validation {
-    condition     = var.kubernetes.monitoring_pool.memory >= 1
+    condition     = var.kubernetes.monitoring_pool != null ? var.kubernetes.monitoring_pool.memory >= 1 : true
     error_message = "RAM must be greater than or equal to 1."
   }
 }

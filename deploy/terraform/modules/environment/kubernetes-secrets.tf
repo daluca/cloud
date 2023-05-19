@@ -7,6 +7,6 @@ resource "kubernetes_secret" "sops" {
   }
 
   data = {
-    "cluster.agekey" = file("${pathexpand("~/.sops/age/")}/do-${data.digitalocean_region.main.slug}-${local.environment}-cluster.agekey")
+    "cluster.agekey" = var.flux.age_key
   }
 }

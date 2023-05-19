@@ -39,4 +39,9 @@ module "staging" {
   github = {
     repository = "cloud"
   }
+
+  flux = {
+    version = "v2.0.0-rc.3"
+    age_key = base64decode(var.flux_age_key)
+  }
 }
