@@ -22,6 +22,7 @@ permissions:
 env:
   CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
   CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
+  AWS_SSE_CUSTOMER_KEY: ${{ secrets.TERRAFORM_STATE_SSE_CUSTOMER_KEY }}
   TF_VAR_cloudflare_user_id: ${{ secrets.CLOUDFLARE_USER_ID }}
 
 jobs:
@@ -58,8 +59,8 @@ jobs:
         run: >-
           terraform init
           -backend-config="bucket=${{ secrets.TERRAFORM_STATE_BUCKET }}"
-          -backend-config="access_key=${{ secrets.CATALYST_CLOUD_ACCESS_KEY_ID }}"
-          -backend-config="secret_key=${{ secrets.CATALYST_CLOUD_SECRET_ACCESS_KEY }}"
+          -backend-config="access_key=${{ secrets.WASABI_TERRAFORM_ACCESS_KEY_ID }}"
+          -backend-config="secret_key=${{ secrets.WASABI_TERRAFORM_SECRET_ACCESS_KEY }}"
 
       - name: terraform validate
         id: validate

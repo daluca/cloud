@@ -9,11 +9,13 @@ terraform {
   }
 
   backend "s3" {
-    endpoint = "object-storage.nz-wlg-2.catalystcloud.io"
+    endpoint = "s3.ap-southeast-2.wasabisys.com"
     key      = "accounts/digitalocean/terraform.tfstate"
-    region   = "us-east-1" # Must be an AWS region
+    region   = "ap-southeast-2"
+    encrypt  = true
 
     skip_credentials_validation = true
+    skip_region_validation      = true
     skip_metadata_api_check     = true
     force_path_style            = true
   }
