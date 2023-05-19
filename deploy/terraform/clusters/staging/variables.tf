@@ -8,12 +8,6 @@ variable "environment" {
   type        = string
 }
 
-variable "domain" {
-  description = "Domain to host applications."
-  type        = string
-  sensitive   = true
-}
-
 variable "kubernetes_version" {
   description = "Kubernetes cluster major and minor version."
   type        = string

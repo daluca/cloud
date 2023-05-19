@@ -15,7 +15,7 @@ repos:
     rev: v1.30.0
     hooks:
       - id: yamllint
-        entry: yamllint --strict
+        args: [--strict]
 
   - repo: https://github.com/DavidAnson/markdownlint-cli2
     rev: v0.6.0
@@ -43,7 +43,9 @@ repos:
       - id: terraform_fmt
       - id: terraform_validate
         exclude: modules
+      - id: terraform_tflint
       - id: terraform_tfsec
+        args: [--args=--config-file=__GIT_WORKING_DIR__/.tfsec/config.yaml]
 
   - repo: local
     hooks:

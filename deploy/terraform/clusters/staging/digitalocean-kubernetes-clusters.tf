@@ -8,7 +8,9 @@ resource "digitalocean_kubernetes_cluster" "staging" {
   version  = data.digitalocean_kubernetes_versions.stable.latest_version
   vpc_uuid = data.digitalocean_vpc.staging.id
 
-  auto_upgrade  = false
+  #tfsec:ignore:digitalocean-compute-kubernetes-auto-upgrades-not-enabled:exp:2023-09-01
+  auto_upgrade = false
+  #tfsec:ignore:digitalocean-compute-surge-upgrades-not-enabled:exp:2023-09-01
   surge_upgrade = false
 
   node_pool {
