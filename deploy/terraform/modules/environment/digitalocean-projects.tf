@@ -3,5 +3,5 @@ locals {
 }
 
 data "digitalocean_project" "environment" {
-  name = title(var.environment)
+  name = title(var.digitalocean.environment)
 }

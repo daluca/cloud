@@ -1,5 +1,5 @@
 data "digitalocean_kubernetes_versions" "main" {
-  version_prefix = "${var.kubernetes_version}."
+  version_prefix = var.kubernetes.version != "latest" ? "${var.kubernetes.version}." : null
 }
 
 resource "digitalocean_kubernetes_cluster" "main" {
@@ -14,21 +14,23 @@ resource "digitalocean_kubernetes_cluster" "main" {
   node_pool {
     name       = "worker-pool"
     size       = element(data.digitalocean_sizes.worker_pool.sizes, 0).slug
-    auto_scale = true
-    min_nodes  = 3
-    max_nodes  = 6
+    auto_scale = var.kubernetes.worker_pool.auto_scale
+    min_nodes  = var.kubernetes.worker_pool.auto_scale ? var.kubernetes.worker_pool.min : null
+    max_nodes  = var.kubernetes.worker_pool.auto_scale ? var.kubernetes.worker_pool.max : null
+    node_count = !var.kubernetes.worker_pool.auto_scale ? var.kubernetes.worker_pool.count != null ? var.kubernetes.worker_pool.count : 2 : null
   }
 }
 
 resource "digitalocean_kubernetes_node_pool" "monitoring" {
-  count      = var.kubernetes_monitoring_pool ? 1 : 0
+  count      = var.kubernetes.monitoring_pool != null ? 1 : 0
   cluster_id = digitalocean_kubernetes_cluster.main.id
 
   name       = "monitoring-pool"
-  auto_scale = true
-  size       = element(data.digitalocean_sizes.monitoring_pool.sizes, 0).slug
-  min_nodes  = 1
-  max_nodes  = 2
+  size       = element(data.digitalocean_sizes.monitoring_pool[0].sizes, 0).slug
+  auto_scale = var.kubernetes.monitoring_pool.auto_scale
+  min_nodes  = var.kubernetes.monitoring_pool.auto_scale ? var.kubernetes.monitoring_pool.min : null
+  max_nodes  = var.kubernetes.monitoring_pool.auto_scale ? var.kubernetes.monitoring_pool.max : null
+  node_count = !var.kubernetes.monitoring_pool.auto_scale ? var.kubernetes.monitoring_pool.count != null ? var.kubernetes.monitoring_pool.count : 1 : null
 
   taint {
     key    = "workloadKind"

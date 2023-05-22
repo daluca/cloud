@@ -1,9 +1,13 @@
 data "cloudflare_api_token_permission_groups" "all" {}
 
+resource "time_offset" "one_year_from_now" {
+  offset_years = 1
+}
+
 resource "cloudflare_api_token" "terraform" {
   name = "daluca/cloud"
 
-  expires_on = "2024-02-27T00:00:00Z"
+  expires_on = time_offset.one_year_from_now.base_rfc3339
 
   policy {
     permission_groups = [

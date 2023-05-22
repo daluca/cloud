@@ -1,3 +1,3 @@
 data "github_repository" "main" {
-  name = var.github_repository
+  name = var.github.repository
 }

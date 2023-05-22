@@ -1,74 +1,29 @@
-variable "region" {
-  description = "Location of resources."
-  type        = string
-}
-
-variable "environment" {
-  description = "Logical stage of deployment."
-  type        = string
-}
-
-variable "kubernetes_version" {
-  description = "Kubernetes cluster major and minor version."
-  type        = string
-}
-
-variable "kubernetes_node_count" {
-  description = "Number of kubernetes worker nodes."
-  type        = number
-}
-
-variable "github_repository" {
-  description = "GitHub repository for Flux to sync with."
-  type        = string
-}
-
-variable "flux_version" {
-  description = "Flux manifest version."
-  type        = string
-}
-
 variable "cloudflare_domain" {
-  description = "Cloudflare hosted domain."
+  description = "Domain to be host on Cloudflare and used for applications."
   type        = string
-  sensitive   = true
+
+  validation {
+    condition     = can(regex("^[0-9a-z_-]{2,}\\.[a-z]{2,}(\\.[a-z]{2,})?$", var.cloudflare_domain))
+    error_message = "String must conform to Second level domain."
+  }
 }
 
-variable "cloudflare_account_id" {
-  description = "Cloudflare account id."
+variable "cloudflare_account_name" {
+  description = "Name of Cloudflare account."
   type        = string
-  sensitive   = true
 }
 
 variable "cloudflare_ip_allow_list" {
-  description = "IP allow list for Cloudflare WAF"
+  description = "IP allow list for Kubernetes hosted apps"
   type        = string
-  sensitive   = false
 
   validation {
     condition     = can(cidrnetmask(var.cloudflare_ip_allow_list))
-    error_message = "Must be a valid IPv4 CIDR range."
+    error_message = "Allow list be a valid IPv4 CIDR range."
   }
 }
 
-variable "catalyst_cloud_region" {
-  description = "Catalyst Cloud region."
+variable "flux_age_key" {
+  description = "Base64 encoded age key used to decrypt secrets in Kubernetes cluster."
   type        = string
-
-  validation {
-    condition     = contains(["nz-hlz-1", "nz-por-1", "nz_wlg_2"], var.catalyst_cloud_region)
-    error_message = "Region must be one of ['nz-hlz-1', 'nz-por-1', 'nz_wlg_2']"
-  }
-}
-
-variable "catalyst_cloud_project_name" {
-  description = "Catalyst Cloud project name."
-  type        = string
-  sensitive   = true
-}
-
-variable "catalyst_cloud_nextcloud_user_id" {
-  description = "Catalyst Cloud user ID for Nextcloud."
-  type        = string
-  sensitive   = true
 }
