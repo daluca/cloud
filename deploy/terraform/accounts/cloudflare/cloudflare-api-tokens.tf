@@ -7,7 +7,7 @@ resource "time_offset" "one_year_from_now" {
 resource "cloudflare_api_token" "terraform" {
   name = "daluca/cloud"
 
-  expires_on = time_offset.one_year_from_now.base_rfc3339
+  expires_on = time_offset.one_year_from_now.rfc3339
 
   policy {
     permission_groups = [
