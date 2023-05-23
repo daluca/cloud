@@ -7,7 +7,7 @@ resource "time_offset" "one_year_from_now" {
 resource "cloudflare_api_token" "external_dns" {
   name = "${data.github_repository.main.full_name}/${local.environment}/external-dns"
 
-  expires_on = time_offset.one_year_from_now.base_rfc3339
+  expires_on = time_offset.one_year_from_now.rfc3339
 
   policy {
     permission_groups = [
@@ -23,7 +23,7 @@ resource "cloudflare_api_token" "external_dns" {
 resource "cloudflare_api_token" "cert_manager" {
   name = "${data.github_repository.main.full_name}/${local.environment}/cert-manager"
 
-  expires_on = time_offset.one_year_from_now.base_rfc3339
+  expires_on = time_offset.one_year_from_now.rfc3339
 
   policy {
     permission_groups = [
