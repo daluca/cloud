@@ -1,5 +1,5 @@
 resource "cloudflare_zone" "main" {
-  account_id = data.cloudflare_accounts.main.id
+  account_id = var.cloudflare.account_id
   zone       = var.cloudflare.domain
 }
 

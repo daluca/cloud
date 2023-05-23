@@ -30,7 +30,7 @@ module "staging" {
   }
 
   cloudflare = {
-    account_name           = var.cloudflare_account_name
+    account_id             = var.cloudflare_account_id
     domain                 = var.cloudflare_domain
     allow_list             = var.cloudflare_ip_allow_list
     block_external_traffic = true
