@@ -37,6 +37,20 @@ resource "kubernetes_secret" "extrenal_dns_cloudflare_api_token" {
   }
 }
 
+resource "kubernetes_secret" "velero_wasabi_credentials" {
+  depends_on = [module.fluxcd]
+
+  metadata {
+    name      = "velero-wasabi-credentials"
+    namespace = "backups"
+  }
+
+  data = {
+    AWS_ACCESS_KEY_ID     = sensitive(aws_iam_access_key.velero.id)
+    AWS_SECRET_ACCESS_KEY = aws_iam_access_key.velero.secret
+  }
+}
+
 resource "kubernetes_secret" "stackgres_wasabi_credentials" {
   depends_on = [module.fluxcd]
 
