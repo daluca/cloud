@@ -8,8 +8,8 @@ variable "cloudflare_domain" {
   }
 }
 
-variable "cloudflare_account_name" {
-  description = "Name of Cloudflare account."
+variable "cloudflare_account_id" {
+  description = "Cloudflare account ID."
   type        = string
 }
 
