@@ -6,7 +6,7 @@ resources:
   - nextcloud-credentials.sops.yaml
   - postgresql-credentials.sops.yaml
   - redis-cluster-credentials.sops.yaml
-  - wasabi-credentials.sops.yaml
+  - wasabi-encryption.sops.yaml
 patches:
   - path: nextcloud-values.yaml
   - target:
