@@ -85,7 +85,9 @@ spec:
         provider: digitalocean.com/velero
     credentials:
       useSecret: false
-      extraSecretRef: velero-cloud-credentials
+      extraEnvVars:
+        DIGITALOCEAN_TOKEN: ${DIGITALOCEAN_TOKEN}
+      extraSecretRef: velero-wasabi-credentials
     deployNodeAgent: true
     nodeAgent:
       resources:
