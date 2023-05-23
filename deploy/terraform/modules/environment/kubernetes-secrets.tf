@@ -36,3 +36,17 @@ resource "kubernetes_secret" "extrenal_dns_cloudflare_api_token" {
     token = cloudflare_api_token.external_dns.value
   }
 }
+
+resource "kubernetes_secret" "stackgres_wasabi_credentials" {
+  depends_on = [module.fluxcd]
+
+  metadata {
+    name      = "wasabi-bucket-credentials"
+    namespace = "database"
+  }
+
+  data = {
+    access-key = sensitive(aws_iam_access_key.velero.id)
+    secret-key = aws_iam_access_key.velero.secret
+  }
+}
