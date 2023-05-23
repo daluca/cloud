@@ -50,3 +50,18 @@ resource "kubernetes_secret" "stackgres_wasabi_credentials" {
     secret-key = aws_iam_access_key.velero.secret
   }
 }
+
+resource "kubernetes_secret" "nextcloud_wasabi_credentials" {
+  depends_on = [module.fluxcd]
+
+  metadata {
+    name      = "wasabi-credentials"
+    namespace = "nextcloud"
+  }
+
+  data = {
+    bucket     = module.nextcloud_storage.bucket
+    access-key = sensitive(aws_iam_access_key.nextcloud.id)
+    secret-key = aws_iam_access_key.nextcloud.secret
+  }
+}

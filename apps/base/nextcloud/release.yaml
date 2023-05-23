@@ -160,7 +160,7 @@ spec:
         - name: AWS_SSE_CUSTOMER_KEY
           valueFrom:
             secretKeyRef:
-              name: wasabi-credentials
+              name: wasabi-encryption
               key: sse-customer-key
         - name: REDIS_CLUSTER_PASSWORD
           valueFrom:

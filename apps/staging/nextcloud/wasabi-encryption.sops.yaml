@@ -1,0 +1,29 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: wasabi-encryption
+  namespace: nextcloud
+type: Opaque
+stringData:
+  sse-customer-key: ENC[AES256_GCM,data:3UKSKVLW6wggFPHo3ETTDLWEDioEi9pmPxuHgGVHdEfe8AKiD1D4lhi1m/Y=,iv:uaz6TRrh4aZKm+L+uMP3ZDAKsfyCEdRDfNZICFw2ZOg=,tag:RoCIyTpmRyUdF5clwIUmkA==,type:str]
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1z9tp2h60k24daxwdkq29nf4ch7a87wem4sx2jkcqe9x62k07k3vqf5rx6k
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBJcW5jQmt6VjFBVUkxQ3pp
+        QVNvNWFWSmN1emFrYjNPZnBnZ2lyODN5Y1hFCmQxOUx4M0hncmV3Ym1rSXJEcUg4
+        aGpaQmlPVnBvT0txSkhFUUJzdE11NzAKLS0tIHZqQmRUemZGNWlzUk4wZVlPbWV5
+        RnJVeVRRQnYyQXZmTXpmVWNGeVlSelEKV8ydb3BZp6hYYZOsU1OO9ncja2g+m5Oi
+        77swaK0aEosn42gWwix6juX/ZVJ8xml1/5EWqIFE+reWUC581EVqUQ==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2023-05-11T02:54:39Z"
+  mac: ENC[AES256_GCM,data:5XUnDEA5KJVYQtzwAE1ddx7q8ebai8WMzZcqhcvdCUnv4O5ixfAlEqJ6FEkYuIfee6ajHuj+Dbc4pk/FKtixNwznEQ3bVfMAA7+QKZ5WQK3XN68lMp6RRocn6Spq/gNjX4KDs/7gZnoyfKYzWig7Rrog0aD9IjAnCm7NHYlHpyw=,iv:tR1ksuhQq+f+F5pBOwIGcBOSzLIPnDJsglF7dyXgb5g=,tag:V1Vm+w6e7BjjEFjJxLVdYw==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.7.3
