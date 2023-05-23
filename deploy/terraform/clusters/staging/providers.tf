@@ -66,6 +66,22 @@ terraform {
   }
 }
 
+provider "flux" {
+  kubernetes = {
+    host                   = module.staging.kube_config.host
+    cluster_ca_certificate = base64decode(module.staging.kube_config.cluster_ca_certificate)
+    token                  = module.staging.kube_config.token
+  }
+
+  git = {
+    url = module.staging.github_repository_ssh_url
+    ssh = {
+      username    = "git"
+      private_key = module.staging.flux_private_key.private_key_pem
+    }
+  }
+}
+
 provider "kubernetes" {
   host                   = module.staging.kube_config.host
   cluster_ca_certificate = base64decode(module.staging.kube_config.cluster_ca_certificate)
