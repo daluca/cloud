@@ -11,7 +11,7 @@ resource "kubernetes_secret" "sops" {
   }
 }
 
-resource "kubernetes_secret" "cluster_secrets" {
+resource "kubernetes_secret" "cluster_substitutions" {
   depends_on = [module.fluxcd]
 
   metadata {
