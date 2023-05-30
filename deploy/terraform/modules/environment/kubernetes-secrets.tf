@@ -11,6 +11,20 @@ resource "kubernetes_secret" "sops" {
   }
 }
 
+resource "kubernetes_secret" "cluster_substitutions" {
+  depends_on = [module.fluxcd]
+
+  metadata {
+    name      = "${local.environment}-terraform-substitutions"
+    namespace = "flux-system"
+  }
+
+  data = {
+    STACKGRES_BACKUP_BUCKET = module.stackgres_backup.bucket
+    VELERO_BACKUP_BUCKET    = module.velero_backup.bucket
+  }
+}
+
 resource "kubernetes_secret" "cert_manager_cloudflare_api_token" {
   depends_on = [module.fluxcd]
 
