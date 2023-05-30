@@ -1,5 +1,5 @@
-resource "random_id" "stackgres_backup_suffix" {
-  byte_length = 8
+locals {
+  bucket_suffix = var.wasabi.bucket_suffix != "" || var.wasabi.bucket_suffix != null ? "-${var.wasabi.bucket_suffix}" : ""
 }
 
 module "stackgres_backup" {
@@ -9,14 +9,9 @@ module "stackgres_backup" {
     wasabi = wasabi.backup
   }
 
-  bucket            = sensitive("stackgres-${local.environment}-${random_id.stackgres_backup_suffix.hex}")
+  bucket            = sensitive("stackgres-${local.environment}${local.bucket_suffix}")
   restrict_to_users = [sensitive(aws_iam_user.stackgres.arn)]
 }
-
-resource "random_id" "velero_backup_suffix" {
-  byte_length = 8
-}
-
 module "velero_backup" {
   source = "../wasabi-bucket"
 
@@ -24,12 +19,8 @@ module "velero_backup" {
     wasabi = wasabi.backup
   }
 
-  bucket            = sensitive("velero-${local.environment}-${random_id.velero_backup_suffix.hex}")
+  bucket            = sensitive("velero-${local.environment}${local.bucket_suffix}")
   restrict_to_users = [sensitive(aws_iam_user.velero.arn)]
-}
-
-resource "random_id" "nextcloud_bucket_suffix" {
-  byte_length = 8
 }
 
 module "nextcloud_storage" {
@@ -39,7 +30,7 @@ module "nextcloud_storage" {
     wasabi = wasabi.storage
   }
 
-  bucket            = sensitive("nextcloud-${local.environment}-${random_id.nextcloud_bucket_suffix.hex}")
+  bucket            = sensitive("nextcloud-${local.environment}${local.bucket_suffix}")
   restrict_to_users = [sensitive(aws_iam_user.nextcloud.arn)]
   versioning        = true
 }

@@ -103,3 +103,35 @@ variable "kubernetes" {
     error_message = "RAM must be greater than or equal to 1."
   }
 }
+
+variable "wasabi" {
+  description = "Wasabi storage settings."
+  type = object({
+    bucket_suffix = optional(string)
+  })
+
+  validation {
+    condition     = length(var.wasabi.bucket_suffix) >= 1 && length(var.wasabi.bucket_suffix) <= 41
+    error_message = "Bucket suffix must be between 1 and 41 characters long."
+  }
+
+  validation {
+    condition     = can(regex("^[a-z0-9\\-\\.]{1,41}$", var.wasabi.bucket_suffix))
+    error_message = "Bucket suffix must only contain lowercase characters, numbers, hyphens and periods."
+  }
+
+  validation {
+    condition     = !can(regex("^-", var.wasabi.bucket_suffix))
+    error_message = "Bucket suffix must not start with a hyphen."
+  }
+
+  validation {
+    condition     = !can(regex("-$", var.wasabi.bucket_suffix))
+    error_message = "Bucket suffix must not end with a hyphen."
+  }
+
+  validation {
+    condition     = !can(regex("[\\.]{2,}", var.wasabi.bucket_suffix))
+    error_message = "Bucket suffix must not contain two periods in a row."
+  }
+}

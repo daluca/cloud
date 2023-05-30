@@ -27,3 +27,8 @@ variable "flux_age_key" {
   description = "Base64 encoded age key used to decrypt secrets in Kubernetes cluster."
   type        = string
 }
+
+variable "bucket_suffix" {
+  description = "String to add to the end of each bucket."
+  type        = string
+}
