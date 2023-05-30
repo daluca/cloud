@@ -72,19 +72,21 @@ spec:
         enabled: true
     upgradeCRDs: false
     configuration:
-      provider: aws
       backupStorageLocation:
-        name: wasabi-netherlands
-        bucket: ${VELERO_BACKUP_BUCKET}
-        default: true
-        config:
-          region: eu-central-1
-          s3ForcePathStyle: true
-          s3Url: https://s3.eu-central-1.wasabisys.com
+        - name: wasabi-netherlands
+          provider: aws
+          bucket: ${VELERO_BACKUP_BUCKET}
+          default: true
+          config:
+            region: eu-central-1
+            s3ForcePathStyle: true
+            s3Url: https://s3.eu-central-1.wasabisys.com
       volumeSnapshotLocation:
-        provider: digitalocean.com/velero
+        - name: digitalocean
+          provider: digitalocean.com/velero
     credentials:
-      useSecret: false
+      useSecret: true
+      name: velero-digitalocean-credentials
       extraEnvVars:
         DIGITALOCEAN_TOKEN: ${DIGITALOCEAN_TOKEN}
       extraSecretRef: velero-wasabi-credentials
