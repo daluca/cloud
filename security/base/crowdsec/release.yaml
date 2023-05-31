@@ -58,6 +58,10 @@ spec:
       env:
         - name: DISABLE_AGENT
           value: "true"
+        - name: GID
+          value: ""
+        - name: DATABASE_TYPE
+          value: pgx
         - name: POSTGRESQL_DATABASE
           valueFrom:
             secretKeyRef:

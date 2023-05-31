@@ -9,7 +9,7 @@ metadata:
 data:
   config.yaml: |-
     db_config:
-      type: postgresql
+      type: ${DATABASE_TYPE}
       user: ${POSTGRESQL_USERNAME}
       password: ${POSTGRESQL_PASSWORD}
       db_name: ${POSTGRESQL_DATABASE}
