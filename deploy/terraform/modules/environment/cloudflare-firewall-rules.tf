@@ -1,16 +1,16 @@
-resource "cloudflare_filter" "allow_list" {
+resource "cloudflare_ruleset" "allow_list" {
   count = var.cloudflare.block_external_traffic ? 1 : 0
 
-  zone_id     = cloudflare_zone.main.id
-  description = "Filter traffic that is not on the approved IP allow list."
-  expression  = "(not ip.src in {${var.cloudflare.allow_list}})"
-}
+  kind        = "zone"
+  zone_id     = sensitive(cloudflare_zone.main.id)
+  phase       = "http_request_firewall_custom"
+  name        = "Allowlist"
+  description = "Block traffic that is not on the approved IP allow list."
 
-resource "cloudflare_firewall_rule" "allow_list" {
-  count = var.cloudflare.block_external_traffic ? 1 : 0
-
-  zone_id     = cloudflare_zone.main.id
-  description = "Block traffic"
-  filter_id   = cloudflare_filter.allow_list[0].id
-  action      = "block"
+  rules {
+    action      = "block"
+    description = "Block traffic"
+    enabled     = true
+    expression  = "(not ip.src in {${sensitive(var.cloudflare.allow_list)}})"
+  }
 }
