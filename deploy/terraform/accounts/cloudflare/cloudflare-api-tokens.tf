@@ -14,7 +14,7 @@ resource "cloudflare_api_token" "terraform" {
       data.cloudflare_api_token_permission_groups.all.zone["DNS Write"],
       data.cloudflare_api_token_permission_groups.all.zone["Zone Write"],
       data.cloudflare_api_token_permission_groups.all.zone["Zone Settings Write"],
-      data.cloudflare_api_token_permission_groups.all.zone["Firewall Services Write"],
+      data.cloudflare_api_token_permission_groups.all.zone["Zone WAF"]
     ]
     resources = {
       "com.cloudflare.api.account.zone.*" = "*"
