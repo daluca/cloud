@@ -4,10 +4,15 @@
 
 [Overview](./README.md)
 
+# Flux
+
+- [Commands](./flux.md)
+
 # Clusters
 
 - [Apps]()
   - [Podinfo]()
+  - [Nextcloud](./apps/nextcloud.md)
 - [Clusters]()
   - [Staging]()
   - [Production]()
@@ -16,9 +21,11 @@
 - [Database]()
   - [Clusters]()
     - [PostgreSQL]()
+    - [Redis cluster](./database/clusters/redis-cluster.md)
   - [Operators]()
     - [Stackgres]()
 - [Identity]()
+  - [Keycloak](./identity/keycloak.md)
   - [OpenLDAP](./identity/openldap.md)
 - [Infrastructure]()
   - [Ingress NGINX](./infrastructure/ingress-nginx.md)
@@ -30,12 +37,13 @@
 - [Policy]()
 - [Security]()
   - [Crowdsec](./security/crowdsec.md)
+- [Storage]()
+  - [Ceph]()
 - [Sources]()
 
 # Deploy
 
 - [Accounts]()
-  - [Catalyst Cloud](./deploy/accounts/catalyst-cloud.md)
   - [DigitalOcean](./deploy/accounts/digitalocean.md)
 - [Clusters]()
 

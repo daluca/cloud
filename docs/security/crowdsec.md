@@ -21,3 +21,13 @@ Create an API key using a pre-defined key
 ```shell
 cscli bouncers add -k <key>
 ```
+
+#### Crowdsec API url
+
+It needs to be the full url to resolve to the crowdsec api e.g. `http://crowdsec-service.crowdsec.svc.cluster.local:8080`
+
+## Testing
+
+```shell
+nikto -host <url>
+```
