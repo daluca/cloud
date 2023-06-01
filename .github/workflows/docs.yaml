@@ -6,14 +6,14 @@ on:
     branches: [main]
     paths:
       - docs/**.md
-      - docs/book.toml
+      - book.toml
       - .github/workflows/docs.yaml
 
   pull_request:
     branches: [main]
     paths:
       - docs/**.md
-      - docs/book.toml
+      - book.toml
       - .github/workflows/docs.yaml
 
   workflow_dispatch:
@@ -54,7 +54,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./docs/book
+          path: ./book
 
   deploy:
     name: Deploy
