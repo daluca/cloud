@@ -35,7 +35,6 @@
 # Deploy
 
 - [Accounts]()
-  - [Catalyst Cloud](./deploy/accounts/catalyst-cloud.md)
   - [DigitalOcean](./deploy/accounts/digitalocean.md)
 - [Clusters]()
 
