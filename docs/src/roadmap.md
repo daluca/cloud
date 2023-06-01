@@ -2,7 +2,6 @@
 
 - [ ] Nextcloud
   - [x] Redis
-  - [x] Cloud catalyst object storage
 - [ ] OnlyOffice
   - [ ] RabbitMQ
   - [ ] MariaDB ???
