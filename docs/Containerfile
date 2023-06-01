@@ -1,0 +1,23 @@
+# syntax=docker/dockerfile:1
+
+ARG RUST_VERSION=1.69.0
+ARG NGINX_VERSION=1.25.0
+ARG ALPINE_VERSION=3.17
+
+FROM rust:${RUST_VERSION}-buster AS build
+
+ARG MDBOOK_VERSION=0.4.30
+
+RUN --mount=type=cache,target=/root/.cargo/bin \
+    cargo install --version ${MDBOOK_VERSION} mdbook
+
+WORKDIR /cloud
+
+COPY book.toml .
+COPY docs/ docs/
+
+RUN mdbook build
+
+FROM nginx:${NGINX_VERSION}-alpine${ALPINE_VERSION}
+
+COPY --from=build /cloud/book /usr/share/nginx/html

@@ -4,7 +4,7 @@ description = "Documentation site for Kubernetes cluster hosting hobby projects.
 authors = ["Lucas Slebos"]
 language = "en-GB"
 multilingual = false
-src = "src"
+src = "docs"
 
 [rust]
 edition = "2021"

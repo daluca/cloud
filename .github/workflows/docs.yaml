@@ -34,11 +34,7 @@ jobs:
     timeout-minutes: 15
 
     env:
-      MDBOOK_VERSION: 0.4.27
-
-    defaults:
-      run:
-        working-directory: docs/
+      MDBOOK_VERSION: 0.4.30
 
     steps:
       - name: checkout
