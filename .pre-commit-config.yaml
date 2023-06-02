@@ -58,3 +58,11 @@ repos:
         stages: [commit]
         # yamllint disable-line rule:quoted-strings
         files: ".*\\.ya?ml"
+
+      - id: sensitive-info
+        name: find sensitive information
+        description: find any sensitive information existing in the repository.
+        entry: bin/sensitive-info.sh
+        args: []
+        language: script
+        stages: [commit]
