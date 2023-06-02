@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: adminer-plugins-config
+  namespace: database
+data:
+  # yamllint disable rule:line-length
+  login-servers.php: |-
+    <?php
+    require_once('plugins/login-servers.php');
+
+    return new AdminerLoginServers(
+        $servers = array(
+            "Stackgres cluster" => array("server" => getenv('ADMINER_DEFAULT_SERVER'), "driver" => "pgsql"),
+        )
+    );
