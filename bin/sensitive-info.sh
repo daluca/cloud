@@ -154,6 +154,7 @@ for secret_file in "${SECRET_FILES[@]}"; do
   done
 done
 
+count=0
 for info in "${sensitive_info[@]}"; do
   debug "Checking info : ${info}"
   debug "Checking files: ${POSITIONAL_ARGS[*]}"
@@ -164,7 +165,9 @@ for info in "${sensitive_info[@]}"; do
     for result in "${results[@]}"; do
       debug "result: '${result}'"
       warning "'${result#*:}' found in '${result%%:*}'"
+      count="$(( count + 1 ))"
     done
-    fatal "Sensitive information found"
   fi
 done
+
+[[ count -eq 0 ]] || fatal "${count} piece(s) of sensitive information found"
