@@ -157,6 +157,14 @@ done
 for info in "${sensitive_info[@]}"; do
   debug "Checking info : ${info}"
   debug "Checking files: ${POSITIONAL_ARGS[*]}"
-  result="$( grep -ri "${info}" "${POSITIONAL_ARGS[@]}" )"
-  [[ -z "${result}" ]] || fatal "FAILED - '${result#*:}' found in '${result%:*}'"
+  grep_results="$( grep -ri "${info}" "${POSITIONAL_ARGS[@]}" )"
+  debug "grep results '${grep_results}'"
+  if [[ -n "${grep_results}" ]]; then
+    IFS=$'\n' read -d '' -r -a results <<< "${grep_results}"
+    for result in "${results[@]}"; do
+      debug "result: '${result}'"
+      warning "'${result#*:}' found in '${result%%:*}'"
+    done
+    fatal "Sensitive information found"
+  fi
 done
