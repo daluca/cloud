@@ -8,8 +8,9 @@ resource "digitalocean_kubernetes_cluster" "main" {
   version  = data.digitalocean_kubernetes_versions.main.latest_version
   vpc_uuid = data.digitalocean_vpc.environment.id
 
+  # tfsec:ignore:digitalocean-compute-surge-upgrades-not-enabled
+  surge_upgrade = false
   auto_upgrade  = true
-  surge_upgrade = true
 
   node_pool {
     name       = "worker-pool"
