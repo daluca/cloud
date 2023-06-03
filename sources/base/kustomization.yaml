@@ -8,6 +8,7 @@ resources:
   - gatekeeper-policy-manager.yaml
   - gatekeeper.yaml
   - ingress-nginx.yaml
+  - keycloak-operator.yaml
   - metrics-server.yaml
   - nextcloud.yaml
   - openldap.yaml
