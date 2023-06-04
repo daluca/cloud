@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
   - configmaps.yaml
   - release.yaml
-  - ingress-nginx-bouncer-values.yaml

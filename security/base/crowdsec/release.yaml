@@ -77,7 +77,7 @@ spec:
             secretKeyRef:
               key: password
               name: postgresql-credentials
-        - name: BOUNCER_KEY_ingress-nginx
+        - name: BOUNCER_KEY_INGRESS_NGINX
           valueFrom:
             secretKeyRef:
               key: api-key
