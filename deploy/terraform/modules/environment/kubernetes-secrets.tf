@@ -74,8 +74,8 @@ resource "kubernetes_secret" "stackgres_wasabi_credentials" {
   }
 
   data = {
-    access-key = sensitive(aws_iam_access_key.velero.id)
-    secret-key = aws_iam_access_key.velero.secret
+    access-key = sensitive(aws_iam_access_key.stackgres.id)
+    secret-key = aws_iam_access_key.stackgres.secret
   }
 }
 
