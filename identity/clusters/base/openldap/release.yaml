@@ -36,8 +36,10 @@ spec:
               name: openldap
             patch: |-
               - op: add
-                path: /spec/sessionAffinityConfig/clientIP/timeoutSeconds
-                value: 10
+                path: /spec/sessionAffinityConfig
+                value:
+                  clientIP:
+                    timeoutSeconds: 10
   values:
     global:
       existingSecret: openldap-credentials
