@@ -27,13 +27,16 @@ spec:
   dependsOn:
     - name: namespaces
     - name: sources
+    - name: configuration
+    - name: infrastructure
+    - name: database-clusters
     - name: storage-clusters
+    - name: identity-operators
   interval: 1h
   retryInterval: 1m
   timeout: 5m
   path: ./identity/clusters/staging
   prune: true
-  wait: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -45,3 +48,10 @@ spec:
     substituteFrom:
       - kind: Secret
         name: staging-cluster-substitutions
+  healthChecks:
+    - kind: StatefulSet
+      name: openldap
+      namespace: identity
+    - kind: StatefulSet
+      name: keycloak
+      namespace: identity

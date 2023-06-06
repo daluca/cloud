@@ -1,0 +1,37 @@
+---
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: Keycloak
+metadata:
+  name: keycloak
+  namespace: identity
+spec:
+  instances: 1
+  db:
+    vendor: postgres
+    host: postgresql-cluster.database
+    usernameSecret:
+      name: database-credentials
+      key: username
+    passwordSecret:
+      name: database-credentials
+      key: password
+    poolMinSize: 1
+    poolMaxSize: 395
+    poolInitialSize: 1
+  http:
+    httpEnabled: true
+    httpPort: 8080
+  hostname:
+    hostname: keycloak.${PRIMARY_DOMAIN}
+    strict: false
+    strictBackchannel: false
+    adminUrl: https://keycloak.${PRIMARY_DOMAIN}
+  ingress:
+    enabled: false
+  additionalOptions:
+    - name: log-level
+      value: info
+    - name: proxy
+      value: edge
+    - name: proxy-address-forwarding
+      value: "true"
