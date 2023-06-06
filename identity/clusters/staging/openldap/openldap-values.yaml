@@ -39,6 +39,6 @@ spec:
         hosts:
           - phpldapadmin.${TERTIARY_DOMAIN}
         tls:
-          - secretName: ldapadmin-stg-tls
+          - secretName: phpldapadmin-stg-tls
             hosts:
               - phpldapadmin.${TERTIARY_DOMAIN}

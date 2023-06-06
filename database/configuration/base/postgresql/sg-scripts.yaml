@@ -18,3 +18,8 @@ spec:
         secretKeyRef:
           name: database-creation-scripts
           key: create-crowdsec-database.sql
+    - name: create-keycloak-database
+      scriptFrom:
+        secretKeyRef:
+          name: database-creation-scripts
+          key: create-keycloak-database.sql
