@@ -167,6 +167,8 @@ spec:
             secretKeyRef:
               name: redis-cluster-credentials
               key: password
+        - name: PHP_MEMORY_LIMIT
+          value: 512M
       extraVolumes:
         - name: logs
           emptyDir: {}
@@ -204,7 +206,7 @@ spec:
       size: 5Gi
     resources:
       limits:
-        memory: 256Mi
+        memory: 512Mi
       requests:
         cpu: 100m
         memory: 128Mi
