@@ -30,10 +30,8 @@ module "staging" {
   }
 
   cloudflare = {
-    account_id             = var.cloudflare_account_id
-    domain                 = var.cloudflare_domain
-    allow_list             = var.cloudflare_ip_allow_list
-    block_external_traffic = true
+    account_id = var.cloudflare_account_id
+    domain     = var.cloudflare_domain
   }
 
   github = {

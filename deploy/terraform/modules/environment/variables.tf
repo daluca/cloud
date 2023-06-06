@@ -39,21 +39,9 @@ variable "digitalocean" {
 variable "cloudflare" {
   description = "Cloudflare CDN settings."
   type = object({
-    account_id             = string
-    domain                 = string
-    allow_list             = optional(string)
-    block_external_traffic = optional(bool, false)
+    account_id = string
+    domain     = string
   })
-
-  validation {
-    condition     = can(regex("^[0-9a-z_-]{2,}\\.[a-z]{2,}(\\.[a-z]{2,})?$", var.cloudflare.domain))
-    error_message = "String must conform to Second level domain."
-  }
-
-  validation {
-    condition     = can(cidrnetmask(var.cloudflare.allow_list)) || var.cloudflare.allow_list == null
-    error_message = "Allow list be a valid IPv4 CIDR range."
-  }
 }
 
 variable "kubernetes" {

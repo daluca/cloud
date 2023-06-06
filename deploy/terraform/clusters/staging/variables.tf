@@ -13,13 +13,13 @@ variable "cloudflare_account_id" {
   type        = string
 }
 
-variable "cloudflare_ip_allow_list" {
-  description = "IP allow list for Kubernetes hosted apps"
+variable "cloudflare_allowlist" {
+  description = "IP allowlist for Kubernetes hosted apps"
   type        = string
 
   validation {
-    condition     = can(cidrnetmask(var.cloudflare_ip_allow_list))
-    error_message = "Allow list be a valid IPv4 CIDR range."
+    condition     = can(cidrnetmask(var.cloudflare_allowlist))
+    error_message = "Allowlist be a valid IPv4 CIDR range."
   }
 }
 
