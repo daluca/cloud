@@ -28,10 +28,22 @@ spec:
   test:
     enable: true
     ignoreFailures: false
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: Service
+              name: openldap
+            patch: |-
+              - op: add
+                path: /spec/sessionAffinityConfig/clientIP/timeoutSeconds
+                value: 10
   values:
     global:
       existingSecret: openldap-credentials
     replicaCount: 3
+    service:
+      sessionAffinity: ClientIP
     env:
       LDAP_SKIP_DEFAULT_TREE: "yes"
     persistence:
