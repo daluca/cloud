@@ -23,3 +23,19 @@ variable "environment" {
     error_message = "Environment must be one of ['development', 'staging', 'production']."
   }
 }
+
+variable "controllers" {
+  description = "Flux controllers to enable."
+  type = object({
+    helm             = optional(bool)
+    notification     = optional(bool)
+    image_reflector  = optional(bool)
+    image_automation = optional(bool)
+  })
+  default = {
+    helm             = true
+    notification     = true
+    image_reflector  = false
+    image_automation = false
+  }
+}

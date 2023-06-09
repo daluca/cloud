@@ -10,6 +10,12 @@ variable "flux" {
   type = object({
     version = optional(string)
     age_key = string
+    controllers = optional(object({
+      helm             = optional(bool)
+      notification     = optional(bool)
+      image_reflector  = optional(bool)
+      image_automation = optional(bool)
+    }))
   })
 
   validation {
