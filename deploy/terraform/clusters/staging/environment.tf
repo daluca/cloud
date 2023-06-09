@@ -17,8 +17,8 @@ module "staging" {
       cpu        = 4
       memory     = 8
       auto_scale = true
-      min        = 3
-      max        = 5
+      min        = 4
+      max        = 6
     }
     monitoring_pool = {
       cpu        = 2
@@ -41,8 +41,5 @@ module "staging" {
   flux = {
     version = "v2.0.0-rc.5"
     age_key = base64decode(var.flux_age_key)
-    controllers = {
-      notification = false
-    }
   }
 }
