@@ -1,0 +1,47 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: tf-controller
+  namespace: flux-system
+spec:
+  releaseName: tf-controller
+  chart:
+    spec:
+      chart: tf-controller
+      sourceRef:
+        kind: HelmRepository
+        name: tf-controller
+        namespace: flux-system
+  interval: 1h
+  timeout: 5m
+  maxHistory: 3
+  install:
+    crds: CreateReplace
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  uninstall:
+    keepHistory: false
+  test:
+    enable: true
+    ignoreFailures: false
+  values:
+    installCRDs: true
+    replicaCount: 1
+    resources:
+      limits:
+        cpu: null
+        memory: 1Gi
+      requests:
+        cpu: 200m
+        memory: 64Mi
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
