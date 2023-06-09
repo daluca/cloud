@@ -1,7 +1,7 @@
 locals {
   components = flatten(["source-controller", "kustomize-controller",
-    var.controllers.helm == null ? [] : var.controllers.helm ? ["helm-controller"] : [],
-    var.controllers.notification == null ? [] : var.controllers.notification ? ["notification-controller"] : []
+    var.controllers.helm == null ? ["helm-controller"] : var.controllers.helm ? ["helm-controller"] : [],
+    var.controllers.notification == null ? ["notification-controller"] : var.controllers.notification ? ["notification-controller"] : []
   ])
 
   extra_components = flatten([
