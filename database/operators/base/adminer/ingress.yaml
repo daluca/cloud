@@ -5,7 +5,7 @@ metadata:
   name: adminer
   namespace: database
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt
+    cert-manager.io/cluster-issuer: cloudflare
     kubernetes.io/ingress.allow-http: "false"
 spec:
   ingressClassName: nginx

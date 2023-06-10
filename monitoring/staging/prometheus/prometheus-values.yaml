@@ -13,8 +13,6 @@ spec:
   values:
     alertmanager:
       ingress:
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-cloudflare
         hosts:
           - alertmanager.${TERTIARY_DOMAIN}
         tls:
@@ -26,8 +24,6 @@ spec:
     grafana:
       replicas: 1
       ingress:
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-cloudflare
         hosts:
           - grafana.${TERTIARY_DOMAIN}
         tls:
@@ -36,8 +32,6 @@ spec:
               - grafana.${TERTIARY_DOMAIN}
     prometheus:
       ingress:
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-cloudflare
         hosts:
           - prometheus.${TERTIARY_DOMAIN}
         tls:

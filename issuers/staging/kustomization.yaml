@@ -3,7 +3,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ../base
-  - letsencrypt-cloudflare.yaml
 patches:
   - target:
       kind: ClusterIssuer
@@ -14,7 +13,7 @@ patches:
         value: https://acme-staging-v02.api.letsencrypt.org/directory
   - target:
       kind: ClusterIssuer
-      name: letsencrypt-cloudflare
+      name: cloudflare
     patch: |-
       - op: replace
         path: /spec/acme/server

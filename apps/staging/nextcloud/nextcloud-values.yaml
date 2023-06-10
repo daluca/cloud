@@ -13,7 +13,7 @@ spec:
   values:
     ingress:
       annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-cloudflare
+        cert-manager.io/cluster-issuer: cloudflare
       path: /
       tls:
         - secretName: nextcloud-stg-tls

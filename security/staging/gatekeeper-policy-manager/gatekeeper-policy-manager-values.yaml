@@ -15,8 +15,6 @@ spec:
     config:
       secretKey: ${GATEKEEPER_SECRET_KEY}
     ingress:
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-cloudflare
       hosts:
         - host: gatekeeper.${TERTIARY_DOMAIN}
           pathType: Prefix
