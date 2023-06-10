@@ -1,0 +1,164 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lemmy
+  namespace: lemmy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lemmy
+  template:
+    metadata:
+      labels:
+        app: lemmy
+    spec:
+      containers:
+        - name: lemmy
+          image: dessalines/lemmy:0.17.3
+          resources:
+            limits:
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          ports:
+            - name: http
+              containerPort: 8536
+          env:
+            - name: RUST_LOG
+              value: >-
+                warn,
+                lemmy_server=info,
+                lemmy_api=info,
+                lemmy_api_common=info,
+                lemmy_api_crud=info,
+                lemmy_apub=info,
+                lemmy_db_schema=info,
+                lemmy_db_views=info,
+                lemmy_db_views_actor=info,
+                lemmy_db_views_moderator=info,
+                lemmy_routes=info,
+                lemmy_utils=info,
+                lemmy_websocket=info
+          volumeMounts:
+            - mountPath: /config/config.hjson
+              subPath: config.hjson
+              name: lemmy-secrets
+        - name: lemmy-ui
+          image: dessalines/lemmy-ui:0.17.3
+          resources:
+            limits:
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          ports:
+            - name: http
+              containerPort: 1234
+          env:
+            - name: LEMMY_UI_LEMMY_INTERNAL_HOST
+              value: 0.0.0.0:8536
+            - name: LEMMY_UI_LEMMY_EXTERNAL_HOST
+              value: ${TERTIARY_DOMAIN}
+            - name: LEMMY_UI_LEMMY_WS_HOST
+              value: ${TERTIARY_DOMAIN}
+            - name: LEMMY_UI_HTTPS
+              value: "false"
+        - name: proxy
+          image: nginx:1.25.0-alpine
+          resources:
+            limits:
+              memory: 64Mi
+            requests:
+              cpu: 30m
+              memory: 32Mi
+          ports:
+            - name: http
+              containerPort: 80
+          volumeMounts:
+            - mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+              name: proxy-config
+              readOnly: true
+      volumes:
+        - name: lemmy-secrets
+          secret:
+            secretName: lemmy-secrets
+        - name: proxy-config
+          configMap:
+            name: proxy-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pictrs
+  namespace: lemmy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pictrs
+  template:
+    metadata:
+      labels:
+        app: pictrs
+    spec:
+      securityContext:
+        runAsUser: 991
+      containers:
+        - name: pictrs
+          image: asonix/pictrs:0.4.0-rc.3
+          args: [
+            /usr/local/bin/pict-rs,
+            run,
+            object-storage,
+            --endpoint=https://s3.ap-southeast-2.wasabisys.com,
+            --use-path-style,
+            --bucket-name=$(BUCKET_NAME),
+            --access-key=$(AWS_ACCESS_KEY_ID),
+            --secret-key=$(AWS_SECRET_ACCESS_KEY),
+            --region=ap-southeast-2,
+          ]
+          resources:
+            limits:
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: wasabi-credentials
+                  key: access-key
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: wasabi-credentials
+                  key: secret-key
+            - name: PICTRS__API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: pictrs-secrets
+                  key: api-key
+            - name: PICTRS__MEDIA__VIDEO_CODEC
+              value: vp9
+            - name: PICTRS__MEDIA__GIF__MAX_WIDTH
+              value: "256"
+            - name: PICTRS__MEDIA__GIF__MAX_HEIGHT
+              value: "256"
+            - name: PICTRS__MEDIA__GIF__MAX_AREA
+              value: "65536"
+            - name: PICTRS__MEDIA__GIF__MAX_FRAME_COUNT
+              value: "400"
+          volumeMounts:
+            - mountPath: /mnt
+              name: scratch
+      volumes:
+        - name: scratch
+          emptyDir: {}

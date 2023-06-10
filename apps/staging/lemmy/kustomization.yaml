@@ -1,0 +1,21 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base/lemmy
+  - lemmy-secrets.sops.yaml
+  - database-credentials.sops.yaml
+patches:
+  - target:
+      kind: Ingress
+      name: lemmy
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: lemmy.${TERTIARY_DOMAIN}
+      - op: replace
+        path: /spec/tls/0/hosts/0
+        value: lemmy.${TERTIARY_DOMAIN}
+      - op: replace
+        path: /spec/tls/0/secretName
+        value: lemmy-stg-tls

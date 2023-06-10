@@ -6,9 +6,10 @@ metadata:
   namespace: database
 type: Opaque
 stringData:
-  create-nextcloud-database.sql: ENC[AES256_GCM,data:oTSndkOW7mi3Tja+HVmkQ/yL7w36ZeNDeW/8/SRv1QIB0IU3B/9DD87nUz9vQqGA4/sXgd17N78yNl5piP8FMyF7FtaQ15hbxLmNqMosjhL1GpEFRdSIoZbBTayzVt3sKASAFu4NpRJF3Nf1OvTLr8Hxpp0/Y0caV0qlI0xrDneH2pKNFgECWbiqewtJC1GDAinHWGxdZHvnZ1ZJrCIfry3EEcP5,iv:vNbN4GKc1YZ8OlhYN4yVRQWg5+rvd8LTlb8xyyEdyPw=,tag:cvmMyrkNrvENAnTrPV15EQ==,type:str]
-  create-crowdsec-database.sql: ENC[AES256_GCM,data:BKeydp9EjvjW4N4lWBbpIInQ6JdEyyizwlC8WihyFH0riru2MztXaCbLbMFyCsa70KCD2nCJi5IDGyUcegHfYrqpq17MlN5zEMn2f611/nPtqZIWKxYwl5Y/j2PPrwc17VqZ7tr29fVBzKDnDVwR+xTzi27xYPBC0/T1LaFw4Po5d3j9bOfllHbd5kqs2b585QlVmYmXalj4bgg/qCJQ0Pw=,iv:iCXcluVKsl3GtuUKpXigNfHaQe8iC+Z7D9Qev02LcDg=,tag:9ssVvmTmDFIeXiySr0B1ug==,type:str]
-  create-keycloak-database.sql: ENC[AES256_GCM,data:JX4LPyi+koXPot2kjTFnOhCH7bz5Kd6qPWatWZ4gi4SCx49CI/fWqWQZ5Ku+RK3wu+DvOR4D5O8mskZkFIDJwZlX8IzMrjlixWZhN2C/tMoHCfX0e3lMkPSQ57AQhSfSwmZ9rNxSGyKoJjc6Qf5bwo8r+skWqLqvtd4qu9n81GIuYgzHveXTkFZPykNr6gW5t+6aotHublXCuhWDQ1VQ1qw=,iv:uyUuPre2LRD8rYANh7wCsCAPAthgo72gAGlfnoIvGfM=,tag:Ze/hFR2kTCimnMozKipGnA==,type:str]
+  create-nextcloud-database.sql: ENC[AES256_GCM,data:SfneleiSQTPeVWtEdlkl40czmJ6r7LnpIFC0WQP4iRpRrqJzlT8MJxcsPwKr/13vxsLXAjDtIEs2gkZkz+0xTH/frgg40fp3aRCacXcbPLjo1xDwzq2EWSOSr90urah0AdXPCkHvZj8EbHuhzX5l4xDfvMufR96lahbfpFSELX9Jdd2eZZijwXFQkvkcB/UZubXk0pX2QqLzpTutJk9UPby+leuO,iv:QFo2NjtFpjK0O2tklbNbdm55sXr9r0+/ZlGMff+k53w=,tag:TBipjGGqNxw+ERUvDPWB9Q==,type:str]
+  create-crowdsec-database.sql: ENC[AES256_GCM,data:SQC2d2el6/ONvT7L7kZSwH1qI18oPsZN9JZT7a3/MthKmC479jPdLwrVO7GAAeMpKC2yzlQAJwymNl6Jt4f1gb1mvrNyz9klGdA7rdolsnlG5yVVqXs6w81t3fYqC3EX3dEkBSmgvEPq9b+/TSAjL/IO6Acwd2fplOs3h+lByVxcUBYHhOL5aMnC40gddKNjElhrdV2hquyTTne9dWIYcPQ=,iv:jMMXDkbmznmBMJVTa4iSgiF7jbCZlpgHOEGNR2HqYzU=,tag:pqOBcdIvQa4ndI/I3+bYCw==,type:str]
+  create-keycloak-database.sql: ENC[AES256_GCM,data:Yecgt3vNQ0OCAgeSDJIBUlog39G6/pAgH/rhAFotxnuZB2R/ZDCRe+p6vwCS9f8G118O/jIbaUElw5h26EJDduSJTqiqHQ1kC31Jbe8KY11X/LkROHzbJpaO7UnaR5Gwa6Vrykyp/mAQQREpYaDFjKkc+kWglXtJxaOFk8P7jnk8Gv3FbBUqZ7atb3nGN2lbKOmblmcOpMNMDX/9OZtYgPw=,iv:MxNBQRRsXLL5yx2Vf8JhpgRrGuFsbwkEjCpdMGjcMAA=,tag:QovOmGjviMk2+c27B8OVPA==,type:str]
+  create-lemmy-database.sql: ENC[AES256_GCM,data:tGVIXobIIjPZDDik68fZeuXlWrSnB9pvD7Khgn73sG+1UyZmoMXtUin0l9xhok5Q4bsUWJOMPN5wqsmyIsd+RTjmV9E2GRy0qaGG9SPKgSu33RAIERTt/VSiMCt9rTXSR3hCGVw6vLLpo+Acp8WUlBTpQHBJxuVexW97GLMjCI8ZxfKJuoTeKgz45jvD9fMn8wniNkY=,iv:sc/fed99HDzd/ZdvRTZA07JeyELJmRJk1Ua7tjvZwDA=,tag:DU814gJLoeYIT06MUdAFgw==,type:str]
 sops:
   kms: []
   gcp_kms: []
@@ -18,14 +19,14 @@ sops:
     - recipient: age1z9tp2h60k24daxwdkq29nf4ch7a87wem4sx2jkcqe9x62k07k3vqf5rx6k
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAzd1N5b051c3VGSUQwT3F1
-        djQvVHFwN1lBTm1NMUpVRmdjTkMvRkhOdW5jCitFSzF4S3FCbW5CeGVHVU9SeHJL
-        M3VhWkMyWVFWYkR1MWlUSE8reDRTQW8KLS0tIHlLcUxhZ2U4MlBCV2JJYnVXMzVR
-        WG1IY0U3cmlaeFRWdG12VnlYL04vLzgKKMlcnjVW4fvYfoRmzckN6PCHDmFAliCw
-        R5DFo3DLL+Fs9jHBW1Xq2Q6pZJOvGkv9shnlKOIk7vXHXcsqFb5GVw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB3Q3A2UDg0T2J4WkdBc1pC
+        bjBMdEtBU2xPZ2c4cFNYUm9UY1RpQ1M2cDBrCk01bTlXS3Jnd3lWV3VQUTIvb1VP
+        TGVQd3lWV0F0elBsMjRVczB4ZFY1bEEKLS0tIDRiUE45KzRnOGlWRUhKVGF6L09Y
+        czBXbjVJakY3ajM5RVVPUU1GUjBHemcKr0BLOkamSLGgaLL/biAvX1h9ogK2WgW9
+        EnhSTpAtoZtsacxuHcuNiaagJppAEtQ9hBeaGD9ADvyOe5OgpIZU2Q==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2023-04-17T21:26:32Z"
-  mac: ENC[AES256_GCM,data:A5V/lj4xifl3DFOb+hJZ/G97uc0jYjce7usbO7WQIWxxPAoxneghbrobo9tHiZQamtExO7Jev5BILV8tSQZyUaymsBXfWMSNnysrRperjlC9DLNoPMWpiaEmCM47NJCHeGemwqCemd5WrtsLcE59dEeez148cYmcBRbyopP4FvE=,iv:kob6BrlJNF98k/BmD9ITYW9NrKty1U9NO1osUnzw0GQ=,tag:MLeZVo3if9ILtUjqf9vMgQ==,type:str]
+  lastmodified: "2023-06-10T07:14:58Z"
+  mac: ENC[AES256_GCM,data:r5EfW9gDnw0lSyTJbzBB1T+ZHgm2l83g6+NE773lIL27YpKb+LPhrronA+oxXI1sMYpe3wVILR4okDhp89QZqspnu3Mx7CQLu1ekCC3Lczf2rcNAgnKwYdDN70YzL2yOwA1xredSqS/SHomFFXrGKBGthYDhYrUteEsO2EnBp+I=,iv:FZjXO1yEXf35f68/j7q5O11WorPHWdut/3rScGowwUM=,tag:yEtJIavcdnS2cNolLKT0yw==,type:str]
   pgp: []
   encrypted_regex: ^(data|stringData)$
   version: 3.7.3

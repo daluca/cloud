@@ -93,3 +93,18 @@ resource "kubernetes_secret" "nextcloud_wasabi_credentials" {
     secret-key = aws_iam_access_key.nextcloud.secret
   }
 }
+
+resource "kubernetes_secret" "pictrs_wasabi_credentials" {
+  depends_on = [module.fluxcd]
+
+  metadata {
+    name      = "wasabi-credentials"
+    namespace = "lemmy"
+  }
+
+  data = {
+    bucket     = module.pictrs_storage.bucket
+    access-key = sensitive(aws_iam_access_key.pictrs.id)
+    secret-key = aws_iam_access_key.pictrs.secret
+  }
+}

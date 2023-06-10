@@ -1,0 +1,30 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: lemmy-migrations-patch
+  namespace: lemmy
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: apply-patch
+          image: alpine
+          # yamllint disable-line rule:line-length rule:quoted-strings
+          command: [sh, -c, "apk add --update-cache postgresql14 && sleep 15 && psql -h postgresql-cluster.database -U lemmy -d lemmy -a -f /tmp/migrations-patch.sql"]
+          env:
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: database-credentials
+                  key: password
+          volumeMounts:
+            - mountPath: /tmp/migrations-patch.sql
+              subPath: migrations-patch.sql
+              name: patch-config
+              readOnly: true
+      volumes:
+        - name: patch-config
+          configMap:
+            name: lemmy-migrations-patch

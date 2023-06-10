@@ -43,3 +43,19 @@ module "nextcloud_storage" {
   restrict_to_users = [sensitive(aws_iam_user.nextcloud.arn)]
   versioning        = true
 }
+
+resource "random_id" "pictrs_bucket_suffix" {
+  byte_length = 8
+}
+
+module "pictrs_storage" {
+  source = "../wasabi-bucket"
+
+  providers = {
+    wasabi = wasabi.storage
+  }
+
+  bucket            = sensitive("pictrs-${local.environment}-${random_id.pictrs_bucket_suffix.hex}")
+  restrict_to_users = [sensitive(aws_iam_user.pictrs.arn)]
+  versioning        = false
+}

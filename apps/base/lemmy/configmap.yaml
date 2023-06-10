@@ -1,0 +1,184 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: proxy-config
+  namespace: lemmy
+data:
+  # yamllint disable rule:line-length
+  nginx.conf: |-
+    worker_processes 1;
+    events {
+        worker_connections 1024;
+    }
+    http {
+        upstream lemmy {
+            # this needs to map to the lemmy (server) docker service hostname
+            server "localhost:8536";
+        }
+        upstream lemmy-ui {
+            # this needs to map to the lemmy-ui docker service hostname
+            server "localhost:1234";
+        }
+
+        server {
+            # this is the port inside docker, not the public one yet
+            listen 80;
+            # change if needed, this is facing the public web
+            server_name localhost;
+            server_tokens off;
+
+            gzip on;
+            gzip_types text/css application/javascript image/svg+xml;
+            gzip_vary on;
+
+            # Upload limit, relevant for pictrs
+            client_max_body_size 20M;
+
+            add_header X-Frame-Options SAMEORIGIN;
+            add_header X-Content-Type-Options nosniff;
+            add_header X-XSS-Protection "1; mode=block";
+
+            # frontend general requests
+            location / {
+                # distinguish between ui requests and backend
+                # don't change lemmy-ui or lemmy here, they refer to the upstream definitions on top
+                set $proxpass "http://lemmy-ui";
+
+                if ($http_accept = "application/activity+json") {
+                  set $proxpass "http://lemmy";
+                }
+                if ($http_accept = "application/ld+json; profile=\"https://www.w3.org/ns/activitystreams\"") {
+                  set $proxpass "http://lemmy";
+                }
+                if ($request_method = POST) {
+                  set $proxpass "http://lemmy";
+                }
+                proxy_pass $proxpass;
+
+                rewrite ^(.+)/+$ $1 permanent;
+                # Send actual client IP upstream
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header Host $host;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            }
+
+            # backend
+            location ~ ^/(api|pictrs|feeds|nodeinfo|.well-known) {
+                proxy_pass "http://lemmy";
+                # proxy common stuff
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+
+                # Send actual client IP upstream
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header Host $host;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            }
+        }
+    }
+
+# yamllint enable rule:line-length
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: lemmy-migrations-patch
+  namespace: lemmy
+data:
+  # yamllint disable rule:line-length
+  migrations-patch.sql: |-
+    -- Use this after starting lemmy for the first time when postgres logs show you
+    -- an error about being unable to delete triggers. This file is a reproduction
+    -- of [this][0] from upstream before code requiring superuser (ew) was added
+    -- with only this comment and the final line at the end to update the migrations
+    -- table added.
+    --
+    -- [0]: https://raw.githubusercontent.com/LemmyNet/lemmy/9c3efe32e7b2ef7978b7957eac10691beb551dde/migrations/2022-07-07-182650_comment_ltrees/up.sql
+
+    -- Remove the comment.read column, and create a new comment_reply table,
+    -- similar to the person_mention table.
+    --
+    -- This is necessary because self-joins using ltrees would be too tough with SQL views
+    --
+    -- Every comment should have a row here, because all comments have a recipient,
+    -- either the post creator, or the parent commenter.
+    create table comment_reply(
+      id serial primary key,
+      recipient_id int references person on update cascade on delete cascade not null,
+      comment_id int references comment on update cascade on delete cascade not null,
+      read boolean default false not null,
+      published timestamp not null default now(),
+      unique(recipient_id, comment_id)
+    );
+
+    -- Ones where parent_id is null, use the post creator recipient
+    insert into comment_reply (recipient_id, comment_id, read)
+    select p.creator_id, c.id, c.read from comment c
+    inner join post p on c.post_id = p.id
+    where c.parent_id is null;
+
+    --  Ones where there is a parent_id, self join to comment to get the parent comment creator
+    insert into comment_reply (recipient_id, comment_id, read)
+    select c2.creator_id, c.id, c.read from comment c
+    inner join comment c2 on c.parent_id = c2.id;
+
+    -- Drop comment_alias view
+    drop view comment_alias_1;
+
+    alter table comment drop column read;
+
+    create extension ltree;
+
+    alter table comment add column path ltree not null default '0';
+    alter table comment_aggregates add column child_count integer not null default 0;
+
+    -- The ltree path column should be the comment_id parent paths, separated by dots.
+    -- Stackoverflow: building an ltree from a parent_id hierarchical tree:
+    -- https://stackoverflow.com/a/1144848/1655478
+
+    create temporary table comment_temp as
+    WITH RECURSIVE q AS (
+      SELECT  h, 1 AS level, ARRAY[id] AS breadcrumb
+      FROM    comment h
+      WHERE   parent_id is null
+      UNION ALL
+      SELECT  hi, q.level + 1 AS level, breadcrumb || id
+      FROM    q
+      JOIN    comment hi
+      ON      hi.parent_id = (q.h).id
+    )
+    SELECT  (q.h).id,
+      (q.h).parent_id,
+      level,
+      breadcrumb::VARCHAR AS path,
+      text2ltree('0.' || array_to_string(breadcrumb, '.')) as ltree_path
+    FROM    q
+    ORDER BY
+      breadcrumb;
+
+    -- Add the ltree column
+    update comment c
+    set path = ct.ltree_path
+    from comment_temp ct
+    where c.id = ct.id;
+
+    -- Update the child counts
+    update comment_aggregates ca set child_count = c2.child_count
+    from (
+      select c.id, c.path, count(c2.id) as child_count from comment c
+      left join comment c2 on c2.path <@ c.path and c2.path != c.path
+      group by c.id
+    ) as c2
+    where ca.comment_id = c2.id;
+
+    -- Create the index
+    create index idx_path_gist on comment using gist (path);
+
+    -- Drop the parent_id column
+    alter table comment drop column parent_id cascade;
+
+    -- This was not part of the original file but is necessary to unblock the rest
+    -- of the migrations
+    insert into __diesel_schema_migrations (version) values ('20220707182650');
