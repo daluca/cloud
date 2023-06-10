@@ -12,7 +12,7 @@ spec:
         - name: apply-patch
           image: alpine
           # yamllint disable-line rule:line-length rule:quoted-strings
-          command: [sh, -c, "apk add --update-cache postgresql14 && sleep 15 && psql -h postgresql-cluster.database -U lemmy -d lemmy -a -f /tmp/migrations-patch.sql"]
+          command: [sh, -c, "apk add --update-cache --quiet postgresql14 && sleep 15 && psql -h postgresql-cluster.database -U lemmy -d lemmy -a -f /tmp/migrations-patch.sql"]
           env:
             - name: PGPASSWORD
               valueFrom:

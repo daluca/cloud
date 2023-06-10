@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ../../base/lemmy
   - lemmy-secrets.sops.yaml
+  - pictrs-secrets.sops.yaml
   - database-credentials.sops.yaml
 patches:
   - target:
@@ -19,3 +20,13 @@ patches:
       - op: replace
         path: /spec/tls/0/secretName
         value: lemmy-stg-tls
+  - target:
+      kind: Deployment
+      name: lemmy
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/1/env/1/value
+        value: lemmy.${TERTIARY_DOMAIN}
+      - op: replace
+        path: /spec/template/spec/containers/1/env/2/value
+        value: lemmy.${TERTIARY_DOMAIN}
