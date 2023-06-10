@@ -16,8 +16,6 @@ spec:
       username: ${WEAVE_GITOPS_ADMIN_USERNAME}
       passwordHash: ${WEAVE_GITOPS_ADMIN_PASSWORD}
     ingress:
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-cloudflare
       hosts:
         - host: gitops.${TERTIARY_DOMAIN}
           paths:
