@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lemmy
+  namespace: lemmy
+spec:
+  selector:
+    app: lemmy
+  ports:
+    - name: proxy
+      port: 80
+      targetPort: 80
+      protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pictrs
+  namespace: pictrs
+spec:
+  selector:
+    app: pictrs
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+      protocol: TCP

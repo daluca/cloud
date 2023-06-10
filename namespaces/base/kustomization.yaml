@@ -9,6 +9,7 @@ resources:
   - gatekeeper-system.yaml
   - identity.yaml
   - ingress-nginx.yaml
+  - lemmy.yaml
   - mail.yaml
   - monitoring.yaml
   - nextcloud.yaml

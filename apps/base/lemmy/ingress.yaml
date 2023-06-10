@@ -1,0 +1,27 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lemmy
+  namespace: lemmy
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare
+    kubernetes.io/ingress.allow-http: "false"
+    nginx.ingress.kubernetes.io/proxy-body-size: 20M
+spec:
+  ingressClassName: nginx
+  tls:
+    - secretName: lemmy-tls
+      hosts:
+        - ${TERTIARY_DOMAIN}
+  rules:
+    - host: ${TERTIARY_DOMAIN}
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: lemmy
+                port:
+                  name: proxy
