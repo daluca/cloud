@@ -28,31 +28,6 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: database-configuration
-  namespace: flux-system
-spec:
-  dependsOn:
-    - name: namespaces
-    - name: database-operators
-  interval: 1h
-  retryInterval: 1m
-  timeout: 5m
-  path: ./database/configuration/staging
-  prune: true
-  wait: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  postBuild:
-    substituteFrom:
-      - kind: Secret
-        name: staging-cluster-substitutions
-      - kind: Secret
-        name: staging-terraform-substitutions
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
   name: database-clusters
   namespace: flux-system
 spec:
@@ -73,6 +48,12 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: staging-cluster-substitutions
+      - kind: Secret
+        name: staging-terraform-substitutions
   healthChecks:
     - kind: StatefulSet
       name: postgresql-cluster
