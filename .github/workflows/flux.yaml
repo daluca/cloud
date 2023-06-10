@@ -32,9 +32,9 @@ jobs:
       - name: setup kustomize
         uses: supplypike/setup-bin@v3
         with:
-          uri: https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv4.5.7/kustomize_v4.5.7_linux_amd64.tar.gz
+          uri: https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.0.3/kustomize_v5.0.3_linux_amd64.tar.gz
           name: kustomize
-          version: 4.5.7
+          version: 5.0.3
 
       - name: setup kubeconform
         uses: supplypike/setup-bin@v3
