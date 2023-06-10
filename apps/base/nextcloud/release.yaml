@@ -47,6 +47,7 @@ spec:
       enabled: true
       className: nginx
       annotations:
+        cert-manager.io/cluster-issuer: cloudflare
         kubernetes.io/ingress.allow-http: "false"
         nginx.ingress.kubernetes.io/proxy-body-size: 4G
         # yamllint disable rule:line-length
