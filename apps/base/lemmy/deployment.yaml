@@ -110,17 +110,18 @@ spec:
       containers:
         - name: pictrs
           image: asonix/pictrs:0.4.0-rc.3
-          args: [
-            /usr/local/bin/pict-rs,
-            run,
-            object-storage,
-            --endpoint=https://s3.ap-southeast-2.wasabisys.com,
-            --use-path-style,
-            --bucket-name=$(BUCKET_NAME),
-            --access-key=$(AWS_ACCESS_KEY_ID),
-            --secret-key=$(AWS_SECRET_ACCESS_KEY),
-            --region=ap-southeast-2,
-          ]
+          args:
+            [
+              /usr/local/bin/pict-rs,
+              run,
+              object-storage,
+              --endpoint=https://s3.ap-southeast-2.wasabisys.com,
+              --use-path-style,
+              --bucket-name=$(BUCKET_NAME),
+              --access-key=$(AWS_ACCESS_KEY_ID),
+              --secret-key=$(AWS_SECRET_ACCESS_KEY),
+              --region=ap-southeast-2,
+            ]
           resources:
             limits:
               memory: 128Mi
