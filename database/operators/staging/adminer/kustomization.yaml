@@ -9,9 +9,6 @@ patches:
       name: adminer
     patch: |-
       - op: replace
-        path: /metadata/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-cloudflare
-      - op: replace
         path: /spec/rules/0/host
         value: adminer.${TERTIARY_DOMAIN}
       - op: replace

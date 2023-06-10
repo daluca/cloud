@@ -15,8 +15,6 @@ spec:
     podAnnotations:
       backup.velero.io/backup-volumes-excludes: data
     ingress:
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-cloudflare
       hosts:
         - host: podinfo.${TERTIARY_DOMAIN}
           paths:

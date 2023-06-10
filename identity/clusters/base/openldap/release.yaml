@@ -61,5 +61,5 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
+          cert-manager.io/cluster-issuer: cloudflare
           kubernetes.io/ingress.allow-http: "false"
-          cert-manager.io/cluster-issuer: letsencrypt
