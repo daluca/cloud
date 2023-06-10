@@ -132,6 +132,11 @@ spec:
             - name: http
               containerPort: 8080
           env:
+            - name: BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: wasabi-credentials
+                  key: bucket
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
