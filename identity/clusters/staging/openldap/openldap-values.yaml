@@ -34,8 +34,6 @@ spec:
       size: 1Gi
     phpldapadmin:
       ingress:
-        annotations:
-          cert-manager.io/cluster-issuer: cloudflare
         hosts:
           - phpldapadmin.${TERTIARY_DOMAIN}
         tls:
