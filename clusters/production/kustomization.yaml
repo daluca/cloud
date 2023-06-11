@@ -11,5 +11,3 @@ patches:
   - path: delete-policy-constraints.yaml
   - path: delete-policy-templates.yaml
   - path: delete-security.yaml
-  - path: delete-storage-clusters.yaml
-  - path: delete-storage-operators.yaml
