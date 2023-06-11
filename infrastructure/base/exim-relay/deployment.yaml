@@ -37,6 +37,8 @@ spec:
             - name: smtp
               containerPort: 8025
               protocol: TCP
-          envFrom:
-            - configMapRef:
-                name: exim-relay-config-envs
+          env:
+            - name: HOSTNAME
+              value: mail.${PRIMARY_DOMAIN}
+            - name: RELAY_FROM_HOSTS
+              value: 10.0.0.0/8
