@@ -17,7 +17,7 @@ module "staging" {
       cpu        = 4
       memory     = 8
       auto_scale = true
-      min        = 4
+      min        = 3
       max        = 6
     }
     monitoring_pool = {
@@ -30,8 +30,9 @@ module "staging" {
   }
 
   cloudflare = {
-    account_id = var.cloudflare_account_id
-    domain     = var.cloudflare_domain
+    domains = [
+      var.primary_domain
+    ]
   }
 
   github = {

@@ -30,8 +30,11 @@ module "production" {
   }
 
   cloudflare = {
-    account_id = var.cloudflare_account_id
-    domain     = var.cloudflare_domain
+    domains = [
+      var.primary_domain,
+      var.secondary_domain,
+      var.tertiary_domain,
+    ]
   }
 
   github = {
