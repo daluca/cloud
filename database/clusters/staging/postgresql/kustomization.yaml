@@ -13,12 +13,3 @@ patches:
         path: /spec/managedSql/scripts/-
         value:
           sgScript: create-staging-db-scripts
-#
-# Sorting option available in kustomize v5
-# Kustomize Controller hasn't updated to kustomize to v5 yet
-#
-# Additionally this can not yet be applied to the base kustomization.yaml and
-# is required to be applied to the entry kustomization.yaml
-#
-# sortOptions:
-#   order: fifo

@@ -6,9 +6,6 @@ resources:
 patches:
   - path: delete-apps.yaml
   - path: delete-controllers.yaml
-  - path: delete-database-clusters.yaml
-  - path: delete-database-configuration.yaml
-  - path: delete-database-operators.yaml
   - path: delete-identity-clusters.yaml
   - path: delete-identity-operators.yaml
   - path: delete-monitoring.yaml
