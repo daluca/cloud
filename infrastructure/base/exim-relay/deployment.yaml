@@ -5,6 +5,7 @@ metadata:
   name: exim-relay
   namespace: mail
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: exim-relay
