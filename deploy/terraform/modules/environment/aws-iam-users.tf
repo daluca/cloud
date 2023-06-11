@@ -1,5 +1,5 @@
 resource "aws_iam_user" "stackgres" {
-  name = "stackgres"
+  name = "stackgres-${local.environment}"
 }
 
 resource "aws_iam_access_key" "stackgres" {
@@ -7,7 +7,7 @@ resource "aws_iam_access_key" "stackgres" {
 }
 
 resource "aws_iam_user" "velero" {
-  name = "velero"
+  name = "velero-${local.environment}"
 }
 
 resource "aws_iam_access_key" "velero" {
@@ -15,7 +15,7 @@ resource "aws_iam_access_key" "velero" {
 }
 
 resource "aws_iam_user" "nextcloud" {
-  name = "nextcloud"
+  name = "nextcloud-${local.environment}"
 }
 
 resource "aws_iam_access_key" "nextcloud" {
@@ -23,7 +23,7 @@ resource "aws_iam_access_key" "nextcloud" {
 }
 
 resource "aws_iam_user" "pictrs" {
-  name = "pictrs"
+  name = "pictrs-${local.environment}"
 }
 
 resource "aws_iam_access_key" "pictrs" {
