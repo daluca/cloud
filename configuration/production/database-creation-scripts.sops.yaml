@@ -1,0 +1,32 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: database-creation-scripts
+  namespace: database
+type: Opaque
+stringData:
+  create-nextcloud-database.sql: ENC[AES256_GCM,data:ST8eB3FBKyaGSzZ70Ev+r9VGTdhOqfNia1Z24KXfG8JEww2d+t+DP0zRxCwOQ3XlOmDcKMMut54oYjJFeCjU4wT3rQQRZI6KSSKGLtZhpOuevKxWk69AHU7Lt/3+mVU0RiW5AFk9wQRD4ZzZJQsbnMJ6NB8/U+jfjTH/RW1vEjQsB00lFey2g6/wsB3W/NnL57rd6srq59++tmsprHOqLk9rjRKn,iv:V92so2FNc13LmycuNb9Hc8xKlxYQwYSmttRkEDO2BVM=,tag:c6mcS4yMJy7kIX348nWdRg==,type:str]
+  create-crowdsec-database.sql: ENC[AES256_GCM,data:v8Re9MIgxle4kZOeKSOAQVt9kTqUb+BDaGjJdPVc5huBDv/r6O6kIInEkeXQwmTCgxGNziYH9z62RYskiKGO1eMT+z9XWLmhyphB7702dum8NQVyyf+6TeRdlwy1DZbwkU5pSv3r5QfmAbkxpA8fexqhKTm6IC3gjO1KVN9KwpMcQlUl3GGqRpcxAJCtHe0tdP9iVKXIhvVbPFiwBOKpKSQ=,iv:i9lXnzUhiG/dYA8xXlcEbW1qIXo8bgXRL4b6weY8aBw=,tag:nZGNc9j6lNRojRtgMtDL2Q==,type:str]
+  create-keycloak-database.sql: ENC[AES256_GCM,data:k5SWkmcVv1c8eKuTN6s8+awfcUi9UKm4L40PhYrJwy07ZVctp55UlctkhODrur8/xF3llVmhO651Fxnm56MxbCKEaKS7MHNE7Qpa2vpBg3vx+GdwznuFCpJ5P7jAnNfJD6rBDdLg3cuiUBrFyabQqJlcQpAko9XxAWaX+m6rQvkouwrMHytYoRYOjIVn/4qCUj8JBP60Yp3ii6S1/fvSby8=,iv:0Bb5aOeg+hP/6BnqoqZtHHOo3v7d1tfczb7Mgv2/t/0=,tag:dOAMF1FHOdr+v14Agf4N5A==,type:str]
+  create-lemmy-database.sql: ENC[AES256_GCM,data:GiwWI9GItw0IQsOhIoOanzqA/7JiBasackp5255LtBgm6YOCSMR75yY0uE3GcGp9ZslrvvBzYFxuKVkot279ImMrV9sqdSTs6imNE6bP3QAmQpivIlg/NN9Tk4zOj9A3w0/3a0sOfGvujww0FWpUIfezA/gx3p8yx04AXYtPrAZT3EIUL5pOZ5MX7MtsLaJMcD3LHs8=,iv:pFluW/TtyzVz9W+dwH1Bj5+Ofb6ZscP9y0WavyMWE/g=,tag:RdJm49lguB7ODTVMNRRcZw==,type:str]
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1gzx4nxzmefttk92fz3rwn5w2nshdc3xfq26j55fp2e8f6q07s5psg9xw8l
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB1K285SDhlQUxXT1VLWXZV
+        NDNQL1d1ZGJZUWJhQ3c2dklSVmMyR2t5eUVZCjRaNk9Xb2VuSFAva0NOb0tHVHk4
+        aUkxTkt3MmVEVkVSNmoycGdpRGRvZ2MKLS0tIHJvUVk3WENYMGgyTHVWaVplUTR2
+        Q254Zms2aGtjaCtIbnphT2taeGRlWkkKhLHoDBKfJf5Sm5RYCAeLWFuJmxPig4ui
+        CnMqasnZWZS+iFc/HGfaWkTxYKq2POGx3Lo9AcEapflc2b0Cqd6YGg==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2023-06-11T03:45:54Z"
+  mac: ENC[AES256_GCM,data:g3fPghlqZYHrNOgT+nSWCrMEivKqh/oC2tTdwq3L5FKdAPRnZMqZAswEfZdlop+7wfRzhpdUjjEYDVroBkp/LTpqMx9Y1aq+cIzhPncYMLuQtPz5FkrhBwl1sfh/soL6SDEDZxajJrglJursqHLS6gs1SQUc+1bu8OeoWdTsHnQ=,iv:kGHC4bdqeRwGOaQreTRhhCtpPIjJQvSkD3oVB/Lr1mY=,tag:DiDDAZ9ODYB6kRKBGgCxWA==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.7.3
