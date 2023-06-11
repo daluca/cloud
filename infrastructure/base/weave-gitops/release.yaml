@@ -14,6 +14,7 @@ spec:
   chart:
     spec:
       chart: weave-gitops
+      version: 4.0.23
       sourceRef:
         kind: HelmRepository
         name: weaveworks
@@ -41,11 +42,24 @@ spec:
         value: "false"
       - name: WEAVE_GITOPS_FEATURE_CLUSTER
         value: "false"
+    adminUser:
+      create: true
+      username: ${WEAVE_GITOPS_ADMIN_USERNAME}
+      passwordHash: ${WEAVE_GITOPS_ADMIN_PASSWORD}
     ingress:
       enabled: true
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: cloudflare
         kubernetes.io/ingress.allow-http: "false"
+      hosts:
+        - host: gitops.${PRIMARY_DOMAIN}
+          paths:
+            - pathType: Prefix
+              path: /
+      tls:
+        - secretName: gitops-tls
+          hosts:
+            - gitops.${PRIMARY_DOMAIN}
     metrics:
       enabled: true

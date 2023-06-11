@@ -9,6 +9,7 @@ spec:
   chart:
     spec:
       chart: external-dns
+      version: 1.13.0
       sourceRef:
         kind: HelmRepository
         name: external-dns
@@ -36,6 +37,10 @@ spec:
     triggerLoopOnEvent: true
     interval: 1h
     logFormat: json
+    domainFilters:
+      - ${PRIMARY_DOMAIN}
+      - ${SECONDARY_DOMAIN}
+      - ${TERTIARY_DOMAIN}
     extraArgs:
       - --cloudflare-proxied
     serviceMonitor:

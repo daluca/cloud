@@ -10,6 +10,3 @@ spec:
       version: ">=1.0.0 <2.0.0"
   test:
     enable: false
-  values:
-    domainFilters:
-      - ${TERTIARY_DOMAIN}

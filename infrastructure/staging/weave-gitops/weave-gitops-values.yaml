@@ -11,10 +11,6 @@ spec:
   test:
     enable: false
   values:
-    adminUser:
-      create: true
-      username: ${WEAVE_GITOPS_ADMIN_USERNAME}
-      passwordHash: ${WEAVE_GITOPS_ADMIN_PASSWORD}
     ingress:
       hosts:
         - host: gitops.${TERTIARY_DOMAIN}

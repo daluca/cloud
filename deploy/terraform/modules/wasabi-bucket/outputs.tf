@@ -7,5 +7,6 @@ output "arn" {
 }
 
 output "bucket" {
-  value = wasabi_bucket.bucket.bucket
+  value     = wasabi_bucket.bucket.bucket
+  sensitive = true
 }

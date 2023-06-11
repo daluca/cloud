@@ -1,11 +1,13 @@
 output "kube_config" {
   description = "DigitalOcean Kubernets configuration."
   value       = sensitive(digitalocean_kubernetes_cluster.main.kube_config[0])
+  sensitive   = true
 }
 
 output "flux_private_key" {
   description = "Private key generated for Flux."
   value       = sensitive(module.fluxcd.private_key)
+  sensitive   = true
 }
 
 output "github_repository_ssh_url" {
@@ -16,4 +18,5 @@ output "github_repository_ssh_url" {
 output "cloudflare_zone_id" {
   description = "Cloudflare domain zone id."
   value       = sensitive(cloudflare_zone.main.id)
+  sensitive   = true
 }
