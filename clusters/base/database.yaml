@@ -14,7 +14,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./database/operators/staging
+  path: ./database/operators/production
   prune: true
   wait: true
   sourceRef:
@@ -23,7 +23,7 @@ spec:
   postBuild:
     substituteFrom:
       - kind: Secret
-        name: staging-cluster-substitutions
+        name: production-cluster-substitutions
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -37,7 +37,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./database/configuration/staging
+  path: ./database/configuration/production
   prune: true
   wait: true
   sourceRef:
@@ -46,7 +46,7 @@ spec:
   postBuild:
     substituteFrom:
       - kind: Secret
-        name: staging-cluster-substitutions
+        name: production-cluster-substitutions
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -62,7 +62,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 10m
-  path: ./database/clusters/staging
+  path: ./database/clusters/production
   prune: true
   sourceRef:
     kind: GitRepository

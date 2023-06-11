@@ -13,7 +13,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 10m
-  path: ./infrastructure/staging
+  path: ./infrastructure/production
   prune: true
   wait: true
   sourceRef:
@@ -26,8 +26,8 @@ spec:
   postBuild:
     substituteFrom:
       - kind: Secret
-        name: staging-cluster-substitutions
+        name: production-cluster-substitutions
       - kind: ConfigMap
-        name: staging-cluster-substitutions
+        name: production-cluster-substitutions
       - kind: Secret
-        name: staging-terraform-substitutions
+        name: production-terraform-substitutions

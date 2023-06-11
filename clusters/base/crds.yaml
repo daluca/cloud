@@ -11,7 +11,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./crds/staging
+  path: ./crds/production
   prune: true
   wait: true
   sourceRef:

@@ -10,7 +10,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./configuration/staging
+  path: ./configuration/production
   prune: true
   sourceRef:
     kind: GitRepository
