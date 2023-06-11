@@ -15,7 +15,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./security/staging
+  path: ./security/production
   prune: true
   wait: true
   sourceRef:
@@ -28,4 +28,4 @@ spec:
   postBuild:
     substituteFrom:
       - kind: Secret
-        name: staging-cluster-substitutions
+        name: production-cluster-substitutions

@@ -11,7 +11,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./identity/operators/staging
+  path: ./identity/operators/production
   prune: true
   wait: true
   sourceRef:
@@ -35,7 +35,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./identity/clusters/staging
+  path: ./identity/clusters/production
   prune: true
   sourceRef:
     kind: GitRepository
@@ -47,7 +47,7 @@ spec:
   postBuild:
     substituteFrom:
       - kind: Secret
-        name: staging-cluster-substitutions
+        name: production-cluster-substitutions
   healthChecks:
     - kind: StatefulSet
       name: openldap

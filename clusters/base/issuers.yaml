@@ -11,7 +11,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./issuers/staging
+  path: ./issuers/production
   prune: true
   sourceRef:
     kind: GitRepository
@@ -19,4 +19,4 @@ spec:
   postBuild:
     substituteFrom:
       - kind: Secret
-        name: staging-cluster-substitutions
+        name: production-cluster-substitutions

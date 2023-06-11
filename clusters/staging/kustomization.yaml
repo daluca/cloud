@@ -3,3 +3,177 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ../base
+patches:
+  - target:
+      kind: Kustomization
+      name: apps
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./apps/staging
+      - op: replace
+        path: /spec/postBuild/substituteFrom/0/name
+        value: staging-cluster-substitutions
+  - target:
+      kind: Kustomization
+      name: configuration
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./configuration/staging
+  - target:
+      kind: Kustomization
+      name: controllers
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./controllers/staging
+  - target:
+      kind: Kustomization
+      name: crds
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./crds/staging
+  - target:
+      kind: Kustomization
+      name: crds
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./crds/staging
+  - target:
+      kind: Kustomization
+      name: database-operators
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./database/operators/staging
+      - op: replace
+        path: /spec/postBuild/substituteFrom/0/name
+        value: staging-cluster-substitutions
+  - target:
+      kind: Kustomization
+      name: database-configuration
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./database/configuration/staging
+      - op: replace
+        path: /spec/postBuild/substituteFrom/0/name
+        value: staging-cluster-substitutions
+  - target:
+      kind: Kustomization
+      name: database-clusters
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./database/clusters/staging
+  - target:
+      kind: Kustomization
+      name: identity-operators
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./identity/operators/staging
+  - target:
+      kind: Kustomization
+      name: identity-clusters
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./identity/clusters/staging
+      - op: replace
+        path: /spec/postBuild/substituteFrom/0/name
+        value: staging-cluster-substitutions
+  - target:
+      kind: Kustomization
+      name: infrastructure
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./infrastructure/staging
+      - op: replace
+        path: /spec/postBuild/substituteFrom/0/name
+        value: staging-cluster-substitutions
+      - op: replace
+        path: /spec/postBuild/substituteFrom/1/name
+        value: staging-cluster-substitutions
+      - op: replace
+        path: /spec/postBuild/substituteFrom/2/name
+        value: staging-terraform-substitutions
+  - target:
+      kind: Kustomization
+      name: issuers
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./issuers/staging
+      - op: replace
+        path: /spec/postBuild/substituteFrom/0/name
+        value: staging-cluster-substitutions
+  - target:
+      kind: Kustomization
+      name: monitoring
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./monitoring/staging
+      - op: replace
+        path: /spec/postBuild/substituteFrom/0/name
+        value: staging-cluster-substitutions
+  - target:
+      kind: Kustomization
+      name: namespaces
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./namespaces/staging
+  - target:
+      kind: Kustomization
+      name: policy-templates
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./policy/templates/staging
+  - target:
+      kind: Kustomization
+      name: policy-constraints
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./policy/constraints/staging
+  - target:
+      kind: Kustomization
+      name: security
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./security/staging
+      - op: replace
+        path: /spec/postBuild/substituteFrom/0/name
+        value: staging-cluster-substitutions
+  - target:
+      kind: Kustomization
+      name: sources
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./sources/staging
+  - target:
+      kind: Kustomization
+      name: storage-operators
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./storage/operators/staging
+  - target:
+      kind: Kustomization
+      name: storage-clusters
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./storage/clusters/staging
+      - op: replace
+        path: /spec/postBuild/substituteFrom/0/name
+        value: staging-cluster-substitutions

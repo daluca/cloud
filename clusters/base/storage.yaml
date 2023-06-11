@@ -12,7 +12,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./storage/operators/staging
+  path: ./storage/operators/production
   prune: true
   wait: true
   sourceRef:
@@ -36,7 +36,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 10m
-  path: ./storage/clusters/staging
+  path: ./storage/clusters/production
   prune: true
   sourceRef:
     kind: GitRepository
@@ -48,7 +48,7 @@ spec:
   postBuild:
     substituteFrom:
       - kind: Secret
-        name: staging-cluster-substitutions
+        name: production-cluster-substitutions
   healthChecks:
     - kind: Deployment
       name: rook-ceph-osd-0
