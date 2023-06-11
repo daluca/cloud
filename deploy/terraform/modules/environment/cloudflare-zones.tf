@@ -1,6 +1,6 @@
 resource "cloudflare_zone" "main" {
-  account_id = var.cloudflare.account_id
-  zone       = var.cloudflare.domain
+  account_id = sensitive(var.cloudflare.account_id)
+  zone       = sensitive(var.cloudflare.domain)
 }
 
 resource "cloudflare_zone_settings_override" "main" {

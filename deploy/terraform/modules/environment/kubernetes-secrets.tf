@@ -7,7 +7,7 @@ resource "kubernetes_secret" "sops" {
   }
 
   data = {
-    "cluster.agekey" = var.flux.age_key
+    "cluster.agekey" = sensitive(var.flux.age_key)
   }
 }
 
