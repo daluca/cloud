@@ -23,3 +23,8 @@ spec:
         secretKeyRef:
           name: database-creation-scripts
           key: create-keycloak-database.sql
+    - name: create-lemmy-database
+      scriptFrom:
+        secretKeyRef:
+          name: database-creation-scripts
+          key: create-lemmy-database.sql
