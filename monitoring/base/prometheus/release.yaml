@@ -9,6 +9,7 @@ spec:
   chart:
     spec:
       chart: kube-prometheus-stack
+      version: 46.8.0
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
@@ -45,9 +46,16 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: cloudflare
           kubernetes.io/ingress.allow-http: "false"
+        hosts:
+          - alertmanager.${PRIMARY_DOMAIN}
         pathType: Prefix
         paths: [/]
+        tls:
+          - secretName: alertmanager-stg-tls
+            hosts:
+              - alertmanager.${PRIMARY_DOMAIN}
       alertmanagerSpec:
+        replicas: 3
         nodeSelector:
           doks.digitalocean.com/node-pool: monitoring-pool
         tolerations:
@@ -58,6 +66,7 @@ spec:
     grafana:
       fullnameOverride: grafana
       enabled: true
+      replicas: 1
       defaultDashboardsEnabled: true
       defaultDashboardsTimezone: utc
       ingress:
@@ -66,8 +75,14 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: cloudflare
           kubernetes.io/ingress.allow-http: "false"
+        hosts:
+          - grafana.${PRIMARY_DOMAIN}
         pathType: Prefix
         path: /
+        tls:
+          - secretName: grafana-stg-tls
+            hosts:
+              - grafana.${PRIMARY_DOMAIN}
       admin:
         existingSecret: grafana-admin-credentials
         userKey: admin-user
@@ -121,9 +136,16 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: cloudflare
           kubernetes.io/ingress.allow-http: "false"
+        hosts:
+          - prometheus.${PRIMARY_DOMAIN}
         pathType: Prefix
         paths: [/]
+        tls:
+          - secretName: prometheus-stg-tls
+            hosts:
+              - prometheus.${PRIMARY_DOMAIN}
       prometheusSpec:
+        replicas: 3
         nodeSelector:
           doks.digitalocean.com/node-pool: monitoring-pool
         tolerations:
