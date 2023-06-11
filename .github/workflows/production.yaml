@@ -34,8 +34,9 @@ env:
   CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
   AWS_SSE_CUSTOMER_KEY: ${{ secrets.TERRAFORM_STATE_SSE_CUSTOMER_KEY }}
   TF_VAR_flux_age_key: ${{ secrets.PRODUCTION_CLUSTER_AGE_KEY }}
-  TF_VAR_cloudflare_account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-  TF_VAR_cloudflare_domain: ${{ secrets.TERTIARY_DOMAIN }}
+  TF_VAR_primary_domain: ${{ secrets.PRIMARY_DOMAIN }}
+  TF_VAR_secondary_domain: ${{ secrets.SECONDARY_DOMAIN }}
+  TF_VAR_tertiary_domain: ${{ secrets.TERTIARY_DOMAIN }}
 
 jobs:
   terraform:

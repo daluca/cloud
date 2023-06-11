@@ -45,8 +45,7 @@ variable "digitalocean" {
 variable "cloudflare" {
   description = "Cloudflare CDN settings."
   type = object({
-    account_id = string
-    domain     = string
+    domains = list(string)
   })
 }
 

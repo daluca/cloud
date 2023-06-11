@@ -14,8 +14,9 @@ resource "cloudflare_api_token" "external_dns" {
       data.cloudflare_api_token_permission_groups.all.zone["DNS Write"],
       data.cloudflare_api_token_permission_groups.all.zone["Zone Read"],
     ]
+
     resources = {
-      "com.cloudflare.api.account.zone.${cloudflare_zone.main.id}" = "*"
+      for domain in var.cloudflare.domains : "com.cloudflare.api.account.zone.${data.cloudflare_zone.domains[domain].id}" => "*"
     }
   }
 }
@@ -30,8 +31,9 @@ resource "cloudflare_api_token" "cert_manager" {
       data.cloudflare_api_token_permission_groups.all.zone["DNS Write"],
       data.cloudflare_api_token_permission_groups.all.zone["Zone Read"],
     ]
+
     resources = {
-      "com.cloudflare.api.account.zone.${cloudflare_zone.main.id}" = "*"
+      for domain in var.cloudflare.domains : "com.cloudflare.api.account.zone.${data.cloudflare_zone.domains[domain].id}" => "*"
     }
   }
 }

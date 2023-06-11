@@ -1,6 +1,6 @@
 resource "cloudflare_ruleset" "waf_rules" {
   kind    = "zone"
-  zone_id = module.staging.cloudflare_zone_id
+  zone_id = data.cloudflare_zone.primary.zone_id
   phase   = "http_request_firewall_custom"
   name    = "WAF rules"
 
