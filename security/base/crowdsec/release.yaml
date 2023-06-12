@@ -9,6 +9,7 @@ spec:
   chart:
     spec:
       chart: crowdsec
+      version: 0.9.6
       sourceRef:
         kind: HelmRepository
         name: crowdsec
@@ -52,6 +53,13 @@ spec:
                   mountPath: /etc/crowdsec_data/config.yaml.local
                   subPath: config.yaml
                   name: crowdsec-custom-config
+          - target:
+              kind: Deployment
+              name: crowdsec-lapi
+            patch: |-
+              - op: add
+                path: /spec/replicas
+                value: 2
   values:
     container_runtime: containerd
     lapi:
@@ -91,6 +99,11 @@ spec:
             cert-manager.io/cluster-issuer: cloudflare
             kubernetes.io/ingress.allow-http: "false"
             nginx.ingress.kubernetes.io/backend-protocol: HTTP
+          host: crowdsec.${PRIMARY_DOMAIN}
+          tls:
+            - secretName: crowdsec-tls
+              hosts:
+                - crowdsec.${PRIMARY_DOMAIN}
       persistentVolume:
         data:
           enabled: true

@@ -7,6 +7,3 @@ patches:
   - path: delete-controllers.yaml
   - path: delete-identity-clusters.yaml
   - path: delete-identity-operators.yaml
-  - path: delete-policy-constraints.yaml
-  - path: delete-policy-templates.yaml
-  - path: delete-security.yaml
