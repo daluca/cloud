@@ -27,7 +27,7 @@ spec:
     enable: true
     ignoreFailures: false
   values:
-    replicas: 3
+    replicas: 2
     metrics:
       enabled: true
     serviceMonitor:
