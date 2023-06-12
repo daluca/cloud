@@ -28,7 +28,7 @@ spec:
     ignoreFailures: false
   values:
     namespaceOverride: kube-system
-    replicas: 3
+    replicas: 2
     prometheus:
       monitor:
         enabled: true
