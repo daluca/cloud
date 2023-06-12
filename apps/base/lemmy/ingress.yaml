@@ -8,6 +8,7 @@ metadata:
     cert-manager.io/cluster-issuer: cloudflare
     kubernetes.io/ingress.allow-http: "false"
     nginx.ingress.kubernetes.io/proxy-body-size: 20M
+    external-dns.alpha.kubernetes.io/exclude: "true"
 spec:
   ingressClassName: nginx
   tls:
