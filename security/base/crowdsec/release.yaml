@@ -91,19 +91,7 @@ spec:
               key: api-key
               name: crowdsec-lapi-credentials
       dashboard:
-        enabled: true
-        ingress:
-          enabled: true
-          ingressClassName: nginx
-          annotations:
-            cert-manager.io/cluster-issuer: cloudflare
-            kubernetes.io/ingress.allow-http: "false"
-            nginx.ingress.kubernetes.io/backend-protocol: HTTP
-          host: crowdsec.${PRIMARY_DOMAIN}
-          tls:
-            - secretName: crowdsec-tls
-              hosts:
-                - crowdsec.${PRIMARY_DOMAIN}
+        enabled: false
       persistentVolume:
         data:
           enabled: true
