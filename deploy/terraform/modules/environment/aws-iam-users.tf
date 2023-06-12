@@ -21,11 +21,3 @@ resource "aws_iam_user" "nextcloud" {
 resource "aws_iam_access_key" "nextcloud" {
   user = aws_iam_user.nextcloud.id
 }
-
-resource "aws_iam_user" "pictrs" {
-  name = "pictrs-${local.environment}"
-}
-
-resource "aws_iam_access_key" "pictrs" {
-  user = aws_iam_user.pictrs.id
-}
