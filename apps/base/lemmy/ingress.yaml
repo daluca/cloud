@@ -13,9 +13,9 @@ spec:
   tls:
     - secretName: lemmy-tls
       hosts:
-        - ${PRIMARY_DOMAIN}
+        - ${TERTIARY_DOMAIN}
   rules:
-    - host: ${PRIMARY_DOMAIN}
+    - host: ${TERTIARY_DOMAIN}
       http:
         paths:
           - pathType: Prefix
