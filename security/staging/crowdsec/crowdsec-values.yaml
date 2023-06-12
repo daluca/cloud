@@ -21,11 +21,3 @@ spec:
               reason: "staging environment trusted CIDR range"
               cidr:
                 - ${STAGING_IP_ALLOW_LIST}
-    lapi:
-      dashboard:
-        ingress:
-          host: crowdsec.${TERTIARY_DOMAIN}
-          tls:
-            - secretName: crowdsec-stg-tls
-              hosts:
-                - crowdsec.${TERTIARY_DOMAIN}

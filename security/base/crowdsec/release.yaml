@@ -62,6 +62,16 @@ spec:
                 value: 2
   values:
     container_runtime: containerd
+    config:
+      postoverflows:
+        s01-whitelist:
+          production-whitelist.yaml: |-
+            name: daluca/production-whitelist
+            description: "Whitelist production environment"
+            whitelist:
+              reason: "production environment trusted CIDR range"
+              cidr:
+                - ${PRODUCTION_IP_ALLOW_LIST}
     lapi:
       env:
         - name: DISABLE_AGENT
@@ -91,19 +101,7 @@ spec:
               key: api-key
               name: crowdsec-lapi-credentials
       dashboard:
-        enabled: true
-        ingress:
-          enabled: true
-          ingressClassName: nginx
-          annotations:
-            cert-manager.io/cluster-issuer: cloudflare
-            kubernetes.io/ingress.allow-http: "false"
-            nginx.ingress.kubernetes.io/backend-protocol: HTTP
-          host: crowdsec.${PRIMARY_DOMAIN}
-          tls:
-            - secretName: crowdsec-tls
-              hosts:
-                - crowdsec.${PRIMARY_DOMAIN}
+        enabled: false
       persistentVolume:
         data:
           enabled: true
