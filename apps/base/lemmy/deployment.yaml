@@ -96,7 +96,9 @@ metadata:
   name: pictrs
   namespace: lemmy
 spec:
-  replicas: 2
+  replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: pictrs
@@ -107,21 +109,12 @@ spec:
     spec:
       securityContext:
         runAsUser: 991
+        runAsGroup: 991
+        fsGroup: 991
+        fsGroupChangePolicy: OnRootMismatch
       containers:
         - name: pictrs
           image: asonix/pictrs:0.4.0-rc.3
-          args:
-            [
-              /usr/local/bin/pict-rs,
-              run,
-              object-storage,
-              --endpoint=https://s3.ap-southeast-2.wasabisys.com,
-              --use-path-style,
-              --bucket-name=$(BUCKET_NAME),
-              --access-key=$(AWS_ACCESS_KEY_ID),
-              --secret-key=$(AWS_SECRET_ACCESS_KEY),
-              --region=ap-southeast-2,
-            ]
           resources:
             limits:
               memory: 128Mi
@@ -132,21 +125,6 @@ spec:
             - name: http
               containerPort: 8080
           env:
-            - name: BUCKET_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: wasabi-credentials
-                  key: bucket
-            - name: AWS_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  name: wasabi-credentials
-                  key: access-key
-            - name: AWS_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: wasabi-credentials
-                  key: secret-key
             - name: PICTRS__API_KEY
               valueFrom:
                 secretKeyRef:
@@ -163,8 +141,13 @@ spec:
             - name: PICTRS__MEDIA__GIF__MAX_FRAME_COUNT
               value: "400"
           volumeMounts:
-            - mountPath: /mnt
-              name: scratch
+            - mountPath: /mnt/sled-repo
+              subPath: sled
+              name: pictrs-data
+            - mountPath: /mnt/files
+              subPath: files
+              name: pictrs-data
       volumes:
-        - name: scratch
-          emptyDir: {}
+        - name: pictrs-data
+          persistentVolumeClaim:
+            claimName: pictrs-data
