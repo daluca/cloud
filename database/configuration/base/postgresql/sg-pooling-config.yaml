@@ -32,7 +32,7 @@ spec:
           reserve_pool: 5
         lemmy:
           pool_size: 400
-          dbname: keycloak
+          dbname: lemmy
           reserve_pool: 5
         postgres:
           pool_size: 10
