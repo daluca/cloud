@@ -62,6 +62,16 @@ spec:
                 value: 2
   values:
     container_runtime: containerd
+    config:
+      postoverflows:
+        s01-whitelist:
+          production-whitelist.yaml: |-
+            name: daluca/production-whitelist
+            description: "Whitelist production environment"
+            whitelist:
+              reason: "production environment trusted CIDR range"
+              cidr:
+                - ${PRODUCTION_IP_ALLOW_LIST}
     lapi:
       env:
         - name: DISABLE_AGENT
