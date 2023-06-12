@@ -74,17 +74,17 @@ spec:
           valueFrom:
             secretKeyRef:
               key: database
-              name: postgresql-credentials
+              name: database-credentials
         - name: POSTGRESQL_USERNAME
           valueFrom:
             secretKeyRef:
               key: username
-              name: postgresql-credentials
+              name: database-credentials
         - name: POSTGRESQL_PASSWORD
           valueFrom:
             secretKeyRef:
               key: password
-              name: postgresql-credentials
+              name: database-credentials
         - name: BOUNCER_KEY_INGRESS_NGINX
           valueFrom:
             secretKeyRef:
