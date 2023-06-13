@@ -47,7 +47,7 @@ spec:
               subPath: config.hjson
               name: lemmy-secrets
         - name: lemmy-ui
-          image: dessalines/lemmy-ui:0.17.3
+          image: dessalines/lemmy-ui:0.17.4
           resources:
             limits:
               memory: 128Mi
