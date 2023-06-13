@@ -67,14 +67,6 @@ spec:
         volumeMounts:
           - mountPath: /target
             name: plugins
-    extraVolumes:
-      - name: wasabi-encryption
-        secret:
-          secretName: wasabi-encryption
-    extraVolumeMounts:
-      - mountPath: /run/secrets/velero/sse-customer.key
-        subPath: sse-customer-key
-        name: wasabi-encryption
     metrics:
       enabled: true
       serviceMonitor:
@@ -90,7 +82,6 @@ spec:
             region: eu-central-1
             s3ForcePathStyle: true
             s3Url: https://s3.eu-central-1.wasabisys.com
-            customerKeyEncryptionFile: /run/secrets/velero/sse-customer.key
       volumeSnapshotLocation:
         - name: digitalocean
           provider: digitalocean.com/velero
