@@ -2,16 +2,6 @@
 name: Staging
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - deploy/terraform/clusters/staging/**.tf
-      - deploy/terraform/clusters/staging/**.tfvars
-      - deploy/terraform/modules/environment/**.tf
-      - deploy/terraform/modules/flux-bootstrap/**.tf
-      - deploy/terraform/modules/wasabi-bucket/**.tf
-      - .github/workflows/staging.yaml
-
   pull_request:
     branches: [main]
     paths:
@@ -21,6 +11,17 @@ on:
       - deploy/terraform/modules/flux-bootstrap/**.tf
       - deploy/terraform/modules/wasabi-bucket/**.tf
       - .github/workflows/staging.yaml
+
+  workflow_dispatch:
+    inputs:
+      state:
+        description: apply or destroy staging cluster
+        required: true
+        default: apply
+        type: choice
+        options:
+          - apply
+          - destroy
 
 permissions:
   pull-requests: write
@@ -143,6 +144,6 @@ jobs:
               })
             }
 
-      - name: terraform apply
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: terraform apply -auto-approve
+      - name: terraform ${{ inputs.state }}
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+        run: terraform ${{ inputs.state }} -auto-approve
