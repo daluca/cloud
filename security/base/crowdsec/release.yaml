@@ -134,6 +134,11 @@ spec:
             crowdsecurity/linux
             crowdsecurity/nginx
             crowdsecurity/whitelist-good-actors
+      tolerations:
+        - key: workloadKind
+          operator: Equal
+          value: monitoring
+          effect: NoSchedule
       metrics:
         enabled: true
         serviceMonitor:

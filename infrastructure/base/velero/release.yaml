@@ -99,6 +99,11 @@ spec:
           memory: 128Mi
         limits:
           memory: 512Mi
+      tolerations:
+        - key: workloadKind
+          operator: Equal
+          value: monitoring
+          effect: NoSchedule
     schedules:
       daily-cluster-backup:
         schedule: 16 17 * * *  # 17:16 UTC
