@@ -30,7 +30,3 @@ spec:
       port: 8080
       targetPort: 8080
       protocol: TCP
-  sessionAffinity: ClientIP
-  sessionAffinityConfig:
-    clientIP:
-      timeoutSeconds: 3600
