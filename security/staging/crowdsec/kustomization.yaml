@@ -26,13 +26,6 @@ patches:
             - op: replace
               path: /spec/template/metadata/annotations
               value: {}
-      - op: add
-        path: /spec/postRenderers/0/kustomize/patches/-
-        value:
-          target:
-            kind: Deployment
-            name: crowdsec-lapi
-          patch: |-
             - op: add
               path: /spec/template/metadata/annotations/backup.velero.io~1backup-volumes-excludes
               value: shared-data
