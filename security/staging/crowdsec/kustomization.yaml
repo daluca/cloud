@@ -16,6 +16,8 @@ patches:
         value:
           name: DISABLE_ONLINE_API
           value: "true"
+      - op: remove
+        path: /spec/values/config/postoverflows/s01-whitelist/production-whitelist.yaml
       - op: add
         path: /spec/postRenderers/0/kustomize/patches/-
         value:
