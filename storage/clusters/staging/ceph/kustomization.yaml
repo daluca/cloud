@@ -5,13 +5,13 @@ resources:
   - ../../base/ceph
   - ceph-dashboard-credentials.sops.yaml
 patches:
+  - path: ceph-cluster-values.yaml
+  - path: ceph-block-pool-values.yaml
+  - path: ceph-filesystem-values.yaml
   - target:
       kind: CephCluster
       name: rook-ceph
     patch: |-
-      - op: replace
-        path: /spec/cephVersion/image
-        value: quay.io/ceph/ceph:v17.2.3
       - op: replace
         path: /spec/storage/storageClassDeviceSets/0/volumeClaimTemplates/0/spec/resources/requests/storage
         value: 10Gi
@@ -28,3 +28,10 @@ patches:
       - op: replace
         path: /spec/tls/0/secretName
         value: rook-stg-tls
+  - target:
+      kind: CephFilesystem
+      name: tank
+    patch: |-
+      - op: replace
+        path: /spec/dataPools/0/replicated/size
+        value: 1
