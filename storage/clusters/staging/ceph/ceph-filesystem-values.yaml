@@ -8,6 +8,7 @@ spec:
   metadataPool:
     replicated:
       size: 1
+      requireSafeReplicaSize: false
   metadataServer:
     activeCount: 1
     activeStandby: false
