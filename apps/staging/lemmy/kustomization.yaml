@@ -11,6 +11,8 @@ patches:
       kind: Ingress
       name: lemmy
     patch: |-
+      - op: remove
+        path: /metadata/annotations/external-dns.alpha.kubernetes.io~1exclude
       - op: replace
         path: /spec/rules/0/host
         value: lemmy.${TERTIARY_DOMAIN}
