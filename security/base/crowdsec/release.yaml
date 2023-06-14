@@ -43,20 +43,12 @@ spec:
                   name: crowdsec-custom-config
                   configMap:
                     name: crowdsec-config
-          - target:
-              kind: Deployment
-              name: crowdsec-lapi
-            patch: |-
               - op: add
                 path: /spec/template/spec/containers/0/volumeMounts/-
                 value:
                   mountPath: /etc/crowdsec_data/config.yaml.local
                   subPath: config.yaml
                   name: crowdsec-custom-config
-          - target:
-              kind: Deployment
-              name: crowdsec-lapi
-            patch: |-
               - op: add
                 path: /spec/replicas
                 value: 2
