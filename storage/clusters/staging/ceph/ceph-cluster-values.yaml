@@ -7,8 +7,12 @@ metadata:
 spec:
   cephVersion:
     image: quay.io/ceph/ceph:v17
+  mon:
+    count: 1
+    allowMultiplePerNode: false
   mgr:
     count: 1
+    allowMultiplePerNode: false
   crashCollector:
     disable: true
   logCollector:

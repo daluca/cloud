@@ -13,6 +13,9 @@ patches:
       name: rook-ceph
     patch: |-
       - op: replace
+        path: /spec/storage/storageClassDeviceSets/0/count
+        value: 1
+      - op: replace
         path: /spec/storage/storageClassDeviceSets/0/volumeClaimTemplates/0/spec/resources/requests/storage
         value: 10Gi
   - target:
@@ -35,3 +38,6 @@ patches:
       - op: replace
         path: /spec/dataPools/0/replicated/size
         value: 1
+      - op: replace
+        path: /spec/dataPools/0/replicated/requireSafeReplicaSize
+        value: false
