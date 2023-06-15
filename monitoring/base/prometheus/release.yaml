@@ -51,7 +51,7 @@ spec:
         pathType: Prefix
         paths: [/]
         tls:
-          - secretName: alertmanager-stg-tls
+          - secretName: alertmanager-tls
             hosts:
               - alertmanager.${PRIMARY_DOMAIN}
       alertmanagerSpec:
@@ -80,7 +80,7 @@ spec:
         pathType: Prefix
         path: /
         tls:
-          - secretName: grafana-stg-tls
+          - secretName: grafana-tls
             hosts:
               - grafana.${PRIMARY_DOMAIN}
       admin:
@@ -141,7 +141,7 @@ spec:
         pathType: Prefix
         paths: [/]
         tls:
-          - secretName: prometheus-stg-tls
+          - secretName: prometheus-tls
             hosts:
               - prometheus.${PRIMARY_DOMAIN}
       prometheusSpec:

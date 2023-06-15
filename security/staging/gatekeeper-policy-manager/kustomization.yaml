@@ -5,3 +5,10 @@ resources:
   - ../../base/gatekeeper-policy-manager
 patches:
   - path: gatekeeper-policy-manager-values.yaml
+  - target:
+      kind: HelmRelease
+      name: gatekeeper-policy-manager
+    patch: |-
+      - op: replace
+        path: /spec/values/ingress/tls/0/secretName
+        value: gatekeeper-stg-tls

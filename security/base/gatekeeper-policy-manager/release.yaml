@@ -45,6 +45,6 @@ spec:
           pathType: Prefix
           paths: [/]
       tls:
-        - secretName: gatekeeper-stg-tls
+        - secretName: gatekeeper-tls
           hosts:
             - gatekeeper.${PRIMARY_DOMAIN}

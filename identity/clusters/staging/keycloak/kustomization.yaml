@@ -7,28 +7,9 @@ resources:
   - keycloak-credentials.sops.yaml
 patches:
   - target:
-      kind: Keycloak
-      namespace: identity
-    patch: |-
-      - op: replace
-        path: /spec/hostname/hostname
-        value: keycloak.${TERTIARY_DOMAIN}
-      - op: replace
-        path: /spec/hostname/adminUrl
-        value: https://keycloak.${TERTIARY_DOMAIN}
-  - target:
       kind: Ingress
       namespace: identity
     patch: |-
-      - op: replace
-        path: /metadata/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-cloudflare
-      - op: replace
-        path: /spec/rules/0/host
-        value: keycloak.${TERTIARY_DOMAIN}
-      - op: replace
-        path: /spec/tls/0/hosts/0
-        value: keycloak.${TERTIARY_DOMAIN}
       - op: replace
         path: /spec/tls/0/secretName
         value: keycloak-stg-tls

@@ -23,12 +23,6 @@ patches:
       name: rook-ceph-mgr-dashboard
     patch: |-
       - op: replace
-        path: /spec/rules/0/host
-        value: rook.${TERTIARY_DOMAIN}
-      - op: replace
-        path: /spec/tls/0/hosts/0
-        value: rook.${TERTIARY_DOMAIN}
-      - op: replace
         path: /spec/tls/0/secretName
         value: rook-stg-tls
   - target:

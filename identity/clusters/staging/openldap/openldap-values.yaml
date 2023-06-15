@@ -11,32 +11,6 @@ spec:
   test:
     enable: false
   values:
-    global:
-      ldapDomain: ${TERTIARY_DOMAIN}
-    replicaCount: 2
-    customLdifFiles:
-      00-root.ldif: |-
-        # Root creation
-        dn: ${TERTIARY_DOMAIN_COMPONENTS}
-        objectClass: dcObject
-        objectClass: organization
-        o: ${TERTIARY_ORGANISATION} Staging Environment
-      10-groups.ldif: |-
-        # Group creation
-        dn: ou=People,${TERTIARY_DOMAIN_COMPONENTS}
-        objectClass: organizationalUnit
-        ou: People
-
-        dn: ou=Groups,${TERTIARY_DOMAIN_COMPONENTS}
-        objectClass: organizationalUnit
-        ou: Groups
+    replicaCount: 1
     persistence:
       size: 1Gi
-    phpldapadmin:
-      ingress:
-        hosts:
-          - phpldapadmin.${TERTIARY_DOMAIN}
-        tls:
-          - secretName: phpldapadmin-stg-tls
-            hosts:
-              - phpldapadmin.${TERTIARY_DOMAIN}

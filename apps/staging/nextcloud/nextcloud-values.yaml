@@ -11,14 +11,7 @@ spec:
   test:
     enable: false
   values:
-    ingress:
-      path: /
-      tls:
-        - secretName: nextcloud-stg-tls
-          hosts:
-            - nextcloud.${TERTIARY_DOMAIN}
     nextcloud:
-      host: nextcloud.${TERTIARY_DOMAIN}
       configs:
         staging.config.php: |-
           <?php

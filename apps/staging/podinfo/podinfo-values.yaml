@@ -10,17 +10,3 @@ spec:
       version: ">=6.0.0 <7.0.0"
   test:
     enable: false
-  values:
-    replicaCount: 1
-    podAnnotations:
-      backup.velero.io/backup-volumes-excludes: data
-    ingress:
-      hosts:
-        - host: podinfo.${TERTIARY_DOMAIN}
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - secretName: podinfo-stg-tls
-          hosts:
-            - podinfo.${TERTIARY_DOMAIN}

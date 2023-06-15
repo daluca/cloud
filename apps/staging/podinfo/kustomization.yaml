@@ -5,3 +5,10 @@ resources:
   - ../../base/podinfo
 patches:
   - path: podinfo-values.yaml
+  - target:
+      kind: HelmRelease
+      name: podinfo
+    patch: |-
+      - op: replace
+        path: /spec/values/ingress/tls/0/secretName
+        value: podinfo-stg-tls
