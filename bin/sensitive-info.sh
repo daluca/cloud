@@ -5,7 +5,7 @@
 #############
 
 DEFAULT_LOG_LEVEL="WARNING"
-DEFAULT_SECRET_FILES=("configuration/staging/cluster-secrets.sops.yaml")
+DEFAULT_SECRET_FILES=("configuration/production/cluster-secrets.sops.yaml" "configuration/staging/cluster-secrets.sops.yaml")
 DEFAULT_SENSITIVE_KEYS=("DOMAIN:")
 
 #############
