@@ -5,4 +5,4 @@ metadata:
   name: exim-relay
   namespace: mail
 spec:
-  replicas: 2
+  replicas: 1
