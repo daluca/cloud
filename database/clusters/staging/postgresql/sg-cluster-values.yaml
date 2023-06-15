@@ -5,7 +5,7 @@ metadata:
   name: postgresql-cluster
   namespace: database
 spec:
-  instances: 2
+  instances: 1
   postgres:
     version: "14"
   pods:
