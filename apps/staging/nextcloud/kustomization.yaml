@@ -21,3 +21,6 @@ patches:
             location ~ /.well-known/(card|cal)dav { return 301 https://$host/remote.php/dav; }
             return 301 https://$host/index.php$request_uri;
           }
+      - op: replace
+        path: /spec/values/ingress/tls/0/secretName
+        value: nextcloud-stg-tls

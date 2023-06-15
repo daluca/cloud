@@ -16,7 +16,6 @@ spec:
       service:
         annotations:
           service.beta.kubernetes.io/do-loadbalancer-name: staging
-          service.beta.kubernetes.io/do-loadbalancer-hostname: ${TERTIARY_DOMAIN}
       config:
         proxy-real-ip-cidr: ${STAGING_VPC_CIDR},${CLOUDFLARE_IPV4_RANGE}
         whitelist-source-range: ${STAGING_IP_ALLOW_LIST}

@@ -26,11 +26,23 @@ spec:
     enable: true
     ignoreFailures: false
   values:
+    replicaCount: 2
+    podAnnotations:
+      backup.velero.io/backup-volumes-excludes: data
     ingress:
       enabled: true
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: cloudflare
         kubernetes.io/ingress.allow-http: "false"
+      hosts:
+        - host: podinfo.${PRIMARY_DOMAIN}
+          paths:
+            - pathType: Prefix
+              path: /
+      tls:
+        - secretName: podinfo-tls
+          hosts:
+            - podinfo.${PRIMARY_DOMAIN}
     serviceMonitor:
       enabled: true

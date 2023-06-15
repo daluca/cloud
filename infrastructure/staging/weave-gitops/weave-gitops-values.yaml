@@ -10,14 +10,3 @@ spec:
       version: ">=4.0.0 <5.0.0"
   test:
     enable: false
-  values:
-    ingress:
-      hosts:
-        - host: gitops.${TERTIARY_DOMAIN}
-          paths:
-            - pathType: Prefix
-              path: /
-      tls:
-        - secretName: gitops-stg-tls
-          hosts:
-            - gitops.${TERTIARY_DOMAIN}

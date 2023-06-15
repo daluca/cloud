@@ -5,10 +5,3 @@ resources:
   - ../../base/exim-relay
 patches:
   - path: exim-relay-values.yaml
-  - target:
-      kind: Deployment
-      name: exim-relay
-    patch: |-
-      - op: replace
-        path: /spec/template/spec/containers/0/env/0/value
-        value: mail.${TERTIARY_DOMAIN}

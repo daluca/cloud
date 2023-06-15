@@ -5,3 +5,10 @@ resources:
   - ../../base/weave-gitops
 patches:
   - path: weave-gitops-values.yaml
+  - target:
+      kind: HelmRelease
+      name: weave-gitops
+    patch: |-
+      - op: replace
+        path: /spec/values/ingress/tls/0/secretName
+        value: gitops-stg-tls

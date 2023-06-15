@@ -15,10 +15,10 @@ patches:
         path: /metadata/annotations/external-dns.alpha.kubernetes.io~1exclude
       - op: replace
         path: /spec/rules/0/host
-        value: lemmy.${TERTIARY_DOMAIN}
+        value: lemmy.${PRIMARY_DOMAIN}
       - op: replace
         path: /spec/tls/0/hosts/0
-        value: lemmy.${TERTIARY_DOMAIN}
+        value: lemmy.${PRIMARY_DOMAIN}
       - op: replace
         path: /spec/tls/0/secretName
         value: lemmy-stg-tls
@@ -28,7 +28,7 @@ patches:
     patch: |-
       - op: replace
         path: /spec/template/spec/containers/1/env/1/value
-        value: lemmy.${TERTIARY_DOMAIN}
+        value: lemmy.${PRIMARY_DOMAIN}
       - op: replace
         path: /spec/template/spec/containers/1/env/2/value
-        value: lemmy.${TERTIARY_DOMAIN}
+        value: lemmy.${PRIMARY_DOMAIN}

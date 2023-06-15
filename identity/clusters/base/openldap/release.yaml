@@ -42,12 +42,29 @@ spec:
                     timeoutSeconds: 10
   values:
     global:
+      ldapDomain: ${PRIMARY_DOMAIN}
       existingSecret: openldap-credentials
     replicaCount: 3
     service:
       sessionAffinity: ClientIP
     env:
       LDAP_SKIP_DEFAULT_TREE: "yes"
+    customLdifFiles:
+      00-root.ldif: |-
+        # Root creation
+        dn: ${PRIMARY_DOMAIN_COMPONENTS}
+        objectClass: dcObject
+        objectClass: organization
+        o: ${PRIMARY_ORGANISATION}
+      10-groups.ldif: |-
+        # Group creation
+        dn: ou=People,${PRIMARY_DOMAIN_COMPONENTS}
+        objectClass: organizationalUnit
+        ou: People
+
+        dn: ou=Groups,${PRIMARY_DOMAIN_COMPONENTS}
+        objectClass: organizationalUnit
+        ou: Groups
     persistence:
       enabled: true
       size: 4Gi
@@ -63,3 +80,11 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: cloudflare
           kubernetes.io/ingress.allow-http: "false"
+        path: /
+        pathType: Prefix
+        hosts:
+          - phpldapadmin.${PRIMARY_DOMAIN}
+        tls:
+          - secretName: phpldapadmin-tls
+            hosts:
+              - phpldapadmin.${PRIMARY_DOMAIN}

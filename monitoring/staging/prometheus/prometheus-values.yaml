@@ -12,32 +12,11 @@ spec:
     enable: false
   values:
     alertmanager:
-      ingress:
-        hosts:
-          - alertmanager.${TERTIARY_DOMAIN}
-        tls:
-          - secretName: alertmanager-stg-tls
-            hosts:
-              - alertmanager.${TERTIARY_DOMAIN}
       alertmanagerSpec:
         replicas: 1
     grafana:
       replicas: 1
-      ingress:
-        hosts:
-          - grafana.${TERTIARY_DOMAIN}
-        tls:
-          - secretName: grafana-stg-tls
-            hosts:
-              - grafana.${TERTIARY_DOMAIN}
     prometheus:
-      ingress:
-        hosts:
-          - prometheus.${TERTIARY_DOMAIN}
-        tls:
-          - secretName: prometheus-stg-tls
-            hosts:
-              - prometheus.${TERTIARY_DOMAIN}
       prometheusSpec:
         replicas: 1
         retention: 8d

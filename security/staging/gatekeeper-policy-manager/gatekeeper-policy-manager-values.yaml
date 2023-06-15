@@ -12,12 +12,3 @@ spec:
     enable: false
   values:
     replicaCount: 1
-    ingress:
-      hosts:
-        - host: gatekeeper.${TERTIARY_DOMAIN}
-          pathType: Prefix
-          paths: [/]
-      tls:
-        - secretName: gatekeeper-stg-tls
-          hosts:
-            - gatekeeper.${TERTIARY_DOMAIN}

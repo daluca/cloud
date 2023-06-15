@@ -58,6 +58,10 @@ spec:
           }
         # yamllint enable rule:line-length
       path: /
+      tls:
+        - secretName: nextcloud-tls
+          hosts:
+            - nextcloud.${PRIMARY_DOMAIN}
     nextcloud:
       host: nextcloud.${PRIMARY_DOMAIN}
       existingSecret:

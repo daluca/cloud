@@ -6,3 +6,10 @@ resources:
   - openldap-credentials.sops.yaml
 patches:
   - path: openldap-values.yaml
+  - target:
+      kind: HelmRelease
+      name: openldap
+    patch: |-
+      - op: replace
+        path: /spec/values/phpldapadmin/ingress/tls/0/secretName
+        value: phpldapadmin-stg-tls

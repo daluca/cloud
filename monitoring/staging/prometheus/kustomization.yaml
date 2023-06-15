@@ -12,3 +12,12 @@ patches:
     patch: |-
       - op: remove
         path: /spec/values/prometheus/prometheusSpec/storageSpec
+      - op: replace
+        path: /spec/values/alertmanager/ingress/tls/0/secretName
+        value: alertmanager-stg-tls
+      - op: replace
+        path: /spec/values/grafana/ingress/tls/0/secretName
+        value: grafana-stg-tls
+      - op: replace
+        path: /spec/values/prometheus/ingress/tls/0/secretName
+        value: prometheus-stg-tls
