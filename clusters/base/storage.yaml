@@ -31,7 +31,6 @@ spec:
     - name: configuration
     - name: crds
     - name: infrastructure
-    - name: issuers
     - name: storage-operators
   interval: 1h
   retryInterval: 1m

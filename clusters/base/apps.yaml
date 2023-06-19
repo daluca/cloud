@@ -11,7 +11,6 @@ spec:
     - name: configuration
     - name: crds
     - name: infrastructure
-    - name: issuers
     - name: storage-clusters
     - name: database-clusters
   interval: 1h
