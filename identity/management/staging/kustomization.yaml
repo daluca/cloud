@@ -20,7 +20,7 @@ patches:
         path: /metadata/name
         value: staging-realm
       - op: replace
-        path: /spec/writeOutputsToSecret
+        path: /spec/writeOutputsToSecret/name
         value: staging-realm-output
       - op: replace
         path: /spec/vars/0/value
