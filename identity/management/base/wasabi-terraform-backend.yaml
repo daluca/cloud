@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wasabi-terraform-backend
+  namespace: identity
+data:
+  endpoint: s3.ap-southeast-2.wasabisys.com
+  key: keycloak/production/terraform.tfstate
+  region: ap-southeast-2
+  encrypt: "true"
+  skip_credentials_validation: "true"
+  skip_region_validation: "true"
+  skip_metadata_api_check: "true"
+  force_path_style: "true"

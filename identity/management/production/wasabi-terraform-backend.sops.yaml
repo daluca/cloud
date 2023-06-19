@@ -1,0 +1,32 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: wasabi-terraform-backend
+  namespace: identity
+type: Opaque
+stringData:
+  bucket: ENC[AES256_GCM,data:Tx6VVL/bG1T/sZxm8jp0YHFOmTIw+bduFQ30yx9sCjU=,iv:cXEAEKhDmMDSZijNcsSVejKQHAUv+6byLZ/6aesoTk8=,tag:o86YqYcyNfWyzPOSTH0NZg==,type:str]
+  access_key: ENC[AES256_GCM,data:F1ZWGO2JsrNhMZciAT2IKU4xTlo=,iv:NcRcX5P634HCCl15GBNciOQIxLCGcNOdCF/tgJqpA68=,tag:WZTmD+2oZV9B3B9d2ysBjw==,type:str]
+  secret_key: ENC[AES256_GCM,data:iO6P5vG+kCSj+Lyi3ldT71SMxGKK59FlFDhNJ9xeEFckMkzlv7U3YQ==,iv:UdGDzKayKuZGrEOT4xmI0OftjmjiWBorWyznrM01FAc=,tag:6GA8uYusYw0zXfQgJS63Aw==,type:str]
+  sse_customer_key: ENC[AES256_GCM,data:7BIHLBfv5+UBvCcb3YIxIhc6fUvGjlj7CtFpoe/wh8lb7qDIBrCLORfNhA4=,iv:3+oqCxUFT23TamzJfmAQhC+UZzrzppZ3d3trz+4RtlU=,tag:BMD8UP+Lq9o/etyR94t72g==,type:str]
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1gzx4nxzmefttk92fz3rwn5w2nshdc3xfq26j55fp2e8f6q07s5psg9xw8l
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBmYWJCWDQvcTdqQlBSOHZL
+        Z0dDUWFpcnhaS2dDWE11MjBtOW9BYlpZTlFRCjJPRnpDKzB4OWhSa3NvRzRWUjVD
+        VUpMVXA3Y2NXeW1yVGJCRGdFMG1OUmMKLS0tIGZjbzZhV055cWJKUm9zcy82WHl2
+        WEZIdm9ZNTY5YWVjb2tUS0Y4OG8zbTAKkvaX0yKi8Yk4t6COkWLdH0bmWGzyrJYV
+        52phidX0Txr2DDTaDNtxIBYCqLK4kNcchYSrEBh04SVLmfwOPq+W5Q==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2023-06-19T03:09:03Z"
+  mac: ENC[AES256_GCM,data:voWfIcPMBgA2RouTKVe7BE8IoXlr6RloYdK9BiCB2bN/1nuccvGUKD1OEGmz2a0Um5orD7rFExGcTWGZmNnYZCbEC5KcGPWLXtpdDKOVyPQ6gVij0z7X0x7nZfWKw/Msk62EXmPVGm4dApVvDSh5UyWWNdjQQGixcRKSBcitciM=,iv:q/52zGdrXURSuwwS6aJH6MeG/ewuiByHW5vi/JNeYGM=,tag:abM9Ajr/pNReWTpqrUaDig==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.7.3
