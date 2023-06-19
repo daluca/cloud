@@ -5,6 +5,7 @@ resources:
   - ../../base/keycloak
   - database-credentials.sops.yaml
 patches:
+  - path: keycloak-values.yaml
   - target:
       kind: Ingress
       name: keycloak
