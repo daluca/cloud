@@ -5,6 +5,7 @@ resources:
   - ../base
   - wasabi-terraform-backend.sops.yaml
   - keycloak-terraform-credentials.sops.yaml
+  - keycloak-terraform-values.sops.yaml
 patches:
   - target:
       kind: ConfigMap
@@ -23,9 +24,6 @@ patches:
       - op: replace
         path: /spec/path
         value: ./deploy/terraform/keycloak/staging
-      - op: replace
-        path: /spec/writeOutputsToSecret/name
-        value: staging-realm-output
       - op: replace
         path: /spec/vars/0/value
         value: staging

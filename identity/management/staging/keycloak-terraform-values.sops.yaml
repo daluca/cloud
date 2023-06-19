@@ -1,0 +1,32 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: keycloak-terraform-values
+  namespace: identity
+type: Opaque
+stringData:
+  openldap_username: ENC[AES256_GCM,data:dF1XpsI=,iv:Zvrc42xNmL1PZCL0Qxt+iG3e8gMJod6iwBoUO5BQ2y8=,tag:DA5+lPZHkKsPX/NYaUnYGA==,type:str]
+  openldap_password: ENC[AES256_GCM,data:tLCjB3w2T7+ivnhAq8KZ3GdI6sOL7rP/I2yFKy8BNHI=,iv:3cQHyM5YLFOyoDa0ZjGIaO/PzIjnDlk+rK9TtV+fvTE=,tag:XzMpWvMGxYskX9ezHYPs/w==,type:str]
+  domain_components: ENC[AES256_GCM,data:9HFMJZra6eIxKJN8RbLkFQ==,iv:CoDQcqRRYcUrerpPTSe2zo4ESB0G2HptLriTm95hLmg=,tag:8XON6Lhu/5N7NhZK2UEDNA==,type:str]
+  users: ENC[AES256_GCM,data:SvjlspQBRHNVK23UyANreBMxzu/Gn0dqO5jTiH5kxqHOrGPOErxdfLkjcFE00+veR368xB0ZdtV6MPcLovbLj6gk84wlhGEId9wWodcfnULonmvDu1VQ1Xpm8AXnWcP3mPZu/OxqELeXYQaVpCLz7Bp9H1ULK6WQ4bxGJM0kbqLPuaeO2bAnrf7i4esbbJFV5RIr+Ei86ViHpsuM7xV33J9Zx9WVUqIhIsATf9Zdyew=,iv:BuwqIaXdWQActZgAQ8V48nUDtx1RA960IepgxSvECwI=,tag:ZkjdbG0HKL/W9dB/3igPAQ==,type:str]
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1z9tp2h60k24daxwdkq29nf4ch7a87wem4sx2jkcqe9x62k07k3vqf5rx6k
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBkeko2dVYzdUFMVWg0SUNu
+        Rk9IbC82SEtxTGxLZVZvMll5UGdVRFA0UjJRCmk4S3VxcVMvQzdzOFdDUy9XbmZT
+        OGlrV2RrcWtDUU1WclRBbmVBc2pRZmMKLS0tIHVuZGpvUUx2YkZIN1JqWXpYOEFK
+        OXE5YjJyWnlIdzVvUFlXb01NeGtwNFEKYtsiZGaYl/zoymQxAp6Qzvibh1gn7Rm3
+        yUGnWucQUTn2DC1NFP2BILhCkGeL8ofO08YWWNP/hT1HIbmUyVgTGA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2023-06-19T10:16:20Z"
+  mac: ENC[AES256_GCM,data:o4sLF64FN1JGAl3kKLfrWpeplOcXSsktBfKz6czY4VKdA9QB4g0bQmBcUXZPhBtsMRO/Y+J4ImqdRrfAHp0tTMiTgYXGMMiZIJB74eddTdo+TMhbrw+LnuFILwT7ib+l/jfQSoqO68fcNbJTRumTOxM9zIBDxs/BjvUWbY0s9w4=,iv:RrdolOq4iG5gehqZsvHMbXXgo8+HWB4o3nU1oFSWneE=,tag:yvFVzMkTdAt6rj+z39yTUg==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.7.3

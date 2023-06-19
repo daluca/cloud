@@ -19,11 +19,12 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  writeOutputsToSecret:
-    name: production-realm-output
   vars:
     - name: realm
       value: production
+  varsFrom:
+    - kind: Secret
+      name: keycloak-terraform-values
   runnerPodTemplate:
     spec:
       envFrom:
