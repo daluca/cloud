@@ -41,6 +41,10 @@ spec:
       requests:
         cpu: 200m
         memory: 64Mi
+    runner:
+      serviceAccount:
+        allowedNamespaces:
+          - identity
     metrics:
       enabled: true
       serviceMonitor:

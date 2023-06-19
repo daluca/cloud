@@ -1,0 +1,26 @@
+---
+apiVersion: infra.contrib.fluxcd.io/v1alpha2
+kind: Terraform
+metadata:
+  name: production-realm
+  namespace: identity
+spec:
+  interval: 1m
+  approvePlan: auto
+  path: ./deploy/terraform/configuration/keycloak
+  backendConfig:
+    customConfiguration: backend "s3" {}
+  backendConfigsFrom:
+    - name: wasabi-terraform-backend
+      kind: ConfigMap
+    - name: wasabi-terraform-backend
+      kind: Secret
+  sourceRef:
+    kind: GitRepository
+    name: tf-controller-testing
+    namespace: flux-system
+  writeOutputsToSecret:
+    name: production-realm-output
+  vars:
+    - name: realm
+      value: production

@@ -1,0 +1,39 @@
+---
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: KeycloakRealmImport
+metadata:
+  name: production
+  namespace: identity
+spec:
+  keycloakCRName: keycloak
+  realm:
+    realm: production
+    displayName: Production
+    enabled: true
+    clients:
+      - clientId: terraform
+        name: Terraform
+        description: Terraform client for deploying realm settings
+        enabled: true
+        protocol: openid-connect
+        alwaysDisplayInConsole: false
+        clientAuthenticatorType: client-secret
+        secret: ${KEYCLOAK_TERRAFORM_CLIENT_SECRET}
+        serviceAccountsEnabled: true
+        publicClient: false
+        frontchannelLogout: false
+        attributes:
+          oidc.ciba.grant.enabled: "false"
+          oauth2.device.authorization.grant.enabled: "false"
+          backchannel.logout.session.required: "false"
+          backchannel.logout.revoke.offline.tokens: "false"
+    users:
+      - username: service-account-terraform
+        createdTimestamp: 1687078658351
+        enabled: true
+        serviceAccountClientId: terraform
+        realmRoles:
+          - default-roles-staging
+        clientRoles:
+          realm-management:
+            - realm-admin

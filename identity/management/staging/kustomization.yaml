@@ -1,0 +1,27 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../base
+  - wasabi-terraform-backend.sops.yaml
+patches:
+  - target:
+      kind: ConfigMap
+      name: wasabi-terraform-backend
+    patch: |-
+      - op: replace
+        path: /data/key
+        value: keycloak/staging/terraform.tfstate
+  - target:
+      kind: Terraform
+      name: production-realm
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: staging-realm
+      - op: replace
+        path: /spec/writeOutputsToSecret
+        value: staging-realm-output
+      - op: replace
+        path: /spec/vars/0/value
+        value: staging

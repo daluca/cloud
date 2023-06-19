@@ -4,12 +4,25 @@ kind: Kustomization
 resources:
   - ../../base/keycloak
   - database-credentials.sops.yaml
-  - keycloak-credentials.sops.yaml
 patches:
+  - path: keycloak-values.yaml
   - target:
       kind: Ingress
-      namespace: identity
+      name: keycloak
     patch: |-
       - op: replace
         path: /spec/tls/0/secretName
         value: keycloak-stg-tls
+  - target:
+      kind: KeycloakRealmImport
+      name: production
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: staging
+      - op: replace
+        path: /spec/realm/realm
+        value: staging
+      - op: replace
+        path: /spec/realm/displayName
+        value: Staging
