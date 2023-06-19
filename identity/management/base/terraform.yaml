@@ -7,7 +7,7 @@ metadata:
 spec:
   interval: 1m
   approvePlan: auto
-  path: ./deploy/terraform/configuration/keycloak
+  path: ./deploy/terraform/keycloak/production
   backendConfig:
     customConfiguration: backend "s3" {}
   backendConfigsFrom:
