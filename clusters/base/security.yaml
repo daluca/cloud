@@ -10,7 +10,6 @@ spec:
     - name: sources
     - name: crds
     - name: infrastructure
-    - name: issuers
     - name: database-clusters
   interval: 1h
   retryInterval: 1m
