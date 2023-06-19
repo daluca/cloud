@@ -5,4 +5,4 @@ metadata:
   name: keycloak
   namespace: identity
 spec:
-  instances: 2
+  instances: 1
