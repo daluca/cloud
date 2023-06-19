@@ -17,7 +17,7 @@ spec:
       kind: Secret
   sourceRef:
     kind: GitRepository
-    name: tf-controller-testing
+    name: flux-system
     namespace: flux-system
   writeOutputsToSecret:
     name: production-realm-output
