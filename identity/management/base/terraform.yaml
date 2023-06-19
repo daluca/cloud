@@ -24,3 +24,8 @@ spec:
   vars:
     - name: realm
       value: production
+  runnerPodTemplate:
+    spec:
+      envFrom:
+        - secretRef:
+            name: keycloak-terraform-credentials

@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ../base
   - wasabi-terraform-backend.sops.yaml
+  - keycloak-terraform-credentials.sops.yaml
 patches:
   - target:
       kind: ConfigMap
