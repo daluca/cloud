@@ -85,6 +85,7 @@ spec:
       volumeSnapshotLocation:
         - name: digitalocean
           provider: digitalocean.com/velero
+      features: EnableCSI
     credentials:
       useSecret: true
       name: velero-digitalocean-credentials
