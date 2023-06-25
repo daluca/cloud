@@ -42,10 +42,21 @@ spec:
               - op: remove
                 path: /spec/template/spec/containers/0/resources/limits/cpu
   values:
+    crds:
+      enabled: true
     resources:
       limits:
         memory: 256Mi
-    crds:
-      enabled: true
+    csi:
+      provisionerTolerations:
+        - key: workloadKind
+          operator: Equal
+          value: monitoring
+          effect: NoSchedule
+      pluginTolerations:
+        - key: workloadKind
+          operator: Equal
+          value: monitoring
+          effect: NoSchedule
     monitoring:
       enabled: true
