@@ -42,7 +42,6 @@ spec:
                     timeoutSeconds: 10
   values:
     global:
-      ldapDomain: ${PRIMARY_DOMAIN}
       existingSecret: openldap-credentials
     replicaCount: 3
     service:
