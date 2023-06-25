@@ -32,5 +32,10 @@ spec:
     enable: true
     ignoreFailures: false
   values:
+    keycloak:
+      image:
+        tag: 21.1.1
+    image:
+      tag: 21.1.1
     serviceAccount:
       create: false
