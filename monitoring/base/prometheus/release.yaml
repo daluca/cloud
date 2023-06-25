@@ -156,11 +156,11 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: do-block-storage
+              storageClassName: rook-ceph-block
               accessModes: [ReadWriteOnce]
               resources:
                 requests:
-                  storage: 8Gi
+                  storage: 10Gi
         retention: 15d
         retentionSize: 8GiB
         # Turing this to false means all serviceMonitors will match
