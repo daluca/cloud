@@ -42,6 +42,7 @@ spec:
                     timeoutSeconds: 10
   values:
     global:
+      ldapDomain: ${PRIMARY_DOMAIN}
       existingSecret: openldap-credentials
     replicaCount: 3
     service:
@@ -50,13 +51,11 @@ spec:
       LDAP_SKIP_DEFAULT_TREE: "yes"
     customLdifFiles:
       00-root.ldif: |-
-        # Root creation
         dn: ${PRIMARY_DOMAIN_COMPONENTS}
         objectClass: dcObject
         objectClass: organization
         o: ${PRIMARY_ORGANISATION}
       10-groups.ldif: |-
-        # Group creation
         dn: ou=People,${PRIMARY_DOMAIN_COMPONENTS}
         objectClass: organizationalUnit
         ou: People
