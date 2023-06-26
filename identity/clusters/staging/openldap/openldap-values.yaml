@@ -11,6 +11,6 @@ spec:
   test:
     enable: false
   values:
-    replicaCount: 1
+    replicaCount: 2
     persistence:
       size: 1Gi
