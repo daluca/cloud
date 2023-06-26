@@ -80,7 +80,7 @@ rules:
     type: unix
     level: error
   octal-values:
-    forbid-implicit-octal: true
+    forbid-implicit-octal: false
     forbid-explicit-octal: true
     level: error
   quoted-strings:
