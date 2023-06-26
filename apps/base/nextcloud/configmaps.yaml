@@ -14,3 +14,33 @@ data:
     redis.session.locking_enabled=1
     redis.session.lock_retries=-1
     redis.session.lock_wait_time=10000
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: post-installation-scripts
+  namespace: nextcloud
+data:
+  00-debug.sh: |-
+    #!/bin/sh
+
+    echo "Debugging"
+    whoami
+  # yamllint disable rule:line-length
+  10-oidc-disable-other-logins.sh: |-
+    #!/bin/sh
+
+    php /var/www/html/occ config:app:set --value=0 user_oidc allow_multiple_user_backends
+  # yamllint enable rule:line-length
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: before-starting-scripts
+  namespace: nextcloud
+data:
+  00-debug.sh: |-
+    #!/bin/sh
+
+    echo "Debugging"
+    whoami
