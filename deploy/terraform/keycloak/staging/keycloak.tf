@@ -2,8 +2,8 @@ module "staging" {
   source = "../../modules/keycloak"
 
   keycloak = {
-    realm = "staging"
-    users = var.users
+    realm  = "staging"
+    domain = var.domain
   }
 
   openldap = {

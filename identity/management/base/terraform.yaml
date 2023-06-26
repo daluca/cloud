@@ -5,7 +5,7 @@ metadata:
   name: production-realm
   namespace: identity
 spec:
-  interval: 1m
+  interval: 1h
   approvePlan: auto
   path: ./deploy/terraform/keycloak/production
   backendConfig:
@@ -19,6 +19,8 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
+  writeOutputsToSecret:
+    name: keycloak-terraform-outputs
   vars:
     - name: realm
       value: production

@@ -10,19 +10,14 @@ variable "openldap_password" {
   sensitive   = true
 }
 
-variable "domain_components" {
-  description = "OpenLDAP domain component."
+variable "domain" {
+  description = "Domain for client applications."
   type        = string
   sensitive   = true
 }
 
-variable "users" {
-  description = "Keycloak users."
-  type = list(object({
-    username   = string
-    first_name = string
-    last_name  = string
-    email      = string
-  }))
-  sensitive = true
+variable "domain_components" {
+  description = "OpenLDAP domain component."
+  type        = string
+  sensitive   = true
 }
