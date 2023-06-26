@@ -128,9 +128,19 @@ spec:
             'hide_login_form'      => false,
             'skeletondirectory'    => '',
           );
+        oidc.config.php: |-
+          <?php
+          $CONFIG = array (
+            'user_oidc' => [
+              'single_logout' => true,
+              'auto_provision' => true,
+              'userinfo_bearer_validation' => true,
+            ]
+          );
         custom.config.php: |-
           <?php
           $CONFIG = array (
+            'allow_local_remote_servers' = true,
             'trusted_domains' => array (
               0 => 'localhost',
               1 => 'nextcloud',
