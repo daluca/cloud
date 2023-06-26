@@ -61,9 +61,9 @@ spec:
       tls:
         - secretName: nextcloud-tls
           hosts:
-            - nextcloud.${PRIMARY_DOMAIN}
+            - cloud.${PRIMARY_DOMAIN}
     nextcloud:
-      host: nextcloud.${PRIMARY_DOMAIN}
+      host: cloud.${PRIMARY_DOMAIN}
       existingSecret:
         enabled: true
         secretName: nextcloud-credentials
@@ -72,7 +72,7 @@ spec:
       mail:
         enabled: true
         fromAddress: no-reply
-        domain: nextcloud.${PRIMARY_DOMAIN}
+        domain: cloud.${PRIMARY_DOMAIN}
         smtp:
           host: exim-relay.mail
           secure: ""
