@@ -79,7 +79,6 @@ spec:
           port: 25
           authtype: NONE
       configs:
-        # yamllint disable rule:line-length
         s3.config.php: |-
           <?php
           $CONFIG = array (
@@ -99,6 +98,28 @@ spec:
               )
             )
           );
+        redis-cluster.config.php: |-
+          <?php
+          $CONFIG = array (
+            'redis.cluster' => array (
+              'seeds' => [
+                'redis-cluster-leader.database:6379',
+              ],
+              'timeout' => 0.0,
+              'read_timeout' => 0.0,
+              'failover_mode' => '\RedisCluster::FAILOVER_ERROR',
+              'password' => getenv('REDIS_CLUSTER_PASSWORD'),
+            ),
+          );
+        caching.config.php: |-
+          <?php
+          $CONFIG = array (
+            'memcache.local' => '\OC\Memcache\APCu',
+            'memcache.distributed' => '\OC\Memcache\Redis',
+            'memcache.locking' => '\OC\Memcache\Redis',
+            'filelocking.enabled' => true,
+            'filelocking.ttl' => 60*60,
+          );
         logging.config.php: |-
           <?php
           $CONFIG = array (
@@ -106,6 +127,7 @@ spec:
             'logfile'  => '/var/log/nextcloud/nextcloud.log',
             'loglevel' => 2,
           );
+        # yamllint disable rule:line-length
         proxy.config.php: |-
           <?php
           $CONFIG = array (
@@ -120,6 +142,7 @@ spec:
               1 => 'HTTP_CF_CONNECTING-IP',
             ),
           );
+        # yamllint enable rule:line-length
         user-experience.config.php: |-
           <?php
           $CONFIG = array (
@@ -150,7 +173,6 @@ spec:
               5 => getenv('NEXTCLOUD_TRUSTED_DOMAINS')
             ),
           );
-        # yamllint enable rule:line-length
       strategy:
         type: RollingUpdate
         rollingUpdate:
