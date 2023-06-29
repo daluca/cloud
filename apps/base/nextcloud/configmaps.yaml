@@ -24,14 +24,27 @@ data:
   00-debug.sh: |-
     #!/bin/sh
 
-    echo "Debugging"
-    whoami
-  # yamllint disable rule:line-length
-  10-oidc-disable-other-logins.sh: |-
+    echo "Running as $( whoami )"
+  10-install-apps.sh: |-
     #!/bin/sh
 
-    php /var/www/html/occ config:app:set --value=0 user_oidc allow_multiple_user_backends
-  # yamllint enable rule:line-length
+    php ./occ app:install user_oidc
+    php ./occ app:install contacts
+    php ./occ app:install calendar
+    php ./occ app:install tasks
+    php ./occ app:install deck
+  11-enable-apps.sh: |-
+    #!/bin/sh
+
+    php ./occ app:enable twofactor_totp
+  12-disable-apps.sh: |-
+    #!/bin/sh
+
+    php ./occ app:disable contactsinteraction
+  20-oidc-disable-other-logins.sh: |-
+    #!/bin/sh
+
+    php ./occ config:app:set user_oidc allow_multiple_user_backends --value=0
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -42,5 +55,4 @@ data:
   00-debug.sh: |-
     #!/bin/sh
 
-    echo "Debugging"
-    whoami
+    echo "Running as $( whoami )"
