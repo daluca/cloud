@@ -21,3 +21,14 @@ variable "domain_components" {
   type        = string
   sensitive   = true
 }
+
+variable "user" {
+  description = "Keycloak user settings."
+  type = object({
+    first_name = string
+    last_name  = string
+    username   = string
+    email      = string
+    quota      = optional(string)
+  })
+}

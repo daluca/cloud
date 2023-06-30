@@ -21,3 +21,24 @@ resource "keycloak_openid_client" "nextcloud" {
     "id.token.signed.response.alg" = "RS256"
   }
 }
+
+resource "keycloak_openid_user_client_role_protocol_mapper" "nextcloud_groups" {
+  realm_id  = data.keycloak_realm.main.id
+  client_id = keycloak_openid_client.nextcloud.id
+
+  name       = "groups"
+  claim_name = "groups"
+
+  client_id_for_role_mappings = keycloak_openid_client.nextcloud.client_id
+
+  multivalued = true
+}
+
+resource "keycloak_openid_user_attribute_protocol_mapper" "nextcloud_quota" {
+  realm_id  = data.keycloak_realm.main.id
+  client_id = keycloak_openid_client.nextcloud.id
+
+  name           = "quota"
+  claim_name     = "quota"
+  user_attribute = "quota"
+}

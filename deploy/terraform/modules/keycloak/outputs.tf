@@ -1,3 +1,18 @@
+output "realm_id" {
+  description = "Keycloak realm ID."
+  value       = data.keycloak_realm.main.id
+}
+
+output "administrators_id" {
+  description = "Keycloak Admin group ID."
+  value       = keycloak_group.administrators.id
+}
+
+output "users_id" {
+  description = "Keycloak User group ID."
+  value       = keycloak_group.users.id
+}
+
 output "nextcloud_client_id" {
   description = "Nextcloud OpenID Connect client-id."
   value       = keycloak_openid_client.nextcloud.client_id
