@@ -34,8 +34,8 @@ spec:
   values:
     keycloak:
       image:
-        tag: 21.1.1
+        tag: 21.1.2
     image:
-      tag: 21.1.1
+      tag: 21.1.2
     serviceAccount:
       create: false

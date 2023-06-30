@@ -12,16 +12,57 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - keycloak.${PRIMARY_DOMAIN}
+        - sso.${PRIMARY_DOMAIN}
       secretName: keycloak-tls
   rules:
-    - host: keycloak.${PRIMARY_DOMAIN}
+    - host: sso.${PRIMARY_DOMAIN}
       http:
         paths:
           - pathType: Prefix
-            path: /
+            path: /realms
             backend:
               service:
-                name: keycloak-service
+                name: keycloak
                 port:
-                  number: 8080
+                  name: http
+          - pathType: Prefix
+            path: /resources
+            backend:
+              service:
+                name: keycloak
+                port:
+                  name: http
+          - pathType: Prefix
+            path: /js
+            backend:
+              service:
+                name: keycloak
+                port:
+                  name: http
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keycloak-admin
+  namespace: identity
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare
+    kubernetes.io/ingress.allow-http: "false"
+    nginx.ingress.kubernetes.io/whitelist-source-range: ${PRODUCTION_IP_ALLOW_LIST}
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - sso.${PRIMARY_DOMAIN}
+      secretName: keycloak-tls
+  rules:
+    - host: sso.${PRIMARY_DOMAIN}
+      http:
+        paths:
+          - pathType: Prefix
+            path: /admin
+            backend:
+              service:
+                name: keycloak
+                port:
+                  name: http

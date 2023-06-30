@@ -14,6 +14,16 @@ patches:
         path: /spec/tls/0/secretName
         value: keycloak-stg-tls
   - target:
+      kind: Ingress
+      name: keycloak-admin
+    patch: |-
+      - op: replace
+        path: /metadata/annotations/nginx.ingress.kubernetes.io~1whitelist-source-range
+        value: ${STAGING_IP_ALLOW_LIST}
+      - op: replace
+        path: /spec/tls/0/secretName
+        value: keycloak-stg-tls
+  - target:
       kind: KeycloakRealmImport
       name: production
     patch: |-
