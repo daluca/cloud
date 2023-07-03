@@ -42,6 +42,24 @@ spec:
                 lemmy_routes=info,
                 lemmy_utils=info,
                 lemmy_websocket=info
+          livenessProbe:
+            httpGet:
+              port: http
+              path: /
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              port: http
+              path: /
+            periodSeconds: 10
+            failureThreshold: 3
+          startupProbe:
+            httpGet:
+              port: http
+              path: /
+            periodSeconds: 3
+            failureThreshold: 10
           volumeMounts:
             - mountPath: /config/config.hjson
               subPath: config.hjson
@@ -85,6 +103,18 @@ spec:
               value: ${TERTIARY_DOMAIN}
             - name: LEMMY_UI_HTTPS
               value: "false"
+          livenessProbe:
+            httpGet:
+              port: http
+              path: /
+            periodSeconds: 3
+            failureThreshold: 5
+          readinessProbe:
+            httpGet:
+              port: http
+              path: /
+            periodSeconds: 3
+            failureThreshold: 5
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -136,6 +166,16 @@ spec:
               value: "65536"
             - name: PICTRS__MEDIA__GIF__MAX_FRAME_COUNT
               value: "400"
+          livenessProbe:
+            tcpSocket:
+              port: http
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            tcpSocket:
+              port: http
+            periodSeconds: 10
+            failureThreshold: 3
           volumeMounts:
             - mountPath: /mnt/sled-repo
               subPath: sled
@@ -172,3 +212,15 @@ spec:
           env:
             - name: CUSTOM_LEMMY_SERVERS
               value: ${TERTIARY_DOMAIN}
+          livenessProbe:
+            httpGet:
+              port: http
+              path: /
+            periodSeconds: 3
+            failureThreshold: 5
+          readinessProbe:
+            httpGet:
+              port: http
+              path: /
+            periodSeconds: 3
+            failureThreshold: 5
