@@ -110,7 +110,7 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
       containers:
         - name: pictrs
-          image: asonix/pictrs:0.4.0-rc.3
+          image: asonix/pictrs:0.4.0-rc.10
           resources:
             limits:
               memory: 128Mi
