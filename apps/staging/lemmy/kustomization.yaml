@@ -24,13 +24,10 @@ patches:
         value: lemmy-stg-tls
   - target:
       kind: Deployment
-      name: lemmy
+      name: lemmy-ui
     patch: |-
       - op: replace
-        path: /spec/template/spec/containers/1/env/1/value
-        value: lemmy.${PRIMARY_DOMAIN}
-      - op: replace
-        path: /spec/template/spec/containers/1/env/2/value
+        path: /spec/template/spec/containers/0/env/1/value
         value: lemmy.${PRIMARY_DOMAIN}
   - target:
       kind: Ingress

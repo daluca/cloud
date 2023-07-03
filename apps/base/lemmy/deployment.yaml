@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: lemmy
-          image: dessalines/lemmy:0.17.4
+          image: dessalines/lemmy:0.18.1-rc.4
           resources:
             limits:
               memory: 128Mi
@@ -42,12 +42,51 @@ spec:
                 lemmy_routes=info,
                 lemmy_utils=info,
                 lemmy_websocket=info
+          livenessProbe:
+            httpGet:
+              port: http
+              path: /
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              port: http
+              path: /
+            periodSeconds: 10
+            failureThreshold: 3
+          startupProbe:
+            httpGet:
+              port: http
+              path: /
+            periodSeconds: 3
+            failureThreshold: 10
           volumeMounts:
             - mountPath: /config/config.hjson
               subPath: config.hjson
               name: lemmy-secrets
+      volumes:
+        - name: lemmy-secrets
+          secret:
+            secretName: lemmy-secrets
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lemmy-ui
+  namespace: lemmy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lemmy-ui
+  template:
+    metadata:
+      labels:
+        app: lemmy-ui
+    spec:
+      containers:
         - name: lemmy-ui
-          image: dessalines/lemmy-ui:0.17.4
+          image: dessalines/lemmy-ui:0.18.1-rc.7
           resources:
             limits:
               memory: 128Mi
@@ -59,36 +98,23 @@ spec:
               containerPort: 1234
           env:
             - name: LEMMY_UI_LEMMY_INTERNAL_HOST
-              value: 0.0.0.0:8536
+              value: lemmy.lemmy
             - name: LEMMY_UI_LEMMY_EXTERNAL_HOST
-              value: ${TERTIARY_DOMAIN}
-            - name: LEMMY_UI_LEMMY_WS_HOST
               value: ${TERTIARY_DOMAIN}
             - name: LEMMY_UI_HTTPS
               value: "false"
-        - name: proxy
-          image: nginx:1.25.0-alpine
-          resources:
-            limits:
-              memory: 64Mi
-            requests:
-              cpu: 30m
-              memory: 32Mi
-          ports:
-            - name: http
-              containerPort: 80
-          volumeMounts:
-            - mountPath: /etc/nginx/nginx.conf
-              subPath: nginx.conf
-              name: proxy-config
-              readOnly: true
-      volumes:
-        - name: lemmy-secrets
-          secret:
-            secretName: lemmy-secrets
-        - name: proxy-config
-          configMap:
-            name: proxy-config
+          livenessProbe:
+            httpGet:
+              port: http
+              path: /
+            periodSeconds: 3
+            failureThreshold: 5
+          readinessProbe:
+            httpGet:
+              port: http
+              path: /
+            periodSeconds: 3
+            failureThreshold: 5
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -114,7 +140,7 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
       containers:
         - name: pictrs
-          image: asonix/pictrs:0.4.0-rc.3
+          image: asonix/pictrs:0.4.0-rc.10
           resources:
             limits:
               memory: 128Mi
@@ -140,6 +166,16 @@ spec:
               value: "65536"
             - name: PICTRS__MEDIA__GIF__MAX_FRAME_COUNT
               value: "400"
+          livenessProbe:
+            tcpSocket:
+              port: http
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            tcpSocket:
+              port: http
+            periodSeconds: 10
+            failureThreshold: 3
           volumeMounts:
             - mountPath: /mnt/sled-repo
               subPath: sled
@@ -176,3 +212,15 @@ spec:
           env:
             - name: CUSTOM_LEMMY_SERVERS
               value: ${TERTIARY_DOMAIN}
+          livenessProbe:
+            httpGet:
+              port: http
+              path: /
+            periodSeconds: 3
+            failureThreshold: 5
+          readinessProbe:
+            httpGet:
+              port: http
+              path: /
+            periodSeconds: 3
+            failureThreshold: 5

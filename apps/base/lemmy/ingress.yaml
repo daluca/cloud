@@ -9,6 +9,18 @@ metadata:
     kubernetes.io/ingress.allow-http: "false"
     nginx.ingress.kubernetes.io/proxy-body-size: 20M
     external-dns.alpha.kubernetes.io/exclude: "true"
+    # yamllint disable rule:line-length
+    nginx.ingress.kubernetes.io/configuration-snippet: |-
+      if ($http_accept = "application/activity+json") {
+        set $proxy_upstream_name "lemmy-lemmy-http";
+      }
+      if ($http_accept = "application/ld+json; profile=\"https://www.w3.org/ns/activitystreams\"") {
+        set $proxy_upstream_name "lemmy-lemmy-http";
+      }
+      if ($request_method = POST) {
+        set $proxy_upstream_name "lemmy-lemmy-http";
+      }
+    # yamllint enable rule:line-length
 spec:
   ingressClassName: nginx
   tls:
@@ -23,9 +35,44 @@ spec:
             path: /
             backend:
               service:
+                name: lemmy-ui
+                port:
+                  name: http
+          - pathType: Prefix
+            path: /api
+            backend:
+              service:
                 name: lemmy
                 port:
-                  name: proxy
+                  name: http
+          - pathType: Prefix
+            path: /pictrs
+            backend:
+              service:
+                name: lemmy
+                port:
+                  name: http
+          - pathType: Prefix
+            path: /feeds
+            backend:
+              service:
+                name: lemmy
+                port:
+                  name: http
+          - pathType: Prefix
+            path: /nodeinfo
+            backend:
+              service:
+                name: lemmy
+                port:
+                  name: http
+          - pathType: Prefix
+            path: /.well-known
+            backend:
+              service:
+                name: lemmy
+                port:
+                  name: http
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
