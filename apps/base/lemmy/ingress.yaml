@@ -12,13 +12,13 @@ metadata:
     # yamllint disable rule:line-length
     nginx.ingress.kubernetes.io/configuration-snippet: |-
       if ($http_accept = "application/activity+json") {
-        proxy_pass http://lemmy.lemmy;
+        set $proxy_upstream_name "lemmy-lemmy-http";
       }
       if ($http_accept = "application/ld+json; profile=\"https://www.w3.org/ns/activitystreams\"") {
-        proxy_pass http://lemmy.lemmy;
+        set $proxy_upstream_name "lemmy-lemmy-http";
       }
       if ($request_method = POST) {
-        proxy_pass http://lemmy.lemmy;
+        set $proxy_upstream_name "lemmy-lemmy-http";
       }
     # yamllint enable rule:line-length
 spec:
