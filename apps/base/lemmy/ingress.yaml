@@ -26,3 +26,30 @@ spec:
                 name: lemmy
                 port:
                   name: proxy
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wefwef
+  namespace: lemmy
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare
+    kubernetes.io/ingress.allow-http: "false"
+    nginx.ingress.kubernetes.io/proxy-body-size: 20M
+spec:
+  ingressClassName: nginx
+  tls:
+    - secretName: mobile-lemmy-tls
+      hosts:
+        - m.${TERTIARY_DOMAIN}
+  rules:
+    - host: m.${TERTIARY_DOMAIN}
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: wefwef
+                port:
+                  name: http

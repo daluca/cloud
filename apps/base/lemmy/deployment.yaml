@@ -151,3 +151,28 @@ spec:
         - name: pictrs-data
           persistentVolumeClaim:
             claimName: pictrs-data
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wefwef
+  namespace: lemmy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: wefwef
+  template:
+    metadata:
+      labels:
+        app: wefwef
+    spec:
+      containers:
+        - name: wefwef
+          image: ghcr.io/aeharding/wefwef:0.10.4
+          ports:
+            - name: http
+              containerPort: 5314
+          env:
+            - name: CUSTOM_LEMMY_SERVERS
+              value: ${TERTIARY_DOMAIN}

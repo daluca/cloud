@@ -30,3 +30,17 @@ spec:
       port: 8080
       targetPort: 8080
       protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wefwef
+  namespace: lemmy
+spec:
+  selector:
+    app: wefwef
+  ports:
+    - name: http
+      port: 80
+      targetPort: 5314
+      protocol: TCP
