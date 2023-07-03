@@ -32,3 +32,23 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/1/env/2/value
         value: lemmy.${PRIMARY_DOMAIN}
+  - target:
+      kind: Ingress
+      name: wefwef
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: m-lemmy.${PRIMARY_DOMAIN}
+      - op: replace
+        path: /spec/tls/0/hosts/0
+        value: m-lemmy.${PRIMARY_DOMAIN}
+      - op: replace
+        path: /spec/tls/0/secretName
+        value: mobile-lemmy-stg-tls
+  - target:
+      kind: Deployment
+      name: wefwef
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env/0/value
+        value: lemmy.${PRIMARY_DOMAIN}
