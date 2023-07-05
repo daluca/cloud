@@ -151,6 +151,10 @@ spec:
             - name: http
               containerPort: 8080
           env:
+            - name: PICTRS__TRACING__LOGGING__FORMAT
+              value: normal
+            - name: PICTRS__TRACING__LOGGING__TARGETS
+              value: info
             - name: PICTRS__API_KEY
               valueFrom:
                 secretKeyRef:
