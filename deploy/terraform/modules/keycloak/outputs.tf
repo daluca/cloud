@@ -23,3 +23,8 @@ output "nextcloud_client_secret" {
   value       = keycloak_openid_client.nextcloud.client_secret
   sensitive   = true
 }
+
+output "groups" {
+  description = "Map of Keycloak groups."
+  value       = local.groups
+}
