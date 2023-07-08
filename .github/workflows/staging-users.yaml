@@ -1,0 +1,144 @@
+---
+name: Staging Users
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - deploy/terraform/users/staging/**.tf
+      - deploy/terraform/users/staging/**.tfvars
+      - .github/workflows/staging-users.yaml
+
+  workflow_run:
+    inputs:
+      state:
+        description: apply or destroy staging cluster
+        required: true
+        default: apply
+        type: choice
+        options:
+          - apply
+          - destroy
+
+permissions:
+  pull-requests: write
+  contents: read
+
+env:
+  GITHUB_TOKEN: ${{ secrets.REPOSITORY_WRITE_TOKEN }}
+  AWS_SSE_CUSTOMER_KEY: ${{ secrets.TERRAFORM_STATE_SSE_CUSTOMER_KEY }}
+  KEYCLOAK_URL: ${{ secrets.KEYCLOAK_STAGING_URL }}
+  KEYCLOAK_REALM: ${{ secrets.KEYCLOAK_STAGING_REALM }}
+  KEYCLOAK_CLIENT_ID: ${{ secrets.KEYCLOAK_TERRAFORM_CLIENT_ID }}
+  KEYCLOAK_CLIENT_SECRET: ${{ secrets.KEYCLOAK_TERRAFORM_CLIENT_SECRET }}
+  TF_VAR_users: ${{ secrets.KEYCLOAK_STAGING_USERS }}
+
+jobs:
+  terraform:
+    name: Terraform
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    env:
+      tf_actions_working_dir: deploy/terraform/users/staging
+
+    defaults:
+      run:
+        working-directory: ${{ env.tf_actions_working_dir }}
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: setup terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: ">=1.0.0 <2.0.0"
+
+      - name: terraform fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
+
+      - name: terraform init
+        id: init
+        run: >-
+          terraform init
+          -backend-config="bucket=${{ secrets.TERRAFORM_STATE_BUCKET }}"
+          -backend-config="access_key=${{ secrets.WASABI_TERRAFORM_ACCESS_KEY_ID }}"
+          -backend-config="secret_key=${{ secrets.WASABI_TERRAFORM_SECRET_ACCESS_KEY }}"
+
+      - name: terraform validate
+        id: validate
+        run: terraform validate -no-color
+
+      - name: terraform plan
+        if: github.event_name == 'pull_request'
+        id: plan
+        run: terraform plan -no-color
+        continue-on-error: true
+
+      - uses: actions/github-script@v6
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        env:
+          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            // 1. Retrieve existing bot comments for the PR
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            })
+            const botComment = comments.find(comment => {
+              return comment.user.type === 'Bot' && comment.body.includes('Terraform Format and Style')
+            })
+
+            // 2. Prepare format of the comment
+            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+            #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
+            <details><summary>Validation Output</summary>
+
+            \`\`\`\n
+            ${{ steps.validate.outputs.stdout }}
+            \`\`\`
+
+            </details>
+
+            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+
+            <details><summary>Show Plan</summary>
+
+            \`\`\`\n
+            ${process.env.PLAN}
+            \`\`\`
+
+            </details>
+
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
+
+            // 3. If we have a comment, update it, otherwise create a new one
+            if (botComment) {
+              github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: output
+              })
+            } else {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: output
+              })
+            }
+
+      - name: terraform ${{ inputs.state }}
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+        run: terraform ${{ inputs.state }} -auto-approve

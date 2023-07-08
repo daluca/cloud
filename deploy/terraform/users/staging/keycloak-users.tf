@@ -1,13 +1,12 @@
 resource "keycloak_user" "users" {
-  depends_on = [module.staging]
-  for_each   = var.users
+  for_each = var.users
 
-  realm_id = module.staging.realm_id
+  realm_id = data.keycloak_realm.staging.id
 
-  username       = each.key
-  first_name     = each.value["first_name"]
-  last_name      = each.value["last_name"]
-  email          = each.value["email"].address
+  username       = sensitive(each.key)
+  first_name     = sensitive(each.value["first_name"])
+  last_name      = sensitive(each.value["last_name"])
+  email          = sensitive(each.value["email"].address)
   email_verified = each.value["email"].verified != null ? each.value["email"].verified : false
 
   attributes = {
@@ -27,10 +26,10 @@ resource "keycloak_user" "users" {
 resource "keycloak_user_groups" "main" {
   for_each = var.users
 
-  realm_id = module.staging.realm_id
+  realm_id = data.keycloak_realm.staging.id
   user_id  = keycloak_user.users[each.key].id
 
   group_ids = each.value["groups"] != null ? distinct(concat(
-    [for group in each.value["groups"] : module.staging.groups[group].id], [module.staging.groups["/Users"].id]
-  )) : [module.staging.groups["/Users"].id]
+    [for group in each.value["groups"] : local.groups[group].id], [local.groups["/Users"].id]
+  )) : [local.groups["/Users"].id]
 }
