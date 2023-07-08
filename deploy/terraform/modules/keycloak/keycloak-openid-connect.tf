@@ -42,3 +42,8 @@ resource "keycloak_openid_user_attribute_protocol_mapper" "nextcloud_quota" {
   claim_name     = "quota"
   user_attribute = "quota"
 }
+
+data "keycloak_openid_client" "realm_management" {
+  realm_id  = data.keycloak_realm.main.id
+  client_id = "realm-management"
+}

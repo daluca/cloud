@@ -21,9 +21,6 @@ spec:
     namespace: flux-system
   writeOutputsToSecret:
     name: keycloak-terraform-outputs
-  vars:
-    - name: realm
-      value: production
   varsFrom:
     - kind: Secret
       name: keycloak-terraform-values

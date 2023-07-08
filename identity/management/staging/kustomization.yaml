@@ -24,6 +24,3 @@ patches:
       - op: replace
         path: /spec/path
         value: ./deploy/terraform/keycloak/staging
-      - op: replace
-        path: /spec/vars/0/value
-        value: staging
