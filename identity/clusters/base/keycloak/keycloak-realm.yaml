@@ -11,7 +11,7 @@ spec:
     displayName: Production
     enabled: true
     clients:
-      - clientId: terraform
+      - clientId: terraform-management
         name: Terraform
         description: Terraform client for deploying realm settings
         enabled: true
