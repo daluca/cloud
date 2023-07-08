@@ -3,7 +3,7 @@ resource "keycloak_user" "users" {
 
   realm_id = data.keycloak_realm.staging.id
 
-  username       = sensitive(each.key)
+  username       = sensitive(each.value["username"])
   first_name     = sensitive(each.value["first_name"])
   last_name      = sensitive(each.value["last_name"])
   email          = sensitive(each.value["email"].address)
