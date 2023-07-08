@@ -9,7 +9,7 @@ on:
       - deploy/terraform/users/staging/**.tfvars
       - .github/workflows/staging-users.yaml
 
-  workflow_run:
+  workflow_dispatch:
     inputs:
       state:
         description: apply or destroy staging cluster
