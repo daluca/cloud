@@ -5,7 +5,7 @@ metadata:
   name: lemmy
   namespace: lemmy
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: lemmy
@@ -17,6 +17,8 @@ spec:
       containers:
         - name: lemmy
           image: dessalines/lemmy:0.18.1
+          command: [/app/lemmy]
+          args: [--disable-scheduled-tasks]
           resources:
             limits:
               memory: 128Mi
@@ -41,7 +43,75 @@ spec:
                 lemmy_db_views_moderator=info,
                 lemmy_routes=info,
                 lemmy_utils=info,
-                lemmy_websocket=info
+          livenessProbe:
+            httpGet:
+              port: http
+              path: /
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              port: http
+              path: /
+            periodSeconds: 10
+            failureThreshold: 3
+          startupProbe:
+            httpGet:
+              port: http
+              path: /
+            periodSeconds: 3
+            failureThreshold: 10
+          volumeMounts:
+            - mountPath: /config/config.hjson
+              subPath: config.hjson
+              name: lemmy-secrets
+      volumes:
+        - name: lemmy-secrets
+          secret:
+            secretName: lemmy-secrets
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lemmy-scheduler
+  namespace: lemmy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lemmy
+  template:
+    metadata:
+      labels:
+        app: lemmy
+    spec:
+      containers:
+        - name: lemmy-scheduler
+          image: dessalines/lemmy:0.18.1
+          ports:
+            - name: http
+              containerPort: 8536
+          resources:
+            limits:
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          env:
+            - name: RUST_LOG
+              value: >-
+                warn,
+                lemmy_server=info,
+                lemmy_api=info,
+                lemmy_api_common=info,
+                lemmy_api_crud=info,
+                lemmy_apub=info,
+                lemmy_db_schema=info,
+                lemmy_db_views=info,
+                lemmy_db_views_actor=info,
+                lemmy_db_views_moderator=info,
+                lemmy_routes=info,
+                lemmy_utils=info,
           livenessProbe:
             httpGet:
               port: http
