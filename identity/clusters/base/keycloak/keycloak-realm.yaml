@@ -33,7 +33,7 @@ spec:
         enabled: true
         serviceAccountClientId: terraform
         realmRoles:
-          - default-roles-staging
+          - default-roles-production
         clientRoles:
           realm-management:
             - realm-admin

@@ -36,3 +36,6 @@ patches:
       - op: replace
         path: /spec/realm/displayName
         value: Staging
+      - op: replace
+        path: /spec/realm/users/0/realmRoles/0
+        value: default-roles-staging
