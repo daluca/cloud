@@ -21,17 +21,3 @@ variable "domain_components" {
   type        = string
   sensitive   = true
 }
-
-variable "users" {
-  description = "Keycloak user settings."
-  type = map(object({
-    first_name = string
-    last_name  = string
-    email = object({
-      address  = string
-      verified = optional(bool)
-    })
-    quota  = optional(string)
-    groups = optional(list(string))
-  }))
-}

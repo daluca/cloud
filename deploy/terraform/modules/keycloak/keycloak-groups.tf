@@ -1,10 +1,3 @@
-locals {
-  groups = {
-    (keycloak_group.administrators.path) = keycloak_group.administrators
-    (keycloak_group.users.path)          = keycloak_group.users
-  }
-}
-
 resource "keycloak_group" "administrators" {
   realm_id = data.keycloak_realm.main.id
   name     = "Administrators"
