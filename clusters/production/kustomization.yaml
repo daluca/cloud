@@ -3,8 +3,3 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ../base
-patches:
-  - path: delete-controllers.yaml
-  - path: delete-identity-clusters.yaml
-  - path: delete-identity-operators.yaml
-  - path: delete-identity-management.yaml
