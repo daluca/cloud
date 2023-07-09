@@ -10,6 +10,10 @@ spec:
     realm: production
     displayName: Production
     enabled: true
+    rememberMe: true
+    verifyEmail: true
+    loginWithEmailAllowed: true
+    resetPasswordAllowed: true
     smtpServer:
       host: exim-relay.mail
       port: "25"
