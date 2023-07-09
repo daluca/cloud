@@ -20,6 +20,8 @@ kind: ConfigMap
 metadata:
   name: post-installation-scripts
   namespace: nextcloud
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
 data:
   00-debug.sh: |-
     #!/bin/sh
