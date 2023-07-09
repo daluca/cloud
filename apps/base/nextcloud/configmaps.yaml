@@ -41,10 +41,36 @@ data:
     #!/bin/sh
 
     php ./occ app:disable contactsinteraction
-  20-oidc-disable-other-logins.sh: |-
+    php ./occ app:disable password_policy
+  # yamllint disable rule:line-length
+  20-oidc-provider.sh: |-
     #!/bin/sh
 
-    php ./occ config:app:set user_oidc allow_multiple_user_backends --value=0
+    php ./occ user_oidc:provider sso.${NEXTCLOUD_TRUSTED_DOMAINS#*.} \
+      --clientid ${KEYCLOAK_CLIENT_ID} \
+      --clientsecret ${KEYCLOAK_CLIENT_SECRET} \
+      --discoveryuri http://keycloak.identity/realms/staging/.well-known/openid-configuration \
+      --scope "openid email profile" \
+      --unique-uid 0 \
+      --check-bearer 0 \
+      --send-id-token-hint 1 \
+      --mapping-email email \
+      --mapping-quota quota \
+      --mapping-uid preferred_username \
+      --no-interaction
+
+    php ./occ config:app:set user_oidc allow_multiple_user_backends --value 0
+    php ./occ config:app:set user_oidc provider-1-groupProvisioning --value 1
+    php ./occ config:app:set user_oidc provider-1-mappingGroups --value groups
+  # yamllint disable rule:line-length
+  30-totp-settings.sh: |-
+    #!/bin/sh
+
+    php ./occ twofactorauth:enforce --on --group admin
+  31-backgroud-job.sh: |-
+    #!/bin/sh
+
+    php ./occ background:webcron
 ---
 apiVersion: v1
 kind: ConfigMap

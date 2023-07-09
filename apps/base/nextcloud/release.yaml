@@ -179,6 +179,16 @@ spec:
           maxSurge: 1
           maxUnavailable: 0
       extraEnv:
+        - name: KEYCLOAK_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: nextcloud-openid-connect
+              key: client-secret
+        - name: KEYCLOAK_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: nextcloud-openid-connect
+              key: client-secret
         - name: WASABI_BUCKET
           valueFrom:
             secretKeyRef:
