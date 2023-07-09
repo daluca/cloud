@@ -183,7 +183,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: nextcloud-openid-connect
-              key: client-secret
+              key: client-id
         - name: KEYCLOAK_CLIENT_SECRET
           valueFrom:
             secretKeyRef:
