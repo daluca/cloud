@@ -24,4 +24,7 @@ patches:
       - op: replace
         path: /spec/values/ingress/tls/0/secretName
         value: nextcloud-stg-tls
+      - op: replace
+        path: /spec/values/nextcloud/extraEnv/2/value
+        value: staging
     # yamllint enable rule:line-length

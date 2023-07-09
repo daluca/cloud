@@ -190,6 +190,8 @@ spec:
             secretKeyRef:
               name: nextcloud-openid-connect
               key: client-secret
+        - name: KEYCLOAK_REALM
+          value: production
         - name: WASABI_BUCKET
           valueFrom:
             secretKeyRef:
