@@ -30,25 +30,29 @@ data:
   10-install-apps.sh: |-
     #!/bin/sh
 
-    php ./occ app:install user_oidc
-    php ./occ app:install contacts
-    php ./occ app:install calendar
-    php ./occ app:install tasks
-    php ./occ app:install deck
+    php occ app:install user_oidc
+    php occ app:install files_retention
+    php occ app:install files_automatedtagging
+    php occ app:install side_menu
+    php occ app:install contacts
+    php occ app:install calendar
+    php occ app:install tasks
+    php occ app:install deck
+    php occ app:install notes
   11-enable-apps.sh: |-
     #!/bin/sh
 
-    php ./occ app:enable twofactor_totp
+    php occ app:enable twofactor_totp
   12-disable-apps.sh: |-
     #!/bin/sh
 
-    php ./occ app:disable contactsinteraction
-    php ./occ app:disable password_policy
+    php occ app:disable contactsinteraction
+    php occ app:disable password_policy
   # yamllint disable rule:line-length
   20-oidc-provider.sh: |-
     #!/bin/sh
 
-    php ./occ user_oidc:provider sso.${NEXTCLOUD_TRUSTED_DOMAINS#*.} \
+    php occ user_oidc:provider sso.${NEXTCLOUD_TRUSTED_DOMAINS#*.} \
       --clientid ${KEYCLOAK_CLIENT_ID} \
       --clientsecret ${KEYCLOAK_CLIENT_SECRET} \
       --discoveryuri http://keycloak.identity/realms/staging/.well-known/openid-configuration \
@@ -61,18 +65,18 @@ data:
       --mapping-uid preferred_username \
       --no-interaction
 
-    php ./occ config:app:set user_oidc allow_multiple_user_backends --value 0
-    php ./occ config:app:set user_oidc provider-1-groupProvisioning --value 1
-    php ./occ config:app:set user_oidc provider-1-mappingGroups --value groups
+    php occ config:app:set user_oidc allow_multiple_user_backends --value 0
+    php occ config:app:set user_oidc provider-1-groupProvisioning --value 1
+    php occ config:app:set user_oidc provider-1-mappingGroups --value groups
   # yamllint disable rule:line-length
   30-totp-settings.sh: |-
     #!/bin/sh
 
-    php ./occ twofactorauth:enforce --on --group admin
+    php occ twofactorauth:enforce --on --group admin
   31-backgroud-job.sh: |-
     #!/bin/sh
 
-    php ./occ background:webcron
+    php occ background:webcron
 ---
 apiVersion: v1
 kind: ConfigMap
