@@ -19,8 +19,6 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  writeOutputsToSecret:
-    name: keycloak-terraform-outputs
   varsFrom:
     - kind: Secret
       name: keycloak-terraform-values
