@@ -10,6 +10,10 @@ spec:
     realm: production
     displayName: Production
     enabled: true
+    smtpServer:
+      host: exim-relay.mail
+      port: "25"
+      from: no-reply@${PRIMARY_DOMAIN}
     clients:
       - clientId: terraform-management
         name: Terraform
@@ -31,7 +35,7 @@ spec:
       - username: service-account-terraform
         createdTimestamp: 1687078658351
         enabled: true
-        serviceAccountClientId: terraform
+        serviceAccountClientId: terraform-management
         realmRoles:
           - default-roles-production
         clientRoles:
