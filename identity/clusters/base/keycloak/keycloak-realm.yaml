@@ -17,7 +17,7 @@ spec:
     smtpServer:
       host: exim-relay.mail
       port: "25"
-      from: no-reply@${PRIMARY_DOMAIN}
+      from: no-reply@sso.${PRIMARY_DOMAIN}
     clients:
       - clientId: terraform-management
         name: Terraform
