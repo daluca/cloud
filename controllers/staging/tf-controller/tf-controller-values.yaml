@@ -12,4 +12,3 @@ spec:
     enable: false
   values:
     replicaCount: 1
-    eventsAddress: null
