@@ -16,7 +16,7 @@ spec:
     - name: identity-management
   interval: 1h
   retryInterval: 1m
-  timeout: 10m
+  timeout: 15m
   path: ./apps/production
   prune: true
   wait: true

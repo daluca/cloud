@@ -14,7 +14,7 @@ spec:
         name: nextcloud
         namespace: flux-system
   interval: 1h
-  timeout: 10m
+  timeout: 15m
   maxHistory: 3
   install:
     remediation:
