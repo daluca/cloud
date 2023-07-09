@@ -55,7 +55,7 @@ spec:
         nginx.ingress.kubernetes.io/server-snippet: |-
           location ^~ /.well-known {
             location ~ /.well-known/(card|cal)dav { return 301 /remote.php/dav; }
-            return 301 /index.php$request_uri;
+            return 301 https://$host/index.php$request_uri;
           }
         # yamllint enable rule:line-length
       path: /
