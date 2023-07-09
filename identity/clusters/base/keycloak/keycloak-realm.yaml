@@ -35,7 +35,7 @@ spec:
       - username: service-account-terraform
         createdTimestamp: 1687078658351
         enabled: true
-        serviceAccountClientId: terraform
+        serviceAccountClientId: terraform-management
         realmRoles:
           - default-roles-production
         clientRoles:
