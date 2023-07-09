@@ -16,7 +16,7 @@ spec:
       name: database-credentials
       key: password
     poolMinSize: 1
-    poolMaxSize: 395
+    poolMaxSize: 50
     poolInitialSize: 1
   http:
     httpEnabled: true
