@@ -28,7 +28,7 @@ terraform {
 
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = ">= 2.0, < 5.0"
+      version = ">= 2.0, < 3.0"
     }
 
     flux = {
