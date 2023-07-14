@@ -9,6 +9,7 @@ spec:
   realm:
     realm: production
     displayName: Production
+    displayNameHtml: <div class="kc-logo-text"><span>Keycloak</span></div>
     enabled: true
     rememberMe: true
     verifyEmail: true
