@@ -15,6 +15,7 @@ resource "keycloak_user" "users" {
 
   lifecycle {
     ignore_changes = [
+      email_verified,
       attributes["createTimestamp"],
       attributes["modifyTimestamp"],
       attributes["LDAP_ENTRY_DN"],
