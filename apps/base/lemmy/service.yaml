@@ -48,7 +48,7 @@ metadata:
   namespace: lemmy
 spec:
   selector:
-    app: wefwef
+    app: voyager
   ports:
     - name: http
       port: 80
