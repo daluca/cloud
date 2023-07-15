@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: lemmy
-          image: dessalines/lemmy:0.18.1
+          image: dessalines/lemmy:0.18.2
           command: [/app/lemmy]
           args: [--disable-scheduled-tasks]
           resources:
@@ -87,7 +87,7 @@ spec:
     spec:
       containers:
         - name: lemmy-scheduler
-          image: dessalines/lemmy:0.18.1
+          image: dessalines/lemmy:0.18.2
           ports:
             - name: http
               containerPort: 8536
@@ -156,7 +156,7 @@ spec:
     spec:
       containers:
         - name: lemmy-ui
-          image: dessalines/lemmy-ui:0.18.1
+          image: dessalines/lemmy-ui:0.18.2
           resources:
             limits:
               memory: 128Mi
