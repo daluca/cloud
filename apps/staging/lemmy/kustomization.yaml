@@ -31,7 +31,7 @@ patches:
         value: lemmy.${PRIMARY_DOMAIN}
   - target:
       kind: Ingress
-      name: wefwef
+      name: voyager
     patch: |-
       - op: replace
         path: /spec/rules/0/host
@@ -44,7 +44,7 @@ patches:
         value: mobile-lemmy-stg-tls
   - target:
       kind: Deployment
-      name: wefwef
+      name: voyager
     patch: |-
       - op: replace
         path: /spec/template/spec/containers/0/env/0/value
