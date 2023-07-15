@@ -171,7 +171,7 @@ if [[ 20 -ge "${LOG_LEVEL}" ]]; then
 fi
 
 if [[ "${SCRIPT_MODE}" == "encrypt" ]]; then
-  SOPS_CONFIG+=( "--encrypt" "--encrypted-regex" "^(data|stringData)$" "--in-place" )
+  SOPS_CONFIG+=( "--encrypt" "--in-place" )
 elif [[ "${SCRIPT_MODE}" == "decrypt" ]]; then
   SOPS_CONFIG+=( "--decrypt" "--in-place" )
 else

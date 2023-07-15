@@ -1,10 +1,13 @@
 ---
 creation_rules:
   - path_regex: .*/development/.*\.sops\.yaml$
+    encrypted_regex: ^(data|stringData)$
     age: age1mkntwnwk6lkgs5kc4zywjmjqd3a9fp8eurfrj0xh6j2uk64p49hsnzff8n
 
   - path_regex: .*/staging/.*\.sops\.yaml$
+    encrypted_regex: ^(data|stringData)$
     age: age1z9tp2h60k24daxwdkq29nf4ch7a87wem4sx2jkcqe9x62k07k3vqf5rx6k
 
   - path_regex: .*/production/.*\.sops\.yaml$
+    encrypted_regex: ^(data|stringData)$
     age: age1gzx4nxzmefttk92fz3rwn5w2nshdc3xfq26j55fp2e8f6q07s5psg9xw8l
