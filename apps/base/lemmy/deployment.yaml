@@ -265,21 +265,21 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wefwef
+  name: voyager
   namespace: lemmy
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: wefwef
+      app: voyager
   template:
     metadata:
       labels:
-        app: wefwef
+        app: voyager
     spec:
       containers:
-        - name: wefwef
-          image: ghcr.io/aeharding/wefwef:0.10.4
+        - name: voyager
+          image: ghcr.io/aeharding/voyager:0.21.3
           ports:
             - name: http
               containerPort: 5314
