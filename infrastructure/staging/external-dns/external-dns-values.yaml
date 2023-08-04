@@ -7,3 +7,6 @@ metadata:
 spec:
   test:
     enable: false
+  values:
+    domainFilters:
+      - ${PRIMARY_DOMAIN}
