@@ -5,9 +5,6 @@ metadata:
   name: crowdsec
   namespace: crowdsec
 spec:
-  chart:
-    spec:
-      version: ">=0.9.0 <0.10.0"
   test:
     enable: false
   values:

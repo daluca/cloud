@@ -5,9 +5,6 @@ metadata:
   name: tf-controller
   namespace: flux-system
 spec:
-  chart:
-    spec:
-      version: ">= 0.12.0 <0.13.0"
   test:
     enable: false
   values:

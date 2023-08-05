@@ -5,8 +5,5 @@ metadata:
   name: prometheus-operator-crds
   namespace: monitoring
 spec:
-  chart:
-    spec:
-      version: ">=2.0.0 <3.0.0"
   test:
     enable: false

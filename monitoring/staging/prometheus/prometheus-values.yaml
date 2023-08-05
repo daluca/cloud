@@ -5,9 +5,6 @@ metadata:
   name: prometheus
   namespace: monitoring
 spec:
-  chart:
-    spec:
-      version: ">=46.0.0 <47.0.0"
   test:
     enable: false
   values:

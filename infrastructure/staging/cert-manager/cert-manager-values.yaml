@@ -5,8 +5,5 @@ metadata:
   name: cert-manager
   namespace: cert-manager
 spec:
-  chart:
-    spec:
-      version: ">=1.0.0 <2.0.0"
   test:
     enable: false

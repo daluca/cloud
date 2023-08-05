@@ -5,9 +5,6 @@ metadata:
   name: gatekeeper
   namespace: gatekeeper-system
 spec:
-  chart:
-    spec:
-      version: ">=3.0.0 <4.0.0"
   test:
     enable: false
   values:

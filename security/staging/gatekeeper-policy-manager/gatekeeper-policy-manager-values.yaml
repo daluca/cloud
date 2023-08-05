@@ -5,9 +5,6 @@ metadata:
   name: gatekeeper-policy-manager
   namespace: gatekeeper-system
 spec:
-  chart:
-    spec:
-      version: ">=0.4.0 <0.5.0"
   test:
     enable: false
   values:
