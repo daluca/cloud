@@ -23,7 +23,7 @@
     - [PostgreSQL]()
     - [Redis cluster](./database/clusters/redis-cluster.md)
   - [Operators]()
-    - [Stackgres]()
+    - [Stackgres](./database/operators/stackgres.md)
 - [Identity]()
   - [Keycloak](./identity/keycloak.md)
   - [OpenLDAP](./identity/openldap.md)
