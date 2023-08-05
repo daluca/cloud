@@ -12,20 +12,19 @@ module "staging" {
   }
 
   kubernetes = {
-    version = "1.25"
+    version = "1.26"
     worker_pool = {
       cpu        = 4
       memory     = 8
       auto_scale = true
       min        = 3
-      max        = 6
+      max        = 4
     }
     monitoring_pool = {
       cpu        = 2
       memory     = 4
-      auto_scale = true
-      min        = 1
-      max        = 2
+      auto_scale = false
+      count      = 1
     }
   }
 
