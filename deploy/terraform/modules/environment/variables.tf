@@ -73,8 +73,8 @@ variable "kubernetes" {
   })
 
   validation {
-    condition     = contains(["1.24", "1.25", "1.26", "latest"], var.kubernetes.version)
-    error_message = "Kubernetes version must be one of ['1.24', '1.25', '1.26', 'latest']."
+    condition     = contains(["1.25", "1.26", "1.27", "latest"], var.kubernetes.version)
+    error_message = "Kubernetes version must be one of ['1.25', '1.26', '1.27', 'latest']."
   }
 
   validation {
