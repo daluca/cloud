@@ -12,6 +12,8 @@ resource "digitalocean_kubernetes_cluster" "main" {
   surge_upgrade = false
   auto_upgrade  = true
 
+  destroy_all_associated_resources = var.kubernetes.destroy_associated_resources
+
   node_pool {
     name       = "worker-pool"
     size       = element(data.digitalocean_sizes.worker_pool.sizes, 0).slug
