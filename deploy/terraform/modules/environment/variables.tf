@@ -69,6 +69,7 @@ variable "kubernetes" {
       auto_scale = optional(bool, false)
       count      = optional(number)
     }))
+    destroy_associated_resources = optional(bool, false)
   })
 
   validation {

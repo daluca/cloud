@@ -26,6 +26,7 @@ module "staging" {
       auto_scale = false
       count      = 1
     }
+    destroy_associated_resources = true
   }
 
   cloudflare = {
