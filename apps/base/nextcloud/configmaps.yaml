@@ -88,3 +88,18 @@ data:
     #!/bin/sh
 
     echo "Running as $( whoami )"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: post-upgrade-scripts
+  namespace: nextcloud
+data:
+  00-debug.sh: |-
+    #!/bin/sh
+
+    echo "Running as $( whomai )"
+  10-add-missing-indicies.sh: |-
+    #!/bin/sh
+
+    php occ db:add-missing-indices
