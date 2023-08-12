@@ -1,0 +1,54 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: adminer
+  namespace: database
+spec:
+  releaseName: adminer
+  chart:
+    spec:
+      chart: adminer
+      version: 0.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: daluca
+        namespace: flux-system
+  interval: 1h
+  install:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  upgrade:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  test:
+    enable: true
+    ignoreFailures: false
+  values:
+    service:
+      port: 80
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: cloudflare
+        kubernetes.io/ingress.allow-http: "false"
+      hosts:
+        - host: adminer.${PRIMARY_DOMAIN}
+          paths:
+            - pathType: Prefix
+              path: /
+      tls:
+        - secretName: adminer-tls
+          hosts:
+            - adminer.${PRIMARY_DOMAIN}
+    theme: nette
+    plugins:
+      enabled: true
+      list: [tables-filter]
+      loginServers:
+        - name: Stackgres cluster
+          host: postgresql-cluster
+          type: pgsql
