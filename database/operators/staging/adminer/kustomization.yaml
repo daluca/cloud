@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ../../base/adminer
 patches:
+  - path: adminer-values.yaml
   - target:
       kind: Ingress
       name: adminer

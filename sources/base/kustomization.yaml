@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - cert-manager.yaml
   - crowdsec.yaml
+  - daluca.yaml
   - external-dns.yaml
   - gatekeeper-policy-manager.yaml
   - gatekeeper.yaml
