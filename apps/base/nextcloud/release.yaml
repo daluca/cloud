@@ -233,6 +233,10 @@ spec:
           configMap:
             name: before-starting-scripts
             defaultMode: 0550
+        - name: post-upgrade-scripts
+          configMap:
+            name: post-upgrade-scripts
+            defaultMode: 0550
       extraVolumeMounts:
         - name: logs
           mountPath: /var/log/nextcloud
@@ -243,6 +247,8 @@ spec:
           mountPath: /docker-entrypoint-hooks.d/post-installation
         - name: before-starting-scripts
           mountPath: /docker-entrypoint-hooks.d/before-starting
+        - name: post-upgrade-scripts
+          mountPath: /docker-entrypoint-hooks.d/post-upgrade
     nginx:
       enabled: true
     internalDatabase:
