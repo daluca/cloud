@@ -5,9 +5,6 @@ metadata:
   name: nextcloud
   namespace: nextcloud
 spec:
-  chart:
-    spec:
-      version: 3.5.21
   test:
     enable: false
   values:

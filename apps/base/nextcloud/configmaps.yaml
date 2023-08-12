@@ -98,7 +98,7 @@ data:
   00-debug.sh: |-
     #!/bin/sh
 
-    echo "Running as $( whomai )"
+    echo "Running as $( whoami )"
   10-add-missing-indicies.sh: |-
     #!/bin/sh
 
