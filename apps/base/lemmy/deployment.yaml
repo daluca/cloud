@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: lemmy
-          image: dessalines/lemmy:0.18.2
+          image: dessalines/lemmy:0.18.4
           command: [/app/lemmy]
           args: [--disable-scheduled-tasks]
           resources:
@@ -87,7 +87,7 @@ spec:
     spec:
       containers:
         - name: lemmy-scheduler
-          image: dessalines/lemmy:0.18.2
+          image: dessalines/lemmy:0.18.4
           ports:
             - name: http
               containerPort: 8536
@@ -156,7 +156,7 @@ spec:
     spec:
       containers:
         - name: lemmy-ui
-          image: dessalines/lemmy-ui:0.18.2
+          image: dessalines/lemmy-ui:0.18.4
           resources:
             limits:
               memory: 128Mi
@@ -210,7 +210,7 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
       containers:
         - name: pictrs
-          image: asonix/pictrs:0.4.0
+          image: asonix/pictrs:0.4.2
           resources:
             limits:
               memory: 128Mi
@@ -279,7 +279,7 @@ spec:
     spec:
       containers:
         - name: voyager
-          image: ghcr.io/aeharding/voyager:0.21.3
+          image: ghcr.io/aeharding/voyager:1.7.0
           ports:
             - name: http
               containerPort: 5314
