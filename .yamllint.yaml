@@ -1,8 +1,4 @@
 ---
-yaml-files:
-  - "*.yaml"
-  - "*.yml"
-
 ignore:
   - .github/workflows/
   - clusters/*/flux-system/
