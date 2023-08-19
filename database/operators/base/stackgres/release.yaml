@@ -18,11 +18,13 @@ spec:
   maxHistory: 3
   install:
     crds: CreateReplace
+    disableWait: true
     remediation:
       retries: 1
       remediateLastFailure: true
   upgrade:
     crds: CreateReplace
+    disableWait: true
     cleanupOnFail: true
     remediation:
       retries: 1
