@@ -16,7 +16,7 @@ spec:
         namespace: flux-system
   interval: 1h
   install:
-    crds: CreateReplace
+    crds: Create
     remediation:
       retries: 1
       remediateLastFailure: true
