@@ -16,7 +16,7 @@ on:
       - book.toml
       - .github/workflows/docs.yaml
 
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 permissions:
   contents: read
