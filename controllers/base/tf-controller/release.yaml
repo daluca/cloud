@@ -18,7 +18,7 @@ spec:
   timeout: 5m
   maxHistory: 3
   install:
-    crds: CreateReplace
+    crds: Create
     remediation:
       retries: 1
       remediateLastFailure: true

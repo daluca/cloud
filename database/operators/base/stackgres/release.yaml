@@ -17,7 +17,7 @@ spec:
   interval: 1h
   maxHistory: 3
   install:
-    crds: CreateReplace
+    crds: Create
     disableWait: true
     remediation:
       retries: 1

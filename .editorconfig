@@ -25,7 +25,3 @@ indent_size = 2
 [.vscode/*.json]
 indent_style = space
 indent_size = 4
-
-[.yamllint]
-indent_style = space
-indent_size = 2
