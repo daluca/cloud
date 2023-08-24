@@ -6,8 +6,6 @@ metadata:
   namespace: database
 spec:
   instances: 1
-  postgres:
-    version: "14"
   pods:
     persistentVolume:
       size: 5Gi
