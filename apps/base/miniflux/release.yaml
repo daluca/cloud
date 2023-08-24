@@ -31,7 +31,7 @@ spec:
     enable: true
     ignoreFailures: false
   values:
-    services:
+    service:
       port: 80
     ingress:
       enabled: true
@@ -48,10 +48,10 @@ spec:
         - secretName: miniflux-tls
           hosts:
             - feeds.${PRIMARY_DOMAIN}
-      admin:
-        existingSecret: admin-credentials
-      externalDatabase:
-        enabled: true
-        existingSecret: database-credentials
-      postgresql:
-        enabled: false
+    admin:
+      existingSecret: admin-credentials
+    externalDatabase:
+      enabled: true
+      existingSecret: database-credentials
+    postgresql:
+      enabled: false
