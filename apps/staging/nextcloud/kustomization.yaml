@@ -12,7 +12,6 @@ patches:
   - target:
       kind: HelmRelease
       name: nextcloud
-    # yamllint disable rule:line-length
     patch: |-
       - op: replace
         path: /spec/values/ingress/tls/0/secretName
@@ -20,4 +19,3 @@ patches:
       - op: replace
         path: /spec/values/nextcloud/extraEnv/2/value
         value: staging
-    # yamllint enable rule:line-length
