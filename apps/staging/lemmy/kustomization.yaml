@@ -33,6 +33,8 @@ patches:
       kind: Ingress
       name: voyager
     patch: |-
+      - op: remove
+        path: /metadata/annotations/external-dns.alpha.kubernetes.io~1target
       - op: replace
         path: /spec/rules/0/host
         value: m-lemmy.${PRIMARY_DOMAIN}
