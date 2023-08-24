@@ -6,9 +6,9 @@ resources:
 patches:
   - path: adminer-values.yaml
   - target:
-      kind: Ingress
+      kind: HelmRelease
       name: adminer
     patch: |-
       - op: replace
-        path: /spec/tls/0/secretName
+        path: /spec/values/ingress/tls/0/secretName
         value: adminer-stg-tls
