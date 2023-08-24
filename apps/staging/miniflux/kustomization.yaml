@@ -1,0 +1,15 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base/miniflux
+  - admin-credentials.sops.yaml
+  - database-credentials.sops.yaml
+patches:
+  - target:
+      kind: HelmRelease
+      name: miniflux
+    patch: |-
+      - op: replace
+        path: /spec/values/ingress/tls/0/secretName
+        value: miniflux-stg-tls
