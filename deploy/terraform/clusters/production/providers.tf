@@ -74,7 +74,8 @@ provider "flux" {
   }
 
   git = {
-    url = module.production.github_repository_ssh_url
+    url    = module.production.github_repository_ssh_url
+    branch = module.production.github_branch
     ssh = {
       username    = "git"
       private_key = module.production.flux_private_key.private_key_pem
@@ -110,21 +111,5 @@ provider "aws" {
     sts = "https://sts.eu-central-1.wasabisys.com"
     iam = "https://iam.eu-central-1.wasabisys.com"
     s3  = "https://s3.eu-central-1.wasabisys.com"
-  }
-}
-
-provider "aws" {
-  alias  = "sydney"
-  region = "ap-southeast-2"
-
-  s3_use_path_style           = true
-  skip_region_validation      = true
-  skip_credentials_validation = true
-  skip_requesting_account_id  = true
-
-  endpoints {
-    sts = "https://sts.ap-southeast-2.wasabisys.com"
-    iam = "https://iam.ap-southeast-2.wasabisys.com"
-    s3  = "https://s3.ap-southeast-2.wasabisys.com"
   }
 }

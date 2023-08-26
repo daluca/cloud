@@ -11,6 +11,11 @@ output "flux_private_key" {
 }
 
 output "github_repository_ssh_url" {
-  description = "SSH url for the GitHub repository where Flux sync manifests."
+  description = "SSH url for the GitHub repository where Flux syncs manifests."
   value       = "ssh://${replace(data.github_repository.main.ssh_clone_url, "/:/", "/")}"
+}
+
+output "github_branch" {
+  description = "GitHub repository branch which Flux syncs manifests."
+  value       = data.github_branch.environment.branch
 }

@@ -2,6 +2,7 @@ variable "github" {
   description = "GitHub repository settings."
   type = object({
     repository = string
+    branch     = optional(string)
   })
 }
 
