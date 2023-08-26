@@ -47,3 +47,20 @@ data "keycloak_openid_client" "realm_management" {
   realm_id  = data.keycloak_realm.main.id
   client_id = "realm-management"
 }
+
+resource "keycloak_openid_client" "miniflux" {
+  realm_id  = data.keycloak_realm.main.id
+  client_id = "miniflux"
+
+  name    = "Miniflux"
+  enabled = true
+
+  access_type = "CONFIDENTIAL"
+
+  root_url            = sensitive("https://feeds.${var.keycloak.domain}")
+  valid_redirect_uris = ["/oauth2/oidc/callback"]
+  web_origins         = ["+"]
+
+  standard_flow_enabled        = true
+  direct_access_grants_enabled = true
+}

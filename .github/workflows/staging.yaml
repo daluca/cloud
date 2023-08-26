@@ -3,7 +3,7 @@ name: Staging
 
 on:
   pull_request:
-    branches: [main]
+    branches: [staging]
     paths:
       - deploy/terraform/clusters/staging/**.tf
       - deploy/terraform/clusters/staging/**.tfvars
