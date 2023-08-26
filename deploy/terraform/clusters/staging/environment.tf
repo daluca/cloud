@@ -37,6 +37,7 @@ module "staging" {
 
   github = {
     repository = "cloud"
+    branch     = "staging"
   }
 
   flux = {

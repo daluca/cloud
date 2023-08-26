@@ -74,7 +74,8 @@ provider "flux" {
   }
 
   git = {
-    url = module.production.github_repository_ssh_url
+    url    = module.production.github_repository_ssh_url
+    branch = module.production.github_branch
     ssh = {
       username    = "git"
       private_key = module.production.flux_private_key.private_key_pem

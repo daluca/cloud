@@ -74,7 +74,8 @@ provider "flux" {
   }
 
   git = {
-    url = module.staging.github_repository_ssh_url
+    url    = module.staging.github_repository_ssh_url
+    branch = module.staging.github_branch
     ssh = {
       username    = "git"
       private_key = module.staging.flux_private_key.private_key_pem
