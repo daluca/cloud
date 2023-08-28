@@ -13,8 +13,3 @@ patches:
         path: /spec/managedSql/scripts/-
         value:
           sgScript: create-staging-db-scripts
-      - op: add
-        path: /spec/postgres/extensions/-
-        value:
-          name: hstore
-          version: "1.8"

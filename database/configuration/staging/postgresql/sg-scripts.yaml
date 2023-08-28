@@ -11,8 +11,3 @@ spec:
     - name: create-demo-database
       script: |-
         CREATE DATABASE demo WITH OWNER postgres;
-    - name: create-miniflux-database
-      scriptFrom:
-        secretKeyRef:
-          name: database-creation-scripts
-          key: create-miniflux-database.sql
