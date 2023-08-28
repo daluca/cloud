@@ -3,7 +3,7 @@ name: Flux
 
 on:
   pull_request:
-    branches: [main, staging]
+    branches: [main]
 
 jobs:
   validate:
