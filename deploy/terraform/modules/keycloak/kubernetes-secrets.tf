@@ -13,7 +13,7 @@ resource "kubernetes_secret" "nextcloud_openid_connect" {
 resource "kubernetes_secret" "miniflux_openid_connect" {
   metadata {
     name      = "miniflux-openid-connect"
-    namespace = "miniflux"
+    namespace = "rss"
   }
 
   data = {
