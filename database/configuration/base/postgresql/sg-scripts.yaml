@@ -28,3 +28,8 @@ spec:
         secretKeyRef:
           name: database-creation-scripts
           key: create-lemmy-database.sql
+    - name: create-miniflux-database
+      scriptFrom:
+        secretKeyRef:
+          name: database-creation-scripts
+          key: create-miniflux-database.sql
