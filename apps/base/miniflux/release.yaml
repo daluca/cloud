@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: miniflux
-  namespace: miniflux
+  namespace: rss
 spec:
   releaseName: miniflux
   chart:
@@ -31,6 +31,7 @@ spec:
     enable: true
     ignoreFailures: false
   values:
+    replicaCount: 2
     service:
       port: 80
     ingress:
@@ -48,6 +49,13 @@ spec:
         - secretName: miniflux-tls
           hosts:
             - feeds.${PRIMARY_DOMAIN}
+    config:
+      FETCH_YOUTUBE_WATCH_TIME: "true"
+      OAUTH2_PROVIDER: oidc
+      OAUTH2_REDIRECT_URL: https://feeds.${PRIMARY_DOMAIN}/oauth2/oidc/callback
+      OAUTH2_OIDC_DISCOVERY_ENDPOINT: https://sso.${PRIMARY_DOMAIN}/realms/${ENVIRONMENT}
+      OAUTH2_USER_CREATION: "true"
+    existingSecret: miniflux-openid-connect
     admin:
       existingSecret: admin-credentials
     externalDatabase:

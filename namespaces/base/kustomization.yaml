@@ -11,7 +11,7 @@ resources:
   - ingress-nginx.yaml
   - lemmy.yaml
   - mail.yaml
-  - miniflux.yaml
   - monitoring.yaml
   - nextcloud.yaml
   - rook-ceph.yaml
+  - rss.yaml
