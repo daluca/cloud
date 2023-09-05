@@ -173,6 +173,18 @@ spec:
               4 => 'nextcloud.nextcloud.svc.cluster.local',
               5 => getenv('NEXTCLOUD_TRUSTED_DOMAINS')
             ),
+            'enable_previews' => true,
+            'enabledPreviewProviders' => array (
+              0 => 'OC\Preview\BMP',
+              1 => 'OC\Preview\GIF',
+              2 => 'OC\Preview\JPEG',
+              3 => 'OC\Preview\Krita',
+              4 => 'OC\Preview\MarkDown',
+              5 => 'OC\Preview\MP3',
+              6 => 'OC\Preview\PNG',
+              7 => 'OC\Preview\TXT',
+              8 => 'OC\Preview\XBitmap'
+            ),
           );
       strategy:
         type: RollingUpdate
@@ -191,7 +203,7 @@ spec:
               name: nextcloud-openid-connect
               key: client-secret
         - name: KEYCLOAK_REALM
-          value: production
+          value: ${ENVIRONMENT}
         - name: WASABI_BUCKET
           valueFrom:
             secretKeyRef:
@@ -280,8 +292,17 @@ spec:
         memory: 128Mi
     livenessProbe:
       enabled: true
+      initialDelaySeconds: 0
     readinessProbe:
       enabled: true
+      initialDelaySeconds: 0
+    startupProbe:
+      enabled: true
+      initialDelaySeconds: 0
+      periodSeconds: 2
+      timeoutSeconds: 1
+      failureThreshold: 90
+      successThreshold: 1
     hpa:
       enabled: false
     metrics:
