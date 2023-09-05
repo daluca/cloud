@@ -292,8 +292,17 @@ spec:
         memory: 128Mi
     livenessProbe:
       enabled: true
+      initialDelaySeconds: 0
     readinessProbe:
       enabled: true
+      initialDelaySeconds: 0
+    startupProbe:
+      enabled: true
+      initialDelaySeconds: 0
+      periodSeconds: 2
+      timeoutSeconds: 1
+      failureThreshold: 90
+      successThreshold: 1
     hpa:
       enabled: false
     metrics:
