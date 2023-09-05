@@ -100,7 +100,7 @@ provider "wasabi" {
 }
 
 provider "aws" {
-  region = "eu-central-1"
+  region = "us-east-1"
 
   s3_use_path_style           = true
   skip_region_validation      = true
@@ -108,8 +108,8 @@ provider "aws" {
   skip_requesting_account_id  = true
 
   endpoints {
-    sts = "https://sts.eu-central-1.wasabisys.com"
-    iam = "https://iam.eu-central-1.wasabisys.com"
-    s3  = "https://s3.eu-central-1.wasabisys.com"
+    sts = "https://sts.wasabisys.com"
+    iam = "https://iam.wasabisys.com"
+    s3  = "https://s3.wasabisys.com"
   }
 }
