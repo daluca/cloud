@@ -9,7 +9,7 @@ terraform {
 
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.0"
+      version = "~> 5.0"
     }
 
     cloudflare = {
@@ -105,7 +105,6 @@ provider "aws" {
   s3_use_path_style           = true
   skip_region_validation      = true
   skip_credentials_validation = true
-  skip_requesting_account_id  = true
 
   endpoints {
     sts = "https://sts.wasabisys.com"
