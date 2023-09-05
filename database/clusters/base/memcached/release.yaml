@@ -34,14 +34,14 @@ spec:
     architecture: high-availability
     resources:
       requests:
-        cpu: 250m
-        memory: 256Mi
+        cpu: 15m
+        memory: 24Mi
     autoscaling:
       enabled: true
       minReplicas: 2
       maxReplicas: 5
-      targetCPU: 80
-      targetMemory: 80
+      targetCPU: 1000
+      targetMemory: 800
     persistence:
       enabled: true
       storageClass: rook-ceph-block
@@ -51,7 +51,7 @@ spec:
       enabled: true
       resources:
         requests:
-          cpu: 50m
-          memory: 64Mi
+          cpu: 10m
+          memory: 8Mi
       serviceMonitor:
         enabled: true
