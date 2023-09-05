@@ -30,7 +30,7 @@ spec:
     fullnameOverride: collabora
     replicaCount: 2
     ingress:
-      enable: true
+      enabled: true
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: cloudflare
@@ -47,12 +47,12 @@ spec:
       tls:
         - secretName: collabora-tls
           hosts:
-            - collabora.${PRIMARY_DOMAIN}:443
+            - collabora.${PRIMARY_DOMAIN}
     autoscaling:
       enabled: false
     collabora:
       aliasgroups:
-        - server_name: cloud.${PRIMARY_DOMAIN}
+        - host: cloud.${PRIMARY_DOMAIN}:443
     extra_params: --o:ssl.enable=false --o:ssl.termination=true
     resources:
       requests:
