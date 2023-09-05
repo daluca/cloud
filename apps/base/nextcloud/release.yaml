@@ -179,11 +179,9 @@ spec:
               1 => 'OC\Preview\GIF',
               2 => 'OC\Preview\JPEG',
               3 => 'OC\Preview\Krita',
-              4 => 'OC\Preview\MarkDown',
-              5 => 'OC\Preview\MP3',
-              6 => 'OC\Preview\PNG',
-              7 => 'OC\Preview\TXT',
-              8 => 'OC\Preview\XBitmap'
+              4 => 'OC\Preview\MP3',
+              5 => 'OC\Preview\PNG',
+              6 => 'OC\Preview\XBitmap'
             ),
           );
       strategy:
