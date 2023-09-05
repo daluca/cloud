@@ -39,6 +39,7 @@ data:
     php occ app:install tasks
     php occ app:install deck
     php occ app:install notes
+    php occ app:install richdocuments
   11-enable-apps.sh: |-
     #!/bin/sh
 
@@ -77,6 +78,11 @@ data:
     #!/bin/sh
 
     php occ background:webcron
+  40-office-settings.sh: |-
+    #!/bin/sh
+
+    php occ config:app:set richdocuments wopi_url --value collabora.${NEXTCLOUD_TRUSTED_DOMAINS#*.}
+    php occ richdocuments:activate-config
 ---
 apiVersion: v1
 kind: ConfigMap
