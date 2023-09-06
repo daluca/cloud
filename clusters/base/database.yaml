@@ -82,3 +82,6 @@ spec:
     - kind: StatefulSet
       name: redis-cluster-follower
       namespace: database
+    - kind: StatefulSet
+      name: memcached
+      namespace: database
