@@ -85,7 +85,7 @@ data:
   40-office-settings.sh: |-
     #!/bin/sh
 
-    php occ config:app:set richdocuments wopi_url --value collabora.${NEXTCLOUD_TRUSTED_DOMAINS#*.}
+    php occ config:app:set richdocuments wopi_url --value https://collabora.${NEXTCLOUD_TRUSTED_DOMAINS#*.}
     php occ richdocuments:activate-config
 ---
 apiVersion: v1
