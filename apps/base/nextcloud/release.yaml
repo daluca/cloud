@@ -38,7 +38,7 @@ spec:
               name: nextcloud-metrics
             patch: |-
               - op: replace
-                path: /spec/template/spec/containers/0/env/2/value
+                path: /spec/template/spec/containers/0/env/1/value
                 value: http://nextcloud
   values:
     image:
@@ -70,6 +70,7 @@ spec:
         secretName: nextcloud-credentials
         usernameKey: admin-username
         passwordKey: admin-password
+        tokenKey: nextcloud-token
       mail:
         enabled: true
         fromAddress: no-reply
@@ -190,6 +191,11 @@ spec:
           maxSurge: 1
           maxUnavailable: 0
       extraEnv:
+        - name: NEXTCLOUD_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: nextcloud-credentials
+              key: nextcloud-token
         - name: KEYCLOAK_CLIENT_ID
           valueFrom:
             secretKeyRef:
@@ -305,5 +311,6 @@ spec:
       enabled: false
     metrics:
       enabled: true
+      token: true
       serviceMonitor:
         enabled: true

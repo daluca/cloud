@@ -78,10 +78,14 @@ data:
     #!/bin/sh
 
     php occ background:webcron
+  32-server-info-token.sh: |-
+    #!/bin/sh
+
+    php occ config:app:set serverinfo token --value ${NEXTCLOUD_TOKEN}
   40-office-settings.sh: |-
     #!/bin/sh
 
-    php occ config:app:set richdocuments wopi_url --value collabora.${NEXTCLOUD_TRUSTED_DOMAINS#*.}
+    php occ config:app:set richdocuments wopi_url --value https://collabora.${NEXTCLOUD_TRUSTED_DOMAINS#*.}
     php occ richdocuments:activate-config
 ---
 apiVersion: v1
