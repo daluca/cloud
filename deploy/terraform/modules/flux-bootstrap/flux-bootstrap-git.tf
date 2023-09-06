@@ -17,5 +17,5 @@ resource "flux_bootstrap_git" "main" {
   components_extra = local.extra_components
   path             = "clusters/${var.environment}"
   interval         = "1m"
-  version          = var.flux_version != "latest" ? var.flux_version : null
+  version          = var.flux_version != "latest" ? "v${var.flux_version}" : null
 }
