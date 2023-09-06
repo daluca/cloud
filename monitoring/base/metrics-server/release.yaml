@@ -36,10 +36,16 @@ spec:
       enabled: true
     serviceMonitor:
       enabled: true
-    nodeSelector:
-      doks.digitalocean.com/node-pool: monitoring-pool
     tolerations:
       - key: workloadKind
         operator: Equal
         value: monitoring
         effect: NoSchedule
+    affinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 1
+          preference:
+            matchExpressions:
+              - key: workloadKind
+                operator: Equal
+                values: monitoring
