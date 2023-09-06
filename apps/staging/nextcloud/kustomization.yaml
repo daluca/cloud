@@ -16,3 +16,5 @@ patches:
       - op: replace
         path: /spec/values/ingress/tls/0/secretName
         value: nextcloud-stg-tls
+      - op: remove
+        path: /spec/values/affinity
