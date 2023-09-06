@@ -20,8 +20,8 @@ variable "flux" {
   })
 
   validation {
-    condition     = can(regex("^v[0-9]{1,}\\.[0-9]{1,}\\.[0-9]{1,}(-rc\\.[0-9]{1,})?$", var.flux.version)) || var.flux.version == null
-    error_message = "Version must follow semantic version e.g. v2.0.1"
+    condition     = can(regex("^[0-9]{1,}\\.[0-9]{1,}\\.[0-9]{1,}(-rc\\.[0-9]{1,})?$", var.flux.version)) || var.flux.version == null
+    error_message = "Version must follow semantic version e.g. 2.0.1"
   }
 }
 

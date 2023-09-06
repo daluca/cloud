@@ -40,7 +40,7 @@ module "staging" {
   }
 
   flux = {
-    version = "v2.0.1"
+    version = "2.1.0"
     age_key = base64decode(var.flux_age_key)
   }
 }
