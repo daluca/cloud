@@ -1,0 +1,58 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: rss-bridge
+  namespace: rss
+spec:
+  releaseName: rss-bridge
+  chart:
+    spec:
+      chart: rss-bridge
+      version: ">=0.1.0 <0.2.0"
+      sourceRef:
+        kind: HelmRepository
+        name: daluca
+        namespace: flux-system
+  interval: 1h
+  maxHistory: 3
+  install:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  upgrade:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  test:
+    enable: true
+    ignoreFailures: false
+  values:
+    replicaCount: 2
+    service:
+      port: 80
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: cloudflare
+        kubernetes.io/ingress.allow-http: "false"
+      hosts:
+        - host: rssbridge.${PRIMARY_DOMAIN}
+          paths:
+            - pathType: Prefix
+              path: /
+      tls:
+        - secretName: rssbridge-tls
+          hosts:
+            - rssbridge.${PRIMARY_DOMAIN}
+    rssBridge:
+      system:
+        bridges: ["*"]
+      cache:
+        type: memcached
+      memcachedCache:
+        host: memcached.database
+        port: 11211
+    memcached:
+      enabled: false
