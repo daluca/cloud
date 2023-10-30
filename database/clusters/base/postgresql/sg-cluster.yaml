@@ -19,7 +19,7 @@ spec:
         version: "1.8"
   pods:
     persistentVolume:
-      size: 10Gi
+      size: 20Gi
       storageClass: rook-ceph-block
   metadata:
     annotations:
