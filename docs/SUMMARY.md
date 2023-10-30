@@ -38,7 +38,7 @@
 - [Security]()
   - [Crowdsec](./security/crowdsec.md)
 - [Storage]()
-  - [Ceph]()
+  - [Rook](./storage/rook.md)
 - [Sources]()
 
 # Deploy
