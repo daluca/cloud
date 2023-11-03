@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: rss-bridge
-      version: ">=0.1.0 <0.2.0"
+      version: ">=0.2.0 <0.3.0"
       sourceRef:
         kind: HelmRepository
         name: daluca
@@ -29,6 +29,8 @@ spec:
     ignoreFailures: false
   values:
     replicaCount: 2
+    image:
+      tag: sha-611fabe
     service:
       port: 80
     ingress:
