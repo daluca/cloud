@@ -17,11 +17,11 @@ module "production" {
       cpu        = 4
       memory     = 8
       auto_scale = true
-      min        = 4
-      max        = 5
+      min        = 1
+      max        = 2
     }
-    memory_worker_pool = {
-      cpu        = 2
+    big_worker_pool = {
+      cpu        = 8
       memory     = 16
       auto_scale = false
       count      = 2

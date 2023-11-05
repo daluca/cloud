@@ -20,8 +20,8 @@ module "staging" {
       min        = 1
       max        = 4
     }
-    memory_worker_pool = {
-      cpu        = 2
+    big_worker_pool = {
+      cpu        = 4
       memory     = 16
       auto_scale = false
       count      = 1

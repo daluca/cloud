@@ -20,17 +20,17 @@ data "digitalocean_sizes" "worker_pool" {
   }
 }
 
-data "digitalocean_sizes" "memory_worker_pool" {
-  count = var.kubernetes.memory_worker_pool != null ? 1 : 0
+data "digitalocean_sizes" "big_worker_pool" {
+  count = var.kubernetes.big_worker_pool != null ? 1 : 0
 
   filter {
     key    = "vcpus"
-    values = [var.kubernetes.memory_worker_pool.cpu]
+    values = [var.kubernetes.big_worker_pool.cpu]
   }
 
   filter {
     key    = "memory"
-    values = [tostring(var.kubernetes.memory_worker_pool.memory * 1024)]
+    values = [tostring(var.kubernetes.big_worker_pool.memory * 1024)]
   }
 
   filter {
