@@ -18,7 +18,7 @@ terraform {
     }
 
     wasabi = {
-      source  = "terrabitz/wasabi"
+      source  = "thesisedu/wasabi"
       version = "~> 4.0"
     }
 
