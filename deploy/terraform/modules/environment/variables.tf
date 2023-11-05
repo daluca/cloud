@@ -62,6 +62,14 @@ variable "kubernetes" {
       auto_scale = optional(bool, false)
       count      = optional(number)
     })
+    memory_worker_pool = optional(object({
+      cpu        = number
+      memory     = number
+      min        = optional(number)
+      max        = optional(number)
+      auto_scale = optional(bool, false)
+      count      = optional(number)
+    }))
     monitoring_pool = optional(object({
       cpu        = number
       memory     = number

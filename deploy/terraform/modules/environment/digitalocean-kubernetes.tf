@@ -24,6 +24,18 @@ resource "digitalocean_kubernetes_cluster" "main" {
   }
 }
 
+resource "digitalocean_kubernetes_node_pool" "memory" {
+  count      = var.kubernetes.memory_worker_pool != null ? 1 : 0
+  cluster_id = digitalocean_kubernetes_cluster.main.id
+
+  name       = "memory-worker-pool"
+  size       = element(data.digitalocean_sizes.memory_worker_pool[0].sizes, 0).slug
+  auto_scale = var.kubernetes.memory_worker_pool.auto_scale
+  min_nodes  = var.kubernetes.memory_worker_pool.auto_scale ? var.kubernetes.memory_worker_pool.min : null
+  max_nodes  = var.kubernetes.memory_worker_pool.auto_scale ? var.kubernetes.memory_worker_pool.max : null
+  node_count = !var.kubernetes.memory_worker_pool.auto_scale ? var.kubernetes.memory_worker_pool.count != null ? var.kubernetes.memory_worker_pool.count : 1 : null
+}
+
 resource "digitalocean_kubernetes_node_pool" "monitoring" {
   count      = var.kubernetes.monitoring_pool != null ? 1 : 0
   cluster_id = digitalocean_kubernetes_cluster.main.id

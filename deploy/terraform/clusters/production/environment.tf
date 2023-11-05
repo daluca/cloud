@@ -20,6 +20,12 @@ module "production" {
       min        = 4
       max        = 5
     }
+    memory_worker_pool = {
+      cpu        = 2
+      memory     = 16
+      auto_scale = false
+      count      = 2
+    }
     monitoring_pool = {
       cpu        = 2
       memory     = 4
