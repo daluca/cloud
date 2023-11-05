@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.0"
+  required_version = ">= 1.0, < 1.6"
 
   required_providers {
     digitalocean = {
@@ -18,7 +18,7 @@ terraform {
     }
 
     wasabi = {
-      source  = "terrabitz/wasabi"
+      source  = "thesisedu/wasabi"
       version = ">= 4.0, < 5.0"
       configuration_aliases = [
         wasabi.backup,
