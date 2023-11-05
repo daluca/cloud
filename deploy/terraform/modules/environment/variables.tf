@@ -62,7 +62,7 @@ variable "kubernetes" {
       auto_scale = optional(bool, false)
       count      = optional(number)
     })
-    memory_worker_pool = optional(object({
+    big_worker_pool = optional(object({
       cpu        = number
       memory     = number
       min        = optional(number)
