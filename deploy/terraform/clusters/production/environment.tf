@@ -47,7 +47,7 @@ module "production" {
   }
 
   flux = {
-    version = "2.1.0"
+    version = "2.1.2"
     age_key = base64decode(var.flux_age_key)
   }
 }
