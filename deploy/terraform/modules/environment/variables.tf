@@ -82,8 +82,8 @@ variable "kubernetes" {
   })
 
   validation {
-    condition     = contains(["1.25", "1.26", "1.27", "latest"], var.kubernetes.version)
-    error_message = "Kubernetes version must be one of ['1.25', '1.26', '1.27', 'latest']."
+    condition     = contains(["1.26", "1.27", "1.28", "latest"], var.kubernetes.version)
+    error_message = "Kubernetes version must be one of ['1.26', '1.27', '1.28', 'latest']."
   }
 
   validation {
@@ -93,6 +93,16 @@ variable "kubernetes" {
 
   validation {
     condition     = var.kubernetes.worker_pool.memory >= 1
+    error_message = "RAM must be greater than or equal to 1."
+  }
+
+  validation {
+    condition     = var.kubernetes.big_worker_pool != null ? var.kubernetes.big_worker_pool.cpu >= 1 : true
+    error_message = "CPU count must be greater than or equal to 1."
+  }
+
+  validation {
+    condition     = var.kubernetes.big_worker_pool != null ? var.kubernetes.big_worker_pool.memory >= 1 : true
     error_message = "RAM must be greater than or equal to 1."
   }
 
