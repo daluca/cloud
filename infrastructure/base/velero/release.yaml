@@ -107,7 +107,7 @@ spec:
           effect: NoSchedule
     schedules:
       daily-cluster-backup:
-        schedule: 16 17 * * *  # 17:16 UTC
+        schedule: 16 17 * * *
         useOwnerReferencesInBackup: false
         template:
           includeClusterResources: true
@@ -118,7 +118,7 @@ spec:
             - backups
           snapshotVolumes: false
           defaultVolumesToFsBackup: true
-          ttl: 2400h  # 100 days
+          ttl: 2400h
           excludedResources:
             - backups.velero.io
             - backupstoragelocations.velero.io
