@@ -282,6 +282,8 @@ spec:
           mountPath: /docker-entrypoint-hooks.d/post-upgrade
     nginx:
       enabled: true
+      image:
+        tag: 1.25.3-alpine
     internalDatabase:
       enabled: false
     externalDatabase:
