@@ -41,6 +41,9 @@ spec:
             patch: |-
               - op: remove
                 path: /spec/template/spec/containers/0/resources/limits/cpu
+              - op: replace
+                path: /spec/template/spec/containers/0/env/7/valueFrom/secretKeyRef/name
+                value: velero-digitalocean-credentials
           - target:
               kind: DaemonSet
               name: node-agent
@@ -88,10 +91,9 @@ spec:
       features: EnableCSI
     credentials:
       useSecret: true
-      name: velero-digitalocean-credentials
+      existingSecret: velero-wasabi-credentials
       extraEnvVars:
         DIGITALOCEAN_TOKEN: ${DIGITALOCEAN_TOKEN}
-      extraSecretRef: velero-wasabi-credentials
     deployNodeAgent: true
     nodeAgent:
       resources:
