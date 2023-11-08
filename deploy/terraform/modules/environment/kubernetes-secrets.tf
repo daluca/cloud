@@ -60,8 +60,11 @@ resource "kubernetes_secret" "velero_wasabi_credentials" {
   }
 
   data = {
-    AWS_ACCESS_KEY_ID     = sensitive(aws_iam_access_key.velero.id)
-    AWS_SECRET_ACCESS_KEY = aws_iam_access_key.velero.secret
+    cloud = <<EOF
+      [default]
+      aws_access_key_id=${sensitive(aws_iam_access_key.velero.id)}
+      aws_secret_access_key=${aws_iam_access_key.velero.secret}
+    EOF
   }
 }
 
