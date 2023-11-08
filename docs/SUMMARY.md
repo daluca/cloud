@@ -30,6 +30,7 @@
 - [Infrastructure]()
   - [Ingress NGINX](./infrastructure/ingress-nginx.md)
   - [Cert-manager]()
+  - [Velero](./infrastructure/velero.md)
 - [Issuers]()
 - [Monitoring]()
   - [Prometheus]()
