@@ -55,7 +55,7 @@ resource "kubernetes_secret" "velero_wasabi_credentials" {
   depends_on = [module.fluxcd]
 
   metadata {
-    name      = "velero-wasabi-credentials"
+    name      = "wasabi-credentials"
     namespace = "backups"
   }
 
