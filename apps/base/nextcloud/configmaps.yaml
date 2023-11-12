@@ -87,6 +87,10 @@ data:
 
     php occ config:app:set richdocuments wopi_url --value https://collabora.${NEXTCLOUD_TRUSTED_DOMAINS#*.}
     php occ richdocuments:activate-config
+  41-contact-settings.sh: |-
+    #!/bin/sh
+
+    php occ config:app:set dav system_addressbook_exposed --value no
 ---
 apiVersion: v1
 kind: ConfigMap
