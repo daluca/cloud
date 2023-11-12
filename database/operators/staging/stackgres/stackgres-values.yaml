@@ -5,5 +5,8 @@ metadata:
   name: stackgres-operator
   namespace: database
 spec:
+  chart:
+    spec:
+      version: 1.6.0-rc2
   test:
     enable: false
