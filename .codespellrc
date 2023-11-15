@@ -1,0 +1,6 @@
+[codespell]
+builtin = clear,rare,code
+skip = .git,clusters/production/flux-system/*,clusters/staging/flux-system/*
+ignore-words-list = iam
+check-filename =
+check-hidden =
