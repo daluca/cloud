@@ -9,10 +9,10 @@ spec:
   chart:
     spec:
       chart: rook-ceph
-      version: 1.11.7
+      version: 1.12.7
       sourceRef:
         kind: HelmRepository
-        name: rook-release
+        name: rook
         namespace: flux-system
   interval: 1h
   maxHistory: 3
