@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: gatekeeper-policy-manager
-      version: 0.4.2
+      version: 0.8.0
       sourceRef:
         kind: HelmRepository
         name: gatekeeper-policy-manager
