@@ -6,6 +6,11 @@ metadata:
   namespace: gatekeeper-system
 spec:
   releaseName: gatekeeper-policy-manager
+  dependsOn:
+    - name: ingress-nginx
+      namespace: ingress-nginx
+    - name: cert-manager
+      namespace: cert-manager
   chart:
     spec:
       chart: gatekeeper-policy-manager
