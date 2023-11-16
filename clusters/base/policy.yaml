@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: security
+    - name: infrastructure
   interval: 1h
   retryInterval: 1m
   timeout: 5m
@@ -24,7 +24,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: security
+    - name: infrastructure
     - name: policy-templates
   interval: 1h
   retryInterval: 1m

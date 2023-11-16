@@ -9,7 +9,6 @@ spec:
     - name: namespaces
     - name: sources
     - name: crds
-    - name: infrastructure
     - name: database-clusters
   interval: 1h
   retryInterval: 1m
