@@ -16,17 +16,21 @@ spec:
         namespace: flux-system
   interval: 1h
   timeout: 10m
+  maxHistory: 3
   install:
     remediation:
       retries: 1
       remediateLastFailure: true
   upgrade:
+    cleanupOnFail: true
     remediation:
       retries: 1
       remediateLastFailure: true
   test:
     enable: true
     ignoreFailures: false
+  uninstall:
+    keepHistory: false
   values:
     controller:
       replicaCount: 3

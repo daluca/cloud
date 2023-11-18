@@ -21,9 +21,12 @@ spec:
       retries: 1
       remediateLastFailure: true
   upgrade:
+    cleanupOnFail: true
     remediation:
       retries: 1
       remediateLastFailure: true
+  uninstall:
+    keepHistory: false
   test:
     enable: true
     ignoreFailures: false

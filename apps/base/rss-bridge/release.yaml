@@ -21,12 +21,15 @@ spec:
       retries: 1
       remediateLastFailure: true
   upgrade:
+    cleanupOnFail: true
     remediation:
       retries: 1
       remediateLastFailure: true
   test:
     enable: true
     ignoreFailures: false
+  uninstall:
+    keepHistory: false
   values:
     replicaCount: 2
     image:
