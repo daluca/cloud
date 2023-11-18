@@ -51,6 +51,7 @@ spec:
             - feeds.${PRIMARY_DOMAIN}
     config:
       FETCH_YOUTUBE_WATCH_TIME: "true"
+      FETCH_ODYSEE_WATCH_TIME: "true"
       OAUTH2_PROVIDER: oidc
       OAUTH2_REDIRECT_URL: https://feeds.${PRIMARY_DOMAIN}/oauth2/oidc/callback
       OAUTH2_OIDC_DISCOVERY_ENDPOINT: https://sso.${PRIMARY_DOMAIN}/realms/${ENVIRONMENT}
