@@ -21,6 +21,7 @@ spec:
       retries: 1
       remediateLastFailure: true
   upgrade:
+    cleanupOnFail: true
     remediation:
       retries: 1
       remediateLastFailure: true
