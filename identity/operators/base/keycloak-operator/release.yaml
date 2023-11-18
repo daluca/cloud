@@ -9,10 +9,10 @@ spec:
   chart:
     spec:
       chart: keycloak-operator
-      version: 0.0.4
+      version: ">=0.1.0 <0.2.0"
       sourceRef:
         kind: HelmRepository
-        name: keycloak-operator
+        name: daluca
         namespace: flux-system
   interval: 1h
   maxHistory: 3
@@ -33,10 +33,5 @@ spec:
     enable: true
     ignoreFailures: false
   values:
-    keycloak:
-      image:
-        tag: 22.0.0
-    image:
-      tag: 22.0.0
-    serviceAccount:
-      create: false
+    service:
+      port: 80
