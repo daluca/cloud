@@ -12,7 +12,7 @@ spec:
       script: |-
         CREATE DATABASE demo WITH OWNER postgres;
     - name: create-synapse-database
-      secretFrom:
+      scriptFrom:
         secretKeyRef:
           name: database-creation-scripts
           key: create-synapse-database.sql
