@@ -80,7 +80,7 @@ metadata:
   name: voyager
   namespace: lemmy
   annotations:
-    cert-manager.io/cluster-issuer: cloudflare
+    cert-manager.io/cluster-issuer: letsencrypt-prod
     kubernetes.io/ingress.allow-http: "false"
     nginx.ingress.kubernetes.io/proxy-body-size: 20M
     external-dns.alpha.kubernetes.io/target: ${TERTIARY_DOMAIN}
