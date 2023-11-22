@@ -50,7 +50,7 @@ spec:
       enabled: true
       className: nginx
       annotations:
-        cert-manager.io/cluster-issuer: cloudflare
+        cert-manager.io/cluster-issuer: letsencrypt-prod
         kubernetes.io/ingress.allow-http: "false"
       hosts:
         - host: gitops.${PRIMARY_DOMAIN}
