@@ -56,8 +56,25 @@ spec:
       enabled: false
     collabora:
       aliasgroups:
-        - host: cloud.${PRIMARY_DOMAIN}:443
-    extra_params: --o:ssl.enable=false --o:ssl.termination=true
+        - host: cloud.${PRIMARY_DOMAIN}
+          aliases:
+            - https://collabora.${PRIMARY_DOMAIN}
+            - https://collabora.${PRIMARY_DOMAIN}:443
+            - http://collabora:9980
+            - http://collabora.nextcloud:9980
+            - http://collabora.nextcloud.svc:9980
+            - http://collabora.nextcloud.svc.cluster.local:9980
+      server_name: collabora.${PRIMARY_DOMAIN}
+      extra_params: >-
+        --o:ssl.enable=false
+        --o:ssl.termination=true
+        --o:remote_font_config.url=https://cloud.${PRIMARY_DOMAIN}/apps/richdocuments/settings/fonts.json
+      existingSecret:
+        enabled: true
+        secretName: collabora-admin-credentials
+      env:
+        - name: DONT_GEN_SSL_CERT
+          value: "true"
     resources:
       requests:
         cpu: 500m

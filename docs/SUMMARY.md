@@ -11,8 +11,9 @@
 # Clusters
 
 - [Apps]()
-  - [Podinfo]()
+  - [Collabora](./apps/collabora.md)
   - [Nextcloud](./apps/nextcloud.md)
+  - [Podinfo]()
 - [Clusters]()
   - [Staging]()
   - [Production]()
