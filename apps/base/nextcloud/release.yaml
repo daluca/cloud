@@ -165,6 +165,7 @@ spec:
           <?php
           $CONFIG = array (
             'default_locale'       => 'en_NZ',
+            'default_language'     => 'en_GB',
             'default_phone_region' => 'NZ',
             'hide_login_form'      => false,
             'skeletondirectory'    => '',
