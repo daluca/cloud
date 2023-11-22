@@ -37,7 +37,7 @@ spec:
       enabled: true
       className: nginx
       annotations:
-        cert-manager.io/cluster-issuer: cloudflare
+        cert-manager.io/cluster-issuer: letsencrypt-prod
         kubernetes.io/ingress.allow-http: "false"
         nginx.ingress.kubernetes.io/upstream-hash-by: $arg_WOPISrc
         nginx.ingress.kubernetes.io/proxy-body-size: "0"

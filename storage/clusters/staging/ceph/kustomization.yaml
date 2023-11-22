@@ -23,6 +23,9 @@ patches:
       name: rook-ceph-mgr-dashboard
     patch: |-
       - op: replace
+        path: /metadata/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-staging
+      - op: replace
         path: /spec/tls/0/secretName
         value: rook-stg-tls
   - target:

@@ -11,5 +11,8 @@ patches:
       name: collabora
     patch: |-
       - op: replace
+        path: /spec/values/ingress/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-staging
+      - op: replace
         path: /spec/values/ingress/tls/0/secretName
         value: collabora-stg-tls

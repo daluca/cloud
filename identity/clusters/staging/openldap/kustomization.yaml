@@ -11,5 +11,8 @@ patches:
       name: openldap
     patch: |-
       - op: replace
+        path: /spec/values/phpldapadmin/ingress/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-staging
+      - op: replace
         path: /spec/values/phpldapadmin/ingress/tls/0/secretName
         value: phpldapadmin-stg-tls

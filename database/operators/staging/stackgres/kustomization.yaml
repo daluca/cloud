@@ -10,5 +10,8 @@ patches:
       name: stackgres
     patch: |-
       - op: replace
+        path: /metadata/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-staging
+      - op: replace
         path: /spec/tls/0/secretName
         value: stackgres-stg-tls

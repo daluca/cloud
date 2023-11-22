@@ -20,6 +20,9 @@ patches:
         path: /spec/tls/0/hosts/0
         value: lemmy.${PRIMARY_DOMAIN}
       - op: replace
+        path: /metadata/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-staging
+      - op: replace
         path: /spec/tls/0/secretName
         value: lemmy-stg-tls
   - target:
