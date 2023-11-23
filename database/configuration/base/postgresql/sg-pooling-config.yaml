@@ -18,10 +18,6 @@ spec:
         client_idle_timeout: 30
         query_wait_timeout: 300
       databases:
-        nextcloud:
-          pool_size: 400
-          dbname: nextcloud
-          reserve_pool: 5
         crowdsec:
           pool_size: 400
           dbname: crowdsec
@@ -38,7 +34,15 @@ spec:
           pool_size: 400
           dbname: miniflux
           reserve_pool: 5
+        nextcloud:
+          pool_size: 400
+          dbname: nextcloud
+          reserve_pool: 5
         postgres:
           pool_size: 10
           dbname: postgres
+          reserve_pool: 5
+        synapse:
+          pool_size: 400
+          dbname: synapse
           reserve_pool: 5
