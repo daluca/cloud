@@ -20,8 +20,9 @@ resource "kubernetes_secret" "cluster_substitutions" {
   }
 
   data = {
-    STACKGRES_BACKUP_BUCKET = module.stackgres_backup.bucket
-    VELERO_BACKUP_BUCKET    = module.velero_backup.bucket
+    STACKGRES_BACKUP_BUCKET      = module.stackgres_backup.bucket
+    VELERO_BACKUP_BUCKET         = module.velero_backup.bucket
+    DIGITALOCEAN_LOADBALANCER_IP = data.digitalocean_loadbalancer.main.ip
   }
 }
 
@@ -60,7 +61,7 @@ resource "kubernetes_secret" "velero_wasabi_credentials" {
   }
 
   data = {
-    cloud = <<EOF
+    cloud = <<-EOF
       [default]
       aws_access_key_id=${sensitive(aws_iam_access_key.velero.id)}
       aws_secret_access_key=${aws_iam_access_key.velero.secret}
