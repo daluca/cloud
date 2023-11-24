@@ -34,7 +34,7 @@ resource "kubernetes_secret" "loadbalancer_substitutions" {
   }
 
   data = {
-    DIGITALOCEAN_LOADBALANCER_IP = data.digitalocean_loadbalancer.main.ip
+    DIGITALOCEAN_LOADBALANCER_IP = sensitive(data.digitalocean_loadbalancer.main.ip)
   }
 }
 
