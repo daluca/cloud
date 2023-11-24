@@ -20,8 +20,20 @@ resource "kubernetes_secret" "cluster_substitutions" {
   }
 
   data = {
-    STACKGRES_BACKUP_BUCKET      = module.stackgres_backup.bucket
-    VELERO_BACKUP_BUCKET         = module.velero_backup.bucket
+    STACKGRES_BACKUP_BUCKET = module.stackgres_backup.bucket
+    VELERO_BACKUP_BUCKET    = module.velero_backup.bucket
+  }
+}
+
+resource "kubernetes_secret" "loadbalancer_substitutions" {
+  depends_on = [module.fluxcd]
+
+  metadata {
+    name      = "${local.environment}-loadbalancer-substitutions"
+    namespace = "flux-system"
+  }
+
+  data = {
     DIGITALOCEAN_LOADBALANCER_IP = data.digitalocean_loadbalancer.main.ip
   }
 }

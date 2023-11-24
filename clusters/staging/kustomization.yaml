@@ -20,7 +20,7 @@ patches:
         value: staging-cluster-substitutions
       - op: replace
         path: /spec/postBuild/substituteFrom/2/name
-        value: staging-terraform-substitutions
+        value: staging-loadbalancer-substitutions
   - target:
       kind: Kustomization
       name: configuration

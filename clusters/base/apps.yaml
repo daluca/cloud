@@ -34,4 +34,4 @@ spec:
       - kind: ConfigMap
         name: production-cluster-substitutions
       - kind: Secret
-        name: production-terraform-substitutions
+        name: production-loadbalancer-substitutions
