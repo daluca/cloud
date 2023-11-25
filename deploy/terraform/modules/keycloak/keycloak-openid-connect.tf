@@ -80,3 +80,14 @@ resource "keycloak_openid_client" "oauth2_proxy" {
   standard_flow_enabled        = true
   direct_access_grants_enabled = false
 }
+
+resource "keycloak_openid_audience_protocol_mapper" "oauth2_proxy" {
+  realm_id  = data.keycloak_realm.main.id
+  client_id = keycloak_openid_client.oauth2_proxy.id
+
+  name                     = "aud-mapper-oauth2-proxy"
+  included_client_audience = keycloak_openid_client.oauth2_proxy.client_id
+
+  add_to_id_token     = true
+  add_to_access_token = true
+}
