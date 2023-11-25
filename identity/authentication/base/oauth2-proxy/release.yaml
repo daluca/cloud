@@ -41,11 +41,12 @@ spec:
         oidc-issuer-url=https://sso.${PRIMARY_DOMAIN}/realms/${ENVIRONMENT}
         allow-role=oauth2-proxy:admin
         code-challenge-method=S256
-        silence-ping-logging=true
+        cookie_refresh=15m
+        cookie_expire=16h
+        cookie_domains=[".${PRIMARY_DOMAIN"]
+        whitelist_domains=[".${PRIMARY_DOMAIN}"]
         reverse-proxy=true
-        pass-access-token=true
-        set-xauthrequest=true
-        set-authorization-header=true
+        silence-ping-logging=true
     extraEnv:
       - name: OAUTH2_PROXY_CLIENT_ID
         valueFrom:
