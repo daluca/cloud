@@ -35,18 +35,18 @@ spec:
       configFile: |-
         email_domains=["*"]
         upstreams=["file:///dev/null"]
-        provider=oidc
-        provider-display-name=sso.${PRIMARY_DOMAIN}
-        redirect-url=https://${PRIMARY_DOMAIN}/oauth2/callback
-        oidc-issuer-url=https://sso.${PRIMARY_DOMAIN}/realms/${ENVIRONMENT}
-        allow-role=oauth2-proxy:admin
-        code-challenge-method=S256
-        cookie_refresh=15m
-        cookie_expire=16h
+        provider="oidc"
+        provider_display_name="sso.${PRIMARY_DOMAIN}"
+        redirect_url="https://${PRIMARY_DOMAIN}/oauth2/callback"
+        oidc_issuer_url="https://sso.${PRIMARY_DOMAIN}/realms/${ENVIRONMENT}"
+        allowed_roles=["oauth2-proxy:admin"]
+        code_challenge_method="S256"
+        cookie_refresh="15m"
+        cookie_expire="16h"
         cookie_domains=[".${PRIMARY_DOMAIN}"]
         whitelist_domains=[".${PRIMARY_DOMAIN}"]
-        reverse-proxy=true
-        silence-ping-logging=true
+        reverse_proxy=true
+        silence_ping_logging=true
     extraEnv:
       - name: OAUTH2_PROXY_CLIENT_ID
         valueFrom:
