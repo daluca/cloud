@@ -108,6 +108,19 @@ patches:
         value: staging-cluster-substitutions
   - target:
       kind: Kustomization
+      name: identity-authentication
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./identity/authentication/staging
+      - op: replace
+        path: /spec/postBuild/substituteFrom/0/name
+        value: staging-cluster-substitutions
+      - op: replace
+        path: /spec/postBuild/substituteFrom/1/name
+        value: staging-cluster-substitutions
+  - target:
+      kind: Kustomization
       name: infrastructure
     patch: |-
       - op: replace

@@ -1,0 +1,106 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: oauth2-proxy
+  namespace: identity
+spec:
+  releaseName: oauth2-proxy
+  chart:
+    spec:
+      chart: oauth2-proxy
+      version: 6.19.1
+      sourceRef:
+        kind: HelmRepository
+        name: oauth2-proxy
+        namespace: flux-system
+  interval: 1h
+  maxHistory: 3
+  install:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  uninstall:
+    keepHistory: false
+  test:
+    enable: true
+    ignoreFailures: false
+  values:
+    config:
+      configFile: |-
+        email_domains=["*"]
+        upstreams=["file:///dev/null"]
+        provider=oidc
+        provider-display-name=sso.${PRIMARY_DOMAIN}
+        redirect-url=https://${PRIMARY_DOMAIN}/oauth2/callback
+        oidc-issuer-url=https://sso.${PRIMARY_DOMAIN}/realms/${ENVIRONMENT}
+        allow-role=oauth2-proxy:admin
+        code-challenge-method=S256
+        silence-ping-logging=true
+        reverse-proxy=true
+        pass-access-token=true
+        set-xauthrequest=true
+        set-authorization-header=true
+    extraEnv:
+      - name: OAUTH2_PROXY_CLIENT_ID
+        valueFrom:
+          secretKeyRef:
+            key: client-id
+            name: oauth2-proxy-openid-connect
+      - name: OAUTH2_PROXY_CLIENT_SECRET
+        valueFrom:
+          secretKeyRef:
+            key: client-secret
+            name: oauth2-proxy-openid-connect
+      - name: OAUTH2_PROXY_COOKIE_SECRET
+        valueFrom:
+          secretKeyRef:
+            key: cookie-secret
+            name: oauth2-proxy-secrets
+    ingress:
+      enabled: true
+      className: nginx
+      path: /oauth2
+      pathType: Prefix
+      hosts:
+        - ${PRIMARY_DOMAIN}
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        kubernetes.io/ingress.allow-http: "false"
+        external-dns.alpha.kubernetes.io/exclude: "true"
+      tls:
+        - secretName: apex-tls
+          hosts:
+            - ${PRIMARY_DOMAIN}
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/instance
+                  operator: In
+                  values: [oauth2-proxy]
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values: [oauth2-proxy]
+            topologyKey: kubernetes.io/hostname
+    replicaCount: 3
+    initContainers:
+      waitForRedis:
+        enabled: false
+    sessionStorage:
+      type: redis
+      redis:
+        existingSecret: redis-cluster-credentials
+        clientType: cluster
+        cluster:
+          connectionUrls: redis://redis-cluster-leader.database:6379
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true

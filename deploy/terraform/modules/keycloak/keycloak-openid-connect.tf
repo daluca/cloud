@@ -64,3 +64,19 @@ resource "keycloak_openid_client" "miniflux" {
   standard_flow_enabled        = true
   direct_access_grants_enabled = true
 }
+
+resource "keycloak_openid_client" "oauth2_proxy" {
+  realm_id  = data.keycloak_realm.main.id
+  client_id = "oauth2-proxy"
+
+  name    = "OAuth2 Proxy"
+  enabled = true
+
+  access_type = "CONFIDENTIAL"
+
+  root_url            = sensitive("https://${var.keycloak.domain}")
+  valid_redirect_uris = ["/oauth2/callback"]
+
+  standard_flow_enabled        = true
+  direct_access_grants_enabled = false
+}

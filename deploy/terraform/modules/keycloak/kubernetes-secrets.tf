@@ -21,3 +21,15 @@ resource "kubernetes_secret" "miniflux_openid_connect" {
     "OAUTH2_CLIENT_SECRET" = keycloak_openid_client.miniflux.client_secret
   }
 }
+
+resource "kubernetes_secret" "oauth2_proxy_openid_connect" {
+  metadata {
+    name      = "oauth2-proxy-openid-connect"
+    namespace = "identity"
+  }
+
+  data = {
+    "client-id"     = keycloak_openid_client.oauth2_proxy.client_id
+    "client-secret" = keycloak_openid_client.oauth2_proxy.client_secret
+  }
+}

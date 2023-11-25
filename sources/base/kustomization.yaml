@@ -13,6 +13,7 @@ resources:
   - ingress-nginx.yaml
   - metrics-server.yaml
   - nextcloud.yaml
+  - oauth2-proxy.yaml
   - openldap.yaml
   - ot-helm.yaml
   - prometheus-community.yaml

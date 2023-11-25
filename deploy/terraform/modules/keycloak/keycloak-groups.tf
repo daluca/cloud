@@ -13,8 +13,9 @@ resource "keycloak_group_roles" "administrator_roles" {
   group_id = keycloak_group.administrators.id
 
   role_ids = [
+    data.keycloak_role.realm_management_realm_admin.id,
     keycloak_role.nextcloud_admin.id,
-    data.keycloak_role.realm_management_realm_admin.id
+    keycloak_role.oauth2_proxy_admin.id
   ]
 }
 
