@@ -43,6 +43,7 @@ spec:
         code_challenge_method="S256"
         cookie_refresh="15m"
         cookie_expire="16h"
+        cookie_samesite="strict"
         cookie_domains=[".${PRIMARY_DOMAIN}"]
         whitelist_domains=[".${PRIMARY_DOMAIN}"]
         reverse_proxy=true
