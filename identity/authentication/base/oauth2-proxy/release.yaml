@@ -43,7 +43,7 @@ spec:
         code-challenge-method=S256
         cookie_refresh=15m
         cookie_expire=16h
-        cookie_domains=[".${PRIMARY_DOMAIN"]
+        cookie_domains=[".${PRIMARY_DOMAIN}"]
         whitelist_domains=[".${PRIMARY_DOMAIN}"]
         reverse-proxy=true
         silence-ping-logging=true
