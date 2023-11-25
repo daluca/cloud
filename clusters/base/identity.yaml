@@ -85,3 +85,36 @@ spec:
     substituteFrom:
       - kind: Secret
         name: production-cluster-substitutions
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: identity-authentication
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: namespaces
+    - name: sources
+    - name: configuration
+    - name: infrastructure
+    - name: identity-clusters
+    - name: identity-management
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+  path: ./identity/authentication/production
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: production-cluster-substitutions
+      - kind: ConfigMap
+        name: production-cluster-substitutions
