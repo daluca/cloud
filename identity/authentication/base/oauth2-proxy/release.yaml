@@ -72,15 +72,14 @@ spec:
       path: /oauth2
       pathType: Prefix
       hosts:
-        - ${PRIMARY_DOMAIN}
+        - auth.${PRIMARY_DOMAIN}
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         kubernetes.io/ingress.allow-http: "false"
-        external-dns.alpha.kubernetes.io/exclude: "true"
       tls:
-        - secretName: apex-tls
+        - secretName: auth-tls
           hosts:
-            - ${PRIMARY_DOMAIN}
+            - auth.${PRIMARY_DOMAIN}
     affinity:
       podAntiAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:

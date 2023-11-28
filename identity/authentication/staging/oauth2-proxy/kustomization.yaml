@@ -16,6 +16,6 @@ patches:
         value: letsencrypt-staging
       - op: replace
         path: /spec/values/ingress/tls/0/secretName
-        value: apex-stg-tls
+        value: auth-stg-tls
       - op: remove
         path: /spec/values/affinity
