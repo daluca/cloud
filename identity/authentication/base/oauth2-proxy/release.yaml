@@ -39,7 +39,8 @@ spec:
         provider_display_name="sso.${PRIMARY_DOMAIN}"
         redirect_url="https://${PRIMARY_DOMAIN}/oauth2/callback"
         oidc_issuer_url="https://sso.${PRIMARY_DOMAIN}/realms/${ENVIRONMENT}"
-        allowed_roles=["oauth2-proxy:admin"]
+        scope="openid profile email profile groups"
+        allowed_groups=["Administrators"]
         code_challenge_method="S256"
         cookie_refresh="15m"
         cookie_expire="16h"
