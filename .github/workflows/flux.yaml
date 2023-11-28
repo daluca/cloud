@@ -44,6 +44,6 @@ jobs:
           version: 0.6.4
 
       - name: run flux-validate.sh on all files
-        uses: pre-commit/action@v3
+        uses: pre-commit/action@v3.0.0
         with:
           extra_args: flux-validate --all-files

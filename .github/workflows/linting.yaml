@@ -23,7 +23,7 @@ jobs:
           python-version: "3.12"
 
       - name: run YAMLlint on all files
-        uses: pre-commit/action@v3
+        uses: pre-commit/action@v3.0.0
         with:
           extra_args: yamllint --all-files
 
@@ -44,7 +44,7 @@ jobs:
           python-version: "3.12"
 
       - name: run markdownlint-cli2 on all files
-        uses: pre-commit/action@v3
+        uses: pre-commit/action@v3.0.0
         with:
           extra_args: markdownlint-cli2 --all-files
 
@@ -65,6 +65,6 @@ jobs:
           python-version: "3.12"
 
       - name: run codespell on all files
-        uses: pre-commit/action@v3
+        uses: pre-commit/action@v3.0.0
         with:
           extra_args: codespell --all-files
