@@ -74,7 +74,7 @@ resource "keycloak_openid_client" "oauth2_proxy" {
 
   access_type = "CONFIDENTIAL"
 
-  root_url            = sensitive("https://${var.keycloak.domain}")
+  root_url            = sensitive("https://auth.${var.keycloak.domain}")
   valid_redirect_uris = ["/oauth2/callback"]
 
   standard_flow_enabled        = true
