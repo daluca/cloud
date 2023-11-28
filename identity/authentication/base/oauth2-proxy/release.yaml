@@ -42,7 +42,7 @@ spec:
         scope="openid profile email profile groups"
         allowed_groups=["Users"]
         code_challenge_method="S256"
-        session_store_type=redis
+        session_store_type="redis"
         cookie_refresh="1m"
         cookie_expire="30m"
         cookie_samesite="strict"
@@ -71,16 +71,23 @@ spec:
       className: nginx
       path: /oauth2
       pathType: Prefix
+      extraPaths:
+        path: robots.txt
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: oauth2-proxy
+            port:
+              name: http
       hosts:
-        - ${PRIMARY_DOMAIN}
+        - auth.${PRIMARY_DOMAIN}
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         kubernetes.io/ingress.allow-http: "false"
-        external-dns.alpha.kubernetes.io/exclude: "true"
       tls:
-        - secretName: apex-tls
+        - secretName: auth-tls
           hosts:
-            - ${PRIMARY_DOMAIN}
+            - auth.${PRIMARY_DOMAIN}
     affinity:
       podAntiAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
