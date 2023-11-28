@@ -71,6 +71,14 @@ spec:
       className: nginx
       path: /oauth2
       pathType: Prefix
+      extraPaths:
+        path: robots.txt
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: oauth2-proxy
+            port:
+              name: http
       hosts:
         - auth.${PRIMARY_DOMAIN}
       annotations:
