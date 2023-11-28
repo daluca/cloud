@@ -42,7 +42,7 @@ spec:
         scope="openid profile email profile groups"
         allowed_groups=["Users"]
         code_challenge_method="S256"
-        session_store_type=redis
+        session_store_type="redis"
         cookie_refresh="1m"
         cookie_expire="30m"
         cookie_samesite="strict"
