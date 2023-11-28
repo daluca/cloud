@@ -40,7 +40,7 @@ spec:
         redirect_url="https://${PRIMARY_DOMAIN}/oauth2/callback"
         oidc_issuer_url="https://sso.${PRIMARY_DOMAIN}/realms/${ENVIRONMENT}"
         scope="openid profile email profile groups"
-        allowed_groups=["Administrators"]
+        allowed_groups=["Users"]
         code_challenge_method="S256"
         session_store_type=redis
         cookie_refresh="1m"
