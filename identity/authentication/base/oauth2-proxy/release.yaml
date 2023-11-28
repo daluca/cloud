@@ -42,8 +42,9 @@ spec:
         scope="openid profile email profile groups"
         allowed_groups=["Administrators"]
         code_challenge_method="S256"
-        cookie_refresh="15m"
-        cookie_expire="16h"
+        session_store_type=redis
+        cookie_refresh="1m"
+        cookie_expire="30m"
         cookie_samesite="strict"
         cookie_domains=[".${PRIMARY_DOMAIN}"]
         whitelist_domains=[".${PRIMARY_DOMAIN}"]
