@@ -47,7 +47,7 @@ spec:
           cert-manager.io/cluster-issuer: letsencrypt-prod
           kubernetes.io/ingress.allow-http: "false"
           nginx.ingress.kubernetes.io/auth-signin: https://${PRIMARY_DOMAIN}/oauth2/start?rd=$scheme%3A%2F%2F$host$escaped_request_uri
-          nginx.ingress.kubernetes.io/auth-url: http://oauth2-proxy.identity.svc.cluster.local/oauth2/auth
+          nginx.ingress.kubernetes.io/auth-url: http://oauth2-proxy.identity.svc.cluster.local/oauth2/auth?allowed_groups=Administrators
         hosts:
           - alertmanager.${PRIMARY_DOMAIN}
         pathType: Prefix
@@ -139,7 +139,7 @@ spec:
           cert-manager.io/cluster-issuer: letsencrypt-prod
           kubernetes.io/ingress.allow-http: "false"
           nginx.ingress.kubernetes.io/auth-signin: https://${PRIMARY_DOMAIN}/oauth2/start?rd=$scheme%3A%2F%2F$host$escaped_request_uri
-          nginx.ingress.kubernetes.io/auth-url: http://oauth2-proxy.identity.svc.cluster.local/oauth2/auth
+          nginx.ingress.kubernetes.io/auth-url: http://oauth2-proxy.identity.svc.cluster.local/oauth2/auth?allowed_groups=Administrators
         hosts:
           - prometheus.${PRIMARY_DOMAIN}
         pathType: Prefix

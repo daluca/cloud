@@ -81,6 +81,19 @@ resource "keycloak_openid_client" "oauth2_proxy" {
   direct_access_grants_enabled = false
 }
 
+resource "keycloak_openid_client_optional_scopes" "oauth2_proxy_optional_scopes" {
+  realm_id  = data.keycloak_realm.main.id
+  client_id = keycloak_openid_client.oauth2_proxy.id
+
+  optional_scopes = [
+    "address",
+    "phone",
+    "offline_access",
+    "microprofile-jwt",
+    keycloak_openid_client_scope.group.name
+  ]
+}
+
 resource "keycloak_openid_audience_protocol_mapper" "oauth2_proxy" {
   realm_id  = data.keycloak_realm.main.id
   client_id = keycloak_openid_client.oauth2_proxy.id

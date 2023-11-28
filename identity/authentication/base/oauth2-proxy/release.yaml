@@ -39,10 +39,12 @@ spec:
         provider_display_name="sso.${PRIMARY_DOMAIN}"
         redirect_url="https://${PRIMARY_DOMAIN}/oauth2/callback"
         oidc_issuer_url="https://sso.${PRIMARY_DOMAIN}/realms/${ENVIRONMENT}"
-        allowed_roles=["oauth2-proxy:admin"]
+        scope="openid profile email profile groups"
+        allowed_groups=["Users"]
         code_challenge_method="S256"
-        cookie_refresh="15m"
-        cookie_expire="16h"
+        session_store_type=redis
+        cookie_refresh="1m"
+        cookie_expire="30m"
         cookie_samesite="strict"
         cookie_domains=[".${PRIMARY_DOMAIN}"]
         whitelist_domains=[".${PRIMARY_DOMAIN}"]
