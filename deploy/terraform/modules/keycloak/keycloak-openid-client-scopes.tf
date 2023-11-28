@@ -15,7 +15,7 @@ resource "keycloak_generic_protocol_mapper" "groups_mapper" {
   protocol_mapper = "oidc-group-membership-mapper"
 
   config = {
-    "claim.name" = "groups"
+    "claim.name" : "groups"
     "full.path" : "false",
     "id.token.claim" : "true",
     "access.token.claim" : "true",
