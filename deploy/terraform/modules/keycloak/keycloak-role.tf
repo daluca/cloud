@@ -20,11 +20,3 @@ resource "keycloak_role" "nextcloud_user" {
   name        = "user"
   description = "User group on Nextcloud."
 }
-
-resource "keycloak_role" "oauth2_proxy_admin" {
-  realm_id  = data.keycloak_realm.main.id
-  client_id = keycloak_openid_client.oauth2_proxy.id
-
-  name        = "admin"
-  description = "Admin group on OAuth2 Proxy"
-}
