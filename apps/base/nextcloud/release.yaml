@@ -111,7 +111,7 @@ spec:
                 'use_ssl'              => true,
                 'use_path_style'       => true,
                 'autocreate'           => false,
-                'verify_bucket_exists' => true,
+                'verify_bucket_exists' => false,
                 'sse_c_key'            => getenv('AWS_SSE_CUSTOMER_KEY')
               )
             )
