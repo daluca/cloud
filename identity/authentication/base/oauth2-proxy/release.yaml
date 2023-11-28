@@ -37,7 +37,7 @@ spec:
         upstreams=["file:///dev/null"]
         provider="oidc"
         provider_display_name="sso.${PRIMARY_DOMAIN}"
-        redirect_url="https://${PRIMARY_DOMAIN}/oauth2/callback"
+        redirect_url="https://auth.${PRIMARY_DOMAIN}/oauth2/callback"
         oidc_issuer_url="https://sso.${PRIMARY_DOMAIN}/realms/${ENVIRONMENT}"
         scope="openid profile email profile groups"
         allowed_groups=["Users"]
