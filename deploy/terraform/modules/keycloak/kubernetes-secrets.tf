@@ -33,3 +33,18 @@ resource "kubernetes_secret" "oauth2_proxy_openid_connect" {
     "client-secret" = keycloak_openid_client.oauth2_proxy.client_secret
   }
 }
+
+resource "kubernetes_secret" "synapse_openid_connect" {
+  metadata {
+    name      = "synapse-openid-connect"
+    namespace = "matrix"
+  }
+
+  data = {
+    "keycloak.yaml" = <<-EOF
+      oidc_providers:
+        - client_id: ${keycloak_openid_client.synapse.client_id}
+          client_secret: ${keycloak_openid_client.synapse.client_secret}
+    EOF
+  }
+}

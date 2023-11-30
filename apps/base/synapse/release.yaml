@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: synapse
-      version: ">=0.3.0 <0.4.0"
+      version: ">=0.4.0 <0.5.0"
       sourceRef:
         kind: HelmRepository
         name: daluca
@@ -55,6 +55,21 @@ spec:
     homeserver:
       server_name: ${PRIMARY_DOMAIN}
       existingSecret: synapse-secrets
+      public_baseurl: https://matrix.${PRIMARY_DOMAIN}
+    extraMergeVolumeMounts:
+      - mountPath: /workdir/config/oidc-providers.yaml
+        subPath: oidc-providers.yaml
+        name: oidc-providers
+      - mountPath: /workdir/secrets/keycloak.yaml
+        subPath: keycloak.yaml
+        name: oidc-credentials
+    extraVolumes:
+      - name: oidc-providers
+        configMap:
+          name: oidc-providers
+      - name: oidc-credentials
+        secret:
+          secretName: synapse-openid-connect
     delegation:
       enabled: true
       ingress:

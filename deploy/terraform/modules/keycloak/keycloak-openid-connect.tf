@@ -104,3 +104,22 @@ resource "keycloak_openid_audience_protocol_mapper" "oauth2_proxy" {
   add_to_id_token     = true
   add_to_access_token = true
 }
+
+resource "keycloak_openid_client" "synapse" {
+  realm_id  = data.keycloak_realm.main.id
+  client_id = "synapse"
+
+  name    = "Synapse"
+  enabled = true
+
+  access_type = "CONFIDENTIAL"
+
+  root_url            = sensitive("https://matrix.${var.keycloak.domain}")
+  valid_redirect_uris = ["/_synapse/client/oidc/callback"]
+
+  standard_flow_enabled        = true
+  direct_access_grants_enabled = true
+
+  backchannel_logout_url              = sensitive("https://matrix.${var.keycloak.domain}/_synapse/client/oidc/backchannel_logout")
+  backchannel_logout_session_required = true
+}
