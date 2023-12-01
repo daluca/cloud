@@ -10,14 +10,14 @@ variable "openldap_password" {
   sensitive   = true
 }
 
-variable "domain" {
-  description = "Domain for client applications."
+variable "domain_components" {
+  description = "OpenLDAP domain component."
   type        = string
   sensitive   = true
 }
 
-variable "domain_components" {
-  description = "OpenLDAP domain component."
+variable "domain" {
+  description = "Domain for client applications."
   type        = string
   sensitive   = true
 }

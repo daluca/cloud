@@ -13,4 +13,6 @@ module "staging" {
       password = var.openldap_password
     }
   }
+
+  domains = {}
 }
