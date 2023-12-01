@@ -1,3 +1,7 @@
+locals {
+  matrix_domain = var.keycloak.realm == "production" ? var.domains.matrix != null ? var.domains.matrix : var.keycloak.domain : var.keycloak.domain
+}
+
 resource "keycloak_openid_client" "nextcloud" {
   realm_id  = data.keycloak_realm.main.id
   client_id = "nextcloud-user_oidc"
@@ -114,7 +118,7 @@ resource "keycloak_openid_client" "synapse" {
 
   access_type = "CONFIDENTIAL"
 
-  root_url            = sensitive("https://matrix.${var.keycloak.domain}")
+  root_url            = sensitive("https://matrix.${local.matrix_domain}")
   valid_redirect_uris = ["/_synapse/client/oidc/callback"]
 
   standard_flow_enabled        = true

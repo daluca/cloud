@@ -17,3 +17,10 @@ variable "openldap" {
     })
   })
 }
+
+variable "domains" {
+  description = "Additional domain for applications."
+  type = object({
+    matrix = optional(string)
+  })
+}
