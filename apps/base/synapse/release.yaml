@@ -42,7 +42,7 @@ spec:
         kubernetes.io/ingress.allow-http: "false"
         external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
         external-dns.alpha.kubernetes.io/target: ${DIGITALOCEAN_LOADBALANCER_IP}
-      host: matrix.${PRIMARY_DOMAIN}
+      host: matrix.${SECONDARY_DOMAIN}
       tls: true
     persistence:
       enabled: true
@@ -53,9 +53,9 @@ spec:
       create: true
       existingSecret: synapse-admin-credentials
     homeserver:
-      server_name: ${PRIMARY_DOMAIN}
+      server_name: ${SECONDARY_DOMAIN}
       existingSecret: synapse-secrets
-      public_baseurl: https://matrix.${PRIMARY_DOMAIN}
+      public_baseurl: https://matrix.${SECONDARY_DOMAIN}
     extraMergeVolumeMounts:
       - mountPath: /workdir/config/oidc-providers.yaml
         subPath: oidc-providers.yaml

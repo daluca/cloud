@@ -7,3 +7,9 @@ metadata:
 spec:
   test:
     enable: false
+  values:
+    ingress:
+      host: matrix.${PRIMARY_DOMAIN}
+    homeserver:
+      server_name: ${PRIMARY_DOMAIN}
+      public_baseurl: https://matrix.${PRIMARY_DOMAIN}
