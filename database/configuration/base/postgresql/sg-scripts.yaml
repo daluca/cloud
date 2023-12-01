@@ -33,3 +33,8 @@ spec:
         secretKeyRef:
           name: database-creation-scripts
           key: create-miniflux-database.sql
+    - name: create-synapse-database
+      scriptFrom:
+        secretKeyRef:
+          name: database-creation-scripts
+          key: create-synapse-database.sql
