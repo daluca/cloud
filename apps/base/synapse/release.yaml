@@ -78,7 +78,11 @@ spec:
           cert-manager.io/cluster-issuer: letsencrypt-prod
           kubernetes.io/ingress.allow-http: "false"
           external-dns.alpha.kubernetes.io/exclude: "true"
+          nginx.ingress.kubernetes.io/enable-cors: "true"
         tls: true
+      nginx:
+        cors:
+          enabled: false
     database:
       external: true
       existingSecret: database-credentials
