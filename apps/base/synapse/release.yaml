@@ -85,6 +85,12 @@ spec:
           enabled: false
     database:
       external: true
+      host: postgresql-cluster.database
+      port: 5432
+      database: synapse
+      arguments:
+        cp_min: 5
+        cp_max: 10
       existingSecret: database-credentials
     postgresql:
       enabled: false
