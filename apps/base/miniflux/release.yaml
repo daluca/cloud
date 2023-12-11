@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: miniflux
-      version: ">=0.4.0 <0.5.0"
+      version: ">=0.5.0 <0.6.0"
       sourceRef:
         kind: HelmRepository
         name: daluca
@@ -49,6 +49,9 @@ spec:
         - secretName: miniflux-tls
           hosts:
             - feeds.${PRIMARY_DOMAIN}
+    cronJobs:
+      refreshFeedsSchedule: 12 * * * *
+      cleanupTasksSchedule: 43 16 * * *
     config:
       FETCH_YOUTUBE_WATCH_TIME: "true"
       FETCH_ODYSEE_WATCH_TIME: "true"
@@ -59,8 +62,8 @@ spec:
     existingSecret: miniflux-openid-connect
     admin:
       existingSecret: admin-credentials
-    externalDatabase:
-      enabled: true
+    database:
+      external: true
       existingSecret: database-credentials
     postgresql:
       enabled: false
