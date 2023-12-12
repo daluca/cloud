@@ -99,7 +99,6 @@ spec:
     - name: crds
     - name: infrastructure
     - name: identity-clusters
-    - name: identity-management
   interval: 1h
   retryInterval: 1m
   timeout: 5m
