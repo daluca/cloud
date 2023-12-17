@@ -59,7 +59,6 @@ spec:
       OAUTH2_REDIRECT_URL: https://feeds.${PRIMARY_DOMAIN}/oauth2/oidc/callback
       OAUTH2_OIDC_DISCOVERY_ENDPOINT: https://sso.${PRIMARY_DOMAIN}/realms/${ENVIRONMENT}
       OAUTH2_USER_CREATION: "true"
-      POLLING_FREQUENCY: "59"
     existingSecret: miniflux-openid-connect
     admin:
       existingSecret: admin-credentials
