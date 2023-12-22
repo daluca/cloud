@@ -7,6 +7,10 @@ metadata:
 spec:
   chart:
     spec:
-      version: 1.6.0-rc2
+      version: 1.6.1
+  install:
+    disableWait: false
+  upgrade:
+    disableWait: false
   test:
     enable: false
