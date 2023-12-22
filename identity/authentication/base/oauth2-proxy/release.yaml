@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: oauth2-proxy
-      version: 6.19.1
+      version: 6.23.1
       sourceRef:
         kind: HelmRepository
         name: oauth2-proxy
@@ -30,6 +30,20 @@ spec:
   test:
     enable: true
     ignoreFailures: false
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: Deployment
+              name: oauth2-proxy
+            patch: |-
+              - op: add
+                path: /spec/strategy
+                value:
+                  type: RollingUpdate
+                  rollingUpdate:
+                    maxSurge: 0
+                    maxUnavailable: 25%
   values:
     config:
       configFile: |-
