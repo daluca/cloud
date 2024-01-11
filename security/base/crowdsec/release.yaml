@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: crowdsec
-      version: 0.9.10
+      version: 0.9.11
       sourceRef:
         kind: HelmRepository
         name: crowdsec
@@ -54,8 +54,6 @@ spec:
                 value: 2
   values:
     container_runtime: containerd
-    image:
-      tag: v1.5.5
     config:
       postoverflows:
         s01-whitelist:
