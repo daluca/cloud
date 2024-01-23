@@ -8,6 +8,7 @@ spec:
   test:
     enable: false
   values:
+    replicaCount: 1
     nextcloud:
       configs:
         staging.config.php: |-
