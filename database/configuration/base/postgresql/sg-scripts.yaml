@@ -2,39 +2,109 @@
 apiVersion: stackgres.io/v1
 kind: SGScript
 metadata:
-  name: create-db-scripts
+  name: nextcloud-database
   namespace: database
 spec:
   managedVersions: true
   continueOnError: false
   scripts:
-    - name: create-nextcloud-database
+    - name: create-user
       scriptFrom:
         secretKeyRef:
-          name: database-creation-scripts
-          key: create-nextcloud-database.sql
-    - name: create-crowdsec-database
+          name: database-credentials
+          key: create-nextcloud-user.sql
+    - name: create-database
+      script: CREATE DATABASE nextcloud WITH OWNER nextcloud;
+---
+apiVersion: stackgres.io/v1
+kind: SGScript
+metadata:
+  name: crowdsec-database
+  namespace: database
+spec:
+  managedVersions: true
+  continueOnError: false
+  scripts:
+    - name: create-user
       scriptFrom:
         secretKeyRef:
-          name: database-creation-scripts
-          key: create-crowdsec-database.sql
-    - name: create-keycloak-database
+          name: database-credentials
+          key: create-crowdsec-user.sql
+    - name: create-database
+      script: CREATE DATABASE crowdsec WITH OWNER crowdsec;
+---
+apiVersion: stackgres.io/v1
+kind: SGScript
+metadata:
+  name: keycloak-database
+  namespace: database
+spec:
+  managedVersions: true
+  continueOnError: false
+  scripts:
+    - name: create-user
       scriptFrom:
         secretKeyRef:
-          name: database-creation-scripts
-          key: create-keycloak-database.sql
-    - name: create-lemmy-database
+          name: database-credentials
+          key: create-keycloak-user.sql
+    - name: create-database
+      script: CREATE DATABASE keycloak WITH OWNER keycloak;
+---
+apiVersion: stackgres.io/v1
+kind: SGScript
+metadata:
+  name: lemmy-database
+  namespace: database
+spec:
+  managedVersions: true
+  continueOnError: false
+  scripts:
+    - name: create-user
       scriptFrom:
         secretKeyRef:
-          name: database-creation-scripts
-          key: create-lemmy-database.sql
-    - name: create-miniflux-database
+          name: database-credentials
+          key: create-lemmy-user.sql
+    - name: create-database
+      script: CREATE DATABASE lemmy WITH OWNER lemmy;
+---
+apiVersion: stackgres.io/v1
+kind: SGScript
+metadata:
+  name: miniflux-database
+  namespace: database
+spec:
+  managedVersions: true
+  continueOnError: false
+  scripts:
+    - name: create-user
       scriptFrom:
         secretKeyRef:
-          name: database-creation-scripts
-          key: create-miniflux-database.sql
-    - name: create-synapse-database
+          name: database-credentials
+          key: create-miniflux-user.sql
+    - name: create-extensions
+      script: CREATE EXTENSION hstore;
+    - name: create-database
+      script: CREATE DATABASE miniflux WITH OWNER miniflux;
+---
+apiVersion: stackgres.io/v1
+kind: SGScript
+metadata:
+  name: synapse-database
+  namespace: database
+spec:
+  managedVersions: true
+  continueOnError: false
+  scripts:
+    - name: create-user
       scriptFrom:
         secretKeyRef:
-          name: database-creation-scripts
-          key: create-synapse-database.sql
+          name: database-credentials
+          key: create-synapse-user.sql
+    - name: create-database
+      script: |-
+        CREATE DATABASE synapse
+        WITH OWNER synapse
+        ENCODING UTF8
+        LC_COLLATE = 'C'
+        LC_CTYPE = 'C'
+        TEMPLATE template0;
