@@ -15,28 +15,4 @@ patches:
       - op: replace
         path: /spec/managedSql/scripts/0
         value:
-          sgScript: create-staging-db-scripts
-      - op: add
-        path: /spec/managedSql/scripts/-
-        value:
-          sgScript: nextcloud-database
-      - op: add
-        path: /spec/managedSql/scripts/-
-        value:
-          sgScript: crowdsec-database
-      - op: add
-        path: /spec/managedSql/scripts/-
-        value:
-          sgScript: keycloak-database
-      - op: add
-        path: /spec/managedSql/scripts/-
-        value:
-          sgScript: lemmy-database
-      - op: add
-        path: /spec/managedSql/scripts/-
-        value:
-          sgScript: miniflux-database
-      - op: add
-        path: /spec/managedSql/scripts/-
-        value:
-          sgScript: synapse-database
+          sgScript: demo-database
