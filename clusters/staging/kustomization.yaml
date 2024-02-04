@@ -61,6 +61,13 @@ patches:
         value: staging-cluster-substitutions
   - target:
       kind: Kustomization
+      name: database-secrets
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./database/secrets/staging
+  - target:
+      kind: Kustomization
       name: database-configuration
     patch: |-
       - op: replace
@@ -68,9 +75,6 @@ patches:
         value: ./database/configuration/staging
       - op: replace
         path: /spec/postBuild/substituteFrom/0/name
-        value: staging-cluster-substitutions
-      - op: replace
-        path: /spec/postBuild/substituteFrom/1/name
         value: staging-terraform-substitutions
   - target:
       kind: Kustomization
