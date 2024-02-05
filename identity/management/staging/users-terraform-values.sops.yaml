@@ -1,0 +1,29 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: users-terraform-values
+  namespace: identity
+type: Opaque
+stringData:
+  users: ENC[AES256_GCM,data:PqiKyzm7XrUneF//Ub9r5sWax9RZp6JPXDRPofCPGGp+KdNCXvnqittQwOtT+c86C0keD6uQ7Ek1qIqFPZPD+LVO9MluiDmCp6+x9c92kfLPZ+kewMhZwZiA4RMYWLC4U8OVi+NdbTqPW2Z0+88My78M3WBHVFJZYukxLzpyD16gDdI/g1r+BzABXrlCts+fk1y2H2SaBzfXessgONp+oc+ImiBGwhnlN32DxGeJ737QuNSF4NxIdWfgfLfbWn8WI/ZwEGODwmfeBnyLGdkCSqkN3UemtOquBTppimU52j+cv9PLniYR8CRPJeK2nSrbFcpYqOn6GyV5hHJ5Sei2sId79ieY7rrptix23rCvaa4Td79Kvjyo1JDnXwAIAzjtL0ccpmUOIiTD/Gt5fDqVpIwGIcIUCVqraeASIvzMAdDeHB7dlgXwN71tQ550+4JteKbdaWDmN9cGdNYrUWJj//pR0Q5y6+FbWRG0yZqqX1ccmPFFEJHe/hISVIPtXksHfu8HUGwxla1vRinnC6tDJthl/PXV+lVF8gmOBAx9nDgAmCSTrY6TEzy2PKdblY/VhWVRNJO0GgOfiCkbtTiBCa0XXuvMDvggl6ByK0auhTDJ7DCm6fDf2mIkVWB6vXN5drAq0lYcOdxqLhLkb12YyZGkKFanKgTo+8Rz8wtOKOKsbxeCIQD66X0ywctZiOIMuBQYZ/TWhSlzknCLJlORprQ/pJrZXu2bZrJ0u9BlGKfodJs16zc=,iv:sGKfcQvlRWyIzpx4n+tvz4sMLWg9OFw29OrwJH4eKzU=,tag:7JRedzbr0p7d4gyiGXT0SQ==,type:str]
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1z9tp2h60k24daxwdkq29nf4ch7a87wem4sx2jkcqe9x62k07k3vqf5rx6k
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBibjV2YmtoT0gwV1psUnlI
+        VUNCN3hjUkRCR1NIUW5KV25aYW81U3NhMHdrCnR3WVROL3VwQlpYanVWRXE1dW55
+        T01PdTBGRW8xdEprWEdPNzUvM3F2OFEKLS0tIHVldzZUdzFSNUEyYjBxQkt3NVBT
+        TGxIaDF6cGF6ZlVpRktDRXcwMjkzbGcKli3/C0vkM8grEkaOJqf0y85aIstk61rR
+        5OOwlaApVEfKBGzevSHaY38UocVmewKtpyWJceJ1CmelQe8/h19QmA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2024-02-05T00:53:56Z"
+  mac: ENC[AES256_GCM,data:XMuaT/s1lPQlXCpnBV61/DrUv2UDKIFrXQd32tIjsHBl6EFq90k9Fku3nfstmWOGxKfOXrvRCBBraOAqx7eG/BLUI5xi7nEx6jL/UZZF+qXx9dg3ZPhOisxKTlEal7Owq6/FAo4tWWfn/XuBGvutxTaQi4SyU2j/MXEWfqC5Fq8=,iv:vKlsgZQTnS5iwPcdF8SfNy29UnPPXqqQkwU12pq/g5E=,tag:w8KaIG5nktOYPFHTPyYcoQ==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.8.1

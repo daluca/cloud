@@ -6,3 +6,4 @@ resources:
   - wasabi-terraform-backend.sops.yaml
   - keycloak-terraform-credentials.sops.yaml
   - keycloak-terraform-values.sops.yaml
+  - users-terraform-values.sops.yaml
