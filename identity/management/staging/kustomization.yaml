@@ -6,6 +6,7 @@ resources:
   - wasabi-terraform-backend.sops.yaml
   - keycloak-terraform-credentials.sops.yaml
   - keycloak-terraform-values.sops.yaml
+  - users-terraform-values.sops.yaml
 patches:
   - target:
       kind: ConfigMap
@@ -24,3 +25,16 @@ patches:
       - op: replace
         path: /spec/path
         value: ./deploy/terraform/keycloak/staging
+  - target:
+      kind: Terraform
+      name: production-users
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: staging-users
+      - op: replace
+        path: /spec/path
+        value: ./deploy/terraform/users/staging
+      - op: replace
+        path: /spec/dependsOn/0/name
+        value: staging-realm
