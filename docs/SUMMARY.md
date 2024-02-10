@@ -48,6 +48,8 @@
 - [Accounts]()
   - [DigitalOcean](./deploy/accounts/digitalocean.md)
 - [Clusters]()
+- [Users](./deploy/users/users.md)
+  - [Terraform Controller](./deploy/users/tf-controller.md)
 
 ---
 
