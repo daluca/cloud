@@ -6,11 +6,11 @@ locals {
 }
 
 data "keycloak_group" "administrators" {
-  realm_id = data.keycloak_realm.staging.id
+  realm_id = data.keycloak_realm.environment.id
   name     = "Administrators"
 }
 
 data "keycloak_group" "users" {
-  realm_id = data.keycloak_realm.staging.id
+  realm_id = data.keycloak_realm.environment.id
   name     = "Users"
 }

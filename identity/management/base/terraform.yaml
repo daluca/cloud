@@ -33,6 +33,8 @@ kind: Terraform
 metadata:
   name: production-users
   namespace: identity
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
 spec:
   dependsOn:
     - name: production-realm
@@ -50,9 +52,11 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  varsFrom:
-    - kind: Secret
-      name: users-terraform-values
+  readInputsFromSecrets:
+    - name: users-terraform-values
+      as: values
+  values:
+    users: ${{ .values.users }}
   runnerPodTemplate:
     spec:
       envFrom:

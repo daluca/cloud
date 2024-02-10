@@ -1,7 +1,7 @@
 resource "keycloak_user" "users" {
   for_each = var.users
 
-  realm_id = data.keycloak_realm.staging.id
+  realm_id = data.keycloak_realm.environment.id
 
   username       = sensitive(each.value["username"])
   first_name     = sensitive(each.value["first_name"])
@@ -27,7 +27,7 @@ resource "keycloak_user" "users" {
 resource "keycloak_user_groups" "main" {
   for_each = var.users
 
-  realm_id = data.keycloak_realm.staging.id
+  realm_id = data.keycloak_realm.environment.id
   user_id  = keycloak_user.users[each.key].id
 
   group_ids = each.value["groups"] != null ? distinct(concat(
