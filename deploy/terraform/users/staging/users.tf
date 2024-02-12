@@ -1,7 +1,3 @@
-locals {
-  users = var.values.users
-}
-
 module "staging" {
   source = "../../modules/users"
 
@@ -9,5 +5,5 @@ module "staging" {
     realm = "staging"
   }
 
-  users = local.users
+  users = var.users
 }

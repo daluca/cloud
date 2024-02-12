@@ -52,11 +52,12 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  readInputsFromSecrets:
-    - name: users-terraform-values
-      as: values
-  values:
-    users: ${{ .values.users }}
+  fileMappings:
+    - location: workspace
+      path: users.auto.tfvars
+      secretKey:
+        name: users-terraform-values
+        key: users.tfvars
   runnerPodTemplate:
     spec:
       envFrom:

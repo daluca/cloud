@@ -1,26 +1,17 @@
-# TF-controller
+# Terraform controller
 
 ## Work around
 
-In order to have `tf-controller` be able to read the object from secrets, a workaround of using `readInputsFromSecrets` in combination with `values` became the only solution I could find.
+Adding a complex object variable as a secret ended up being tricky to work with using varsFrom.
+
+Using `fileMappings` to mount a `auto.tfvars` file from a `Secret` ended up being the only viable
+solution I found.
 
 ```yaml
-  readInputsFromSecrets:
-    - name: users-terraform-values
-      as: values
-  values:
-    users: ${{ .values.users }}
-```
-
-This leads to reworking the terraform variable to use values as a wrapper almost
-
-```hcl
-variable "values" {
-  description = "Keycloak user settings."
-  type = object({
-    users = map(object({
-      ...
-    }))
-  })
-}
+  fileMappings:
+    - location: workspace
+      path: users.auto.tfvars
+      secretKey:
+        name: users-terraform-values
+        key: users.tfvars
 ```
