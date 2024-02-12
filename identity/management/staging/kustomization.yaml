@@ -10,11 +10,18 @@ resources:
 patches:
   - target:
       kind: ConfigMap
-      name: wasabi-terraform-backend
+      name: realm-terraform-backend
     patch: |-
       - op: replace
         path: /data/key
         value: keycloak/staging/terraform.tfstate
+  - target:
+      kind: ConfigMap
+      name: users-terraform-backend
+    patch: |-
+      - op: replace
+        path: /data/key
+        value: users/staging/terraform.tfstate
   - target:
       kind: Terraform
       name: production-realm

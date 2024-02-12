@@ -11,6 +11,8 @@ spec:
   backendConfig:
     customConfiguration: backend "s3" {}
   backendConfigsFrom:
+    - name: realm-terraform-backend
+      kind: ConfigMap
     - name: wasabi-terraform-backend
       kind: ConfigMap
     - name: wasabi-terraform-backend
@@ -33,8 +35,6 @@ kind: Terraform
 metadata:
   name: production-users
   namespace: identity
-  annotations:
-    kustomize.toolkit.fluxcd.io/substitute: disabled
 spec:
   dependsOn:
     - name: production-realm
@@ -44,6 +44,8 @@ spec:
   backendConfig:
     customConfiguration: backend "s3" {}
   backendConfigsFrom:
+    - name: users-terraform-backend
+      kind: ConfigMap
     - name: wasabi-terraform-backend
       kind: ConfigMap
     - name: wasabi-terraform-backend
