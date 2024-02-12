@@ -13,3 +13,7 @@ spec:
       port: 80
       targetPort: 8080
       protocol: TCP
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10
