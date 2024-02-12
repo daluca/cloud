@@ -55,7 +55,7 @@ spec:
   fileMappings:
     - location: workspace
       path: users.auto.tfvars
-      secretKey:
+      secretRef:
         name: users-terraform-values
         key: users.tfvars
   runnerPodTemplate:
