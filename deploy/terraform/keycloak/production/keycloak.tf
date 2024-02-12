@@ -1,4 +1,4 @@
-module "staging" {
+module "production" {
   source = "../../modules/keycloak"
 
   keycloak = {
