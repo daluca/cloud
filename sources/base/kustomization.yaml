@@ -19,6 +19,5 @@ resources:
   - prometheus-community.yaml
   - rook-release.yaml
   - stackgres.yaml
-  - tf-controller.yaml
   - vmware-tanzu.yaml
   - weaveworks.yaml
