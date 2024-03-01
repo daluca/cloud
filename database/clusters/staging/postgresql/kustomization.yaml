@@ -9,9 +9,6 @@ patches:
       kind: SGCluster
       name: postgresql-cluster
     patch: |-
-      - op: replace
-        path: /spec/postgres/version
-        value: "14.9"
       - op: add
         path: /spec/managedSql/scripts/-
         value:
