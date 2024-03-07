@@ -5,8 +5,6 @@ metadata:
   name: rook-ceph
   namespace: rook-ceph
 spec:
-  cephVersion:
-    image: quay.io/ceph/ceph:v18.2.1
   mon:
     count: 1
     allowMultiplePerNode: false
