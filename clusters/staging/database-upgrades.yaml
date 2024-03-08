@@ -10,14 +10,15 @@ spec:
     - name: database-operators
     - name: database-clusters
   interval: 1h
-  timeout: 15m
+  timeout: 20m
   path: ./database/upgrades/staging
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   healthChecks:
-    - kind: Job
+    - apiVersion: batch/v1
+      kind: Job
       name: postgresql-cluster-upgrade
       namespace: database
     - kind: StatefulSet
