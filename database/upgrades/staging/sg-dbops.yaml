@@ -12,4 +12,4 @@ spec:
   maxRetries: 1
   minorVersionUpgrade:
     method: ReducedImpact
-    postgresVersion: "14.8"
+    postgresVersion: "14.9"
