@@ -4,6 +4,8 @@ kind: SGCluster
 metadata:
   name: postgresql-cluster
   namespace: database
+  annotations:
+    kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
 spec:
   instances: 2
   postgres:

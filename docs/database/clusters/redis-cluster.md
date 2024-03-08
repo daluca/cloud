@@ -1,4 +1,4 @@
-# Redis Cluster
+# Redis cluster
 
 ## Delete all keys
 

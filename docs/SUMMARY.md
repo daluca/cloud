@@ -21,7 +21,7 @@
 - [CRDs]()
 - [Database]()
   - [Clusters]()
-    - [PostgreSQL]()
+    - [PostgreSQL cluster](./database/clusters/postgresql-cluster.md)
     - [Redis cluster](./database/clusters/redis-cluster.md)
   - [Operators]()
     - [Stackgres](./database/operators/stackgres.md)
