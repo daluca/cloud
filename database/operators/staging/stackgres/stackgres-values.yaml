@@ -5,12 +5,5 @@ metadata:
   name: stackgres-operator
   namespace: database
 spec:
-  chart:
-    spec:
-      version: 1.8.1
-  install:
-    disableWait: false
-  upgrade:
-    disableWait: false
   test:
     enable: false
