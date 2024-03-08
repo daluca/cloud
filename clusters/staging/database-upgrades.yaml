@@ -13,6 +13,7 @@ spec:
   timeout: 20m
   path: ./database/upgrades/staging
   prune: true
+  force: true
   sourceRef:
     kind: GitRepository
     name: flux-system
