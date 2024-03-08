@@ -5,7 +5,7 @@ metadata:
   name: postgresql-cluster-upgrade
   namespace: database
   annotations:
-    kustomize.toolkit.fluxcd.io/force: Enabled
+    kustomize.toolkit.fluxcd.io/force: enabled
 spec:
   sgCluster: postgresql-cluster
   op: minorVersionUpgrade
