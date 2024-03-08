@@ -13,6 +13,3 @@ patches:
         path: /spec/managedSql/scripts/-
         value:
           sgScript: demo-database
-      - op: add
-        path: /metadata/annotations/kustomize.toolkit.fluxcd.io~1ssa
-        value: IfNotPresent

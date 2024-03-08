@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - flux-system
   - ../base
-  - database-upgrades.yaml
 patches:
   - target:
       kind: Kustomization
@@ -84,6 +83,13 @@ patches:
       - op: replace
         path: /spec/path
         value: ./database/clusters/staging
+  - target:
+      kind: Kustomization
+      name: database-upgrades
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./database/upgrades/staging
   - target:
       kind: Kustomization
       name: identity-operators
