@@ -4,6 +4,8 @@ kind: SGDbOps
 metadata:
   name: postgresql-cluster-upgrade
   namespace: database
+  annotations:
+    kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
 spec:
   sgCluster: postgresql-cluster
   op: minorVersionUpgrade
