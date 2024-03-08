@@ -9,7 +9,7 @@ metadata:
 spec:
   instances: 2
   postgres:
-    version: "14.6"
+    version: "14.9"
     extensions:
       - name: ltree
         version: "1.2"
