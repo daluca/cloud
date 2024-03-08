@@ -18,7 +18,7 @@ spec:
     name: flux-system
   healthChecks:
     - kind: Job
-      name: postgresql-upgrade-version
+      name: postgresql-cluster-upgrade
       namespace: database
     - kind: StatefulSet
       name: postgresql-cluster
