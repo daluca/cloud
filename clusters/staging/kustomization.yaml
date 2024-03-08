@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - flux-system
   - ../base
+  - database-upgrades.yaml
 patches:
   - target:
       kind: Kustomization
