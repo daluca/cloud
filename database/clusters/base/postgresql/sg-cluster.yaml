@@ -33,7 +33,7 @@ spec:
     sgPoolingConfig: pgbouncer-config-session
     backups:
       - sgObjectStorage: wasabi-backup-netherlands
-        cronSchedule: 23 15 * * *
+        cronSchedule: 23 18 * * *
         retention: 100
         compression: lz4
         performance:
