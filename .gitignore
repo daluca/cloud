@@ -2,3 +2,6 @@
 .terraform.lock.hcl
 
 /book
+
+.env
+.direnv/

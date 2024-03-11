@@ -1,0 +1,12 @@
+mod terraform
+
+set fallback
+
+[private]
+default:
+  @just --list
+
+terraform-binary := "terraform"
+
+delete-terraform-node-pool-state:
+  {{ terraform-binary }} state rm 'module.staging.digitalocean_kubernetes_node_pool.big[0]' 'module.staging.digitalocean_kubernetes_node_pool.monitoring[0]'

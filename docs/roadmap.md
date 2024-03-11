@@ -1,22 +1,18 @@
 # Roadmap
 
-- [ ] Nextcloud
+- [x] Nextcloud
   - [x] Redis
-- [ ] OnlyOffice
-  - [ ] RabbitMQ
-  - [ ] MariaDB ???
-- [ ] Matrix
-  - [ ] Synapse
+- [x] Matrix
+  - [x] Synapse
   - [ ] Bridges
-- [ ] Identity
-  - [ ] Keycloak
-  - [ ] OpenLDAP
-  - [ ] OAuth2-proxy
+- [x] Identity
+  - [x] Keycloak
+  - [x] OpenLDAP
+  - [x] OAuth2-proxy
 - [ ] Kubecost / OpenCost
-- [ ] OpenEBS NFS
 
 ## To Do
 
 - [ ] Velero SSE-C encryption
-- [ ] Terraform module as base for environment
+- [x] Terraform module as base for environment
 - [ ] Terraform pre-commit
