@@ -1,0 +1,7 @@
+mod terraform
+
+set fallback
+
+[private]
+default:
+  @just --list
