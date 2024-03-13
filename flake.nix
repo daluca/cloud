@@ -26,6 +26,7 @@
         doctl
         jq
         wget
+        kubeconform
         mdbook
         # pre-commit
         nodejs_21
