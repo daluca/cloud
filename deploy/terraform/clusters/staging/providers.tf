@@ -34,7 +34,7 @@ terraform {
 
     github = {
       source  = "integrations/github"
-      version = "~> 5.0"
+      version = "~> 6.0"
     }
 
     tls = {
@@ -49,7 +49,7 @@ terraform {
 
     time = {
       source  = "hashicorp/time"
-      version = "~> 0.9.0"
+      version = "~> 0.11.0"
     }
   }
 
