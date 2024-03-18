@@ -31,6 +31,8 @@
         # pre-commit
         nodejs_21
         nodePackages.npm
+        tflint
+        trivy
       ];
       shellHook = ''
         echo "Loaded $name...";
