@@ -38,7 +38,7 @@ terraform {
 
     github = {
       source  = "integrations/github"
-      version = ">= 5.0, < 7.0"
+      version = ">= 6.0, < 7.0"
     }
 
     random = {
@@ -48,7 +48,7 @@ terraform {
 
     time = {
       source  = "hashicorp/time"
-      version = ">= 0.9.0, < 0.12.0"
+      version = ">= 0.11.0, < 0.12.0"
     }
   }
 }
