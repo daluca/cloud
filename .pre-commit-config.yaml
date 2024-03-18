@@ -38,14 +38,13 @@ repos:
       - id: codespell
 
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.88.0
+    rev: v1.88.2
     hooks:
       - id: terraform_fmt
       - id: terraform_validate
         exclude: modules
       - id: terraform_tflint
-      - id: terraform_tfsec
-        args: [--args=--config-file=__GIT_WORKING_DIR__/.tfsec/config.yaml]
+      - id: terraform_trivy
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
     rev: 0.28.0
