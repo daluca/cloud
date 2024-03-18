@@ -5,5 +5,6 @@ metadata:
   name: collabora
   namespace: flux-system
 spec:
+  type: oci
   interval: 1h
-  url: https://collaboraonline.github.io/online
+  url: oci://ghcr.io/collaboraonline/charts/collabora-online
