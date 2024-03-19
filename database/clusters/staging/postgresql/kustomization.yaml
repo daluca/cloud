@@ -13,6 +13,3 @@ patches:
         path: /spec/managedSql/scripts/-
         value:
           sgScript: demo-database
-      - op: replace
-        path: /spec/postgres/version
-        value: "15.5"
