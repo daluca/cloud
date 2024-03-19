@@ -42,7 +42,7 @@ jobs:
   terraform:
     name: Terraform
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
 
     env:
       tf_actions_working_dir: deploy/terraform/clusters/production
