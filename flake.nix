@@ -28,6 +28,7 @@
         wget
         kubeconform
         mdbook
+        velero
         # pre-commit
         nodejs_21
         nodePackages.npm
