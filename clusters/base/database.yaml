@@ -120,7 +120,7 @@ spec:
   interval: 1h
   timeout: 20m
   path: ./database/upgrades/production
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: flux-system
