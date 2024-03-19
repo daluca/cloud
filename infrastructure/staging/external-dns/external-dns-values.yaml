@@ -8,5 +8,6 @@ spec:
   test:
     enable: false
   values:
+    policy: upsert-only
     domainFilters:
       - ${PRIMARY_DOMAIN}
