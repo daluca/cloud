@@ -4,3 +4,11 @@ kind: Kustomization
 resources:
   - flux-system
   - ../base
+patches:
+  # TODO: Remove once a new minor upgrade becomes available
+  - target:
+      kind: Kustomization
+      name: database-upgrades
+    patch: |-
+      - op: remove
+        path: /spec/healthChecks/2
