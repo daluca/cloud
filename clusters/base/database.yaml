@@ -125,10 +125,14 @@ spec:
     kind: GitRepository
     name: flux-system
   healthChecks:
-    - apiVersion: batch/v1
-      kind: Job
-      name: postgresql-cluster-upgrade
-      namespace: database
     - kind: StatefulSet
       name: postgresql-cluster
+      namespace: database
+    - apiVersion: batch/v1
+      kind: Job
+      name: postgresql-cluster-major-upgrade
+      namespace: database
+    - apiVersion: batch/v1
+      kind: Job
+      name: postgresql-cluster-minor-upgrade
       namespace: database

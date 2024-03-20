@@ -2,14 +2,14 @@
 apiVersion: stackgres.io/v1
 kind: SGDbOps
 metadata:
-  name: postgresql-cluster-upgrade
+  name: postgresql-cluster-major-upgrade
   namespace: database
   annotations:
     kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
 spec:
   sgCluster: postgresql-cluster
-  op: minorVersionUpgrade
+  op: majorVersionUpgrade
   maxRetries: 1
-  minorVersionUpgrade:
-    method: ReducedImpact
-    postgresVersion: "14.9"
+  majorVersionUpgrade:
+    postgresVersion: "15.5"
+    sgPostgresConfig: postgres-15-conf-extra-small

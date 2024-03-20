@@ -9,7 +9,7 @@ metadata:
 spec:
   instances: 2
   postgres:
-    version: "14.9"
+    version: "15.5"
     extensions:
       - name: ltree
         version: "1.2"
@@ -29,7 +29,7 @@ spec:
         backup.velero.io/backup-volumes-excludes: empty-base,socket,dshm,log,local-bin,patroni-config,user,pgbouncer-config
   sgInstanceProfile: small
   configurations:
-    sgPostgresConfig: postgres-conf-small
+    sgPostgresConfig: postgres-15-conf-small
     sgPoolingConfig: pgbouncer-config-session
     backups:
       - sgObjectStorage: wasabi-backup-netherlands
