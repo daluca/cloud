@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: stackgres-operator
-      version: 1.8.1
+      version: ">=1.9.x <1.10.x"
       sourceRef:
         kind: HelmRepository
         name: stackgres
