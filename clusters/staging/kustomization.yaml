@@ -91,7 +91,9 @@ patches:
         path: /spec/path
         value: ./database/upgrades/staging
       - op: remove
-        path: /spec/healthChecks/0
+        path: /spec/healthChecks/1
+      - op: remove
+        path: /spec/healthChecks/2
   - target:
       kind: Kustomization
       name: identity-operators
