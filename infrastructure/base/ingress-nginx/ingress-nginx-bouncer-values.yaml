@@ -13,7 +13,7 @@ data:
           emptyDir: {}
       extraInitContainers:
         - name: init-clone-crowdsec-bouncer
-          image: crowdsecurity/lua-bouncer-plugin:v1.0.0
+          image: crowdsecurity/lua-bouncer-plugin:v1.0.2
           imagePullPolicy: IfNotPresent
           env:
             - name: API_URL
