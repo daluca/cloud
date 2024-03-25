@@ -5,8 +5,10 @@
 Before upgrading the PostgreSQL Cluster you need to delete the last SGDbOps upgrade as the Stackgres operator dry-runs the manifest beforehand causing a [forbidden configuration update error](https://stackgres.io/doc/1.8/api/responses/error/#forbidden-configuration-update). This error is not the same as an immutable field in Kubernetes and therefore cannot be forced with [FluxCD kustomization annotations](https://fluxcd.io/flux/components/kustomize/kustomizations/#force).
 
 ```shell
-kubectl --namespace database delete sgdbops postgresql-cluster-upgrade
+kubectl --namespace database delete sgdbops postgresql-cluster-minor-upgrade
 ```
+
+Once the upgrade is complete, restart the cluster
 
 ### SSA Annotation
 
