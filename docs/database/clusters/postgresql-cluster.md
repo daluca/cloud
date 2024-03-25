@@ -10,6 +10,14 @@ kubectl --namespace database delete sgdbops postgresql-cluster-minor-upgrade
 
 Once the upgrade is complete, restart the cluster
 
+### Security Upgrades
+
+A security upgrade is should be applied before a minor or major upgrade to avoid a version mismatch error as seen below in these issues.
+
+<https://gitlab.com/ongresinc/stackgres/-/issues/2055>
+
+<https://gitlab.com/ongresinc/stackgres/-/issues/1985>
+
 ### SSA Annotation
 
 The StackGres Operator updates the underlying SGCluster resource when upgrades happen, this causes a conflict with FluxCD as it tries to sync changes as well. In order to have FluxCD ignore the manifest once it is initially applied, the following annotation is used.

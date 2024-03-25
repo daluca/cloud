@@ -2,5 +2,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - sg-dbops-minor-upgrade.yaml
   - sg-dbops-major-upgrade.yaml
+  - sg-dbops-minor-upgrade.yaml
+  - sg-dbops-security-upgrade.yaml

@@ -18,3 +18,10 @@ patches:
       - op: replace
         path: /metadata/annotations/kustomize.toolkit.fluxcd.io~1ssa
         value: Ignore
+  - target:
+      kind: SGDbOps
+      name: postgresql-cluster-security-upgrade
+    patch: |-
+      - op: replace
+        path: /metadata/annotations/kustomize.toolkit.fluxcd.io~1ssa
+        value: Ignore

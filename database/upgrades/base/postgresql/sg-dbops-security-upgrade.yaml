@@ -1,0 +1,14 @@
+---
+apiVersion: stackgres.io/v1
+kind: SGDbOps
+metadata:
+  name: postgresql-cluster-security-upgrade
+  namespace: database
+  annotations:
+    kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
+spec:
+  sgCluster: postgresql-cluster
+  op: securityUpgrade
+  maxRetries: 1
+  securityUpgrade:
+    method: InPlace

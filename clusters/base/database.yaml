@@ -136,3 +136,7 @@ spec:
       kind: Job
       name: postgresql-cluster-minor-upgrade
       namespace: database
+    - apiVersion: batch/v1
+      kind: Job
+      name: postgresql-cluster-security-upgrade
+      namespace: database
