@@ -43,6 +43,21 @@ spec:
           service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
           service.beta.kubernetes.io/do-loadbalancer-name: production
           service.beta.kubernetes.io/do-loadbalancer-hostname: ${PRIMARY_DOMAIN}
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/component
+                    operator: In
+                    values: [app]
+                  - key: app.kubernetes.io/instance
+                    operator: In
+                    values: [nextcloud]
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values: [nextcloud]
+              topologyKey: kubernetes.io/hostname
       config:
         force-ssl-redirect: "true"
         use-proxy-protocol: "true"
