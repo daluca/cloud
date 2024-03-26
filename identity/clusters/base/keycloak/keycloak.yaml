@@ -50,3 +50,18 @@ spec:
           - env:
               - name: QUARKUS_TRANSACTION_MANAGER_ENABLE_RECOVERY
                 value: "true"
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                    - key: app.kubernetes.io/component
+                      operator: In
+                      values: [app]
+                    - key: app.kubernetes.io/instance
+                      operator: In
+                      values: [nextcloud]
+                    - key: app.kubernetes.io/name
+                      operator: In
+                      values: [nextcloud]
+                topologyKey: kubernetes.io/hostname
