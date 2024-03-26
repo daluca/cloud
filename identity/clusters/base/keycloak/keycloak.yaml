@@ -28,6 +28,11 @@ spec:
     strict: false
     strictBackchannel: false
     adminUrl: https://sso.${PRIMARY_DOMAIN}
+  resources:
+    limits:
+      memory: 1Gi
+    requests:
+      memory: 650Mi
   ingress:
     enabled: false
   additionalOptions:
