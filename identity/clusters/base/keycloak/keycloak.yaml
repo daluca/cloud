@@ -21,6 +21,8 @@ spec:
   http:
     httpEnabled: true
     httpPort: 8080
+  proxy:
+    headers: xforwarded
   hostname:
     hostname: sso.${PRIMARY_DOMAIN}
     strict: false
@@ -31,8 +33,6 @@ spec:
   additionalOptions:
     - name: log-level
       value: info
-    - name: proxy
-      value: edge
     - name: proxy-address-forwarding
       value: "true"
   unsupported:
