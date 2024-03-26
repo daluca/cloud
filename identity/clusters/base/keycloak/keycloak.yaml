@@ -35,6 +35,8 @@ spec:
       memory: 650Mi
   ingress:
     enabled: false
+  transaction:
+    xaEnabled: true
   additionalOptions:
     - name: log-level
       value: info
@@ -44,3 +46,7 @@ spec:
     podTemplate:
       spec:
         serviceAccountName: keycloak
+        containers:
+          - env:
+              - name: QUARKUS_TRANSACTION_MANAGER_ENABLE_RECOVERY
+                value: "true"
