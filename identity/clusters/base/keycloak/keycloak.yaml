@@ -35,3 +35,7 @@ spec:
       value: edge
     - name: proxy-address-forwarding
       value: "true"
+  unsupported:
+    podTemplate:
+      spec:
+        serviceAccountName: keycloak
