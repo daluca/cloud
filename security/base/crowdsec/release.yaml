@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: crowdsec
@@ -118,14 +118,15 @@ spec:
         - name: PARSERS
           value: >
             crowdsecurity/cri-logs
+
         - name: DISABLE_PARSERS
           value: >
             crowdsecurity/docker-logs
+
         - name: COLLECTIONS
           value: >
-            crowdsecurity/linux
-            crowdsecurity/nginx
-            crowdsecurity/whitelist-good-actors
+            crowdsecurity/linux crowdsecurity/nginx crowdsecurity/whitelist-good-actors
+
       tolerations:
         - key: workloadKind
           operator: Equal
