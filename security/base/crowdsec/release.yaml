@@ -118,15 +118,14 @@ spec:
         - name: PARSERS
           value: >
             crowdsecurity/cri-logs
-
         - name: DISABLE_PARSERS
           value: >
             crowdsecurity/docker-logs
-
         - name: COLLECTIONS
           value: >
-            crowdsecurity/linux crowdsecurity/nginx crowdsecurity/whitelist-good-actors
-
+            crowdsecurity/linux
+            crowdsecurity/nginx
+            crowdsecurity/whitelist-good-actors
       tolerations:
         - key: workloadKind
           operator: Equal
