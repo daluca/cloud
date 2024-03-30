@@ -15,6 +15,7 @@
       name = "daluca/cloud tools";
       buildInputs = with pkgs; [
         kubectl
+        krew
         kustomize
         kubernetes-helm
         fluxcd
@@ -31,6 +32,7 @@
         kubeconform
         mdbook
         velero
+        codespell
         # pre-commit
         nodejs_21
         nodePackages.npm
