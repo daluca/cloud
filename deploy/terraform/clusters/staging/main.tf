@@ -2,11 +2,6 @@ terraform {
   required_version = ">= 1.0, < 1.6"
 
   required_providers {
-    digitalocean = {
-      source  = "digitalocean/digitalocean"
-      version = "~> 2.0"
-    }
-
     aws = {
       source  = "hashicorp/aws"
       version = "~> 5.0"
@@ -31,31 +26,11 @@ terraform {
       source  = "fluxcd/flux"
       version = "~> 1.0"
     }
-
-    github = {
-      source  = "integrations/github"
-      version = "~> 6.0"
-    }
-
-    tls = {
-      source  = "hashicorp/tls"
-      version = "~> 4.0"
-    }
-
-    random = {
-      source  = "hashicorp/random"
-      version = "~> 3.0"
-    }
-
-    time = {
-      source  = "hashicorp/time"
-      version = "~> 0.11.0"
-    }
   }
 
   backend "s3" {
     endpoint = "s3.ap-southeast-2.wasabisys.com"
-    key      = "clusters/production/terraform.tfstate"
+    key      = "clusters/staging/terraform.tfstate"
     region   = "ap-southeast-2"
     encrypt  = true
 
@@ -68,25 +43,25 @@ terraform {
 
 provider "flux" {
   kubernetes = {
-    host                   = module.production.kube_config.host
-    cluster_ca_certificate = base64decode(module.production.kube_config.cluster_ca_certificate)
-    token                  = module.production.kube_config.token
+    host                   = module.staging.kube_config.host
+    cluster_ca_certificate = base64decode(module.staging.kube_config.cluster_ca_certificate)
+    token                  = module.staging.kube_config.token
   }
 
   git = {
-    url    = module.production.github_repository_ssh_url
-    branch = module.production.github_branch
+    url    = module.staging.github_repository_ssh_url
+    branch = module.staging.github_branch
     ssh = {
       username    = "git"
-      private_key = module.production.flux_private_key.private_key_pem
+      private_key = module.staging.flux_private_key.private_key_pem
     }
   }
 }
 
 provider "kubernetes" {
-  host                   = module.production.kube_config.host
-  cluster_ca_certificate = base64decode(module.production.kube_config.cluster_ca_certificate)
-  token                  = module.production.kube_config.token
+  host                   = module.staging.kube_config.host
+  cluster_ca_certificate = base64decode(module.staging.kube_config.cluster_ca_certificate)
+  token                  = module.staging.kube_config.token
 }
 
 provider "wasabi" {

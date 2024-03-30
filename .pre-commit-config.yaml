@@ -44,6 +44,8 @@ repos:
       - id: terraform_validate
         exclude: modules
       - id: terraform_tflint
+        args:
+          - --args=--config=__GIT_WORKING_DIR__/.tflint.hcl
       - id: terraform_trivy
 
   - repo: https://github.com/python-jsonschema/check-jsonschema

@@ -1,16 +1,9 @@
 terraform {
   required_version = ">= 1.0, < 1.6"
 
-  required_providers {
-    keycloak = {
-      source  = "mrparkers/keycloak"
-      version = "~> 4.0"
-    }
-  }
-
   backend "s3" {
     endpoint = "s3.ap-southeast-2.wasabisys.com"
-    key      = "users/production/terraform.tfstate"
+    key      = "keycloak/staging/terraform.tfstate"
     region   = "ap-southeast-2"
     encrypt  = true
 

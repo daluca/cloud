@@ -1,12 +1,15 @@
 output "id" {
-  value = wasabi_bucket.bucket.id
+  description = "Wasabi S3 bucket name."
+  value       = wasabi_bucket.bucket.id
 }
 
 output "arn" {
-  value = wasabi_bucket.bucket.arn
+  description = "Wasabi S3 bukcet ARN."
+  value       = wasabi_bucket.bucket.arn
 }
 
 output "bucket" {
-  value     = wasabi_bucket.bucket.bucket
-  sensitive = true
+  description = "Wasabi S3 bucket name."
+  value       = wasabi_bucket.bucket.bucket
+  sensitive   = true
 }
