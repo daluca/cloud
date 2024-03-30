@@ -91,6 +91,8 @@ patches:
         path: /spec/path
         value: ./database/upgrades/staging
       - op: remove
+        path: /spec/healthChecks/3
+      - op: remove
         path: /spec/healthChecks/2
       - op: remove
         path: /spec/healthChecks/1
