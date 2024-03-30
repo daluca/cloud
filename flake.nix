@@ -20,6 +20,7 @@
         fluxcd
         pkgs-opensource-terraform.terraform
         opentofu
+        unstable.tflint
         just
         pre-commit
         markdownlint-cli2
