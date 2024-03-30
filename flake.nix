@@ -15,12 +15,14 @@
       name = "daluca/cloud tools";
       buildInputs = with pkgs; [
         kubectl
+        krew
         kustomize
         kubernetes-helm
         fluxcd
         pkgs-opensource-terraform.terraform
         opentofu
         unstable.tflint
+        unstable.terraform-docs
         just
         pre-commit
         markdownlint-cli2
@@ -30,6 +32,7 @@
         kubeconform
         mdbook
         velero
+        codespell
         # pre-commit
         nodejs_21
         nodePackages.npm

@@ -17,11 +17,6 @@ repos:
       - id: yamllint
         args: [--strict]
 
-  - repo: https://github.com/DavidAnson/markdownlint-cli2
-    rev: v0.12.1
-    hooks:
-      - id: markdownlint-cli2
-
   - repo: https://github.com/zricethezav/gitleaks
     rev: v8.18.2
     hooks:
@@ -47,6 +42,14 @@ repos:
         args:
           - --args=--config=__GIT_WORKING_DIR__/.tflint.hcl
       - id: terraform_trivy
+      - id: terraform_docs
+        args:
+          - --args=--config=.terraform-docs.yml
+
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.12.1
+    hooks:
+      - id: markdownlint-cli2
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
     rev: 0.28.0
