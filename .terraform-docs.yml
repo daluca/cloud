@@ -11,7 +11,11 @@ output:
 
     <!-- END-TF-DOCS ---->
 
+sections:
+  hide: [providers]
+
 settings:
   anchor: false
   hide-empty: true
   html: false
+  lockfile: false

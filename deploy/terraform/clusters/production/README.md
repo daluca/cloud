@@ -13,12 +13,6 @@
 | kubernetes | ~> 2.0 |
 | wasabi | ~> 4.0 |
 
-## Providers
-
-| Name | Version |
-|------|---------|
-| cloudflare | ~> 4.0 |
-
 ## Modules
 
 | Name | Source | Version |

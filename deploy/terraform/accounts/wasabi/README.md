@@ -11,14 +11,6 @@
 | random | ~> 3.0 |
 | wasabi | ~> 4.0 |
 
-## Providers
-
-| Name | Version |
-|------|---------|
-| aws | ~> 4.0 |
-| random | ~> 3.0 |
-| wasabi | ~> 4.0 |
-
 ## Modules
 
 | Name | Source | Version |

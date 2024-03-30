@@ -10,13 +10,6 @@
 | cloudflare | ~> 4.0 |
 | time | ~> 0.9.0 |
 
-## Providers
-
-| Name | Version |
-|------|---------|
-| cloudflare | ~> 4.0 |
-| time | ~> 0.9.0 |
-
 ## Resources
 
 | Name | Type |

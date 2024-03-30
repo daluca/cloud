@@ -10,13 +10,6 @@
 | keycloak | >= 4.0, < 5.0 |
 | kubernetes | >= 2.0, < 3.0 |
 
-## Providers
-
-| Name | Version |
-|------|---------|
-| keycloak | >= 4.0, < 5.0 |
-| kubernetes | >= 2.0, < 3.0 |
-
 ## Resources
 
 | Name | Type |

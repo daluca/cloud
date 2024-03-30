@@ -9,12 +9,6 @@
 | terraform | >= 1.0, < 1.6 |
 | digitalocean | ~> 2.0 |
 
-## Providers
-
-| Name | Version |
-|------|---------|
-| digitalocean | ~> 2.0 |
-
 ## Resources
 
 | Name | Type |

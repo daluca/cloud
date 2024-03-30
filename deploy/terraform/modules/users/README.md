@@ -9,12 +9,6 @@
 | terraform | >= 1.0, < 1.6 |
 | keycloak | ~> 4.0 |
 
-## Providers
-
-| Name | Version |
-|------|---------|
-| keycloak | ~> 4.0 |
-
 ## Resources
 
 | Name | Type |

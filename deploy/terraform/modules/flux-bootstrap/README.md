@@ -11,14 +11,6 @@
 | github | >= 6.0, < 7.0 |
 | tls | >= 4.0, < 5.0 |
 
-## Providers
-
-| Name | Version |
-|------|---------|
-| flux | >= 1.0, < 2.0 |
-| github | >= 6.0, < 7.0 |
-| tls | >= 4.0, < 5.0 |
-
 ## Resources
 
 | Name | Type |

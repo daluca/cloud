@@ -16,18 +16,6 @@
 | time | >= 0.11.0, < 0.12.0 |
 | wasabi | >= 4.0, < 5.0 |
 
-## Providers
-
-| Name | Version |
-|------|---------|
-| aws | >= 5.0, < 6.0 |
-| cloudflare | >= 4.0, < 5.0 |
-| digitalocean | >= 2.0, < 3.0 |
-| github | >= 6.0, < 7.0 |
-| kubernetes | >= 2.0, < 3.0 |
-| random | >= 3.0, < 4.0 |
-| time | >= 0.11.0, < 0.12.0 |
-
 ## Modules
 
 | Name | Source | Version |

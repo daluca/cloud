@@ -9,12 +9,6 @@
 | terraform | >= 1.0, < 1.6 |
 | wasabi | >= 4.0, < 5.0 |
 
-## Providers
-
-| Name | Version |
-|------|---------|
-| wasabi | >= 4.0, < 5.0 |
-
 ## Resources
 
 | Name | Type |
