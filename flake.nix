@@ -21,6 +21,7 @@
         pkgs-opensource-terraform.terraform
         opentofu
         unstable.tflint
+        unstable.terraform-docs
         just
         pre-commit
         markdownlint-cli2

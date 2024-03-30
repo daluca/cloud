@@ -1,0 +1,17 @@
+---
+formatter: markdown
+
+output:
+  file: README.md
+  mode: inject
+  template: |-
+    <!-- BEGIN-TF-DOCS -->
+
+    {{ .Content }}
+
+    <!-- END-TF-DOCS ---->
+
+settings:
+  anchor: false
+  hide-empty: true
+  html: false
