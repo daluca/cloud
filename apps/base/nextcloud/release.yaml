@@ -285,7 +285,7 @@ spec:
     nginx:
       enabled: true
       image:
-        tag: 1.25.3-alpine
+        tag: 1.25.4-alpine
     internalDatabase:
       enabled: false
     externalDatabase:
