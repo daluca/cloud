@@ -183,6 +183,7 @@ spec:
           <?php
           $CONFIG = array (
             'allow_local_remote_servers' => true,
+            'maintenance_window_start' => 13,
             'trusted_domains' => array (
               0 => 'localhost',
               1 => 'nextcloud',
