@@ -74,7 +74,6 @@ spec:
           $upstream_status $req_id
         server-snippet: |-
           real_ip_header CF-Connecting-IP;
-          resolver local=on ipv6=off;
   valuesFrom:
     - kind: ConfigMap
       name: crowdsec-lua-plugin
