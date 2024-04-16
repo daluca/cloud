@@ -34,7 +34,6 @@ spec:
     config:
       listen:
         - transport: udp
-          proxy_protocol: true
         - transport: tcp
           proxy_protocol: true
       modules:
