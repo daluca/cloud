@@ -1,0 +1,15 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: turn.${SECONDARY_DOMAIN}-tls
+  namespace: matrix
+  labels:
+    app.kubernetes.io/name: eturnal
+spec:
+  dnsNames:
+    - turn.${SECONDARY_DOMAIN}
+  issuerRef:
+    name: zero-ssl
+    kind: ClusterIssuer
+  secretName: turn.${SECONDARY_DOMAIN}-tls
