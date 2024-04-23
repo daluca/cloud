@@ -23,6 +23,16 @@ patches:
         value: staging-loadbalancer-substitutions
   - target:
       kind: Kustomization
+      name: certificates
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./certificates/staging
+      - op: replace
+        path: /spec/postBuild/substituteFrom/0/name
+        value: staging-cluster-substitutions
+  - target:
+      kind: Kustomization
       name: configuration
     patch: |-
       - op: replace
