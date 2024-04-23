@@ -194,6 +194,8 @@ for file in "${POSITIONAL_ARGS[@]}"; do
   debug "${SCRIPT_MODE^}ing '${file}' with sops age key"
   sops "${SOPS_CONFIG[@]}" "${file}" || fatal "Unable to ${SCRIPT_MODE} '${file}'"
   echo "${SCRIPT_MODE^^}ED - '${file}'"
+
+  yamlfmt "${file}"
 done
 
 debug "End of script"

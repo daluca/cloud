@@ -1,7 +1,7 @@
 .terraform/
 .terraform.lock.hcl
 
-/book
+/book/
 
 .env
-.direnv/
+/.direnv/

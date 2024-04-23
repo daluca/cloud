@@ -17,4 +17,7 @@ spec:
           containers:
             - name: nextcloud
               image: curlimages/curl:8.00.1
-              args: [--fail, -L, http://nextcloud/cron.php]
+              args:
+                - --fail
+                - -L
+                - http://nextcloud/cron.php
