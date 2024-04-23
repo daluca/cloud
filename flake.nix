@@ -24,7 +24,6 @@
         unstable.tflint
         unstable.terraform-docs
         just
-        pre-commit
         markdownlint-cli2
         doctl
         jq
@@ -33,11 +32,13 @@
         mdbook
         velero
         codespell
-        # pre-commit
+        pre-commit
         nodejs_21
         nodePackages.npm
         tflint
         trivy
+        unstable.yamlfmt
+        unstable.yamllint
       ];
       shellHook = ''
         echo "Loaded $name...";
