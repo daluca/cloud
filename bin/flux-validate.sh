@@ -5,7 +5,7 @@
 #############
 
 DEFAULT_LOG_LEVEL="WARNING"
-KUBECONFORM_CONFIG=("-strict" "-ignore-missing-schemas" "-schema-location" "default" "-schema-location" "/tmp/flux-crd-schemas" "-verbose")
+KUBECONFORM_CONFIG=("-strict" "-ignore-missing-schemas" "-schema-location" "default" "-schema-location" "/tmp/flux-crd-schemas" "-schema-location" "/tmp/cert-manager-crd-schemas" "-verbose")
 KUSTOMIZE_CONFIG=("--load-restrictor" "LoadRestrictionsNone")
 
 #############
@@ -159,13 +159,13 @@ function kustomize_validate () {
 
   for result in "${results[@]}"; do
     debug "Checking individual result - '${result}'"
-    if [[ "${result}" =~ ^stdin\ -\ ([A-Za-z0-9\._-]*)\ ([A-Za-z0-9_-]*)\ is\ valid$ ]]; then
+    if [[ "${result}" =~ ^stdin\ -\ ([A-Za-z0-9\._-]+)\ ([A-Za-z0-9\${}\._-]+)\ is\ valid$ ]]; then
       kind="${BASH_REMATCH[1]}"
       name="${BASH_REMATCH[2]}"
       info "PASSED - '${directory}' '${kind}' '${name}'"
-    elif [[ "${result}" =~ ^stdin\ -\ ([A-Za-z0-9\._-]*)\ ([A-Za-z0-9_-]*)\ skipped$ ]]; then
-      kind="${BASH_REMATCH[1]}"
-      name="${BASH_REMATCH[2]}"
+    elif [[ "${result}" =~ ^stdin\ -\ ([A-Za-z0-9\._-]+)\ ([A-Za-z0-9\${}\._-]+)\ skipped$ ]]; then
+      kind="${BASH_REMATCH[2]}"
+      name="${BASH_REMATCH[1]}"
       info "SKIPPED - '${directory}' '${kind}' '${name}'"
     else
       debug "FAILED - result of kustomize into kubeconform '${result}'"
@@ -252,11 +252,34 @@ else
   debug "Flux OpenAPI schema appears to be downloaded already"
 fi
 
+### Download cert-manager schema ###
+
+if [[ ! -d "/tmp/cert-manager-crd-schemas/master-standalone-strict" ]]; then
+  info "Creating temporary directory for cert-manager crds schema"
+  mkdir -p "/tmp/cert-manager-crd-schemas/master-standalone-strict"
+else
+  debug "cert-manager temporary directory already created"
+fi
+if [[ ! -f "/tmp/cert-manager-crd-schemas/master-standalone-strict/certificate-cert-manager-v1.json" ]]; then
+  info "Downloading cert-manager schemas"
+  if [[ 10 -ge "${LOG_LEVEL}" ]]; then WGET_QUIET="--quiet"; fi
+  wget "${WGET_QUIET}" -O "/tmp/cert-manager-crd-schemas/crds-cert-manager.yaml" "https://github.com/cert-manager/cert-manager/releases/download/v1.14.4/cert-manager.crds.yaml"
+  yq 'select(documentIndex == 0)' --output-format json "/tmp/cert-manager-crd-schemas/crds-cert-manager.yaml" > "/tmp/cert-manager-crd-schemas/master-standalone-strict/certificaterequest-cert-manager-v1.json"
+  yq 'select(documentIndex == 1)' --output-format json "/tmp/cert-manager-crd-schemas/crds-cert-manager.yaml" > "/tmp/cert-manager-crd-schemas/master-standalone-strict/certificate-cert-manager-v1.json"
+  yq 'select(documentIndex == 2)' --output-format json "/tmp/cert-manager-crd-schemas/crds-cert-manager.yaml" > "/tmp/cert-manager-crd-schemas/master-standalone-strict/challenge-cert-manager-v1.json"
+  yq 'select(documentIndex == 3)' --output-format json "/tmp/cert-manager-crd-schemas/crds-cert-manager.yaml" > "/tmp/cert-manager-crd-schemas/master-standalone-strict/clusterissuer-cert-manager-v1.json"
+  yq 'select(documentIndex == 4)' --output-format json "/tmp/cert-manager-crd-schemas/crds-cert-manager.yaml" > "/tmp/cert-manager-crd-schemas/master-standalone-strict/issuer-cert-manager-v1.json"
+  yq 'select(documentIndex == 5)' --output-format json "/tmp/cert-manager-crd-schemas/crds-cert-manager.yaml" > "/tmp/cert-manager-crd-schemas/master-standalone-strict/order-cert-manager-v1.json"
+  rm "/tmp/cert-manager-crd-schemas/crds-cert-manager.yaml" || true
+else
+  debug "cert-manager schema appears to be downloaded already"
+fi
+
 ### Kubeconform Cluster ###
 
 CLUSTER_YAML=()
 for file in "${POSITIONAL_ARGS[@]}"; do
-  if [[ "${file}" =~ ^clusters\/.*\/[[:alnum:]]*\.yaml$ ]]; then
+  if [[ "${file}" =~ ^clusters\/.+\/[[:alnum:]]+\.yaml$ ]]; then
     debug "Found '${file}' to be a Flux cluster yaml file"
     CLUSTER_YAML+=( "${file}" )
   else
