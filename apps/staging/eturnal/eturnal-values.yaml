@@ -7,3 +7,7 @@ metadata:
 spec:
   test:
     enable: false
+  values:
+    service:
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: turn.${PRIMARY_DOMAIN}

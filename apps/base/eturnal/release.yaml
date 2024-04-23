@@ -9,10 +9,10 @@ spec:
   chart:
     spec:
       chart: eturnal
-      version: ">=0.1.0 <0.2.0"
+      version: ">=0.2.0 <0.3.0"
       sourceRef:
         kind: HelmRepository
-        name: eturnal
+        name: daluca
         namespace: flux-system
   interval: 1h
   maxHistory: 3
@@ -31,12 +31,25 @@ spec:
     enable: true
     ignoreFailures: false
   values:
+    service:
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: turn.${SECONDARY_DOMAIN}
+        external-dns.alpha.kubernetes.io/target: ${DIGITALOCEAN_LOADBALANCER_IP}
+    extraVolumesMounts:
+      - mountPath: /certs
+        name: tls-certs
+    extraVolumes:
+      - name: tls-certs
+        secret:
+          secretName: turn.${SECONDARY_DOMAIN}-tls
+    existingSecret: eturnal-secrets
     config:
       listen:
-        - transport: udp
-        - transport: tcp
+        - transport: tls
           proxy_protocol: true
+        - transport: udp
       modules:
         mod_log_stun:
           level: info
-    existingSecret: eturnal-secrets
+      tls_crt_file: /certs/tls.crt
+      tls_key_file: /certs/tls.key
