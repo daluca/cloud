@@ -6,3 +6,10 @@ resources:
   - eturnal-secrets.sops.yaml
 patches:
   - path: eturnal-values.yaml
+  - target:
+      kind: HelmRelease
+      name: eturnal
+    patch: |-
+      - op: replace
+        path: /spec/values/extraVolumes/0/secret/secretName
+        value: turn.${PRIMARY_DOMAIN}-tls
