@@ -19,6 +19,7 @@
         kustomize
         kubernetes-helm
         fluxcd
+        sops
         pkgs-opensource-terraform.terraform
         opentofu
         unstable.tflint
