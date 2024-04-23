@@ -5,6 +5,9 @@ metadata:
   name: synapse
   namespace: matrix
 spec:
+  dependsOn:
+    - name: eturnal
+      namespace: matrix
   test:
     enable: false
   values:
@@ -13,3 +16,12 @@ spec:
     homeserver:
       server_name: ${PRIMARY_DOMAIN}
       public_baseurl: https://matrix.${PRIMARY_DOMAIN}
+      turn_uris:
+        - turns:korero.dev?transport=tcp
+        - turn:korero.dev?transport=udp
+      turn_user_lifetime: 86400000
+      turn_allow_guests: true
+    extraVolumesMounts:
+      - mountPath: /synapse/homeserver.d/eturnal.yaml
+        subPath: synapse-config.yaml
+        name: eturnal-secrets
