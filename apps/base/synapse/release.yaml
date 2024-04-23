@@ -6,6 +6,9 @@ metadata:
   namespace: matrix
 spec:
   releaseName: synapse
+  dependsOn:
+    - name: eturnal
+      namespace: matrix
   chart:
     spec:
       chart: synapse
@@ -58,6 +61,11 @@ spec:
       public_baseurl: https://matrix.${SECONDARY_DOMAIN}
       max_upload_size: 50M
       existingSecret: synapse-secrets
+      turn_uris:
+        - turns:korero.dev?transport=tcp
+        - turn:korero.dev?transport=udp
+      turn_user_lifetime: 86400000
+      turn_allow_guests: true
     extraMergeVolumeMounts:
       - mountPath: /workdir/config/oidc-providers.yaml
         subPath: oidc-providers.yaml
@@ -65,6 +73,10 @@ spec:
       - mountPath: /workdir/secrets/keycloak.yaml
         subPath: keycloak.yaml
         name: oidc-credentials
+    extraVolumeMounts:
+      - mountPath: /synapse/homeserver.d/eturnal.yaml
+        subPath: synapse-config.yaml
+        name: eturnal-secrets
     extraVolumes:
       - name: oidc-providers
         configMap:
@@ -72,6 +84,9 @@ spec:
       - name: oidc-credentials
         secret:
           secretName: synapse-openid-connect
+      - name: eturnal-secrets
+        secret:
+          secretName: eturnal-secrets
     delegation:
       enabled: true
       ingress:

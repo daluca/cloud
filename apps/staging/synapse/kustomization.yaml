@@ -9,13 +9,3 @@ resources:
   - synapse-secrets.sops.yaml
 patches:
   - path: synapse-values.yaml
-  - target:
-      kind: HelmRelease
-      name: synapse
-    patch: |-
-      - op: add
-        path: /spec/values/extraVolumes/-
-        value:
-          name: eturnal-secrets
-          secret:
-            secretName: eturnal-secrets
