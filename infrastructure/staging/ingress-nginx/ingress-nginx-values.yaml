@@ -15,7 +15,3 @@ spec:
           service.beta.kubernetes.io/do-loadbalancer-name: staging
       config:
         proxy-real-ip-cidr: ${STAGING_VPC_CIDR},${CLOUDFLARE_IPV4_RANGE}
-    tcp:
-      "5349": matrix/eturnal:3478
-    udp:
-      "3478": matrix/eturnal:5349

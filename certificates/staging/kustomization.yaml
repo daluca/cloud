@@ -15,5 +15,8 @@ patches:
         path: /spec/dnsNames/0
         value: turn.${PRIMARY_DOMAIN}
       - op: replace
+        path: /spec/issuerRef/name
+        value: letsencrypt-prod
+      - op: replace
         path: /spec/secretName
         value: turn.${PRIMARY_DOMAIN}-tls
