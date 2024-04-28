@@ -11,6 +11,7 @@ spec:
     - name: configuration
     - name: crds
     - name: infrastructure
+    - name: certificates
     - name: storage-clusters
     - name: database-clusters
     - name: identity-management
