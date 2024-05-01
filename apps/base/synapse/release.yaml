@@ -12,7 +12,7 @@ spec:
   chart:
     spec:
       chart: synapse
-      version: ">=0.11.0 <0.12.0"
+      version: ">=0.12.0 <0.13.0"
       sourceRef:
         kind: HelmRepository
         name: daluca
@@ -62,8 +62,8 @@ spec:
       max_upload_size: 50M
       existingSecret: synapse-secrets
       turn_uris:
-        - turns:korero.dev?transport=tcp
-        - turn:korero.dev?transport=udp
+        - turns:${SECONDARY_DOMAIN}?transport=tcp
+        - turn:${SECONDARY_DOMAIN}?transport=udp
       turn_user_lifetime: 86400000
       turn_allow_guests: true
     extraMergeVolumeMounts:
