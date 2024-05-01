@@ -76,6 +76,7 @@ spec:
           real_ip_header CF-Connecting-IP;
     tcp:
       "5349": matrix/eturnal:5349
+      "8880": matrix/synapse:80
     udp:
       "3478": matrix/eturnal:3478
       "49152": matrix/eturnal:49152
@@ -113,7 +114,6 @@ spec:
       "49184": matrix/eturnal:49184
       "49185": matrix/eturnal:49185
       "49186": matrix/eturnal:49186
-      "49187": matrix/eturnal:49187
   valuesFrom:
     - kind: ConfigMap
       name: crowdsec-lua-plugin

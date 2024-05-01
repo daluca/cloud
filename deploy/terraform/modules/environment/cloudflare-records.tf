@@ -9,7 +9,7 @@ resource "cloudflare_record" "apex" {
   name    = "@"
   value   = sensitive(data.digitalocean_loadbalancer.main.ip)
   type    = "A"
-  proxied = each.key != local.matrix_domain ? true : false
+  proxied = true
 }
 
 resource "cloudflare_record" "matrix_srv" {

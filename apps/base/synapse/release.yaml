@@ -37,13 +37,13 @@ spec:
     replicaCount: 1
     service:
       port: 80
+      containerPort: 8880
     ingress:
       enabled: true
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         kubernetes.io/ingress.allow-http: "false"
-        external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
         external-dns.alpha.kubernetes.io/target: ${DIGITALOCEAN_LOADBALANCER_IP}
         nginx.ingress.kubernetes.io/proxy-body-size: 50m
       host: matrix.${SECONDARY_DOMAIN}

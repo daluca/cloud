@@ -13,6 +13,7 @@
 - [Apps]()
   - [Collabora](./apps/collabora.md)
   - [Nextcloud](./apps/nextcloud.md)
+  - [Synapse](./apps/synapse.md)
   - [Podinfo]()
 - [Clusters]()
   - [Staging]()
