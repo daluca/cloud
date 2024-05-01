@@ -51,5 +51,7 @@ spec:
       modules:
         mod_log_stun:
           level: info
+      relay_max_port: 50100
+      relay_min_port: 50001
       tls_crt_file: /certs/tls.crt
       tls_key_file: /certs/tls.key
