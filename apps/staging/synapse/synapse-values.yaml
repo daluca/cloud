@@ -14,5 +14,5 @@ spec:
       server_name: ${PRIMARY_DOMAIN}
       public_baseurl: https://matrix.${PRIMARY_DOMAIN}
       turn_uris:
-        - turns:${PRIMARY_DOMAIN}?transport=tcp
-        - turn:${PRIMARY_DOMAIN}?transport=udp
+        - turns:${PRIMARY_DOMAIN}:5349?transport=tcp
+        - turn:${PRIMARY_DOMAIN}:3478?transport=udp

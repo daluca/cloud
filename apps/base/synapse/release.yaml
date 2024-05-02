@@ -62,8 +62,8 @@ spec:
       max_upload_size: 50M
       existingSecret: synapse-secrets
       turn_uris:
-        - turns:${SECONDARY_DOMAIN}?transport=tcp
-        - turn:${SECONDARY_DOMAIN}?transport=udp
+        - turns:${SECONDARY_DOMAIN}:5349?transport=tcp
+        - turn:${SECONDARY_DOMAIN}:3478?transport=udp
       turn_user_lifetime: 86400000
       turn_allow_guests: true
     extraMergeVolumeMounts:
