@@ -48,8 +48,6 @@ spec:
               - op: remove
                 path: /spec/template/spec/containers/0/resources/limits/cpu
   values:
-    image:
-      tag: v1.13.1
     resources:
       requests:
         cpu: 100m
