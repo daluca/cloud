@@ -18,4 +18,6 @@ resource "flux_bootstrap_git" "main" {
   path             = "clusters/${var.environment}"
   interval         = "1m"
   version          = var.flux_version != "latest" ? "v${var.flux_version}" : null
+
+  delete_git_manifests = false
 }
