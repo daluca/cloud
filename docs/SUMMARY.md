@@ -47,6 +47,7 @@
 # Deploy
 
 - [Accounts]()
+  - [Cloudflare](./deploy/accounts/cloudflare.md)
   - [DigitalOcean](./deploy/accounts/digitalocean.md)
 - [Clusters]()
 - [Users](./deploy/users/users.md)
