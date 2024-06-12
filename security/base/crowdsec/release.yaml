@@ -55,7 +55,7 @@ spec:
   values:
     container_runtime: containerd
     image:
-      tag: v1.6.1-2
+      tag: v1.6.2
     config:
       postoverflows:
         s01-whitelist:
