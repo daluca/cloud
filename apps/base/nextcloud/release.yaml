@@ -145,12 +145,11 @@ spec:
             'logfile'  => '/var/log/nextcloud/nextcloud.log',
             'loglevel' => 2,
           );
-        # yamllint disable rule:line-length
         proxy.config.php: |-
           <?php
           $CONFIG = array (
             'overwriteprotocol' => 'https',
-            'overwrite.cli.url' => 'https://' . getenv('NEXTCLOUD_TRUSTED_DOMAINS'),
+            'overwrite.cli.url' => 'https://cloud.${PRIMARY_DOMAIN}',
             'trusted_proxies' => array (
               0 => '127.0.0.1',
               1 => '10.0.0.0/8',
@@ -160,7 +159,6 @@ spec:
               1 => 'HTTP_CF_CONNECTING-IP',
             ),
           );
-        # yamllint enable rule:line-length
         user-experience.config.php: |-
           <?php
           $CONFIG = array (
@@ -190,7 +188,7 @@ spec:
               2 => 'nextcloud.nextcloud',
               3 => 'nextcloud.nextcloud.svc',
               4 => 'nextcloud.nextcloud.svc.cluster.local',
-              5 => getenv('NEXTCLOUD_TRUSTED_DOMAINS')
+              5 => 'cloud.${PRIMARY_DOMAIN}'
             ),
             'enable_previews' => true,
             'enabledPreviewProviders' => array (
