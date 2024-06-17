@@ -16,3 +16,4 @@ resources:
   - nextcloud.yaml
   - rook-ceph.yaml
   - rss.yaml
+  - vpn.yaml
