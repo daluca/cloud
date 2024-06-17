@@ -52,7 +52,7 @@ resource "kubernetes_secret" "synapse_openid_connect" {
 resource "kubernetes_secret" "headscale_openid_connect" {
   metadata {
     name      = "headscale-openid-connect"
-    namespace = "identity"
+    namespace = "vpn"
   }
 
   data = {
