@@ -243,3 +243,13 @@ patches:
         path: /spec/healthChecks/2
       - op: remove
         path: /spec/healthChecks/1
+  - target:
+      kind: Kustomization
+      name: vpn
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: ./vpn/staging
+      - op: replace
+        path: /spec/postBuild/substituteFrom/0/name
+        value: staging-cluster-substitutions
