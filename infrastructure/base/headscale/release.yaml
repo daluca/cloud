@@ -1,0 +1,87 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: headscale
+  namespace: vpn
+spec:
+  releaseName: headscale
+  chart:
+    spec:
+      chart: headscale
+      version: ">=0.1.0 <0.2.0"
+      sourceRef:
+        kind: HelmRepository
+        name: daluca
+        namespace: flux-system
+  interval: 1h
+  maxHistory: 3
+  install:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  uninstall:
+    keepHistory: false
+  test:
+    enable: true
+    ignoreFailures: false
+  values:
+    replicaCount: 2
+    service:
+      port: 80
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        kubernetes.io/ingress.allow-http: "false"
+        nginx.ingress.kubernetes.io/server-snippet: |-
+          location = / {
+            return 301 https://$host/admin;
+          }
+      hosts:
+        - host: headscale.${PRIMARY_DOMAIN}
+          paths:
+            - pathType: Prefix
+              path: /
+      tls:
+        - secretName: headscale-tls
+          hosts:
+            - headscale.${PRIMARY_DOMAIN}
+    persistence:
+      enabled: true
+      storageClass: rook-cephfs
+      size: 1Gi
+      accessModes: [ReadWriteMany]
+    webui:
+      enabled: true
+      replicaCount: 2
+      ingress:
+        enabled: true
+        className: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+          kubernetes.io/ingress.allow-http: "false"
+        hosts:
+          - host: headscale.${PRIMARY_DOMAIN}
+            paths:
+              - pathType: Prefix
+                path: /admin
+        tls:
+          - secretName: headscale-tls
+            hosts:
+              - headscale.${PRIMARY_DOMAIN}
+    database:
+      external: true
+      type: postgres
+      name: headscale
+      host: postgresql-cluster.database
+      port: 5432
+      existingSecret: database-credentials
+    postgresql:
+      enabled: false
