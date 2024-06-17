@@ -5,6 +5,7 @@ resources:
   - flux-system
   - ../base
 patches:
+  - path: exclude-vpn.yaml
   # TODO: Remove once a new minor upgrade becomes available
   - target:
       kind: Kustomization
