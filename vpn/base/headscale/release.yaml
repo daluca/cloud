@@ -61,7 +61,7 @@ spec:
     config:
       oidc:
         only_start_if_oidc_is_available: true
-        issuer: https://sso.${PRIMARY_DOMAIN}/realms/${KEYCLOAK_REALM}
+        issuer: https://sso.${PRIMARY_DOMAIN}/realms/${ENVIRONMENT}
         client_id: headscale
         client_secret_path: /var/run/secrets/keycloak/client-secret
     extraVolumes:
