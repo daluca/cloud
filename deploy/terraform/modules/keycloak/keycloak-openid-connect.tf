@@ -127,3 +127,19 @@ resource "keycloak_openid_client" "synapse" {
   backchannel_logout_url              = sensitive("https://matrix.${var.keycloak.domain}/_synapse/client/oidc/backchannel_logout")
   backchannel_logout_session_required = true
 }
+
+resource "keycloak_openid_client" "headscale" {
+  realm_id  = data.keycloak_realm.main.id
+  client_id = "headscale"
+
+  name    = "Headscale"
+  enabled = true
+
+  access_type = "CONFIDENTIAL"
+
+  root_url            = sensitive("https://headscale.${var.keycloak.domain}")
+  valid_redirect_uris = ["/oidc/callback"]
+
+  standard_flow_enabled        = true
+  direct_access_grants_enabled = true
+}

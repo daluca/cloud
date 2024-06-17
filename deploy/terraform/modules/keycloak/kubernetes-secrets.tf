@@ -48,3 +48,15 @@ resource "kubernetes_secret" "synapse_openid_connect" {
     EOF
   }
 }
+
+resource "kubernetes_secret" "headscale_openid_connect" {
+  metadata {
+    name      = "headscale-openid-connect"
+    namespace = "identity"
+  }
+
+  data = {
+    "client-id"     = keycloak_openid_client.headscale.client_id
+    "client-secret" = keycloak_openid_client.headscale.client_secret
+  }
+}

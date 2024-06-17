@@ -22,6 +22,7 @@
 | [keycloak_ldap_group_mapper.groups](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/ldap_group_mapper) | resource |
 | [keycloak_ldap_user_federation.openldap](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/ldap_user_federation) | resource |
 | [keycloak_openid_audience_protocol_mapper.oauth2_proxy](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_audience_protocol_mapper) | resource |
+| [keycloak_openid_client.headscale](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_client) | resource |
 | [keycloak_openid_client.miniflux](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_client) | resource |
 | [keycloak_openid_client.nextcloud](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_client) | resource |
 | [keycloak_openid_client.oauth2_proxy](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_client) | resource |
@@ -32,6 +33,7 @@
 | [keycloak_openid_user_client_role_protocol_mapper.nextcloud_groups](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_user_client_role_protocol_mapper) | resource |
 | [keycloak_role.nextcloud_admin](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/role) | resource |
 | [keycloak_role.nextcloud_user](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/role) | resource |
+| [kubernetes_secret.headscale_openid_connect](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/secret) | resource |
 | [kubernetes_secret.miniflux_openid_connect](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/secret) | resource |
 | [kubernetes_secret.nextcloud_openid_connect](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/secret) | resource |
 | [kubernetes_secret.oauth2_proxy_openid_connect](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/secret) | resource |
