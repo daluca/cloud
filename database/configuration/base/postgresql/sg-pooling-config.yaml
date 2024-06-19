@@ -8,41 +8,9 @@ spec:
   pgBouncer:
     pgbouncer.ini:
       pgbouncer:
-        pool_mode: session
         max_client_conn: 2000
-        default_pool_size: 100
-        log_connections: 1
-        log_disconnections: 1
-        log_stats: 1
-        server_idle_timeout: 120
-        client_idle_timeout: 30
-        query_wait_timeout: 300
+        max_db_connections: 20
+        default_pool_size: 10
       databases:
-        crowdsec:
-          pool_size: 400
-          dbname: crowdsec
-          reserve_pool: 5
-        keycloak:
-          pool_size: 400
-          dbname: keycloak
-          reserve_pool: 5
         lemmy:
-          pool_size: 400
-          dbname: lemmy
-          reserve_pool: 5
-        miniflux:
-          pool_size: 400
-          dbname: miniflux
-          reserve_pool: 5
-        nextcloud:
-          pool_size: 400
-          dbname: nextcloud
-          reserve_pool: 5
-        postgres:
-          pool_size: 10
-          dbname: postgres
-          reserve_pool: 5
-        synapse:
-          pool_size: 400
-          dbname: synapse
-          reserve_pool: 5
+          max_db_connections: 30
