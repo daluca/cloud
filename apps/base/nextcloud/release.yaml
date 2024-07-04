@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: nextcloud
-      version: 5.0.0
+      version: 5.1.0
       sourceRef:
         kind: HelmRepository
         name: nextcloud
@@ -284,7 +284,7 @@ spec:
     nginx:
       enabled: true
       image:
-        tag: 1.26.1-alpine
+        tag: 1.27.0-alpine
     internalDatabase:
       enabled: false
     externalDatabase:
