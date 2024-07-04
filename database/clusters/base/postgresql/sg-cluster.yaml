@@ -48,5 +48,6 @@ spec:
       - sgScript: lemmy-database
       - sgScript: miniflux-database
       - sgScript: synapse-database
+      - sgScript: headscale-database
   prometheusAutobind: true
   nonProductionOptions: {}
