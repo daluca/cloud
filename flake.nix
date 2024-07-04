@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-opensource-terraform.url = "github:nixos/nixpkgs/39ed4b64ba5929e8e9221d06b719a758915e619b";
   };
@@ -34,12 +34,13 @@
         velero
         codespell
         pre-commit
-        nodejs_21
+        nodejs_22
         nodePackages.npm
         tflint
         trivy
         unstable.yamlfmt
         unstable.yamllint
+        yq-go
       ];
       shellHook = ''
         echo "Loaded $name...";
