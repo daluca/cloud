@@ -45,7 +45,6 @@ spec:
       - sgScript: nextcloud-database
       - sgScript: crowdsec-database
       - sgScript: keycloak-database
-      - sgScript: lemmy-database
       - sgScript: miniflux-database
       - sgScript: synapse-database
       - sgScript: headscale-database
