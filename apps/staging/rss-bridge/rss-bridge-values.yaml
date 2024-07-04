@@ -7,3 +7,5 @@ metadata:
 spec:
   test:
     enable: false
+  values:
+    replicaCount: 1
