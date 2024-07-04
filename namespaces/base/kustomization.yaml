@@ -9,7 +9,6 @@ resources:
   - gatekeeper-system.yaml
   - identity.yaml
   - ingress-nginx.yaml
-  - lemmy.yaml
   - mail.yaml
   - matrix.yaml
   - monitoring.yaml
