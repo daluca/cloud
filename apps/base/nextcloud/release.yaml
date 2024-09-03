@@ -87,6 +87,7 @@ spec:
         usernameKey: admin-username
         passwordKey: admin-password
         tokenKey: nextcloud-token
+      trustedDomains: [cloud.${PRIMARY_DOMAIN}]
       mail:
         enabled: true
         fromAddress: no-reply
@@ -96,6 +97,8 @@ spec:
           secure: ""
           port: 25
           authtype: NONE
+      defaultConfigs:
+        s3.config.php: false
       configs:
         s3.config.php: |-
           <?php
