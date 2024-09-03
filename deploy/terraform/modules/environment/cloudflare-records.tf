@@ -7,7 +7,7 @@ resource "cloudflare_record" "apex" {
 
   zone_id = sensitive(data.cloudflare_zone.domains[each.key].id)
   name    = "@"
-  value   = sensitive(data.digitalocean_loadbalancer.main.ip)
+  content = sensitive(data.digitalocean_loadbalancer.main.ip)
   type    = "A"
   proxied = true
 }

@@ -22,6 +22,8 @@ on:
       - deploy/terraform/modules/wasabi-bucket/**.tf
       - .github/workflows/production.yaml
 
+  workflow_dispatch: {}
+
 permissions:
   pull-requests: write
   contents: read
