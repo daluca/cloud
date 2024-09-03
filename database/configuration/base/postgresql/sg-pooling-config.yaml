@@ -11,6 +11,3 @@ spec:
         max_client_conn: 2000
         max_db_connections: 20
         default_pool_size: 10
-      databases:
-        lemmy:
-          max_db_connections: 30
