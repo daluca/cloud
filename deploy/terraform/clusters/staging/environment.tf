@@ -12,7 +12,7 @@ module "staging" {
   }
 
   kubernetes = {
-    version = "1.29"
+    version = "1.30"
     worker_pool = {
       cpu        = 4
       memory     = 8

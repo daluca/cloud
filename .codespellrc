@@ -1,6 +1,6 @@
 [codespell]
 builtin = clear,rare,code
-skip = .git,clusters/production/flux-system/*,clusters/staging/flux-system/*
+skip = .git,clusters/production/flux-system/*,clusters/staging/flux-system/*,direnv/*,book/*,*/.terraform/*,*.terraform.lock.hcl
 ignore-words-list = iam
 check-filename =
 check-hidden =

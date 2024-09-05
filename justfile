@@ -10,5 +10,8 @@ get-staging-config:
 delete-staging-config:
   yq --inplace 'del(.clusters[] | select(.name == "do-syd1-staging-cluster")) | del(.users[] | select(.name == "do-syd1-staging-cluster-admin")) | del(.contexts[] | select(.name == "do-syd1-staging-cluster")) | .current-context = .contexts[-1].name' ~/.kube/config
 
+check-spelling:
+  codespell *
+
 clean:
   find \( -type d -name ".terraform" -o -type f -name ".terraform.lock.hcl" \) -print -exec rm -r {} +
