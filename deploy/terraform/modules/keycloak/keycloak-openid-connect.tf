@@ -143,3 +143,48 @@ resource "keycloak_openid_client" "headscale" {
   standard_flow_enabled        = true
   direct_access_grants_enabled = true
 }
+
+resource "keycloak_openid_client" "mealie" {
+  realm_id  = data.keycloak_realm.main.id
+  client_id = "mealie"
+
+  name    = "Mealie"
+  enabled = true
+
+  access_type = "PUBLIC"
+
+  root_url            = sensitive("https://mealie.${var.keycloak.domain}")
+  valid_redirect_uris = ["/login", "/login?direct=1"]
+  web_origins         = ["+"]
+
+  standard_flow_enabled = true
+
+  extra_config = {
+    "id.token.signed.response.alg" = "RS256"
+  }
+}
+
+resource "keycloak_openid_client_optional_scopes" "mealie_optional_scopes" {
+  realm_id  = data.keycloak_realm.main.id
+  client_id = keycloak_openid_client.mealie.id
+
+  optional_scopes = [
+    "address",
+    "phone",
+    "offline_access",
+    "microprofile-jwt",
+    keycloak_openid_client_scope.group.name
+  ]
+}
+
+resource "keycloak_openid_user_client_role_protocol_mapper" "mealie_groups" {
+  realm_id  = data.keycloak_realm.main.id
+  client_id = keycloak_openid_client.mealie.id
+
+  name       = "groups"
+  claim_name = "groups"
+
+  client_id_for_role_mappings = keycloak_openid_client.mealie.client_id
+
+  multivalued = true
+}
