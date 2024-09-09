@@ -11,6 +11,7 @@ resources:
   - ingress-nginx.yaml
   - mail.yaml
   - matrix.yaml
+  - mealie.yaml
   - monitoring.yaml
   - nextcloud.yaml
   - rook-ceph.yaml

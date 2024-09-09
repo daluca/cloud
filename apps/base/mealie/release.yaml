@@ -1,0 +1,83 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mealie
+  namespace: mealie
+spec:
+  releaseName: mealie
+  chart:
+    spec:
+      chart: mealie
+      version: ">=0.1.0 <0.2.0"
+      sourceRef:
+        kind: HelmRepository
+        name: daluca
+        namespace: flux-system
+  interval: 1h
+  maxHistory: 3
+  install:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  test:
+    enable: true
+    ignoreFailures: false
+  uninstall:
+    keepHistory: false
+  values:
+    replicaCount: 2
+    service:
+      port: 80
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        kubernetes.io/ingress.allow-http: "false"
+      hosts:
+        - host: mealie.${PRIMARY_DOMAIN}
+          paths:
+            - pathType: Prefix
+              path: /
+      tls:
+        - secretName: mealie-tls
+          hosts:
+            - mealie.${PRIMARY_DOMAIN}
+    persistence:
+      enabled: true
+      storageClass: rook-cephfs
+      size: 1Gi
+      accessModes: [ReadWriteMany]
+    config:
+      ALLOW_SIGNUP: false
+      BASE_URL: https://mealie.${PRIMARY_DOMAIN}
+      SMTP_HOST: exim-relay.mail
+      SMTP_PORT: 25
+      SMTP_AUTH_STRATEGY: NONE
+      SMTP_FROM_EMAIL: no-reply@${PRIMARY_DOMAIN}
+      OIDC_AUTH_ENABLED: true
+      OIDC_SIGNUP_ENABLED: true
+      OIDC_CLIENT_ID: mealie
+      OIDC_CONFIGURATION_URL: https://sso.${PRIMARY_DOMAIN}/realms/${ENVIRONMENT}/.well-known/openid-configuration
+      OIDC_AUTO_REDIRECT: true
+      OIDC_PROVIDER_NAME: sso.${PRIMARY_DOMAIN}
+      OIDC_REMEMBER_ME: true
+      OIDC_USER_CLAIM: preferred_username
+      OIDC_GROUPS_CLAIM: groups
+      OIDC_USER_GROUP: user
+      OIDC_ADMIN_GROUP: admin
+      OIDC_SIGNING_ALGORITHM: RS256
+    database:
+      type: postgres
+      external: true
+      host: postgresql-cluster.database
+      port: 5432
+      existingSecret: database-credentials
+    postgresql:
+      enabled: false

@@ -108,3 +108,20 @@ spec:
           key: create-headscale-user.sql
     - name: create-database
       script: CREATE DATABASE headscale WITH OWNER headscale;
+---
+apiVersion: stackgres.io/v1
+kind: SGScript
+metadata:
+  name: mealie-database
+  namespace: database
+spec:
+  managedVersions: true
+  continueOnError: false
+  scripts:
+    - name: create-user
+      scriptFrom:
+        secretKeyRef:
+          name: database-credentials
+          key: create-mealie-user.sql
+    - name: create-database
+      script: CREATE DATABASE mealie WITH OWNER mealie;

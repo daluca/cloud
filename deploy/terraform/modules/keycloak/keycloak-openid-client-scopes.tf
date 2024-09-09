@@ -19,6 +19,7 @@ resource "keycloak_generic_protocol_mapper" "groups_mapper" {
     "full.path" : "false",
     "id.token.claim" : "true",
     "access.token.claim" : "true",
+    "lightweight.claim" : "false",
     "userinfo.token.claim" : "true",
     "multivalued" : "true",
     "introspection.token.claim" : "true",
