@@ -40,6 +40,7 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         kubernetes.io/ingress.allow-http: "false"
+        nginx.ingress.kubernetes.io/proxy-body-size: 50m
       hosts:
         - host: mealie.${PRIMARY_DOMAIN}
           paths:
