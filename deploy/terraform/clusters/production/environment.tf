@@ -38,7 +38,6 @@ module "production" {
     domains = [
       var.primary_domain,
       var.secondary_domain,
-      var.tertiary_domain,
     ]
   }
 

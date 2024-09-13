@@ -38,7 +38,6 @@ env:
   TF_VAR_flux_age_key: ${{ secrets.PRODUCTION_CLUSTER_AGE_KEY }}
   TF_VAR_primary_domain: ${{ secrets.PRIMARY_DOMAIN }}
   TF_VAR_secondary_domain: ${{ secrets.SECONDARY_DOMAIN }}
-  TF_VAR_tertiary_domain: ${{ secrets.TERTIARY_DOMAIN }}
 
 jobs:
   terraform:
