@@ -22,12 +22,6 @@ variable "secondary_domain" {
   sensitive   = true
 }
 
-variable "tertiary_domain" {
-  description = "Tertiary domain to host in Cloudflare."
-  type        = string
-  sensitive   = true
-}
-
 variable "staging_domain" {
   description = "Staging domain to host in Cloudflare."
   type        = string
