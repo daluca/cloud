@@ -48,5 +48,6 @@ spec:
       - sgScript: miniflux-database
       - sgScript: synapse-database
       - sgScript: headscale-database
+      - sgScript: mealie-database
   prometheusAutobind: true
   nonProductionOptions: {}
