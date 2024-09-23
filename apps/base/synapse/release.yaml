@@ -66,6 +66,7 @@ spec:
         - turn:${SECONDARY_DOMAIN}:3478?transport=udp
       turn_user_lifetime: 86400000
       turn_allow_guests: true
+      enable_authenticated_media: true
     extraMergeVolumeMounts:
       - mountPath: /workdir/config/oidc-providers.yaml
         subPath: oidc-providers.yaml
