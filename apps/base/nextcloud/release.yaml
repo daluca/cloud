@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: nextcloud
-      version: 5.5.4
+      version: ">=5.0.0 <6.0.0"
       sourceRef:
         kind: HelmRepository
         name: nextcloud
@@ -105,7 +105,7 @@ spec:
           <?php
           $CONFIG = array (
             'objectstore' => array(
-              'class' => '\\OC\\Files\\ObjectStore\\S3',
+              'class' => '\OC\Files\ObjectStore\S3',
               'arguments' => array(
                 'hostname'             => 's3.ap-southeast-2.wasabisys.com',
                 'bucket'               => getenv('WASABI_BUCKET'),
