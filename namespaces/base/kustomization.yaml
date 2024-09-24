@@ -14,6 +14,7 @@ resources:
   - mealie.yaml
   - monitoring.yaml
   - nextcloud.yaml
+  - ntfy.yaml
   - rook-ceph.yaml
   - rss.yaml
   - vpn.yaml

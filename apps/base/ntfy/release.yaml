@@ -1,0 +1,57 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: ntfy
+  namespace: ntfy
+spec:
+  releaseName: ntfy
+  chart:
+    spec:
+      chart: ntfy
+      version: ">=0.1.0 <0.2.0"
+      sourceRef:
+        kind: HelmRepository
+        name: daluca
+        namespace: flux-system
+  interval: 1h
+  maxHistory: 3
+  install:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  test:
+    enable: true
+    ignoreFailures: false
+  uninstall:
+    keepHistory: false
+  values:
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        kubernetes.io/ingress.allow-http: "false"
+        nginx.ingress.kubernetes.io/proxy-body-size: 15m
+      hosts:
+        - host: ntfy.${PRIMARY_DOMAIN}
+          paths:
+            - pathType: Prefix
+              path: /
+      tls:
+        - secretName: ntfy-tls
+          hosts:
+            - ntfy.${PRIMARY_DOMAIN}
+    persistence:
+      enabled: true
+      storageClass: rook-ceph-block
+      size: 1Gi
+      accessModes: [ReadWriteOnce]
+    config:
+      base_url: https://ntfy.${PRIMARY_DOMAIN}
+      attachment_file_size_limit: 15M
