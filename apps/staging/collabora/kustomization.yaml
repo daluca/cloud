@@ -6,6 +6,7 @@ resources:
   - admin-credentials.sops.yaml
 patches:
   - path: collabora-values.yaml
+  - path: vpa-auto.yaml
   - target:
       kind: HelmRelease
       name: collabora
