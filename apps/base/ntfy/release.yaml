@@ -38,6 +38,8 @@ spec:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         kubernetes.io/ingress.allow-http: "false"
         nginx.ingress.kubernetes.io/proxy-body-size: 15m
+        nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+        nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
       hosts:
         - host: ntfy.${PRIMARY_DOMAIN}
           paths:
