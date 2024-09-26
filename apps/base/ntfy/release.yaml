@@ -57,4 +57,5 @@ spec:
     config:
       base_url: https://ntfy.${PRIMARY_DOMAIN}
       auth_default_access: deny-all
+      enable_login: true
       attachment_file_size_limit: 15M
