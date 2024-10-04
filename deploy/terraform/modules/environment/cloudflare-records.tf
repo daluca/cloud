@@ -11,19 +11,3 @@ resource "cloudflare_record" "apex" {
   type    = "A"
   proxied = true
 }
-
-resource "cloudflare_record" "matrix_srv" {
-  zone_id = sensitive(data.cloudflare_zone.domains[local.matrix_domain].id)
-  name    = "@"
-  type    = "SRV"
-
-  data {
-    service  = "_matrix"
-    proto    = "_tcp"
-    name     = data.cloudflare_zone.domains[local.matrix_domain].name
-    priority = 10
-    weight   = 0
-    port     = 443
-    target   = "matrix.${data.cloudflare_zone.domains[local.matrix_domain].name}"
-  }
-}
