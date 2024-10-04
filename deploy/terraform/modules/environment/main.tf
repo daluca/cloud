@@ -43,7 +43,7 @@ terraform {
 
     time = {
       source  = "hashicorp/time"
-      version = ">= 0.11.0, < 0.12.0"
+      version = ">= 0.12.0, < 0.13.0"
     }
   }
 }
