@@ -28,6 +28,7 @@ on:
         description: plan or apply production terraform
         required: true
         default: plan
+        type: choice
         options:
           - plan
           - apply
