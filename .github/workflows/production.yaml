@@ -22,7 +22,15 @@ on:
       - deploy/terraform/modules/wasabi-bucket/**.tf
       - .github/workflows/production.yaml
 
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      action:
+        description: plan or apply production terraform
+        required: true
+        default: plan
+        options:
+          - plan
+          - apply
 
 permissions:
   pull-requests: write
@@ -81,10 +89,10 @@ jobs:
         run: terraform validate -no-color
 
       - name: terraform plan
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' && inputs.action == 'plan'
         id: plan
         run: terraform plan -no-color
 
       - name: terraform apply
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch' && inputs.action == 'apply'
         run: terraform apply -auto-approve
