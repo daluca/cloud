@@ -60,3 +60,15 @@ resource "kubernetes_secret" "headscale_openid_connect" {
     "client-secret" = keycloak_openid_client.headscale.client_secret
   }
 }
+
+resource "kubernetes_secret" "mealie_openid_connect" {
+  metadata {
+    name      = "mealie-openid-connect"
+    namespace = "mealie"
+  }
+
+  data = {
+    "OIDC_CLIENT_ID"     = keycloak_openid_client.mealie.client_id
+    "OIDC_CLIENT_SECRET" = keycloak_openid_client.mealie.client_secret
+  }
+}

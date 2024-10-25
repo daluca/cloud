@@ -151,17 +151,13 @@ resource "keycloak_openid_client" "mealie" {
   name    = "Mealie"
   enabled = true
 
-  access_type = "PUBLIC"
+  access_type = "CONFIDENTIAL"
 
   root_url            = sensitive("https://mealie.${var.keycloak.domain}")
   valid_redirect_uris = ["/login", "/login?direct=1"]
-  web_origins         = ["+"]
 
-  standard_flow_enabled = true
-
-  extra_config = {
-    "id.token.signed.response.alg" = "RS256"
-  }
+  standard_flow_enabled        = true
+  direct_access_grants_enabled = true
 }
 
 resource "keycloak_openid_client_optional_scopes" "mealie_optional_scopes" {
