@@ -10,4 +10,4 @@ spec:
     kind: Deployment
     name: mealie
   updatePolicy:
-    updateMode: Auto
+    updateMode: "Off"
