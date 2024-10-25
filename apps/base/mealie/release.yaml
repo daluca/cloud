@@ -64,7 +64,6 @@ spec:
       SMTP_FROM_EMAIL: no-reply@${PRIMARY_DOMAIN}
       OIDC_AUTH_ENABLED: true
       OIDC_SIGNUP_ENABLED: true
-      OIDC_CLIENT_ID: mealie
       OIDC_CONFIGURATION_URL: https://sso.${PRIMARY_DOMAIN}/realms/${ENVIRONMENT}/.well-known/openid-configuration
       OIDC_AUTO_REDIRECT: true
       OIDC_PROVIDER_NAME: sso.${PRIMARY_DOMAIN}
