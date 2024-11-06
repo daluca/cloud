@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: redis-cluster-config
+  name: valkey-cluster-config
   namespace: nextcloud
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
