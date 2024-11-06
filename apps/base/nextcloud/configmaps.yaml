@@ -7,10 +7,10 @@ metadata:
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
 data:
-  redis-session.ini: |-
+  valkey-session.ini: |-
     [Session]
     session.save_handler=rediscluster
-    session.save_path="seed[]=redis-cluster-leader.database:6379&timeout=2&read_timeout=2&failover=error&persistent=1&auth[pass]=${REDIS_CLUSTER_PASSWORD}"
+    session.save_path="seed[]=valkey-cluster.database:6379&timeout=2&read_timeout=2&failover=error&persistent=1&auth[pass]=${VALKEY_CLUSTER_PASSWORD}"
     redis.session.locking_enabled=1
     redis.session.lock_retries=-1
     redis.session.lock_wait_time=10000

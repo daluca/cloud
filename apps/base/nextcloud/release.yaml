@@ -120,17 +120,17 @@ spec:
               )
             )
           );
-        redis-cluster.config.php: |-
+        valkey-cluster.config.php: |-
           <?php
           $CONFIG = array (
             'redis.cluster' => array (
               'seeds' => [
-                'redis-cluster-leader.database:6379',
+                'valkey-cluster.database:6379',
               ],
               'timeout' => 0.0,
               'read_timeout' => 0.0,
               'failover_mode' => '\RedisCluster::FAILOVER_ERROR',
-              'password' => getenv('REDIS_CLUSTER_PASSWORD'),
+              'password' => getenv('VALKEY_CLUSTER_PASSWORD'),
             ),
           );
         caching.config.php: |-
@@ -248,19 +248,19 @@ spec:
             secretKeyRef:
               name: wasabi-encryption
               key: sse-customer-key
-        - name: REDIS_CLUSTER_PASSWORD
+        - name: VALKEY_CLUSTER_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: redis-cluster-credentials
+              name: valkey-cluster-credentials
               key: password
         - name: PHP_MEMORY_LIMIT
           value: 512M
       extraVolumes:
         - name: logs
           emptyDir: {}
-        - name: redis-cluster-config
+        - name: valkey-cluster-config
           configMap:
-            name: redis-cluster-config
+            name: valkey-cluster-config
         - name: post-installation-scripts
           configMap:
             name: post-installation-scripts
@@ -276,9 +276,9 @@ spec:
       extraVolumeMounts:
         - name: logs
           mountPath: /var/log/nextcloud
-        - name: redis-cluster-config
-          mountPath: /usr/local/etc/php/conf.d/redis-session.ini
-          subPath: redis-session.ini
+        - name: valkey-cluster-config
+          mountPath: /usr/local/etc/php/conf.d/valkey-session.ini
+          subPath: valkey-session.ini
         - name: post-installation-scripts
           mountPath: /docker-entrypoint-hooks.d/post-installation
         - name: before-starting-scripts
