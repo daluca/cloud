@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - ../../base/oauth2-proxy
   - oauth2-proxy-secrets.sops.yaml
-  - redis-cluster-credentials.sops.yaml
+  - valkey-cluster-credentials.sops.yaml
 patches:
   - path: oauth2-proxy-values.yaml
   - target:
