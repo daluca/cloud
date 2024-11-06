@@ -16,5 +16,19 @@ spec:
           $CONFIG = array (
             'auth.bruteforce.protection.enabled' => false,
           );
+        valkey-cluster.config.php: |-
+          <?php
+          $CONFIG = array (
+            'redis.cluster' => array (
+              'seeds' => [
+                'valkey-cluster.database:6379',
+              ],
+              'timeout' => 0.0,
+              'read_timeout' => 0.0,
+              'failover_mode' => '\RedisCluster::FAILOVER_ERROR',
+              'password' => getenv('VALKEY_CLUSTER_PASSWORD'),
+            ),
+          );
+        redis-cluster.config.php: null
     persistence:
       size: 2Gi
