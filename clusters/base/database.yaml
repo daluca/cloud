@@ -104,6 +104,9 @@ spec:
       name: redis-cluster-follower
       namespace: database
     - kind: StatefulSet
+      name: valkey-cluster
+      namespace: database
+    - kind: StatefulSet
       name: memcached
       namespace: database
 ---

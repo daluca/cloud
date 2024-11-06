@@ -93,12 +93,6 @@ patches:
       - op: replace
         path: /spec/path
         value: ./database/clusters/staging
-      - op: add
-        path: /spec/healthChecks/-
-        value:
-          kind: StatefulSet
-          name: valkey-cluster
-          namespace: database
   - target:
       kind: Kustomization
       name: database-upgrades
