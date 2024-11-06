@@ -121,10 +121,10 @@ spec:
     sessionStorage:
       type: redis
       redis:
-        existingSecret: redis-cluster-credentials
+        existingSecret: valkey-cluster-credentials
         clientType: cluster
         cluster:
-          connectionUrls: redis://redis-cluster-leader.database:6379
+          connectionUrls: redis://valkey-cluster.database:6379
     metrics:
       enabled: true
       serviceMonitor:
