@@ -5,8 +5,9 @@ resources:
   - ../../base/nextcloud
   - nextcloud-credentials.sops.yaml
   - postgresql-credentials.sops.yaml
-  - redis-cluster-credentials.sops.yaml
+  - valkey-cluster-credentials.sops.yaml
   - wasabi-encryption.sops.yaml
+  - valkey-configmap.yaml
 patches:
   - path: nextcloud-values.yaml
   - target:
@@ -21,3 +22,23 @@ patches:
         value: nextcloud-stg-tls
       - op: remove
         path: /spec/values/affinity
+      - op: replace
+        path: /spec/values/nextcloud/extraEnv/8
+        value:
+          name: VALKEY_CLUSTER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: valkey-cluster-credentials
+              key: password
+      - op: replace
+        path: /spec/values/nextcloud/extraVolumes/1
+        value:
+          name: valkey-cluster-config
+          configMap:
+            name: valkey-cluster-config
+      - op: replace
+        path: /spec/values/nextcloud/extraVolumeMounts/1
+        value:
+          name: valkey-cluster-config
+          mountPath: /usr/local/etc/php/conf.d/valkey-session.ini
+          subPath: valkey-session.ini
