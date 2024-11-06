@@ -9,8 +9,3 @@ spec:
     enable: false
   values:
     replicaCount: 1
-    sessionStorage:
-      redis:
-        existingSecret: valkey-cluster-credentials
-        cluster:
-          connectionUrls: redis://valkey-cluster.database:6379
