@@ -5,5 +5,5 @@ resources:
   - ../../base/nextcloud
   - nextcloud-credentials.sops.yaml
   - postgresql-credentials.sops.yaml
-  - redis-cluster-credentials.sops.yaml
+  - valkey-cluster-credentials.sops.yaml
   - wasabi-encryption.sops.yaml
