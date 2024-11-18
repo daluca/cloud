@@ -31,7 +31,7 @@ spec:
     enable: true
     ignoreFailures: false
   values:
-    replicaCount: 2
+    replicaCount: 1
     service:
       port: 80
     ingress:
