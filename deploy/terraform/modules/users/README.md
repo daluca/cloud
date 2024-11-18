@@ -15,7 +15,13 @@
 |------|------|
 | [keycloak_user.users](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/user) | resource |
 | [keycloak_user_groups.main](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/user_groups) | resource |
-| [keycloak_group.administrators](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/data-sources/group) | data source |
+| [keycloak_group.admins](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/data-sources/group) | data source |
+| [keycloak_group.mealie_admins](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/data-sources/group) | data source |
+| [keycloak_group.mealie_users](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/data-sources/group) | data source |
+| [keycloak_group.nextcloud_admins](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/data-sources/group) | data source |
+| [keycloak_group.nextcloud_users](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/data-sources/group) | data source |
+| [keycloak_group.realm_admins](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/data-sources/group) | data source |
+| [keycloak_group.tailscale_users](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/data-sources/group) | data source |
 | [keycloak_group.users](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/data-sources/group) | data source |
 | [keycloak_realm.environment](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/data-sources/realm) | data source |
 

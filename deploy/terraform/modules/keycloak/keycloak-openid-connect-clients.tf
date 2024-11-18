@@ -144,6 +144,31 @@ resource "keycloak_openid_client" "headscale" {
   direct_access_grants_enabled = true
 }
 
+resource "keycloak_openid_client_optional_scopes" "headscale_optional_scopes" {
+  realm_id  = data.keycloak_realm.main.id
+  client_id = keycloak_openid_client.headscale.id
+
+  optional_scopes = [
+    "address",
+    "phone",
+    "offline_access",
+    "microprofile-jwt",
+    keycloak_openid_client_scope.group.name
+  ]
+}
+
+resource "keycloak_openid_user_client_role_protocol_mapper" "tailscale_groups" {
+  realm_id  = data.keycloak_realm.main.id
+  client_id = keycloak_openid_client.headscale.id
+
+  name       = "groups"
+  claim_name = "groups"
+
+  client_id_for_role_mappings = keycloak_openid_client.headscale.client_id
+
+  multivalued = true
+}
+
 resource "keycloak_openid_client" "mealie" {
   realm_id  = data.keycloak_realm.main.id
   client_id = "mealie"

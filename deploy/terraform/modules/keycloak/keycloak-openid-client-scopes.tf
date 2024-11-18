@@ -16,7 +16,7 @@ resource "keycloak_generic_protocol_mapper" "groups_mapper" {
 
   config = {
     "claim.name" : "groups",
-    "full.path" : "false",
+    "full.path" : "true",
     "id.token.claim" : "true",
     "access.token.claim" : "true",
     "lightweight.claim" : "false",

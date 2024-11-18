@@ -3,9 +3,9 @@ output "realm_id" {
   value       = data.keycloak_realm.main.id
 }
 
-output "administrators_id" {
+output "admins_id" {
   description = "Keycloak Admin group ID."
-  value       = keycloak_group.administrators.id
+  value       = keycloak_group.admins.id
 }
 
 output "users_id" {

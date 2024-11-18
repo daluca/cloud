@@ -30,7 +30,5 @@ resource "keycloak_user_groups" "main" {
   realm_id = data.keycloak_realm.environment.id
   user_id  = keycloak_user.users[each.key].id
 
-  group_ids = each.value["groups"] != null ? distinct(concat(
-    [for group in each.value["groups"] : local.groups[group].id], [local.groups["/Users"].id]
-  )) : [local.groups["/Users"].id]
+  group_ids = each.value["groups"] != null ? [for group in each.value["groups"] : local.groups[group].id] : []
 }

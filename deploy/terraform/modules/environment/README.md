@@ -13,7 +13,7 @@
 | github | >= 6.0, < 7.0 |
 | kubernetes | >= 2.0, < 3.0 |
 | random | >= 3.0, < 4.0 |
-| time | >= 0.11.0, < 0.12.0 |
+| time | >= 0.12.0, < 0.13.0 |
 | wasabi | >= 4.0, < 5.0 |
 
 ## Modules
@@ -38,7 +38,6 @@
 | [cloudflare_api_token.cert_manager](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/api_token) | resource |
 | [cloudflare_api_token.external_dns](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/api_token) | resource |
 | [cloudflare_record.apex](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/record) | resource |
-| [cloudflare_record.matrix_srv](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/record) | resource |
 | [digitalocean_kubernetes_cluster.main](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/kubernetes_cluster) | resource |
 | [digitalocean_kubernetes_node_pool.big](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/kubernetes_node_pool) | resource |
 | [digitalocean_kubernetes_node_pool.monitoring](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/kubernetes_node_pool) | resource |
