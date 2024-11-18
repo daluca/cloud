@@ -15,14 +15,19 @@
 | Name | Type |
 |------|------|
 | [keycloak_generic_protocol_mapper.groups_mapper](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/generic_protocol_mapper) | resource |
-| [keycloak_group.administrators](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group) | resource |
-| [keycloak_group.mealie_admin](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group) | resource |
-| [keycloak_group.mealie_user](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group) | resource |
+| [keycloak_group.admins](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group) | resource |
+| [keycloak_group.mealie_admins](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group) | resource |
+| [keycloak_group.mealie_users](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group) | resource |
+| [keycloak_group.nextcloud_admins](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group) | resource |
+| [keycloak_group.nextcloud_users](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group) | resource |
+| [keycloak_group.realm_admins](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group) | resource |
+| [keycloak_group.tailscale_users](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group) | resource |
 | [keycloak_group.users](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group) | resource |
-| [keycloak_group_roles.administrator_roles](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group_roles) | resource |
-| [keycloak_group_roles.mealie_administrator_roles](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group_roles) | resource |
-| [keycloak_group_roles.mealie_user_roles](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group_roles) | resource |
-| [keycloak_group_roles.user_roles](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group_roles) | resource |
+| [keycloak_group_roles.mealie_admins_roles](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group_roles) | resource |
+| [keycloak_group_roles.mealie_users_roles](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group_roles) | resource |
+| [keycloak_group_roles.nextcloud_admins_roles](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group_roles) | resource |
+| [keycloak_group_roles.nextcloud_users_roles](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group_roles) | resource |
+| [keycloak_group_roles.realm_admins_roles](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/group_roles) | resource |
 | [keycloak_ldap_group_mapper.groups](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/ldap_group_mapper) | resource |
 | [keycloak_ldap_user_federation.openldap](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/ldap_user_federation) | resource |
 | [keycloak_openid_audience_protocol_mapper.oauth2_proxy](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_audience_protocol_mapper) | resource |
@@ -32,16 +37,18 @@
 | [keycloak_openid_client.nextcloud](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_client) | resource |
 | [keycloak_openid_client.oauth2_proxy](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_client) | resource |
 | [keycloak_openid_client.synapse](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_client) | resource |
+| [keycloak_openid_client_optional_scopes.headscale_optional_scopes](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_client_optional_scopes) | resource |
 | [keycloak_openid_client_optional_scopes.mealie_optional_scopes](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_client_optional_scopes) | resource |
 | [keycloak_openid_client_optional_scopes.oauth2_proxy_optional_scopes](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_client_optional_scopes) | resource |
 | [keycloak_openid_client_scope.group](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_client_scope) | resource |
 | [keycloak_openid_user_attribute_protocol_mapper.nextcloud_quota](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_user_attribute_protocol_mapper) | resource |
 | [keycloak_openid_user_client_role_protocol_mapper.mealie_groups](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_user_client_role_protocol_mapper) | resource |
 | [keycloak_openid_user_client_role_protocol_mapper.nextcloud_groups](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_user_client_role_protocol_mapper) | resource |
-| [keycloak_role.mealie_admin](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/role) | resource |
-| [keycloak_role.mealie_user](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/role) | resource |
-| [keycloak_role.nextcloud_admin](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/role) | resource |
-| [keycloak_role.nextcloud_user](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/role) | resource |
+| [keycloak_openid_user_client_role_protocol_mapper.tailscale_groups](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/openid_user_client_role_protocol_mapper) | resource |
+| [keycloak_role.mealie_admins](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/role) | resource |
+| [keycloak_role.mealie_users](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/role) | resource |
+| [keycloak_role.nextcloud_admins](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/role) | resource |
+| [keycloak_role.nextcloud_users](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/resources/role) | resource |
 | [kubernetes_secret.headscale_openid_connect](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/secret) | resource |
 | [kubernetes_secret.mealie_openid_connect](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/secret) | resource |
 | [kubernetes_secret.miniflux_openid_connect](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/secret) | resource |
@@ -50,7 +57,7 @@
 | [kubernetes_secret.synapse_openid_connect](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/secret) | resource |
 | [keycloak_openid_client.realm_management](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/data-sources/openid_client) | data source |
 | [keycloak_realm.main](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/data-sources/realm) | data source |
-| [keycloak_role.realm_management_realm_admin](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/data-sources/role) | data source |
+| [keycloak_role.realm_management_realm_admins](https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs/data-sources/role) | data source |
 
 ## Inputs
 
@@ -64,7 +71,7 @@
 
 | Name | Description |
 |------|-------------|
-| administrators\_id | Keycloak Admin group ID. |
+| admins\_id | Keycloak Admin group ID. |
 | nextcloud\_client\_id | Nextcloud OpenID Connect client-id. |
 | nextcloud\_client\_secret | Nextcloud OpenID Connect client-secret. |
 | realm\_id | Keycloak realm ID. |

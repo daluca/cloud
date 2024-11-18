@@ -66,6 +66,9 @@ spec:
         issuer: https://sso.${PRIMARY_DOMAIN}/realms/${ENVIRONMENT}
         client_id: headscale
         client_secret_path: /var/run/secrets/keycloak/client-secret
+        expiry: 0
+        scope: [openid, groups]
+        allowed_groups: [/Users/Tailscale Users]
     extraVolumes:
       - name: oidc-credentials
         secret:
