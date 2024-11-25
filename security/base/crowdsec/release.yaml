@@ -28,7 +28,8 @@ spec:
   uninstall:
     keepHistory: false
   test:
-    enable: true
+    # TODO: remove when appsec testing is conditional
+    enable: false
     ignoreFailures: false
   values:
     container_runtime: containerd
