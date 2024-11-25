@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: crowdsec
-      version: 0.9.12
+      version: ">=0.14.0 <0.15.0"
       sourceRef:
         kind: HelmRepository
         name: crowdsec
@@ -30,32 +30,8 @@ spec:
   test:
     enable: true
     ignoreFailures: false
-  postRenderers:
-    - kustomize:
-        patches:
-          - target:
-              kind: Deployment
-              name: crowdsec-lapi
-            patch: |-
-              - op: add
-                path: /spec/template/spec/volumes/-
-                value:
-                  name: crowdsec-custom-config
-                  configMap:
-                    name: crowdsec-config
-              - op: add
-                path: /spec/template/spec/containers/0/volumeMounts/-
-                value:
-                  mountPath: /etc/crowdsec_data/config.yaml.local
-                  subPath: config.yaml
-                  name: crowdsec-custom-config
-              - op: add
-                path: /spec/replicas
-                value: 2
   values:
     container_runtime: containerd
-    image:
-      tag: v1.6.2
     config:
       postoverflows:
         s01-whitelist:
@@ -66,7 +42,18 @@ spec:
               reason: "production environment trusted CIDR range"
               cidr:
                 - ${PRODUCTION_IP_ALLOW_LIST}
+      config.yaml.local: |-
+        db_config:
+          type: $${DATABASE_TYPE}
+          user: $${POSTGRESQL_USERNAME}
+          password: $${POSTGRESQL_PASSWORD}
+          db_name: $${POSTGRESQL_DATABASE}
+          host: postgresql-cluster.database
+          port: 5432
+          sslmode: disable
+          max_open_conns: 20
     lapi:
+      replicas: 2
       env:
         - name: DISABLE_AGENT
           value: "true"

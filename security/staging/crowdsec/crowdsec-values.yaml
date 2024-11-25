@@ -8,6 +8,8 @@ spec:
   test:
     enable: false
   values:
+    lapi:
+      replicas: 1
     config:
       postoverflows:
         s01-whitelist:
