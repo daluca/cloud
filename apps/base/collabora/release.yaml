@@ -70,14 +70,12 @@ spec:
       enabled: false
     collabora:
       aliasgroups:
-        - host: cloud.${PRIMARY_DOMAIN}
+        - host: https://cloud.${PRIMARY_DOMAIN}:443
           aliases:
-            - https://collabora.${PRIMARY_DOMAIN}
-            - https://collabora.${PRIMARY_DOMAIN}:443
-            - http://collabora:9980
-            - http://collabora.nextcloud:9980
-            - http://collabora.nextcloud.svc:9980
-            - http://collabora.nextcloud.svc.cluster.local:9980
+            - http://nextcloud:9980
+            - http://nextcloud.nextcloud:9980
+            - http://nextcloud.nextcloud.svc:9980
+            - http://nextcloud.nextcloud.svc.cluster.local:9980
       server_name: collabora.${PRIMARY_DOMAIN}
       extra_params: >-
         --o:ssl.enable=false
