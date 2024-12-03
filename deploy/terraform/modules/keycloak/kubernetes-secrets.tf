@@ -72,3 +72,15 @@ resource "kubernetes_secret" "mealie_openid_connect" {
     "OIDC_CLIENT_SECRET" = keycloak_openid_client.mealie.client_secret
   }
 }
+
+resource "kubernetes_secret" "linkwarden_openid_connect" {
+  metadata {
+    name      = "linkwarden-openid-connect"
+    namespace = "linkwarden"
+  }
+
+  data = {
+    "KEYCLOAK_CLIENT_ID"     = keycloak_openid_client.linkwarden.client_id
+    "KEYCLOAK_CLIENT_SECRET" = keycloak_openid_client.linkwarden.client_secret
+  }
+}

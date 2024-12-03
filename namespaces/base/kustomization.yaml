@@ -9,6 +9,7 @@ resources:
   - gatekeeper-system.yaml
   - identity.yaml
   - ingress-nginx.yaml
+  - linkwarden.yaml
   - mail.yaml
   - matrix.yaml
   - mealie.yaml

@@ -125,3 +125,20 @@ spec:
           key: create-mealie-user.sql
     - name: create-database
       script: CREATE DATABASE mealie WITH OWNER mealie;
+---
+apiVersion: stackgres.io/v1
+kind: SGScript
+metadata:
+  name: linkwarden-database
+  namespace: database
+spec:
+  managedVersions: true
+  continueOnError: false
+  scripts:
+    - name: create-user
+      scriptFrom:
+        secretKeyRef:
+          name: database-credentials
+          key: create-linkwarden-user.sql
+    - name: create-database
+      script: CREATE DATABASE linkwarden WITH OWNER linkwarden;

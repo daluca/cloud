@@ -209,3 +209,19 @@ resource "keycloak_openid_user_client_role_protocol_mapper" "mealie_groups" {
 
   multivalued = true
 }
+
+resource "keycloak_openid_client" "linkwarden" {
+  realm_id  = data.keycloak_realm.main.id
+  client_id = "linkwarden"
+
+  name    = "Linkwarden"
+  enabled = true
+
+  access_type = "CONFIDENTIAL"
+
+  root_url            = sensitive("https://links.${var.keycloak.domain}")
+  valid_redirect_uris = ["/api/v1/auth/callback/keycloak"]
+
+  standard_flow_enabled        = true
+  direct_access_grants_enabled = true
+}

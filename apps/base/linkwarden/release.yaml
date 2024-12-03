@@ -1,0 +1,76 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: linkwarden
+  namespace: linkwarden
+spec:
+  releaseName: linkwarden
+  chart:
+    spec:
+      chart: linkwarden
+      version: ">=0.1.0 <0.2.0"
+      sourceRef:
+        kind: HelmRepository
+        name: daluca
+        namespace: flux-system
+  interval: 1h
+  maxHistory: 3
+  install:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  test:
+    enable: true
+    ignoreFailures: false
+  uninstall:
+    keepHistory: false
+  values:
+    replicaCount: 2
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        kubernetes.io/ingress.allow-http: "false"
+      hosts:
+        - host: links.${PRIMARY_DOMAIN}
+          paths:
+            - pathType: Prefix
+              path: /
+      tls:
+        - secretName: linkwarden-tls
+          hosts:
+            - links.${PRIMARY_DOMAIN}
+    persistence:
+      enabled: true
+      storageClass: rook-ceph-block
+      size: 1Gi
+      accessModes: [ReadWriteOnce]
+    extraEnvs:
+      - name: KEYCLOAK_CLIENT_ID
+        valueFrom:
+          secretKeyRef:
+            key: KEYCLOAK_CLIENT_ID
+            name: linkwarden-openid-connect
+      - name: KEYCLOAK_CLIENT_SECRET
+        valueFrom:
+          secretKeyRef:
+            key: KEYCLOAK_CLIENT_SECRET
+            name: linkwarden-openid-connect
+    linkwarden:
+      config:
+        NEXT_PUBLIC_KEYCLOAK_ENABLED: true
+        KEYCLOAK_CUSTOM_NAME: sso.${PRIMARY_DOMAIN}
+        KEYCLOAK_ISSUER: https://sso.${PRIMARY_DOMAIN}/realms/${ENVIRONMENT}
+      existingSecret: linkwarden-secret-envs
+    database:
+      external: true
+      existingSecret: linkwarden-database-credential-envs
+    postgresql:
+      enabled: false
