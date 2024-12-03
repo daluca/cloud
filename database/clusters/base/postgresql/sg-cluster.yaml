@@ -49,5 +49,6 @@ spec:
       - sgScript: synapse-database
       - sgScript: headscale-database
       - sgScript: mealie-database
+      - sgScript: linkwarden-database
   prometheusAutobind: true
   nonProductionOptions: {}
