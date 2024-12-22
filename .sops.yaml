@@ -7,3 +7,7 @@ creation_rules:
   - path_regex: .*/production/.*\.sops\.yaml$
     encrypted_regex: ^(data|stringData)$
     age: age1gzx4nxzmefttk92fz3rwn5w2nshdc3xfq26j55fp2e8f6q07s5psg9xw8l
+
+stores:
+  yaml:
+    indent: 2
