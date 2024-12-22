@@ -1,0 +1,2 @@
+**/production/**.sops.yaml diff=sopsdiffer
+**/staging/**.sops.yaml diff=sopsdiffer
