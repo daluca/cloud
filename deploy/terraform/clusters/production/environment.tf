@@ -12,7 +12,7 @@ module "production" {
   }
 
   kubernetes = {
-    version = "1.30"
+    version = "1.31"
     worker_pool = {
       cpu        = 4
       memory     = 8
