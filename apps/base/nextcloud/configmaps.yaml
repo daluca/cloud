@@ -56,7 +56,7 @@ data:
     php occ user_oidc:provider sso.${NEXTCLOUD_TRUSTED_DOMAINS#*.} \
       --clientid ${KEYCLOAK_CLIENT_ID} \
       --clientsecret ${KEYCLOAK_CLIENT_SECRET} \
-      --discoveryuri http://keycloak.identity/realms/${KEYCLOAK_REALM}/.well-known/openid-configuration \
+      --discoveryuri https://sso.${NEXTCLOUD_TRUSTED_DOMAINS#*.}/realms/${KEYCLOAK_REALM}/.well-known/openid-configuration \
       --scope "openid email profile" \
       --unique-uid 0 \
       --check-bearer 0 \
